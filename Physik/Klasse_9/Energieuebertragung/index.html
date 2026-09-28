@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hilfen · Energie im Energieskatepark · Physik Klasse 9</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+:root{
+  --blue:#004a8a; --blue-dark:#00325f;
+  --c1:#1a7f4b; --c2:#c8660a; --c3:#6b3fa0;
+  --green:#1a7f4b;
+  --border:#dde1e7; --bg:#f4f5f7; --text:#1c1f26; --muted:#5c6472;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.55; font-size:16px}
+.wrap{max-width:960px; margin:0 auto; padding:0 16px 64px}
+
+header.top{background:var(--blue); border-bottom:4px solid var(--blue-dark); color:#fff}
+header.top .inner{max-width:960px; margin:0 auto; padding:22px 16px 24px}
+header.top .kap{font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.92}
+header.top h1{margin:6px 0 4px; font-size:1.7rem; line-height:1.2}
+header.top .sub{font-size:.92rem; opacity:.95}
+
+.backnav{margin:18px 0 4px}
+.backnav a{display:inline-flex; align-items:center; gap:6px; font-size:.86rem; font-weight:600;
+  color:var(--muted); text-decoration:none; border:1px solid var(--border); border-radius:20px;
+  padding:5px 13px; background:#fff}
+.backnav a:hover{border-color:var(--muted); color:var(--text)}
+
+.controls{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 16px;
+  margin:18px 0 22px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between}
+.unlock{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.unlock label{font-size:.9rem; color:var(--muted)}
+.unlock input{border:1px solid var(--border); border-radius:6px; padding:6px 10px; font-size:.95rem;
+  width:130px; font-family:inherit}
+.unlock button{background:var(--blue); color:#fff; border:0; border-radius:6px; padding:7px 14px;
+  font-size:.9rem; font-weight:600; cursor:pointer; font-family:inherit}
+.unlock button:hover{background:var(--blue-dark)}
+.unlock .msg{font-size:.85rem; font-weight:600}
+.unlock .msg.ok{color:var(--green)}
+.unlock .msg.bad{color:#c0392b}
+.filters{display:flex; gap:6px; flex-wrap:wrap}
+.filters button{background:#fff; border:1px solid var(--border); border-radius:20px; padding:6px 14px;
+  font-size:.85rem; cursor:pointer; color:var(--muted); font-family:inherit; font-weight:600}
+.filters button:hover{border-color:var(--muted)}
+.filters button.on{background:var(--text); border-color:var(--text); color:#fff}
+
+.note{background:#e8f0f9; border-left:3px solid var(--blue); border-radius:6px; padding:10px 14px;
+  font-size:.9rem; margin:12px 0}
+.note a.simbtn{display:inline-block; margin-top:6px; background:var(--blue); color:#fff; text-decoration:none;
+  border-radius:6px; padding:5px 12px; font-weight:600; font-size:.85rem}
+.howto{background:#fff; border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:.9rem;
+  margin:12px 0; color:var(--muted)}
+.howto strong{color:var(--text)}
+
+.ab-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:34px 0 12px;
+  padding-bottom:8px; border-bottom:2px solid var(--border)}
+.ab-badge{color:#fff; border-radius:6px; padding:4px 12px; font-weight:700; font-size:.9rem}
+.ab-head .t{font-weight:700; font-size:1.1rem}
+.ab-head .desc{color:var(--muted); font-size:.9rem; flex-basis:100%}
+.s1 .ab-badge{background:var(--c1)} .s2 .ab-badge{background:var(--c2)} .s3 .ab-badge{background:var(--c3)}
+
+.card{background:#fff; border:1px solid var(--border); border-radius:10px; margin-bottom:14px; overflow:hidden;
+  scroll-margin-top:12px}
+.card.s1{border-top:4px solid var(--c1)} .card.s2{border-top:4px solid var(--c2)} .card.s3{border-top:4px solid var(--c3)}
+.card.flash{box-shadow:0 0 0 3px rgba(0,74,138,.35)}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 18px;
+  cursor:pointer; user-select:none}
+.card-head:hover{background:#fafbfc}
+.card-head h3{margin:0; font-size:1.03rem; font-weight:700}
+.card-head .right{display:flex; align-items:center; gap:10px}
+.chev{color:var(--muted); font-size:1.1rem; transition:transform .18s}
+.card.open .chev{transform:rotate(180deg)}
+.card-body{display:none; padding:0 18px 18px}
+.card.open .card-body{display:block}
+.qrbtn{display:none; border:1px solid var(--border); background:#fff; border-radius:6px; padding:3px 9px;
+  font-size:.78rem; font-weight:600; color:var(--blue); cursor:pointer; font-family:inherit}
+body.unlocked .qrbtn{display:inline-block}
+
+.task{background:#fbfcfd; border:1px solid var(--border); border-left:3px solid var(--blue); border-radius:6px;
+  padding:12px 15px; margin-bottom:14px}
+.task p{margin:.5em 0} .task p:first-child{margin-top:0} .task p:last-child{margin-bottom:0}
+.task ul, .sol ul{margin:.4em 0; padding-left:1.3em}
+.tw{overflow-x:auto}
+table{border-collapse:collapse; margin:10px auto}
+td,th{border:1px solid var(--border); padding:5px 12px; font-size:.92rem; text-align:center; min-width:70px}
+th{background:#f3f5f8; font-weight:600}
+th.u{background:#fafbfc; font-weight:400; color:var(--muted); font-size:.82rem}
+.task td{height:1.9em}
+
+.assess{display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:14px}
+.assess .lab{font-size:.83rem; color:var(--muted); margin-right:2px}
+.assess button{border:1px solid var(--border); background:#fff; border-radius:16px; padding:4px 12px;
+  font-size:.8rem; cursor:pointer; color:var(--muted); font-family:inherit}
+.assess button.on[data-v="ok"]{background:var(--c1); border-color:var(--c1); color:#fff}
+.assess button.on[data-v="mid"]{background:var(--c2); border-color:var(--c2); color:#fff}
+.assess button.on[data-v="ask"]{background:var(--blue); border-color:var(--blue); color:#fff}
+
+.hints{border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:14px}
+.hints .htitle{background:#f7f8fa; padding:7px 14px; font-size:.8rem; font-weight:700; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border)}
+.htabs{display:flex; flex-wrap:wrap; gap:6px; padding:10px 14px; background:#fdfdfe}
+.htabs button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:5px 11px;
+  font-size:.82rem; cursor:pointer; color:var(--text); font-family:inherit}
+.htabs button:hover{border-color:var(--blue)}
+.htabs button.on{background:var(--blue); border-color:var(--blue); color:#fff; font-weight:600}
+.hpanel{display:none; padding:12px 15px; border-top:1px solid var(--border); font-size:.95rem}
+.hpanel.on{display:block}
+.hpanel h4{margin:0 0 8px; font-size:.92rem; color:var(--blue-dark)}
+.hpanel p{margin:.5em 0}
+
+.sol-lock{background:#f7f8fa; border:1px dashed var(--border); border-radius:8px; padding:12px 15px;
+  font-size:.9rem; color:var(--muted); text-align:center}
+.sol{display:none; border:1px solid var(--green); border-radius:8px; overflow:hidden}
+.sol .sh{background:var(--green); color:#fff; padding:7px 15px; font-weight:700; font-size:.88rem}
+.sol .sb{padding:13px 15px; font-size:.95rem}
+.sol .sb p{margin:.55em 0} .sol .sb p:first-child{margin-top:0}
+body.unlocked .sol{display:block}
+body.unlocked .sol-lock{display:none}
+
+.katex{font-size:1.04em}
+.katex-display{margin:.6em 0; overflow-x:auto; overflow-y:hidden}
+
+#qrmodal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center;
+  justify-content:center; z-index:50; padding:16px}
+#qrmodal.on{display:flex}
+#qrmodal .box{background:#fff; border-radius:10px; padding:20px 22px; max-width:360px; width:100%; text-align:center}
+#qrmodal h4{margin:0 0 10px; font-size:1rem}
+#qrcanvas{display:flex; justify-content:center; margin:10px 0}
+#qrurl{font-size:.75rem; color:var(--muted); word-break:break-all; margin:8px 0 12px}
+#qrmodal button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:6px 12px;
+  font-size:.85rem; cursor:pointer; font-family:inherit; margin:0 3px}
+#qrmodal button.pri{background:var(--blue); color:#fff; border-color:var(--blue)}
+
+footer.bot{text-align:center; color:var(--muted); font-size:.82rem; padding:26px 16px;
+  border-top:1px solid var(--border); margin-top:34px}
+footer.bot a{color:var(--blue)}
+@media(max-width:600px){
+  header.top h1{font-size:1.32rem}
+  .controls{flex-direction:column; align-items:stretch}
+  .card-head h3{font-size:.95rem}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <div class="kap">Reihe Energieübertragung · Physik Klasse 9</div>
+    <h1>Hilfen: Energie im Energieskatepark</h1>
+    <div class="sub">Aufgaben der drei Arbeitsblätter · gestufte Hilfen · Musterlösungen nach Freigabe</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="backnav"><a href="../">← Zurück zu Klasse 9</a></div>
+
+  <div class="controls">
+    <div class="unlock">
+      <label for="code">🔒 Musterlösungen freischalten:</label>
+      <input id="code" type="text" autocomplete="off" placeholder="Code">
+      <button id="btn-unlock" type="button">Bestätigen</button>
+      <span class="msg" id="msg"></span>
+    </div>
+    <div class="filters">
+      <button class="on" data-f="all" type="button">Alle</button>
+      <button data-f="lage" type="button">AB 1 · Lageenergie</button>
+      <button data-f="kin" type="button">AB 2 · Kinetische Energie</button>
+      <button data-f="erh" type="button">AB 3 · Energieerhaltung</button>
+    </div>
+  </div>
+
+  <div class="howto">
+    <strong>So nutzt du die Hilfen:</strong> Versuche die Aufgabe zuerst allein.
+    Wenn du nicht weiterkommst, öffne <strong>Hilfe 1</strong> – sie gibt dir einen Denkanstoß.
+    <strong>Hilfe 2</strong> zeigt dir den Lösungsweg, <strong>Hilfe 3</strong> bringt dich fast ans Ziel.
+    Öffne die nächste Hilfe erst, wenn dir die vorherige nicht gereicht hat.
+  </div>
+
+  <div class="note">
+    <strong>Formeln im Überblick:</strong>
+    Lageenergie $E_\text{Pot} = m\cdot g\cdot h$ ·
+    kinetische Energie $E_\text{kin} = \tfrac{1}{2}\,m\cdot v^2$ ·
+    Ortsfaktor $g = 10\,\tfrac{\text{N}}{\text{kg}}$ ·
+    ohne Reibung: $E_\text{Pot} + E_\text{kin} = \text{konstant}$<br>
+    <a class="simbtn" href="https://phet.colorado.edu/sims/html/energy-skate-park/latest/energy-skate-park_all.html?locale=de" target="_blank" rel="noopener">▶ Simulation „Energy Skate Park“ öffnen</a>
+  </div>
+
+  <!-- ================= AB 1 · Lageenergie ================= -->
+  <section class="s1" data-ab="lage" id="ab-lage">
+    <div class="ab-head">
+      <span class="ab-badge">AB 1</span><span class="t">Lageenergie</span>
+      <span class="desc">Arbeitsblatt: Die Lageenergie – Messung mit dem Energieskatepark</span>
+    </div>
+
+    <article class="card s1" id="lage-1">
+      <div class="card-head"><h3>Aufgabe 1 · $E_\text{Pot}$ und die Höhe $h$</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Halte die Masse des Skaters konstant bei $m = 60\,\text{kg}$. Setze den Skater nacheinander auf verschiedene Höhen und lies $E_\text{Pot}$ aus dem Energie-Fenster ab. Trage die Werte in die Tabelle ein und berechne das Verhältnis $\dfrac{E_\text{Pot}}{h}$.</p>
+<div class='tw'><table><tr><th>Höhe $h$</th><th>Lageenergie $E_\text{Pot}$</th><th>Verhältnis $E_\text{Pot}/h$</th></tr><tr><th class='u'>[m]</th><th class='u'>[J]</th><th class='u'>[J/m]</th></tr><tr><td>1,0</td><td></td><td></td></tr><tr><td>2,0</td><td></td><td></td></tr><tr><td>3,0</td><td></td><td></td></tr><tr><td>4,0</td><td></td><td></td></tr><tr><td>5,0</td><td></td><td></td></tr></table></div>
+<p>Trage die Messwerte in ein Diagramm ($h$ nach rechts, $E_\text{Pot}$ nach oben) ein und zeichne eine Ausgleichsgerade durch den Ursprung.</p>
+<p><strong>a)</strong> Beschreibe den Verlauf des Graphen in einem Satz.</p>
+<p><strong>b)</strong> Bestimme die Steigung $k = \dfrac{\Delta E_\text{Pot}}{\Delta h}$ der Geraden.</p>
+<p><strong>c)</strong> Vergleiche die Steigung mit dem Produkt $m\cdot g$ (mit $g = 10\,\tfrac{\text{N}}{\text{kg}}$).</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Messen</button>
+            <button type="button">Hilfe 2 · Verhältnis & Graph</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · So misst du in der Simulation</h4><p>Prüfe zuerst die Einstellungen: <strong>Reibung = keine</strong>, <strong>Gravitation = 10,0 m/s²</strong>, <strong>Gitternetz</strong> an, Masse auf <strong>60 kg</strong>.</p>
+<p>Drücke auf <strong>Pause</strong> und ziehe den Skater mit der Maus auf die gewünschte Höhe. Die Höhe liest du am Gitternetz ab (unterste Linie = $0\,\text{m}$). $E_\text{Pot}$ steht im lila Energie-Fenster in der Zeile „potentiell“.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Verhältnis berechnen und Diagramm zeichnen</h4><p>Teile für jede Zeile $E_\text{Pot}$ durch $h$. Beispiel: Misst du bei $h = 2{,}0\,\text{m}$ den Wert $E_\text{Pot} = 1200\,\text{J}$, dann ist</p>
+<p>$$\frac{E_\text{Pot}}{h} = \frac{1200\,\text{J}}{2{,}0\,\text{m}} = 600\,\tfrac{\text{J}}{\text{m}}.$$</p>
+<p>Im Diagramm: Jedes Wertepaar ist ein Kreuz. Liegen alle Kreuze auf einer Geraden durch den Ursprung, ist $E_\text{Pot}$ <strong>proportional</strong> zu $h$ – das erkennst du auch daran, dass das Verhältnis in jeder Zeile (fast) gleich ist.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Steigung bestimmen</h4><p>Wähle zwei weit auseinanderliegende Punkte auf der Geraden, z.&nbsp;B. $(1\,\text{m}\,|\,600\,\text{J})$ und $(5\,\text{m}\,|\,3000\,\text{J})$:</p>
+<p>$$k = \frac{3000\,\text{J} - 600\,\text{J}}{5\,\text{m} - 1\,\text{m}} = \frac{2400\,\text{J}}{4\,\text{m}} = \;?$$</p>
+<p>Berechne danach $m\cdot g = 60\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}$ und vergleiche die beiden Zahlen.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 1</div>
+          <div class="sb"><div class='tw'><table><tr><th>$h$ [m]</th><th>$E_\text{Pot}$ [J]</th><th>$E_\text{Pot}/h$ [J/m]</th></tr><tr><td>1,0</td><td>600</td><td>600</td></tr><tr><td>2,0</td><td>1200</td><td>600</td></tr><tr><td>3,0</td><td>1800</td><td>600</td></tr><tr><td>4,0</td><td>2400</td><td>600</td></tr><tr><td>5,0</td><td>3000</td><td>600</td></tr></table></div>
+<p><strong>a)</strong> Der Graph ist eine Gerade durch den Ursprung – $E_\text{Pot}$ ist proportional zur Höhe $h$.</p>
+<p><strong>b)</strong> $$k = \frac{3000\,\text{J} - 600\,\text{J}}{5\,\text{m} - 1\,\text{m}} = {\color{#1a7f4b}\boldsymbol{600\,\tfrac{\text{J}}{\text{m}}}}$$</p>
+<p><strong>c)</strong> $m\cdot g = 60\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}} = 600\,\text{N}$. Die Steigung entspricht genau $m\cdot g$ (denn $1\,\tfrac{\text{J}}{\text{m}} = 1\,\text{N}$).</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="lage-2">
+      <div class="card-head"><h3>Aufgabe 2 · $E_\text{Pot}$ und die Masse $m$</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Halte jetzt die Höhe konstant bei $h = 3{,}0\,\text{m}$ und variiere die Masse $m$. Lies $E_\text{Pot}$ aus der Simulation ab und berechne das Verhältnis $\dfrac{E_\text{Pot}}{m}$.</p>
+<div class='tw'><table><tr><th>Masse $m$</th><th>Lageenergie $E_\text{Pot}$</th><th>Verhältnis $E_\text{Pot}/m$</th></tr><tr><th class='u'>[kg]</th><th class='u'>[J]</th><th class='u'>[J/kg]</th></tr><tr><td>20</td><td></td><td></td></tr><tr><td>40</td><td></td><td></td></tr><tr><td>60</td><td></td><td></td></tr><tr><td>80</td><td></td><td></td></tr><tr><td>100</td><td></td><td></td></tr></table></div>
+<p>Zeichne das $m$-$E_\text{Pot}$-Diagramm, berechne die Steigung und vergleiche sie mit dem Produkt $g\cdot h$.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Messen</button>
+            <button type="button">Hilfe 2 · Verhältnis & Graph</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Masse einstellen</h4><p>Die Masse stellst du mit dem Regler <strong>„Masse“</strong> im Einstellungsfeld rechts ein. Kontrolliere nach jeder Änderung, dass der Skater noch auf $3{,}0\,\text{m}$ Höhe steht – die Höhe darf sich zwischen den Messungen nicht ändern!</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Verhältnis berechnen</h4><p>Teile $E_\text{Pot}$ durch die Masse. Beispiel: $\dfrac{1200\,\text{J}}{40\,\text{kg}} = 30\,\tfrac{\text{J}}{\text{kg}}$.</p>
+<p>Ist das Verhältnis in allen Zeilen gleich, liegen die Punkte im Diagramm auf einer Ursprungsgeraden: $E_\text{Pot}$ ist proportional zu $m$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Steigung und Vergleich</h4><p>Mit den Punkten $(20\,\text{kg}\,|\,600\,\text{J})$ und $(100\,\text{kg}\,|\,3000\,\text{J})$:</p>
+<p>$$k = \frac{3000\,\text{J} - 600\,\text{J}}{100\,\text{kg} - 20\,\text{kg}} = \frac{2400\,\text{J}}{80\,\text{kg}} = \;?$$</p>
+<p>Vergleiche mit $g\cdot h = 10\,\tfrac{\text{N}}{\text{kg}}\cdot 3{,}0\,\text{m}$.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 2</div>
+          <div class="sb"><div class='tw'><table><tr><th>$m$ [kg]</th><th>$E_\text{Pot}$ [J]</th><th>$E_\text{Pot}/m$ [J/kg]</th></tr><tr><td>20</td><td>600</td><td>30</td></tr><tr><td>40</td><td>1200</td><td>30</td></tr><tr><td>60</td><td>1800</td><td>30</td></tr><tr><td>80</td><td>2400</td><td>30</td></tr><tr><td>100</td><td>3000</td><td>30</td></tr></table></div>
+<p>$$k = \frac{2400\,\text{J}}{80\,\text{kg}} = {\color{#1a7f4b}\boldsymbol{30\,\tfrac{\text{J}}{\text{kg}}}}
+\qquad g\cdot h = 10\,\tfrac{\text{N}}{\text{kg}}\cdot 3{,}0\,\text{m} = 30\,\tfrac{\text{J}}{\text{kg}}$$</p>
+<p>Die Steigung entspricht genau $g\cdot h$.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="lage-3">
+      <div class="card-head"><h3>Aufgabe 3 · Die Formel für die Lageenergie</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Fasse die Ergebnisse aus Aufgabe 1 und 2 zusammen und ergänze die Lücken:</p>
+<ul>
+<li>$E_\text{Pot}$ ist proportional zur Höhe $h$: $E_\text{Pot}\sim h$ mit der Proportionalitätskonstante ______</li>
+<li>$E_\text{Pot}$ ist proportional zur Masse $m$: $E_\text{Pot}\sim m$ mit der Proportionalitätskonstante ______</li>
+</ul>
+<p>Beide Abhängigkeiten zusammen ergeben die Formel für die Lageenergie.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Zurückblicken</button>
+            <button type="button">Hilfe 2 · Vorgehen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Wo stehen die Konstanten?</h4><p>Die Proportionalitätskonstante ist jeweils die <strong>Steigung</strong> der Geraden. Schau dir deine Ergebnisse aus Aufgabe 1&nbsp;c) und Aufgabe 2 an: Mit welchem Produkt hast du die Steigungen verglichen?</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Konstanten ausdrücken</h4><p>In Aufgabe 1 war die Masse fest: $E_\text{Pot} = k_1\cdot h$ mit $k_1 = 600\,\tfrac{\text{J}}{\text{m}}$ – und das war gleich $m\cdot g$.</p>
+<p>In Aufgabe 2 war die Höhe fest: $E_\text{Pot} = k_2\cdot m$ mit $k_2 = 30\,\tfrac{\text{J}}{\text{kg}}$ – und das war gleich $g\cdot h$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Zusammensetzen</h4><p>Setze $k_1 = m\cdot g$ in $E_\text{Pot} = k_1\cdot h$ ein. Welche Formel erhältst du?</p>
+<p>Probe mit einem Tabellenwert: $m = 60\,\text{kg}$, $h = 3{,}0\,\text{m}$ muss $1800\,\text{J}$ ergeben.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 3</div>
+          <div class="sb"><ul>
+<li>$E_\text{Pot}\sim h$ mit der Konstante $m\cdot g$ (hier $600\,\tfrac{\text{J}}{\text{m}}$)</li>
+<li>$E_\text{Pot}\sim m$ mit der Konstante $g\cdot h$ (hier $30\,\tfrac{\text{J}}{\text{kg}}$)</li>
+</ul>
+<p>$${\color{#1a7f4b}\boldsymbol{E_\text{Pot} = m\cdot g\cdot h}}\qquad\text{mit } g \approx 10\,\tfrac{\text{N}}{\text{kg}}$$</p>
+<p>Probe: $60\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 3{,}0\,\text{m} = 1800\,\text{J}$ ✓</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="lage-4a">
+      <div class="card-head"><h3>Aufgabe 4a · Stein auf dem Felsvorsprung</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Stein mit der Masse $m = 2{,}0\,\text{kg}$ liegt auf einem $5{,}0\,\text{m}$ hohen Felsvorsprung. Berechne seine Lageenergie bezogen auf den Boden.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Ordnen</button>
+            <button type="button">Hilfe 2 · Formel</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Gegeben – Gesucht</h4><p>Schreibe zuerst auf, was du weißt: <strong>Gegeben:</strong> $m = 2{,}0\,\text{kg}$, $h = 5{,}0\,\text{m}$, $g = 10\,\tfrac{\text{N}}{\text{kg}}$. <strong>Gesucht:</strong> $E_\text{Pot}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Welche Formel passt?</h4><p>$$E_\text{Pot} = m\cdot g\cdot h$$ Setze die drei gegebenen Werte mit Einheiten ein.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Einsetzen</h4><p>$$E_\text{Pot} = 2{,}0\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 5{,}0\,\text{m} = \;?\;\text{J}$$ Tipp: $\text{kg}$ kürzt sich weg, $\text{N}\cdot\text{m} = \text{J}$.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4a</div>
+          <div class="sb"><p>$$E_\text{Pot} = 2{,}0\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 5{,}0\,\text{m} = {\color{#1a7f4b}\boldsymbol{100\,\text{J}}}$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="lage-4b">
+      <div class="card-head"><h3>Aufgabe 4b · Lokomotive auf der Brücke</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Eine Lokomotive mit der Masse $m = 80\,\text{t}$ überquert eine $120\,\text{m}$ hohe Eisenbahnbrücke. Berechne $E_\text{Pot}$ bezogen auf das Flussbett. <em>(Hinweis: $1\,\text{t} = 1000\,\text{kg}$)</em></p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Einheiten</button>
+            <button type="button">Hilfe 2 · Formel</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Zuerst umrechnen</h4><p>Die Formel braucht die Masse in <strong>Kilogramm</strong>. Rechne um: $80\,\text{t} = 80\cdot 1000\,\text{kg} = \;?\;\text{kg}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Einsetzen</h4><p>$$E_\text{Pot} = m\cdot g\cdot h = 80\,000\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 120\,\text{m}$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Große Zahlen</h4><p>Rechne schrittweise: $80\,000\cdot 10 = 800\,000$, dann $800\,000\cdot 120$.</p><p>Große Energien gibt man gern in Megajoule an: $1\,\text{MJ} = 1\,000\,000\,\text{J}$.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4b</div>
+          <div class="sb"><p>$m = 80\,\text{t} = 80\,000\,\text{kg}$</p>
+<p>$$E_\text{Pot} = 80\,000\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 120\,\text{m} = 96\,000\,000\,\text{J} = {\color{#1a7f4b}\boldsymbol{96\,\text{MJ}}}$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="lage-4c">
+      <div class="card-head"><h3>Aufgabe 4c · Das Buch im Regal</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>Denke nach:</strong> Ein Buch liegt auf dem Tisch ($h_1 = 0{,}80\,\text{m}$, bezogen auf den Boden). Jemand hebt es auf ein Regal in $h_2 = 2{,}2\,\text{m}$ Höhe. Das Buch hat eine Masse von $m = 0{,}60\,\text{kg}$. Um wie viel J nimmt $E_\text{Pot}$ zu?</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Verstehen</button>
+            <button type="button">Hilfe 2 · Vorgehen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Was ist gesucht?</h4><p>Gesucht ist nicht die Lageenergie auf dem Regal, sondern die <strong>Zunahme</strong> $\Delta E_\text{Pot}$ – also der Unterschied zwischen „Regal“ und „Tisch“.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Zwei Wege</h4><p><strong>Weg A:</strong> Berechne $E_\text{Pot}$ auf dem Tisch und auf dem Regal und bilde die Differenz.</p><p><strong>Weg B:</strong> Rechne direkt mit dem Höhenunterschied $\Delta h = h_2 - h_1$: $\;\Delta E_\text{Pot} = m\cdot g\cdot\Delta h$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Einsetzen</h4><p>$\Delta h = 2{,}2\,\text{m} - 0{,}80\,\text{m} = 1{,}4\,\text{m}$</p><p>$$\Delta E_\text{Pot} = 0{,}60\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 1{,}4\,\text{m} = \;?$$</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4c</div>
+          <div class="sb"><p>$$\Delta E_\text{Pot} = m\cdot g\cdot(h_2 - h_1) = 0{,}60\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 1{,}4\,\text{m} = {\color{#1a7f4b}\boldsymbol{8{,}4\,\text{J}}}$$</p>
+<p>Kontrolle über Weg A: $E_\text{Pot,Regal} = 13{,}2\,\text{J}$, $E_\text{Pot,Tisch} = 4{,}8\,\text{J}$, Differenz $8{,}4\,\text{J}$ ✓</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="lage-4d">
+      <div class="card-head"><h3>Aufgabe 4d · Zusatz: Geschwindigkeit des Skaters</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>Zusatzaufgabe:</strong> Berechne die Geschwindigkeit $v$ des Skaters am tiefsten Punkt der Bahn, wenn er aus einer Höhe $h = 3{,}0\,\text{m}$ startet (Masse: $m = 60\,\text{kg}$). Nutze den Energieerhaltungssatz: $E_\text{Pot} = E_\text{kin}$ und $E_\text{kin} = \tfrac{1}{2}\,m\,v^2$.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Gleichung</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Energie oben = Energie unten</h4><p>Oben steht der Skater still: Er hat nur Lageenergie. Unten ($h = 0$) ist die ganze Lageenergie in Bewegungsenergie umgewandelt. Berechne zuerst $E_\text{Pot}$ am Start.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Gleichung aufstellen</h4><p>$E_\text{Pot} = 60\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 3{,}0\,\text{m} = 1800\,\text{J}$. Diese Energie hat er unten als $E_\text{kin}$:</p><p>$$1800\,\text{J} = \tfrac{1}{2}\cdot 60\,\text{kg}\cdot v^2 = 30\,\text{kg}\cdot v^2$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Nach $v$ auflösen</h4><p>Teile durch $30\,\text{kg}$: $\;v^2 = 60\,\tfrac{\text{m}^2}{\text{s}^2}$. Jetzt die Wurzel ziehen (Taschenrechner: √).</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4d</div>
+          <div class="sb"><p>$$m\,g\,h = \tfrac{1}{2}\,m\,v^2 \;\Rightarrow\; 1800\,\text{J} = 30\,\text{kg}\cdot v^2 \;\Rightarrow\; v^2 = 60\,\tfrac{\text{m}^2}{\text{s}^2}$$</p>
+<p>$$v = \sqrt{60\,\tfrac{\text{m}^2}{\text{s}^2}} \approx {\color{#1a7f4b}\boldsymbol{7{,}7\,\tfrac{\text{m}}{\text{s}}}}\;\;(\approx 28\,\tfrac{\text{km}}{\text{h}})$$</p>
+<p>Die Masse kürzt sich heraus: $v^2 = 2\,g\,h$ – ein schwerer und ein leichter Skater sind unten gleich schnell.</p></div>
+        </div>
+      </div>
+    </article>
+  </section>
+  <!-- ================= AB 2 · Kinetische Energie ================= -->
+  <section class="s2" data-ab="kin" id="ab-kin">
+    <div class="ab-head">
+      <span class="ab-badge">AB 2</span><span class="t">Kinetische Energie</span>
+      <span class="desc">Arbeitsblatt: Die kinetische Energie – Messung mit dem Energieskatepark</span>
+    </div>
+
+    <article class="card s2" id="kin-1">
+      <div class="card-head"><h3>Aufgabe 1 · $E_\text{kin}$ und die Geschwindigkeit $v$</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Halte die Masse konstant bei $m = 60\,\text{kg}$. Starte den Skater aus verschiedenen Höhen und lies $v$ am tiefsten Punkt ab. Berechne $E_\text{kin}$ über den Energieerhaltungssatz ($E_\text{kin} = m\cdot g\cdot h_\text{Start}$) und trage $v^2$ ein.</p>
+<div class='tw'><table><tr><th>Höhe $h$</th><th>$E_\text{kin} = m\cdot g\cdot h$</th><th>Geschw. $v$</th><th>$v^2$</th></tr><tr><th class='u'>[m]</th><th class='u'>[J]</th><th class='u'>[m/s]</th><th class='u'>[m²/s²]</th></tr><tr><td>1,0</td><td></td><td></td><td></td></tr><tr><td>2,0</td><td></td><td></td><td></td></tr><tr><td>3,0</td><td></td><td></td><td></td></tr><tr><td>4,0</td><td></td><td></td><td></td></tr><tr><td>5,0</td><td></td><td></td><td></td></tr></table></div>
+<p><strong>a)</strong> Zeichne das $v$-$E_\text{kin}$-Diagramm und verbinde die Punkte mit einer glatten Kurve. Ist der Graph eine Gerade durch den Ursprung?</p>
+<p><strong>b)</strong> Zeichne das $v^2$-$E_\text{kin}$-Diagramm mit Ausgleichsgerade. Bestimme die Steigung $k = \dfrac{\Delta E_\text{kin}}{\Delta v^2}$ und vergleiche sie mit $\tfrac{1}{2}\,m$.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Messen</button>
+            <button type="button">Hilfe 2 · $v^2$ & Graphen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · So bekommst du $E_\text{kin}$ und $v$</h4><p><strong>$E_\text{kin}$ musst du nicht messen</strong>, sondern rechnen: Am tiefsten Punkt ist die ganze Lageenergie in Bewegungsenergie umgewandelt. Bei $h = 1{,}0\,\text{m}$: $E_\text{kin} = 60\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 1{,}0\,\text{m} = 600\,\text{J}$.</p>
+<p><strong>$v$ misst du:</strong> Starte den Skater und drücke Pause, wenn er ganz unten ist (Lageenergie im Energie-Fenster ≈ 0). Stelle die Simulation auf <strong>„Langsam“</strong>, dann klappt das Pausieren leichter. Die Geschwindigkeit zeigt dir das <strong>Fadenkreuz</strong>.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Quadrieren und zeichnen</h4><p>$v^2$ bedeutet $v\cdot v$. Beispiel: $v = 6{,}32\,\tfrac{\text{m}}{\text{s}} \Rightarrow v^2 = 6{,}32\cdot 6{,}32 \approx 40\,\tfrac{\text{m}^2}{\text{s}^2}$.</p>
+<p><strong>Diagramm a):</strong> Die Punkte liegen auf einer Kurve, die immer steiler wird – <em>keine</em> Gerade.<br>
+<strong>Diagramm b):</strong> Trägst du statt $v$ den Wert $v^2$ nach rechts ab, liegen die Punkte auf einer Geraden durch den Ursprung.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Steigung bestimmen</h4><p>Wähle die Punkte $(20\,\tfrac{\text{m}^2}{\text{s}^2}\,|\,600\,\text{J})$ und $(100\,\tfrac{\text{m}^2}{\text{s}^2}\,|\,3000\,\text{J})$:</p>
+<p>$$k = \frac{3000\,\text{J} - 600\,\text{J}}{100\,\tfrac{\text{m}^2}{\text{s}^2} - 20\,\tfrac{\text{m}^2}{\text{s}^2}} = \frac{2400}{80}\,\text{kg} = \;?$$</p>
+<p>Vergleiche mit $\tfrac{1}{2}\cdot 60\,\text{kg}$.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 1</div>
+          <div class="sb"><div class='tw'><table><tr><th>$h$ [m]</th><th>$E_\text{kin}$ [J]</th><th>$v$ [m/s]</th><th>$v^2$ [m²/s²]</th></tr><tr><td>1,0</td><td>600</td><td>4,47</td><td>20</td></tr><tr><td>2,0</td><td>1200</td><td>6,32</td><td>40</td></tr><tr><td>3,0</td><td>1800</td><td>7,75</td><td>60</td></tr><tr><td>4,0</td><td>2400</td><td>8,94</td><td>80</td></tr><tr><td>5,0</td><td>3000</td><td>10,0</td><td>100</td></tr></table></div>
+<p><strong>a)</strong> Nein – der Graph ist eine nach oben gekrümmte Kurve. $E_\text{kin}$ ist <em>nicht</em> proportional zu $v$.</p>
+<p><strong>b)</strong> $$k = \frac{2400\,\text{J}}{80\,\tfrac{\text{m}^2}{\text{s}^2}} = {\color{#1a7f4b}\boldsymbol{30\,\text{kg}}}\qquad \tfrac{1}{2}\,m = \tfrac{1}{2}\cdot 60\,\text{kg} = 30\,\text{kg}$$</p>
+<p>Die Steigung entspricht $\tfrac{1}{2}\,m$: $\;E_\text{kin}\sim v^2$.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="kin-2">
+      <div class="card-head"><h3>Aufgabe 2 · $E_\text{kin}$ und die Masse $m$</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Halte jetzt die Starthöhe konstant bei $h = 3{,}0\,\text{m}$ und variiere die Masse. Berechne $E_\text{kin}$ und miss $v$ am tiefsten Punkt.</p>
+<div class='tw'><table><tr><th>Masse $m$</th><th>$E_\text{kin} = m\cdot g\cdot h$</th><th>Geschw. $v$</th></tr><tr><th class='u'>[kg]</th><th class='u'>[J]</th><th class='u'>[m/s]</th></tr><tr><td>20</td><td></td><td></td></tr><tr><td>40</td><td></td><td></td></tr><tr><td>60</td><td></td><td></td></tr><tr><td>80</td><td></td><td></td></tr><tr><td>100</td><td></td><td></td></tr></table></div>
+<p>Zeichne das $m$-$E_\text{kin}$-Diagramm mit Ausgleichsgerade. Was fällt dir bei den gemessenen Geschwindigkeiten auf? Bestimme die Steigung und vergleiche mit $g\cdot h$.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Rechnen</button>
+            <button type="button">Hilfe 2 · Beobachten</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · $E_\text{kin}$ berechnen</h4><p>Wie in Aufgabe 1 gilt $E_\text{kin} = m\cdot g\cdot h$, jetzt mit fester Höhe $3{,}0\,\text{m}$. Beispiel $m = 20\,\text{kg}$: $\;20\cdot 10\cdot 3{,}0 = 600\,\text{J}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Schau auf die $v$-Spalte</h4><p>Vergleiche die Geschwindigkeiten in der letzten Spalte miteinander. Wird ein schwerer Skater unten schneller, langsamer – oder …?</p><p>Denke an einen Fallversuch: Fallen ein schwerer und ein leichter Körper (ohne Luftwiderstand) unterschiedlich schnell?</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Steigung</h4><p>$$k = \frac{3000\,\text{J} - 600\,\text{J}}{100\,\text{kg} - 20\,\text{kg}} = \;?\;\tfrac{\text{J}}{\text{kg}}$$ Vergleiche mit $g\cdot h = 10\,\tfrac{\text{N}}{\text{kg}}\cdot 3{,}0\,\text{m}$.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 2</div>
+          <div class="sb"><div class='tw'><table><tr><th>$m$ [kg]</th><th>$E_\text{kin}$ [J]</th><th>$v$ [m/s]</th></tr><tr><td>20</td><td>600</td><td>7,75</td></tr><tr><td>40</td><td>1200</td><td>7,75</td></tr><tr><td>60</td><td>1800</td><td>7,75</td></tr><tr><td>80</td><td>2400</td><td>7,75</td></tr><tr><td>100</td><td>3000</td><td>7,75</td></tr></table></div>
+<p><strong>Beobachtung:</strong> Die Geschwindigkeit am tiefsten Punkt ist für alle Massen gleich ($\approx 7{,}75\,\tfrac{\text{m}}{\text{s}}$). Die Masse hat keinen Einfluss auf $v$.</p>
+<p>$$k = \frac{2400\,\text{J}}{80\,\text{kg}} = {\color{#1a7f4b}\boldsymbol{30\,\tfrac{\text{J}}{\text{kg}}}}\qquad g\cdot h = 30\,\tfrac{\text{J}}{\text{kg}}\;✓$$</p>
+<p>$E_\text{kin}$ ist bei gleicher Geschwindigkeit proportional zur Masse.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="kin-3">
+      <div class="card-head"><h3>Aufgabe 3 · Die Formel für die kinetische Energie</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Fasse die Ergebnisse aus Aufgabe 1 und 2 zusammen:</p>
+<ul>
+<li>$E_\text{kin}$ ist proportional zu $v^2$: $E_\text{kin}\sim v^2$ mit der Proportionalitätskonstante ______</li>
+<li>$E_\text{kin}$ ist proportional zu $m$: $E_\text{kin}\sim m$ mit der Proportionalitätskonstante ______</li>
+</ul>
+<p>Beide Abhängigkeiten zusammen ergeben die Formel für die kinetische Energie.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Zurückblicken</button>
+            <button type="button">Hilfe 2 · Vorgehen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Steigungen ansehen</h4><p>Die Konstanten sind die Steigungen deiner Geraden: In Aufgabe 1&nbsp;b) hast du die Steigung mit $\tfrac{1}{2}\,m$ verglichen. Das ist die erste Lücke.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Die zweite Konstante</h4><p>In Aufgabe 2 war die Steigung $30\,\tfrac{\text{J}}{\text{kg}}$, und alle Skater hatten unten $v^2 = 60\,\tfrac{\text{m}^2}{\text{s}^2}$. Welcher Ausdruck mit $v^2$ ergibt $30$? Tipp: Die Hälfte von $60$ …</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Zusammensetzen</h4><p>$E_\text{kin} = \tfrac{1}{2}\,m\cdot v^2$ – prüfe die Formel mit einem Tabellenwert: $m = 60\,\text{kg}$, $v^2 = 60\,\tfrac{\text{m}^2}{\text{s}^2}$ muss $1800\,\text{J}$ ergeben.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 3</div>
+          <div class="sb"><ul>
+<li>$E_\text{kin}\sim v^2$ mit der Konstante $\tfrac{1}{2}\,m$ (hier $30\,\text{kg}$)</li>
+<li>$E_\text{kin}\sim m$ mit der Konstante $\tfrac{1}{2}\,v^2$ (hier $30\,\tfrac{\text{J}}{\text{kg}}$)</li>
+</ul>
+<p>$${\color{#1a7f4b}\boldsymbol{E_\text{kin} = \tfrac{1}{2}\,m\cdot v^2}}$$</p>
+<p>Probe: $\tfrac{1}{2}\cdot 60\,\text{kg}\cdot 60\,\tfrac{\text{m}^2}{\text{s}^2} = 1800\,\text{J}$ ✓ · Achtung: Doppelte Geschwindigkeit bedeutet <strong>vierfache</strong> Energie.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="kin-4a">
+      <div class="card-head"><h3>Aufgabe 4a · Der Fußball</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Fußball mit der Masse $m = 0{,}43\,\text{kg}$ wird mit $v = 20\,\tfrac{\text{m}}{\text{s}}$ geschossen. Berechne seine kinetische Energie.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Ordnen</button>
+            <button type="button">Hilfe 2 · Formel</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Gegeben – Gesucht</h4><p><strong>Gegeben:</strong> $m = 0{,}43\,\text{kg}$, $v = 20\,\tfrac{\text{m}}{\text{s}}$. <strong>Gesucht:</strong> $E_\text{kin}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Formel und Reihenfolge</h4><p>$$E_\text{kin} = \tfrac{1}{2}\,m\cdot v^2$$ Achtung: Nur $v$ wird quadriert – rechne also zuerst $v^2$ aus.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Einsetzen</h4><p>$v^2 = (20\,\tfrac{\text{m}}{\text{s}})^2 = 400\,\tfrac{\text{m}^2}{\text{s}^2}$</p><p>$$E_\text{kin} = \tfrac{1}{2}\cdot 0{,}43\,\text{kg}\cdot 400\,\tfrac{\text{m}^2}{\text{s}^2} = \;?$$</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4a</div>
+          <div class="sb"><p>$$E_\text{kin} = \tfrac{1}{2}\cdot 0{,}43\,\text{kg}\cdot (20\,\tfrac{\text{m}}{\text{s}})^2 = \tfrac{1}{2}\cdot 0{,}43\,\text{kg}\cdot 400\,\tfrac{\text{m}^2}{\text{s}^2} = {\color{#1a7f4b}\boldsymbol{86\,\text{J}}}$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="kin-4b">
+      <div class="card-head"><h3>Aufgabe 4b · Das Auto</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Auto mit $m = 1200\,\text{kg}$ fährt mit $v = 30\,\tfrac{\text{m}}{\text{s}}$ ($\approx 108\,\tfrac{\text{km}}{\text{h}}$). Berechne $E_\text{kin}$.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Ordnen</button>
+            <button type="button">Hilfe 2 · Formel</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Gegeben – Gesucht</h4><p><strong>Gegeben:</strong> $m = 1200\,\text{kg}$, $v = 30\,\tfrac{\text{m}}{\text{s}}$ (schon in der richtigen Einheit!). <strong>Gesucht:</strong> $E_\text{kin}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Zuerst quadrieren</h4><p>$$E_\text{kin} = \tfrac{1}{2}\,m\cdot v^2 \qquad v^2 = 30\cdot 30 = 900\,\tfrac{\text{m}^2}{\text{s}^2}$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Einsetzen</h4><p>$$E_\text{kin} = \tfrac{1}{2}\cdot 1200\,\text{kg}\cdot 900\,\tfrac{\text{m}^2}{\text{s}^2} = 600\,\text{kg}\cdot 900\,\tfrac{\text{m}^2}{\text{s}^2} = \;?$$ Gib das Ergebnis auch in Kilojoule an ($1\,\text{kJ} = 1000\,\text{J}$).</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4b</div>
+          <div class="sb"><p>$$E_\text{kin} = \tfrac{1}{2}\cdot 1200\,\text{kg}\cdot 900\,\tfrac{\text{m}^2}{\text{s}^2} = 540\,000\,\text{J} = {\color{#1a7f4b}\boldsymbol{540\,\text{kJ}}}$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="kin-4c">
+      <div class="card-head"><h3>Aufgabe 4c · Skater aus 4 m Höhe</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>Denke nach:</strong> Ein Skater ($m = 60\,\text{kg}$) startet aus $h = 4{,}0\,\text{m}$ Höhe. Berechne seine Geschwindigkeit am tiefsten Punkt. Nutze: $E_\text{kin} = E_\text{Pot}$ und $E_\text{kin} = \tfrac{1}{2}\,m\,v^2$.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Gleichung</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Erst die Energie</h4><p>Berechne zuerst die Lageenergie am Start mit $E_\text{Pot} = m\cdot g\cdot h$. Genau diese Energie hat der Skater unten als Bewegungsenergie.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Gleichung aufstellen</h4><p>$E_\text{Pot} = 60\cdot 10\cdot 4{,}0\,\text{J} = 2400\,\text{J}$, also</p><p>$$2400\,\text{J} = \tfrac{1}{2}\cdot 60\,\text{kg}\cdot v^2 = 30\,\text{kg}\cdot v^2$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Auflösen</h4><p>$v^2 = \dfrac{2400\,\text{J}}{30\,\text{kg}} = 80\,\tfrac{\text{m}^2}{\text{s}^2}$ – jetzt noch die Wurzel ziehen.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4c</div>
+          <div class="sb"><p>$$m\,g\,h = \tfrac{1}{2}\,m\,v^2 \;\Rightarrow\; v^2 = 2\,g\,h = 2\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 4{,}0\,\text{m} = 80\,\tfrac{\text{m}^2}{\text{s}^2}$$</p>
+<p>$$v = \sqrt{80\,\tfrac{\text{m}^2}{\text{s}^2}} \approx {\color{#1a7f4b}\boldsymbol{8{,}9\,\tfrac{\text{m}}{\text{s}}}}$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="kin-4d">
+      <div class="card-head"><h3>Aufgabe 4d · Zusatz: Der fallende Stein</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>Zusatzaufgabe:</strong> Ein Stein ($m = 2{,}0\,\text{kg}$) fällt aus $h = 45\,\text{m}$ Höhe. Mit welcher Geschwindigkeit trifft er auf den Boden? (Luftwiderstand vernachlässigen, $g = 10\,\tfrac{\text{N}}{\text{kg}}$)</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Gleichung</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Wie beim Skater</h4><p>Das ist dieselbe Situation wie beim Skater: Oben nur Lageenergie, unten nur Bewegungsenergie. Berechne zuerst $E_\text{Pot}$ in $45\,\text{m}$ Höhe.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Gleichung aufstellen</h4><p>$E_\text{Pot} = 2{,}0\cdot 10\cdot 45\,\text{J} = 900\,\text{J}$</p><p>$$900\,\text{J} = \tfrac{1}{2}\cdot 2{,}0\,\text{kg}\cdot v^2 = 1{,}0\,\text{kg}\cdot v^2$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Auflösen</h4><p>$v^2 = 900\,\tfrac{\text{m}^2}{\text{s}^2}$. Welche Zahl mal sich selbst ergibt $900$?</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4d</div>
+          <div class="sb"><p>$$v^2 = 2\,g\,h = 2\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 45\,\text{m} = 900\,\tfrac{\text{m}^2}{\text{s}^2}\;\Rightarrow\; v = {\color{#1a7f4b}\boldsymbol{30\,\tfrac{\text{m}}{\text{s}}}}\;(= 108\,\tfrac{\text{km}}{\text{h}})$$</p>
+<p>Die Masse spielt wieder keine Rolle.</p></div>
+        </div>
+      </div>
+    </article>
+  </section>
+  <!-- ================= AB 3 · Energieerhaltung ================= -->
+  <section class="s3" data-ab="erh" id="ab-erh">
+    <div class="ab-head">
+      <span class="ab-badge">AB 3</span><span class="t">Energieerhaltung</span>
+      <span class="desc">Arbeitsblatt: Der Energieerhaltungssatz – Messung mit dem Energieskatepark</span>
+    </div>
+
+    <article class="card s3" id="erh-1">
+      <div class="card-head"><h3>Aufgabe 1 · Energieverteilung ohne Reibung</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Stelle <strong>Reibung = keine</strong> ein. Der Skater ($m = 60\,\text{kg}$) startet in der Höhe $h = 5{,}0\,\text{m}$. Bestimme $E_\text{Pot}$ und $E_\text{kin}$ an den Höhen in der Tabelle und berechne $E_\text{ges} = E_\text{Pot} + E_\text{kin}$.</p>
+<div class='tw'><table><tr><th>Höhe $h$</th><th>$E_\text{Pot}$</th><th>$E_\text{kin}$</th><th>$E_\text{ges}$</th></tr><tr><th class='u'>[m]</th><th class='u'>[J]</th><th class='u'>[J]</th><th class='u'>[J]</th></tr><tr><td>5,0 (Start)</td><td></td><td></td><td></td></tr><tr><td>4,0</td><td></td><td></td><td></td></tr><tr><td>3,0</td><td></td><td></td><td></td></tr><tr><td>1,0</td><td></td><td></td><td></td></tr><tr><td>0,0</td><td></td><td></td><td></td></tr></table></div>
+<p>Trage alle drei Energien in <em>ein</em> $h$-$E$-Diagramm ein.</p>
+<p><strong>a)</strong> Was beobachtest du bei der Gesamtenergie $E_\text{ges}$?</p>
+<p><strong>b)</strong> Wenn die Lageenergie zunimmt – was passiert mit der kinetischen Energie?</p>
+<p><strong>c)</strong> Formuliere das Ergebnis als Gleichung: $E_\text{Pot} + E_\text{kin} = \_\_\_\_ = \text{konstant}$</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Messen</button>
+            <button type="button">Hilfe 2 · Auswerten</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Wichtig: nicht ziehen, sondern pausieren!</h4><p>Setze den Skater auf $5{,}0\,\text{m}$ und starte die Simulation. Stelle auf <strong>„Langsam“</strong> und drücke <strong>Pause</strong>, wenn der Skater gerade an der gesuchten Höhe (z.&nbsp;B. $4{,}0\,\text{m}$) vorbeifährt. Lies dann $E_\text{Pot}$ und $E_\text{kin}$ im Energie-Fenster ab.</p>
+<p><strong>Achtung:</strong> Ziehst du den Skater mit der Maus auf eine neue Höhe, startet er dort neu aus der Ruhe – dann ist $E_\text{kin} = 0$ und die Messung stimmt nicht.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Summe bilden und zeichnen</h4><p>Addiere in jeder Zeile: $E_\text{ges} = E_\text{Pot} + E_\text{kin}$.</p>
+<p>Zeichne die drei Messreihen in unterschiedlichen Farben ins selbe Diagramm, z.&nbsp;B. $E_\text{Pot}$ rot, $E_\text{kin}$ blau, $E_\text{ges}$ orange. Verbinde die Punkte jeder Reihe mit einer Geraden.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Kontrollwerte</h4><p>Am Start: $E_\text{Pot} = 60\cdot 10\cdot 5{,}0\,\text{J} = 3000\,\text{J}$, $E_\text{kin} = 0$.</p>
+<p>Bei $4{,}0\,\text{m}$ sollte $E_\text{Pot} = 2400\,\text{J}$ sein. Wie groß muss dann $E_\text{kin}$ sein, wenn keine Energie verloren geht?</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 1</div>
+          <div class="sb"><div class='tw'><table><tr><th>$h$ [m]</th><th>$E_\text{Pot}$ [J]</th><th>$E_\text{kin}$ [J]</th><th>$E_\text{ges}$ [J]</th></tr><tr><td>5,0</td><td>3000</td><td>0</td><td>3000</td></tr><tr><td>4,0</td><td>2400</td><td>600</td><td>3000</td></tr><tr><td>3,0</td><td>1800</td><td>1200</td><td>3000</td></tr><tr><td>1,0</td><td>600</td><td>2400</td><td>3000</td></tr><tr><td>0,0</td><td>0</td><td>3000</td><td>3000</td></tr></table></div>
+<p>Im Diagramm: $E_\text{Pot}$ steigt linear mit $h$, $E_\text{kin}$ fällt linear, $E_\text{ges}$ ist eine waagerechte Linie bei $3000\,\text{J}$. Bei $h = 2{,}5\,\text{m}$ sind beide Energien gleich groß ($1500\,\text{J}$).</p>
+<p><strong>a)</strong> $E_\text{ges}$ bleibt an allen Stellen gleich ($3000\,\text{J}$).</p>
+<p><strong>b)</strong> Nimmt $E_\text{Pot}$ zu, nimmt $E_\text{kin}$ um genau denselben Betrag ab – und umgekehrt. Die eine Energieform wird in die andere umgewandelt.</p>
+<p><strong>c)</strong> $$E_\text{Pot} + E_\text{kin} = {\color{#1a7f4b}\boldsymbol{3000\,\text{J}}} = \text{konstant}$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s3" id="erh-2">
+      <div class="card-head"><h3>Aufgabe 2 · Was passiert mit Reibung?</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Stelle jetzt <strong>Reibung = mittel</strong> ein. Setze den Skater wieder auf $h = 5{,}0\,\text{m}$ und starte die Simulation. Pausiere nach jeweils einer halben Schwingung (am höchsten Punkt auf der anderen Seite) und notiere die Energiewerte.</p>
+<div class='tw'><table><tr><th></th><th>$E_\text{Pot}$</th><th>$E_\text{kin}$</th><th>Therm. Energie</th></tr><tr><th class='u'></th><th class='u'>[J]</th><th class='u'>[J]</th><th class='u'>[J]</th></tr><tr><td>Start</td><td>3000</td><td>0</td><td>0</td></tr><tr><td>nach 1. Schwingung</td><td></td><td></td><td></td></tr><tr><td>nach 2. Schwingung</td><td></td><td></td><td></td></tr><tr><td>nach 3. Schwingung</td><td></td><td></td><td></td></tr></table></div>
+<p><strong>a)</strong> Was passiert mit der Höhe, die der Skater mit jeder Schwingung noch erreicht?</p>
+<p><strong>b)</strong> Die mechanische Energie ($E_\text{Pot} + E_\text{kin}$) nimmt ab. Wohin geht diese Energie?</p>
+<p><strong>c)</strong> Addiere $E_\text{Pot} + E_\text{kin} + E_\text{therm}$ für jede Zeile. Was fällt dir auf?</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Messen</button>
+            <button type="button">Hilfe 2 · Beobachten</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Den Umkehrpunkt erwischen</h4><p>Am höchsten Punkt steht der Skater für einen Moment still – dort ist $E_\text{kin} = 0$. Mit der Einstellung <strong>„Langsam“</strong> erwischst du diesen Moment leichter. Die thermische Energie (Wärme) findest du als eigene Zeile bzw. eigenen Balken im Energie-Fenster.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Welcher Balken wächst?</h4><p>Beobachte das Energie-Diagramm während der Fahrt: Die Balken für Lage- und Bewegungsenergie werden insgesamt kleiner, ein anderer Balken wird immer größer. Wie heißt er?</p>
+<p>Alltagsbeispiel: Reibe deine Hände schnell aneinander – was spürst du?</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Summe prüfen</h4><p>Addiere in jeder Zeile alle drei Werte. Vergleiche die Summen mit dem Startwert $3000\,\text{J}$. (Kleine Abweichungen durch ungenaues Pausieren sind normal.)</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 2</div>
+          <div class="sb"><p><em>Die Werte hängen von der Reibungseinstellung ab – Richtwerte:</em></p><div class='tw'><table><tr><th></th><th>$E_\text{Pot}$ [J]</th><th>$E_\text{kin}$ [J]</th><th>$E_\text{therm}$ [J]</th></tr><tr><td>Start</td><td>3000</td><td>0</td><td>0</td></tr><tr><td>nach 1.</td><td>≈ 2500</td><td>0</td><td>≈ 500</td></tr><tr><td>nach 2.</td><td>≈ 2050</td><td>0</td><td>≈ 950</td></tr><tr><td>nach 3.</td><td>≈ 1650</td><td>0</td><td>≈ 1350</td></tr></table></div>
+<p><strong>a)</strong> Der Skater erreicht mit jeder Schwingung eine geringere Höhe.</p>
+<p><strong>b)</strong> Die mechanische Energie wird durch Reibung in <strong>thermische Energie</strong> (Wärme) umgewandelt.</p>
+<p><strong>c)</strong> $$E_\text{Pot} + E_\text{kin} + E_\text{therm} \approx {\color{#1a7f4b}\boldsymbol{3000\,\text{J}}}$$ Die Summe bleibt konstant – Energie geht nicht verloren, sie wird nur umgewandelt.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s3" id="erh-3">
+      <div class="card-head"><h3>Aufgabe 3 · Der Energieerhaltungssatz</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Fasse die Ergebnisse aus Aufgabe 1 und 2 zusammen und ergänze:</p>
+<p><strong>Ohne Reibung:</strong> $E_\text{Pot} + E_\text{kin} = E_\text{ges} = \text{konstant}$</p>
+<p><strong>Mit Reibung:</strong> $E_\text{Pot} + E_\text{kin} + \_\_\_\_\_\_ = E_\text{ges} = \text{konstant}$</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Zurückblicken</button>
+            <button type="button">Hilfe 2 · Verstehen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Welche Energieform kam dazu?</h4><p>Sieh dir deine Tabelle aus Aufgabe 2 an: Welche Spalte wurde von Schwingung zu Schwingung größer?</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Was bedeutet „konstant“?</h4><p>Die Gesamtenergie bleibt nur dann gleich, wenn du <em>alle</em> beteiligten Energieformen addierst. Ohne Reibung gibt es nur zwei, mit Reibung kommt eine dritte hinzu.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Formulieren</h4><p>Die fehlende Größe ist die Energie, die durch Reibung entsteht – schreibe sie als $E_\text{…}$ mit passendem Index. Formuliere danach in einem Satz: „Energie kann weder … noch … werden, sie kann nur …“</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 3</div>
+          <div class="sb"><p>$$E_\text{Pot} + E_\text{kin} + {\color{#1a7f4b}\boldsymbol{E_\text{therm}}} = E_\text{ges} = \text{konstant}$$</p>
+<p><strong>Energieerhaltungssatz:</strong> Energie kann weder erzeugt noch vernichtet werden. Sie kann nur von einer Energieform in eine andere umgewandelt oder von einem Körper auf einen anderen übertragen werden.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s3" id="erh-4a">
+      <div class="card-head"><h3>Aufgabe 4a · Der fallende Stein</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Stein ($m = 2{,}0\,\text{kg}$) fällt aus einer Höhe von $h = 20\,\text{m}$. Mit welcher Geschwindigkeit trifft er auf den Boden? (Luftwiderstand vernachlässigen, $g = 10\,\tfrac{\text{N}}{\text{kg}}$)</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Gleichung</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Energieformen oben und unten</h4><p>Oben: nur Lageenergie. Unten: nur Bewegungsenergie. Ohne Luftwiderstand gilt $E_\text{Pot,oben} = E_\text{kin,unten}$. Berechne zuerst $E_\text{Pot}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Gleichung aufstellen</h4><p>$E_\text{Pot} = 2{,}0\cdot 10\cdot 20\,\text{J} = 400\,\text{J}$</p><p>$$400\,\text{J} = \tfrac{1}{2}\cdot 2{,}0\,\text{kg}\cdot v^2$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Auflösen</h4><p>$\tfrac{1}{2}\cdot 2{,}0\,\text{kg} = 1{,}0\,\text{kg}$, also $v^2 = 400\,\tfrac{\text{m}^2}{\text{s}^2}$. Wurzel ziehen!</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4a</div>
+          <div class="sb"><p>$$m\,g\,h = \tfrac{1}{2}\,m\,v^2 \;\Rightarrow\; v^2 = 2\,g\,h = 2\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 20\,\text{m} = 400\,\tfrac{\text{m}^2}{\text{s}^2}$$</p>
+<p>$$v = {\color{#1a7f4b}\boldsymbol{20\,\tfrac{\text{m}}{\text{s}}}}\;(= 72\,\tfrac{\text{km}}{\text{h}})$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s3" id="erh-4b">
+      <div class="card-head"><h3>Aufgabe 4b · Die Kugel auf der Rampe</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Eine Kugel ($m = 0{,}50\,\text{kg}$) rollt auf einer Bahn mit $v = 6{,}0\,\tfrac{\text{m}}{\text{s}}$. Wie hoch kann sie eine reibungsfreie Rampe maximal hinaufsteigen?</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Gleichung</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Diesmal umgekehrt</h4><p>Jetzt wird Bewegungsenergie in Lageenergie umgewandelt. Am höchsten Punkt bleibt die Kugel kurz stehen: Dort ist die gesamte $E_\text{kin}$ zu $E_\text{Pot}$ geworden. Berechne zuerst $E_\text{kin}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Gleichung aufstellen</h4><p>$E_\text{kin} = \tfrac{1}{2}\cdot 0{,}50\,\text{kg}\cdot (6{,}0\,\tfrac{\text{m}}{\text{s}})^2 = 9{,}0\,\text{J}$</p><p>$$9{,}0\,\text{J} = 0{,}50\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot h$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Nach $h$ auflösen</h4><p>$0{,}50\cdot 10 = 5{,}0$, also $9{,}0\,\text{J} = 5{,}0\,\text{N}\cdot h$. Teile durch $5{,}0\,\text{N}$.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4b</div>
+          <div class="sb"><p>$$\tfrac{1}{2}\,m\,v^2 = m\,g\,h \;\Rightarrow\; h = \frac{v^2}{2\,g} = \frac{36\,\tfrac{\text{m}^2}{\text{s}^2}}{20\,\tfrac{\text{N}}{\text{kg}}} = {\color{#1a7f4b}\boldsymbol{1{,}8\,\text{m}}}$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s3" id="erh-4c">
+      <div class="card-head"><h3>Aufgabe 4c · Das Pendel</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>Pendel:</strong> Ein Pendel wird auf eine Höhe von $h = 0{,}80\,\text{m}$ (bezogen auf den tiefsten Punkt) angehoben und losgelassen. Berechne seine Geschwindigkeit am tiefsten Punkt.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Gleichung</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Die Masse fehlt – und nun?</h4><p>Die Masse ist nicht angegeben. Das ist kein Fehler! Erinnere dich: Beim Skater hatten schwere und leichte Fahrer unten dieselbe Geschwindigkeit.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Masse kürzen</h4><p>$$m\cdot g\cdot h = \tfrac{1}{2}\cdot m\cdot v^2$$ Auf beiden Seiten steht $m$ – teile durch $m$ und multipliziere mit 2: $\;v^2 = 2\cdot g\cdot h$.</p><p>(Alternativ: Rechne einfach mit einer ausgedachten Masse, z.&nbsp;B. $1\,\text{kg}$.)</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Einsetzen</h4><p>$v^2 = 2\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 0{,}80\,\text{m} = 16\,\tfrac{\text{m}^2}{\text{s}^2}$ – jetzt die Wurzel.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4c</div>
+          <div class="sb"><p>$$v^2 = 2\,g\,h = 2\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 0{,}80\,\text{m} = 16\,\tfrac{\text{m}^2}{\text{s}^2}\;\Rightarrow\; v = {\color{#1a7f4b}\boldsymbol{4{,}0\,\tfrac{\text{m}}{\text{s}}}}$$</p>
+<p>Die Masse wird nicht gebraucht, weil sie sich herauskürzt.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s3" id="erh-4d">
+      <div class="card-head"><h3>Aufgabe 4d · Zusatz: Skifahrer mit Reibung</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>Zusatzaufgabe – mit Reibung:</strong> Ein Skifahrer ($m = 75\,\text{kg}$) startet aus der Ruhe aus $h = 40\,\text{m}$ Höhe. Am Fuß des Hangs misst man seine Geschwindigkeit $v = 20\,\tfrac{\text{m}}{\text{s}}$. Berechne die Energie, die durch Reibung verloren gegangen ist.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Rechnen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Vorher – nachher vergleichen</h4><p>Berechne die Energie am Start ($E_\text{Pot}$) und die Energie am Ziel ($E_\text{kin}$). Mit Reibung ist die Energie am Ziel kleiner – die Differenz ist in Wärme umgewandelt worden.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Beide Energien</h4><p>$$E_\text{Pot} = 75\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 40\,\text{m} \qquad E_\text{kin} = \tfrac{1}{2}\cdot 75\,\text{kg}\cdot (20\,\tfrac{\text{m}}{\text{s}})^2$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Differenz</h4><p>$E_\text{Pot} = 30\,000\,\text{J}$, $E_\text{kin} = 15\,000\,\text{J}$. Die Reibungsenergie ist $E_\text{therm} = E_\text{Pot} - E_\text{kin}$.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4d</div>
+          <div class="sb"><p>$E_\text{Pot} = 75\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 40\,\text{m} = 30\,000\,\text{J}$</p>
+<p>$E_\text{kin} = \tfrac{1}{2}\cdot 75\,\text{kg}\cdot 400\,\tfrac{\text{m}^2}{\text{s}^2} = 15\,000\,\text{J}$</p>
+<p>$$E_\text{therm} = 30\,000\,\text{J} - 15\,000\,\text{J} = {\color{#1a7f4b}\boldsymbol{15\,000\,\text{J} = 15\,\text{kJ}}}$$</p>
+<p>Die Hälfte der Energie wurde als Wärme an Schnee und Luft abgegeben.</p></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+</div>
+
+<div id="qrmodal" role="dialog" aria-modal="true">
+  <div class="box">
+    <h4 id="qrtitle">QR-Code</h4>
+    <div id="qrcanvas"></div>
+    <div id="qrurl"></div>
+    <button id="qrcopy" type="button" class="pri">Link kopieren</button>
+    <button id="qrclose" type="button">Schließen</button>
+  </div>
+</div>
+
+<footer class="bot">
+  Sek I Unterrichtsmaterialien · Friedrich-Bährens-Gymnasium Schwerte ·
+  Simulation: <a href="https://phet.colorado.edu" target="_blank" rel="noopener">PhET Interactive Simulations</a>, University of Colorado Boulder
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ---------- KaTeX ---------- */
+  function render(){
+    if (window.renderMathInElement) {
+      renderMathInElement(document.body, {
+        delimiters: [{left:'$$', right:'$$', display:true}, {left:'$', right:'$', display:false}],
+        throwOnError:false
+      });
+    }
+  }
+  if (window.renderMathInElement) render(); else window.addEventListener('load', render);
+
+  /* ---------- Karten auf/zu ---------- */
+  document.querySelectorAll('.card-head').forEach(function(h){
+    h.addEventListener('click', function(e){
+      if (e.target.closest('.qrbtn')) return;
+      h.parentElement.classList.toggle('open');
+    });
+  });
+
+  /* ---------- Hilfe-Reiter (Hilfe 2 erst nach Hilfe 1 usw.) ---------- */
+  document.querySelectorAll('.hints').forEach(function(box){
+    var tabs = box.querySelectorAll('.htabs button');
+    var panels = box.querySelectorAll('.hpanel');
+    tabs.forEach(function(tab, i){
+      tab.addEventListener('click', function(){
+        var wasOn = tab.classList.contains('on');
+        tabs.forEach(function(t){ t.classList.remove('on'); });
+        panels.forEach(function(p){ p.classList.remove('on'); });
+        if (!wasOn) { tab.classList.add('on'); if (panels[i]) panels[i].classList.add('on'); }
+      });
+    });
+  });
+
+  /* ---------- Selbsteinschätzung ---------- */
+  document.querySelectorAll('.assess').forEach(function(box){
+    var btns = box.querySelectorAll('button');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var wasOn = b.classList.contains('on');
+        btns.forEach(function(x){ x.classList.remove('on'); });
+        if (!wasOn) b.classList.add('on');
+      });
+    });
+  });
+
+  /* ---------- Filter nach Arbeitsblatt ---------- */
+  function setFilter(f){
+    document.querySelectorAll('.filters button').forEach(function(x){
+      x.classList.toggle('on', x.dataset.f === f);
+    });
+    document.querySelectorAll('section[data-ab]').forEach(function(sec){
+      sec.style.display = (f === 'all' || sec.dataset.ab === f) ? '' : 'none';
+    });
+  }
+  document.querySelectorAll('.filters button').forEach(function(b){
+    b.addEventListener('click', function(){ setFilter(b.dataset.f); });
+  });
+
+  /* ---------- Musterlösungen freischalten ---------- */
+  var CODE = 'ENERGIE';
+  var input = document.getElementById('code');
+  var msg = document.getElementById('msg');
+  function tryUnlock(){
+    var val = (input.value || '').trim().toUpperCase();
+    if (val === CODE) {
+      document.body.classList.add('unlocked');
+      msg.textContent = '✓ freigeschaltet'; msg.className = 'msg ok';
+      render();
+    } else {
+      msg.textContent = '✗ Code stimmt nicht'; msg.className = 'msg bad';
+    }
+  }
+  document.getElementById('btn-unlock').addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e){ if (e.key === 'Enter') tryUnlock(); });
+
+  /* ---------- Direktlinks (#lage-4a, #kin, ...) – z. B. für QR-Codes ---------- */
+  function openFromHash(){
+    var id = decodeURIComponent((location.hash || '').slice(1));
+    if (!id) return false;
+    var sec = document.querySelector('section[data-ab="' + id + '"]');
+    if (sec) {
+      setFilter(id);
+      var first = sec.querySelector('.card'); if (first) first.classList.add('open');
+      sec.scrollIntoView();
+      return true;
+    }
+    var card = document.getElementById(id);
+    if (card && card.classList.contains('card')) {
+      setFilter(card.closest('section').dataset.ab);
+      card.classList.add('open', 'flash');
+      setTimeout(function(){ card.classList.remove('flash'); }, 2200);
+      card.scrollIntoView();
+      return true;
+    }
+    return false;
+  }
+  if (!openFromHash()) {
+    document.querySelectorAll('section[data-ab]').forEach(function(sec){
+      var first = sec.querySelector('.card'); if (first) first.classList.add('open');
+    });
+  }
+  window.addEventListener('hashchange', openFromHash);
+
+  /* ---------- QR-Code je Aufgabe (nur für Lehrkraft nach Freischaltung) ---------- */
+  var modal = document.getElementById('qrmodal');
+  var qrUrl = '';
+  document.querySelectorAll('.qrbtn').forEach(function(b){
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      var card = b.closest('.card');
+      qrUrl = location.origin + location.pathname + '#' + card.id;
+      document.getElementById('qrtitle').textContent = card.querySelector('h3').textContent;
+      document.getElementById('qrurl').textContent = qrUrl;
+      var box = document.getElementById('qrcanvas'); box.innerHTML = '';
+      if (window.QRCode) {
+        new QRCode(box, {text: qrUrl, width: 220, height: 220, correctLevel: QRCode.CorrectLevel.M});
+      } else {
+        box.textContent = 'QR-Bibliothek konnte nicht geladen werden.';
+      }
+      modal.classList.add('on');
+    });
+  });
+  document.getElementById('qrclose').addEventListener('click', function(){ modal.classList.remove('on'); });
+  modal.addEventListener('click', function(e){ if (e.target === modal) modal.classList.remove('on'); });
+  document.getElementById('qrcopy').addEventListener('click', function(){
+    var btn = this;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(qrUrl).then(function(){
+        btn.textContent = '✓ kopiert'; setTimeout(function(){ btn.textContent = 'Link kopieren'; }, 1500);
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
