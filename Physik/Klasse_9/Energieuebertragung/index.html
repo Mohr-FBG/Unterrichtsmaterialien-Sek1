@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hilfen · Energie im Energieskatepark · Physik Klasse 9</title>
+<title>Hilfen · Energieübertragung · Physik Klasse 9</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
@@ -13,7 +13,7 @@
 <style>
 :root{
   --blue:#004a8a; --blue-dark:#00325f;
-  --c1:#1a7f4b; --c2:#c8660a; --c3:#6b3fa0;
+  --c1:#1a7f4b; --c2:#c8660a; --c3:#6b3fa0; --c4:#0b7285;
   --green:#1a7f4b;
   --border:#dde1e7; --bg:#f4f5f7; --text:#1c1f26; --muted:#5c6472;
 }
@@ -67,11 +67,11 @@ header.top .sub{font-size:.92rem; opacity:.95}
 .ab-badge{color:#fff; border-radius:6px; padding:4px 12px; font-weight:700; font-size:.9rem}
 .ab-head .t{font-weight:700; font-size:1.1rem}
 .ab-head .desc{color:var(--muted); font-size:.9rem; flex-basis:100%}
-.s1 .ab-badge{background:var(--c1)} .s2 .ab-badge{background:var(--c2)} .s3 .ab-badge{background:var(--c3)}
+.s1 .ab-badge{background:var(--c1)} .s2 .ab-badge{background:var(--c2)} .s3 .ab-badge{background:var(--c3)} .s4 .ab-badge{background:var(--c4)}
 
 .card{background:#fff; border:1px solid var(--border); border-radius:10px; margin-bottom:14px; overflow:hidden;
   scroll-margin-top:12px}
-.card.s1{border-top:4px solid var(--c1)} .card.s2{border-top:4px solid var(--c2)} .card.s3{border-top:4px solid var(--c3)}
+.card.s1{border-top:4px solid var(--c1)} .card.s2{border-top:4px solid var(--c2)} .card.s3{border-top:4px solid var(--c3)} .card.s4{border-top:4px solid var(--c4)}
 .card.flash{box-shadow:0 0 0 3px rgba(0,74,138,.35)}
 .card-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 18px;
   cursor:pointer; user-select:none}
@@ -156,8 +156,8 @@ footer.bot a{color:var(--blue)}
 <header class="top">
   <div class="inner">
     <div class="kap">Reihe Energieübertragung · Physik Klasse 9</div>
-    <h1>Hilfen: Energie im Energieskatepark</h1>
-    <div class="sub">Aufgaben der drei Arbeitsblätter · gestufte Hilfen · Musterlösungen nach Freigabe</div>
+    <h1>Hilfen: Energieübertragung</h1>
+    <div class="sub">Aufgaben der Arbeitsblätter · gestufte Hilfen · Musterlösungen nach Freigabe</div>
   </div>
 </header>
 
@@ -177,6 +177,7 @@ footer.bot a{color:var(--blue)}
       <button data-f="lage" type="button">AB 1 · Lageenergie</button>
       <button data-f="kin" type="button">AB 2 · Kinetische Energie</button>
       <button data-f="erh" type="button">AB 3 · Energieerhaltung</button>
+      <button data-f="spann" type="button">AB 4 · Spannenergie</button>
     </div>
   </div>
 
@@ -192,8 +193,9 @@ footer.bot a{color:var(--blue)}
     Lageenergie $E_\text{Pot} = m\cdot g\cdot h$ ·
     kinetische Energie $E_\text{kin} = \tfrac{1}{2}\,m\cdot v^2$ ·
     Ortsfaktor $g = 10\,\tfrac{\text{N}}{\text{kg}}$ ·
+    Spannenergie $E_\text{Spann} = \tfrac{1}{2}\,D\cdot s^2$ ·
     ohne Reibung: $E_\text{Pot} + E_\text{kin} = \text{konstant}$<br>
-    <a class="simbtn" href="https://phet.colorado.edu/sims/html/energy-skate-park/latest/energy-skate-park_all.html?locale=de" target="_blank" rel="noopener">▶ Simulation „Energy Skate Park“ öffnen</a>
+    <a class="simbtn" href="https://phet.colorado.edu/sims/html/energy-skate-park/latest/energy-skate-park_all.html?locale=de" target="_blank" rel="noopener">▶ Simulation „Energy Skate Park“ öffnen (AB 1–3)</a>
   </div>
 
   <!-- ================= AB 1 · Lageenergie ================= -->
@@ -1107,6 +1109,387 @@ footer.bot a{color:var(--blue)}
 <p>$E_\text{kin} = \tfrac{1}{2}\cdot 75\,\text{kg}\cdot 400\,\tfrac{\text{m}^2}{\text{s}^2} = 15\,000\,\text{J}$</p>
 <p>$$E_\text{therm} = 30\,000\,\text{J} - 15\,000\,\text{J} = {\color{#1a7f4b}\boldsymbol{15\,000\,\text{J} = 15\,\text{kJ}}}$$</p>
 <p>Die Hälfte der Energie wurde als Wärme an Schnee und Luft abgegeben.</p></div>
+        </div>
+      </div>
+    </article>
+  </section>
+  <!-- ================= AB 4 · Spannenergie ================= -->
+  <section class="s4" data-ab="spann" id="ab-spann">
+    <div class="ab-head">
+      <span class="ab-badge">AB 4</span><span class="t">Spannenergie</span>
+      <span class="desc">Arbeitsblatt: Die Spannenergie – Messung mit der Simulation „Hookesches Gesetz“ · <a href="https://phet.colorado.edu/sims/html/hookes-law/latest/hookes-law_all.html?locale=de" target="_blank" rel="noopener">▶ Simulation „Hookesches Gesetz“ öffnen</a></span>
+    </div>
+
+    <article class="card s4" id="spann-1">
+      <div class="card-head"><h3>Aufgabe 1 · Kraft und Auslenkung – das Hookesche Gesetz</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Stelle die Federhärte auf $D = 100\,\tfrac{\text{N}}{\text{m}}$. Dehne die Feder nacheinander um die Auslenkungen in der Tabelle und lies die Kraft $F$ ab. Was fällt dir am Verhältnis $\dfrac{F}{s}$ auf? Vergleiche mit der eingestellten Federhärte.</p>
+<div class='tw'><table><tr><th>Auslenkung $s$ in m</th><th>0,20</th><th>0,40</th><th>0,60</th><th>0,80</th><th>1,00</th></tr><tr><td>Kraft $F$ in N</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>$F/s$ in N/m</td><td></td><td></td><td></td><td></td><td></td></tr></table></div>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Simulation</button>
+            <button type="button">Hilfe 2 · Verhältnis</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Richtig einstellen</h4><p>Wähle den Bildschirm <strong>„Energie“</strong> und setze das Häkchen bei <strong>„Werte“</strong>. Die Federhärte $D$ heißt in der Simulation <strong>„Federkonstante“</strong>. Die Auslenkung stellst du mit dem Regler „Auslenkung“ ein, die Kraft steht dann als Zahl an der Feder.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Teilen</h4><p>Teile in jeder Spalte die Kraft durch die Auslenkung. Beispiel: $\dfrac{40\,\text{N}}{0{,}40\,\text{m}} = 100\,\tfrac{\text{N}}{\text{m}}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Vergleichen</h4><p>Ist das Verhältnis in jeder Spalte gleich? Dann ist $F$ proportional zu $s$. Vergleiche den Wert mit der Zahl, die du am Regler „Federkonstante“ eingestellt hast.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 1</div>
+          <div class="sb"><div class='tw'><table><tr><th>$s$ [m]</th><th>0,20</th><th>0,40</th><th>0,60</th><th>0,80</th><th>1,00</th></tr><tr><td>$F$ [N]</td><td>20</td><td>40</td><td>60</td><td>80</td><td>100</td></tr><tr><td>$F/s$ [N/m]</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td></tr></table></div>
+<p>Das Verhältnis ist immer gleich der Federhärte: $\dfrac{F}{s} = D$, also {\color{#1a7f4b}\boldsymbol{F = D\cdot s}} (Hookesches Gesetz).</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s4" id="spann-2">
+      <div class="card-head"><h3>Aufgabe 2 · $E_\text{Spann}$ und die Auslenkung $s$</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Lass die Federhärte bei $D = 100\,\tfrac{\text{N}}{\text{m}}$. Lies für jede Auslenkung die gespeicherte Energie $E_\text{Spann}$ ab und berechne $s^2$.</p>
+<div class='tw'><table><tr><th>Auslenkung $s$</th><th>Spannenergie $E_\text{Spann}$</th><th>$s^2$</th></tr><tr><th class='u'>[m]</th><th class='u'>[J]</th><th class='u'>[m²]</th></tr><tr><td>0,20</td><td></td><td></td></tr><tr><td>0,40</td><td></td><td></td></tr><tr><td>0,60</td><td></td><td></td></tr><tr><td>0,80</td><td></td><td></td></tr><tr><td>1,00</td><td></td><td></td></tr></table></div>
+<p><strong>a)</strong> Zeichne das $s$-$E_\text{Spann}$-Diagramm. Ist $E_\text{Spann}$ proportional zu $s$?</p>
+<p><strong>b)</strong> Zeichne das $s^2$-$E_\text{Spann}$-Diagramm mit Ausgleichsgerade. Bestimme die Steigung und vergleiche sie mit $\tfrac{1}{2}\,D$.</p>
+<p><strong>c)</strong> Drücke die Feder um $s = 0{,}40\,\text{m}$ zusammen. Was beobachtest du bei der Energie?</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Ablesen</button>
+            <button type="button">Hilfe 2 · Wie bei $E_\text{kin}$</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Wo steht die Energie?</h4><p>Die gespeicherte Energie zeigt die Simulation im Balkendiagramm – mit „Werte“ auch als Zahl. Für $s^2$ rechnest du $s\cdot s$, z.&nbsp;B. $0{,}40\cdot 0{,}40 = 0{,}16$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Das kennst du schon!</h4><p>Erinnere dich an die kinetische Energie: $E_\text{kin}$ gegen $v$ war eine gekrümmte Kurve, $E_\text{kin}$ gegen $v^2$ eine Gerade. Hier ist es genauso – nur mit $s$ statt $v$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Steigung</h4><p>Mit den Punkten $(0{,}04\,\text{m}^2\,|\,2\,\text{J})$ und $(1{,}00\,\text{m}^2\,|\,50\,\text{J})$:</p><p>$$k = \frac{50\,\text{J} - 2\,\text{J}}{1{,}00\,\text{m}^2 - 0{,}04\,\text{m}^2} = \frac{48\,\text{J}}{0{,}96\,\text{m}^2} = \;?$$</p><p>Vergleiche mit $\tfrac{1}{2}\cdot 100\,\tfrac{\text{N}}{\text{m}}$.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 2</div>
+          <div class="sb"><div class='tw'><table><tr><th>$s$ [m]</th><th>$E_\text{Spann}$ [J]</th><th>$s^2$ [m²]</th></tr><tr><td>0,20</td><td>2</td><td>0,04</td></tr><tr><td>0,40</td><td>8</td><td>0,16</td></tr><tr><td>0,60</td><td>18</td><td>0,36</td></tr><tr><td>0,80</td><td>32</td><td>0,64</td></tr><tr><td>1,00</td><td>50</td><td>1,00</td></tr></table></div>
+<p><strong>a)</strong> Nein – der Graph ist eine gekrümmte Kurve (Parabel), wie $E_\text{kin}$ gegen $v$.</p>
+<p><strong>b)</strong> $$k = \frac{48\,\text{J}}{0{,}96\,\text{m}^2} = {\color{#1a7f4b}\boldsymbol{50\,\tfrac{\text{N}}{\text{m}}}} = \tfrac{1}{2}\,D$$</p>
+<p><strong>c)</strong> Auch beim Zusammendrücken um $0{,}40\,\text{m}$ sind $8\,\text{J}$ gespeichert – Dehnen und Stauchen um dieselbe Strecke speichern gleich viel Energie.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s4" id="spann-3">
+      <div class="card-head"><h3>Aufgabe 3 · $E_\text{Spann}$ und die Federhärte $D$</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Stelle die Auslenkung fest auf $s = 0{,}50\,\text{m}$ ein und verändere die Federhärte.</p>
+<div class='tw'><table><tr><th>Federhärte $D$ in N/m</th><th>100</th><th>200</th><th>300</th><th>400</th></tr><tr><td>$E_\text{Spann}$ in J</td><td></td><td></td><td></td><td></td></tr><tr><td>$E_\text{Spann}/D$ in m²</td><td></td><td></td><td></td><td></td></tr></table></div>
+<p><strong>a)</strong> Wie verändert sich $E_\text{Spann}$, wenn du $D$ verdoppelst bzw. vervierfachst?</p>
+<p><strong>b)</strong> Vergleiche das Verhältnis $\dfrac{E_\text{Spann}}{D}$ mit $\tfrac{1}{2}\,s^2$.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Messen</button>
+            <button type="button">Hilfe 2 · Vergleichen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Nur $D$ verändern</h4><p>Achte darauf, dass die Auslenkung bei jeder Messung genau $0{,}50\,\text{m}$ bleibt – nur der Regler „Federkonstante“ wird verändert.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Verdoppeln</h4><p>Vergleiche den Wert bei $D = 200$ mit dem bei $D = 100$: Um welchen Faktor ist er größer? Und bei $D = 400$?</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · $\tfrac12 s^2$ ausrechnen</h4><p>$\tfrac{1}{2}\cdot(0{,}50\,\text{m})^2 = \tfrac{1}{2}\cdot 0{,}25\,\text{m}^2 = \;?$ Vergleiche mit deinen Werten für $E_\text{Spann}/D$.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 3</div>
+          <div class="sb"><div class='tw'><table><tr><th>$D$ [N/m]</th><th>100</th><th>200</th><th>300</th><th>400</th></tr><tr><td>$E_\text{Spann}$ [J]</td><td>12,5</td><td>25</td><td>37,5</td><td>50</td></tr><tr><td>$E_\text{Spann}/D$ [m²]</td><td>0,125</td><td>0,125</td><td>0,125</td><td>0,125</td></tr></table></div>
+<p><strong>a)</strong> Doppelte Federhärte → doppelte Energie, vierfache Federhärte → vierfache Energie: $E_\text{Spann}\sim D$.</p>
+<p><strong>b)</strong> $\tfrac{1}{2}\,s^2 = {\color{#1a7f4b}\boldsymbol{0{,}125\,\text{m}^2}}$ – stimmt mit dem Verhältnis überein.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s4" id="spann-4">
+      <div class="card-head"><h3>Aufgabe 4 · Die Formel für die Spannenergie</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Fasse zusammen und ergänze:</p>
+<ul>
+<li>$E_\text{Spann}\sim s^2$ mit der Proportionalitätskonstante ______</li>
+<li>$E_\text{Spann}\sim D$ mit der Proportionalitätskonstante ______</li>
+</ul>
+<p><strong>Zusatz:</strong> Zeige, dass die Fläche unter der Geraden im $s$-$F$-Diagramm (ein Dreieck) genau $\tfrac{1}{2}\,D\,s^2$ ergibt.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Zurückblicken</button>
+            <button type="button">Hilfe 2 · Zusammensetzen</button>
+            <button type="button">Hilfe 3 · Zusatz</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Steigungen</h4><p>Die Konstanten sind die Steigungen aus Aufgabe 2&nbsp;b) und das Verhältnis aus Aufgabe 3&nbsp;b).</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Formel</h4><p>Aus $E_\text{Spann} = \tfrac{1}{2}D\cdot s^2$ folgen beide Beobachtungen. Probe: $D = 100\,\tfrac{\text{N}}{\text{m}}$, $s = 0{,}40\,\text{m}$ muss $8\,\text{J}$ ergeben.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Dreiecksfläche</h4><p>Ein rechtwinkliges Dreieck hat die Fläche $\tfrac{1}{2}\cdot\text{Grundseite}\cdot\text{Höhe}$. Die Grundseite ist $s$, die Höhe ist die Kraft $F = D\cdot s$.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4</div>
+          <div class="sb"><ul>
+<li>$E_\text{Spann}\sim s^2$ mit der Konstante $\tfrac{1}{2}\,D$</li>
+<li>$E_\text{Spann}\sim D$ mit der Konstante $\tfrac{1}{2}\,s^2$</li>
+</ul>
+<p>$${\color{#1a7f4b}\boldsymbol{E_\text{Spann} = \tfrac{1}{2}\,D\cdot s^2}}$$</p>
+<p><strong>Zusatz:</strong> $A = \tfrac{1}{2}\cdot s\cdot F = \tfrac{1}{2}\cdot s\cdot D\cdot s = \tfrac{1}{2}\,D\,s^2$ – die Fläche unter dem $s$-$F$-Graphen ist die gespeicherte Energie.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s4" id="spann-5a">
+      <div class="card-head"><h3>Aufgabe 5a · Der Expander</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Expander (Fitnessgerät) hat die Federhärte $D = 500\,\tfrac{\text{N}}{\text{m}}$. Er wird um $s = 30\,\text{cm}$ gedehnt. Berechne die gespeicherte Spannenergie.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Einheiten</button>
+            <button type="button">Hilfe 2 · Formel</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Zentimeter umrechnen</h4><p>Die Formel braucht $s$ in Metern: $30\,\text{cm} = 0{,}30\,\text{m}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Zuerst quadrieren</h4><p>$$E_\text{Spann} = \tfrac{1}{2}\,D\cdot s^2 \qquad s^2 = 0{,}30\cdot 0{,}30 = 0{,}09\,\text{m}^2$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Einsetzen</h4><p>$$E_\text{Spann} = \tfrac{1}{2}\cdot 500\,\tfrac{\text{N}}{\text{m}}\cdot 0{,}09\,\text{m}^2 = 250\,\tfrac{\text{N}}{\text{m}}\cdot 0{,}09\,\text{m}^2 = \;?$$</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 5a</div>
+          <div class="sb"><p>$$E_\text{Spann} = \tfrac{1}{2}\cdot 500\,\tfrac{\text{N}}{\text{m}}\cdot(0{,}30\,\text{m})^2 = {\color{#1a7f4b}\boldsymbol{22{,}5\,\text{J}}}$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s4" id="spann-5b">
+      <div class="card-head"><h3>Aufgabe 5b · Doppelt gedehnt – doppelt Energie?</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>Denke nach:</strong> Lea dehnt eine Feder um $5\,\text{cm}$, Tom dieselbe Feder um $10\,\text{cm}$. Tom behauptet: „Ich habe doppelt so viel Energie gespeichert.“ Nimm Stellung.</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Ausprobieren</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Wovon hängt $E_\text{Spann}$ ab?</h4><p>Schau dir die Formel an: Die Auslenkung $s$ steht dort nicht einfach, sondern <em>quadriert</em>.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Mit Zahlen testen</h4><p>Nimm eine Federhärte an, z.&nbsp;B. $D = 100\,\tfrac{\text{N}}{\text{m}}$, und berechne die Energie für $s = 0{,}05\,\text{m}$ und für $s = 0{,}10\,\text{m}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Vergleichen</h4><p>Lea: $0{,}125\,\text{J}$, Tom: $0{,}5\,\text{J}$. Um welchen Faktor ist Toms Energie größer?</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 5b</div>
+          <div class="sb"><p>Tom irrt sich: Er hat <strong>viermal</strong> so viel Energie gespeichert, denn $E_\text{Spann}\sim s^2$ und $(2s)^2 = 4\,s^2$.</p>
+<p>Beispiel $D = 100\,\tfrac{\text{N}}{\text{m}}$: Lea $0{,}125\,\text{J}$, Tom $0{,}5\,\text{J}$ – $\;${\color{#1a7f4b}\boldsymbol{\text{Faktor } 4}}.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s4" id="spann-5c">
+      <div class="card-head"><h3>Aufgabe 5c · Die Spielzeugkanone</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Eine Spielzeugkanone schießt eine Kugel ($m = 10\,\text{g}$) senkrecht nach oben. Ihre Feder ($D = 400\,\tfrac{\text{N}}{\text{m}}$) ist um $s = 5{,}0\,\text{cm}$ zusammengedrückt. Wie hoch fliegt die Kugel?</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Spannenergie</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Energiekette</h4><p>Spannenergie der Feder → Bewegungsenergie der Kugel → Lageenergie am höchsten Punkt. Ohne Reibung gilt: $E_\text{Spann} = E_\text{Pot,oben}$. Rechne die Einheiten um: $m = 0{,}010\,\text{kg}$, $s = 0{,}050\,\text{m}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Erst die Energie</h4><p>$$E_\text{Spann} = \tfrac{1}{2}\cdot 400\,\tfrac{\text{N}}{\text{m}}\cdot(0{,}050\,\text{m})^2 = 0{,}50\,\text{J}$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Nach $h$ auflösen</h4><p>$$0{,}50\,\text{J} = 0{,}010\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot h = 0{,}10\,\text{N}\cdot h$$ Teile durch $0{,}10\,\text{N}$.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 5c</div>
+          <div class="sb"><p>$E_\text{Spann} = \tfrac{1}{2}\cdot 400\,\tfrac{\text{N}}{\text{m}}\cdot(0{,}050\,\text{m})^2 = 0{,}50\,\text{J}$</p>
+<p>$$h = \frac{E_\text{Spann}}{m\,g} = \frac{0{,}50\,\text{J}}{0{,}010\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}} = {\color{#1a7f4b}\boldsymbol{5{,}0\,\text{m}}}$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s4" id="spann-5d">
+      <div class="card-head"><h3>Aufgabe 5d · Der Flipper</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Beim Flipper wird eine Kugel ($m = 100\,\text{g}$) von einer Feder ($D = 200\,\tfrac{\text{N}}{\text{m}}$, gestaucht um $s = 10\,\text{cm}$) waagerecht abgeschossen. Mit welcher Geschwindigkeit verlässt die Kugel die Feder?</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Spannenergie</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Welche Umwandlung?</h4><p>Die Kugel fliegt waagerecht – die Höhe ändert sich nicht. Die Spannenergie wird vollständig in <strong>Bewegungsenergie</strong> umgewandelt: $E_\text{Spann} = E_\text{kin}$.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Energie berechnen</h4><p>$$E_\text{Spann} = \tfrac{1}{2}\cdot 200\,\tfrac{\text{N}}{\text{m}}\cdot(0{,}10\,\text{m})^2 = 1{,}0\,\text{J}$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Nach $v$ auflösen</h4><p>$$1{,}0\,\text{J} = \tfrac{1}{2}\cdot 0{,}10\,\text{kg}\cdot v^2 = 0{,}05\,\text{kg}\cdot v^2 \;\Rightarrow\; v^2 = 20\,\tfrac{\text{m}^2}{\text{s}^2}$$ Jetzt die Wurzel ziehen.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 5d</div>
+          <div class="sb"><p>$E_\text{Spann} = \tfrac{1}{2}\cdot 200\,\tfrac{\text{N}}{\text{m}}\cdot(0{,}10\,\text{m})^2 = 1{,}0\,\text{J} = E_\text{kin}$</p>
+<p>$$v^2 = \frac{2\cdot 1{,}0\,\text{J}}{0{,}10\,\text{kg}} = 20\,\tfrac{\text{m}^2}{\text{s}^2}\;\Rightarrow\; v \approx {\color{#1a7f4b}\boldsymbol{4{,}5\,\tfrac{\text{m}}{\text{s}}}}$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s4" id="spann-5e">
+      <div class="card-head"><h3>Aufgabe 5e · Zusatz: Das Katapult</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>Zusatzaufgabe:</strong> Das Gummiband einer Steinschleuder ($D = 300\,\tfrac{\text{N}}{\text{m}}$) wird um $s = 20\,\text{cm}$ gespannt und schießt einen Stein ($m = 50\,\text{g}$) senkrecht nach oben.</p>
+<p>(1) Welche Höhe könnte der Stein ohne Luftreibung erreichen?</p>
+<p>(2) Tatsächlich erreicht er nur $9{,}0\,\text{m}$. Wie viel Energie wurde in thermische Energie umgewandelt?</p>
+        </div>
+
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Rechnen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 1 · Wie bei der Kanone</h4><p>Teil (1) funktioniert wie Aufgabe 5c: $E_\text{Spann} = E_\text{Pot,oben}$. Für Teil (2) vergleichst du – wie beim Skifahrer – die Energie am Anfang mit der Energie am Ende.</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 2 · Spannenergie und Höhe</h4><p>$E_\text{Spann} = \tfrac{1}{2}\cdot 300\,\tfrac{\text{N}}{\text{m}}\cdot(0{,}20\,\text{m})^2 = 6{,}0\,\text{J}$</p><p>$$h = \frac{6{,}0\,\text{J}}{0{,}050\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}} = \;?$$</p>
+          </div>
+          <div class="hpanel">
+            <h4>Hilfe 3 · Reibungsverlust</h4><p>Berechne $E_\text{Pot}$ in $9{,}0\,\text{m}$ Höhe: $0{,}050\cdot 10\cdot 9{,}0\,\text{J} = 4{,}5\,\text{J}$. Die Differenz zu $6{,}0\,\text{J}$ ist die thermische Energie.</p>
+          </div>
+        </div>
+
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 5e</div>
+          <div class="sb"><p>$E_\text{Spann} = \tfrac{1}{2}\cdot 300\,\tfrac{\text{N}}{\text{m}}\cdot(0{,}20\,\text{m})^2 = 6{,}0\,\text{J}$</p>
+<p><strong>(1)</strong> $$h = \frac{6{,}0\,\text{J}}{0{,}050\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}} = {\color{#1a7f4b}\boldsymbol{12\,\text{m}}}$$</p>
+<p><strong>(2)</strong> $E_\text{Pot}(9{,}0\,\text{m}) = 4{,}5\,\text{J}$, also $$E_\text{therm} = 6{,}0\,\text{J} - 4{,}5\,\text{J} = {\color{#1a7f4b}\boldsymbol{1{,}5\,\text{J}}}$$</p></div>
         </div>
       </div>
     </article>
