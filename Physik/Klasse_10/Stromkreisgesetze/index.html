@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hilfen · Gesetze des Stromkreises · Physik Klasse 10</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+:root{
+  --blue:#004a8a; --blue-dark:#00325f;
+  --c1:#1a7f4b; --c2:#c8660a; --c3:#6b3fa0; --c4:#0b7285;
+  --green:#1a7f4b;
+  --border:#dde1e7; --bg:#f4f5f7; --text:#1c1f26; --muted:#5c6472;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.55; font-size:16px}
+.wrap{max-width:960px; margin:0 auto; padding:0 16px 64px}
+
+header.top{background:var(--blue); border-bottom:4px solid var(--blue-dark); color:#fff}
+header.top .inner{max-width:960px; margin:0 auto; padding:22px 16px 24px}
+header.top .kap{font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.92}
+header.top h1{margin:6px 0 4px; font-size:1.7rem; line-height:1.2}
+header.top .sub{font-size:.92rem; opacity:.95}
+
+.backnav{margin:18px 0 4px}
+.backnav a{display:inline-flex; align-items:center; gap:6px; font-size:.86rem; font-weight:600;
+  color:var(--muted); text-decoration:none; border:1px solid var(--border); border-radius:20px;
+  padding:5px 13px; background:#fff}
+.backnav a:hover{border-color:var(--muted); color:var(--text)}
+
+.controls{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 16px;
+  margin:18px 0 22px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between}
+.unlock{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.unlock label{font-size:.9rem; color:var(--muted)}
+.unlock input{border:1px solid var(--border); border-radius:6px; padding:6px 10px; font-size:.95rem;
+  width:130px; font-family:inherit}
+.unlock button{background:var(--blue); color:#fff; border:0; border-radius:6px; padding:7px 14px;
+  font-size:.9rem; font-weight:600; cursor:pointer; font-family:inherit}
+.unlock button:hover{background:var(--blue-dark)}
+.unlock .msg{font-size:.85rem; font-weight:600}
+.unlock .msg.ok{color:var(--green)}
+.unlock .msg.bad{color:#c0392b}
+.filters{display:flex; gap:6px; flex-wrap:wrap}
+.filters button{background:#fff; border:1px solid var(--border); border-radius:20px; padding:6px 14px;
+  font-size:.85rem; cursor:pointer; color:var(--muted); font-family:inherit; font-weight:600}
+.filters button:hover{border-color:var(--muted)}
+.filters button.on{background:var(--text); border-color:var(--text); color:#fff}
+
+.note{background:#e8f0f9; border-left:3px solid var(--blue); border-radius:6px; padding:10px 14px;
+  font-size:.9rem; margin:12px 0}
+.note a.simbtn{display:inline-block; margin-top:6px; background:var(--blue); color:#fff; text-decoration:none;
+  border-radius:6px; padding:5px 12px; font-weight:600; font-size:.85rem}
+.howto{background:#fff; border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:.9rem;
+  margin:12px 0; color:var(--muted)}
+.howto strong{color:var(--text)}
+
+.ab-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:34px 0 12px;
+  padding-bottom:8px; border-bottom:2px solid var(--border)}
+.ab-badge{color:#fff; border-radius:6px; padding:4px 12px; font-weight:700; font-size:.9rem}
+.ab-head .t{font-weight:700; font-size:1.1rem}
+.ab-head .desc{color:var(--muted); font-size:.9rem; flex-basis:100%}
+.s1 .ab-badge{background:var(--c1)} .s2 .ab-badge{background:var(--c2)} .s3 .ab-badge{background:var(--c3)} .s4 .ab-badge{background:var(--c4)}
+
+.card{background:#fff; border:1px solid var(--border); border-radius:10px; margin-bottom:14px; overflow:hidden;
+  scroll-margin-top:12px}
+.card.s1{border-top:4px solid var(--c1)} .card.s2{border-top:4px solid var(--c2)} .card.s3{border-top:4px solid var(--c3)} .card.s4{border-top:4px solid var(--c4)}
+.card.flash{box-shadow:0 0 0 3px rgba(0,74,138,.35)}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 18px;
+  cursor:pointer; user-select:none}
+.card-head:hover{background:#fafbfc}
+.card-head h3{margin:0; font-size:1.03rem; font-weight:700}
+.card-head .right{display:flex; align-items:center; gap:10px}
+.chev{color:var(--muted); font-size:1.1rem; transition:transform .18s}
+.card.open .chev{transform:rotate(180deg)}
+.card-body{display:none; padding:0 18px 18px}
+.card.open .card-body{display:block}
+.qrbtn{display:none; border:1px solid var(--border); background:#fff; border-radius:6px; padding:3px 9px;
+  font-size:.78rem; font-weight:600; color:var(--blue); cursor:pointer; font-family:inherit}
+body.unlocked .qrbtn{display:inline-block}
+
+.task{background:#fbfcfd; border:1px solid var(--border); border-left:3px solid var(--blue); border-radius:6px;
+  padding:12px 15px; margin-bottom:14px}
+.task p{margin:.5em 0} .task p:first-child{margin-top:0} .task p:last-child{margin-bottom:0}
+.task ul, .sol ul{margin:.4em 0; padding-left:1.3em}
+.tw{overflow-x:auto}
+table{border-collapse:collapse; margin:10px auto}
+td,th{border:1px solid var(--border); padding:5px 12px; font-size:.92rem; text-align:center; min-width:70px}
+th{background:#f3f5f8; font-weight:600}
+th.u{background:#fafbfc; font-weight:400; color:var(--muted); font-size:.82rem}
+.task td{height:1.9em}
+
+.assess{display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:14px}
+.assess .lab{font-size:.83rem; color:var(--muted); margin-right:2px}
+.assess button{border:1px solid var(--border); background:#fff; border-radius:16px; padding:4px 12px;
+  font-size:.8rem; cursor:pointer; color:var(--muted); font-family:inherit}
+.assess button.on[data-v="ok"]{background:var(--c1); border-color:var(--c1); color:#fff}
+.assess button.on[data-v="mid"]{background:var(--c2); border-color:var(--c2); color:#fff}
+.assess button.on[data-v="ask"]{background:var(--blue); border-color:var(--blue); color:#fff}
+
+.hints{border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:14px}
+.hints .htitle{background:#f7f8fa; padding:7px 14px; font-size:.8rem; font-weight:700; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border)}
+.htabs{display:flex; flex-wrap:wrap; gap:6px; padding:10px 14px; background:#fdfdfe}
+.htabs button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:5px 11px;
+  font-size:.82rem; cursor:pointer; color:var(--text); font-family:inherit}
+.htabs button:hover{border-color:var(--blue)}
+.htabs button.on{background:var(--blue); border-color:var(--blue); color:#fff; font-weight:600}
+.hpanel{display:none; padding:12px 15px; border-top:1px solid var(--border); font-size:.95rem}
+.hpanel.on{display:block}
+.hpanel h4{margin:0 0 8px; font-size:.92rem; color:var(--blue-dark)}
+.hpanel p{margin:.5em 0}
+
+.sol-lock{background:#f7f8fa; border:1px dashed var(--border); border-radius:8px; padding:12px 15px;
+  font-size:.9rem; color:var(--muted); text-align:center}
+.sol{display:none; border:1px solid var(--green); border-radius:8px; overflow:hidden}
+.sol .sh{background:var(--green); color:#fff; padding:7px 15px; font-weight:700; font-size:.88rem}
+.sol .sb{padding:13px 15px; font-size:.95rem}
+.sol .sb p{margin:.55em 0} .sol .sb p:first-child{margin-top:0}
+body.unlocked .sol{display:block}
+body.unlocked .sol-lock{display:none}
+
+.katex{font-size:1.04em}
+.katex-display{margin:.6em 0; overflow-x:auto; overflow-y:hidden}
+
+#qrmodal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center;
+  justify-content:center; z-index:50; padding:16px}
+#qrmodal.on{display:flex}
+#qrmodal .box{background:#fff; border-radius:10px; padding:20px 22px; max-width:360px; width:100%; text-align:center}
+#qrmodal h4{margin:0 0 10px; font-size:1rem}
+#qrcanvas{display:flex; justify-content:center; margin:10px 0}
+#qrurl{font-size:.75rem; color:var(--muted); word-break:break-all; margin:8px 0 12px}
+#qrmodal button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:6px 12px;
+  font-size:.85rem; cursor:pointer; font-family:inherit; margin:0 3px}
+#qrmodal button.pri{background:var(--blue); color:#fff; border-color:var(--blue)}
+
+footer.bot{text-align:center; color:var(--muted); font-size:.82rem; padding:26px 16px;
+  border-top:1px solid var(--border); margin-top:34px}
+footer.bot a{color:var(--blue)}
+@media(max-width:600px){
+  header.top h1{font-size:1.32rem}
+  .controls{flex-direction:column; align-items:stretch}
+  .card-head h3{font-size:.95rem}
+}
+
+.fig{text-align:center; margin:12px 0}
+.fig svg.sch{max-width:100%; height:auto}
+.fig .cap{font-size:.82rem; color:var(--muted); margin-top:2px}
+.merke{background:#eef7f1; border:1px solid #cfe6d8; border-left:4px solid var(--green); border-radius:8px;
+  padding:11px 15px; margin:12px 0; font-size:.95rem}
+.merke .mt{font-weight:700; color:var(--green); font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:3px}
+.intro{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 18px; margin:0 0 14px; font-size:.95rem}
+.intro h4{margin:0 0 6px; font-size:1rem}
+.intro p{margin:.45em 0}
+.intro .goal{display:inline-block; background:#e8f0f9; color:var(--blue-dark); border-radius:6px; padding:3px 10px;
+  font-size:.86rem; font-weight:600; margin-top:4px}
+.flex2{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+.flex2 > div{flex:1 1 260px}
+.sim{background:#fff; border:1px solid var(--border); border-radius:10px; margin:12px 0 18px; overflow:hidden}
+.sim summary{cursor:pointer; padding:11px 16px; font-weight:700; font-size:.95rem; list-style:none}
+.sim summary::-webkit-details-marker{display:none}
+.sim summary:before{content:"▸ "; color:var(--blue)}
+.sim[open] summary:before{content:"▾ "}
+.sim .sb2{padding:0 16px 14px; font-size:.92rem}
+.sim .sb2 ul{margin:.3em 0; padding-left:1.2em}
+.sim .sb2 li{margin:.25em 0}
+.kbd{display:inline-block; border:1px solid var(--border); background:#f7f8fa; border-radius:4px; padding:0 6px;
+  font-size:.85em; font-weight:600; white-space:nowrap}
+.wiss{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin:10px 0 4px}
+.wiss div{background:#fbfcfd; border:1px solid var(--border); border-radius:8px; padding:9px 12px; font-size:.88rem}
+.wiss b{display:block; color:var(--blue-dark); margin-bottom:2px}
+.step{display:inline-block; background:var(--blue); color:#fff; border-radius:50%; width:1.45em; height:1.45em;
+  line-height:1.45em; text-align:center; font-size:.8rem; font-weight:700; margin-right:6px}
+.sbz{background:#fff7ec; border:1px dashed #e8b979; border-radius:6px; padding:7px 11px; margin:.5em 0; font-size:.93rem}
+.mini{font-size:.86rem; color:var(--muted)}
+.task td.pre{background:#f3f5f8; font-weight:600}
+.ok{color:var(--green); font-weight:700}
+.task li,.hpanel li,.sol li{margin:.45em 0}
+.task,.hpanel,.sol .sb,.merke,.intro{overflow-x:auto; position:relative}
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <div class="kap">Reihe Gesetze des elektrischen Stromkreises · Physik Klasse 10</div>
+    <h1>Hilfen: Gesetze des Stromkreises</h1>
+    <div class="sub">Station 4–6 · Aufgaben in kleinen Schritten · gestufte Hilfen · Musterlösungen nach Freigabe</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="backnav"><a href="../">← Zurück zu Klasse 10</a></div>
+
+  <div class="controls">
+    <div class="unlock">
+      <label for="code">🔒 Musterlösungen freischalten:</label>
+      <input id="code" type="text" autocomplete="off" placeholder="Code">
+      <button id="btn-unlock" type="button">Bestätigen</button>
+      <span class="msg" id="msg"></span>
+    </div>
+    <div class="filters">
+      <button class="on" data-f="all" type="button">Alle</button>
+      <button data-f="ohm" type="button">Station 4 · Ohm’sches Gesetz</button>
+      <button data-f="ersatz" type="button">Station 5 · Ersatzwiderstand</button>
+      <button data-f="uebersicht" type="button">Station 6 · Übersicht</button>
+    </div>
+  </div>
+
+  <div class="howto">
+    <strong>So nutzt du die Hilfen:</strong> Versuche die Aufgabe zuerst allein.
+    Wenn du nicht weiterkommst, öffne <strong>Hilfe 1</strong> – sie gibt dir einen Denkanstoß.
+    <strong>Hilfe 2</strong> zeigt dir den Lösungsweg, <strong>Hilfe 3</strong> bringt dich fast ans Ziel.
+    Öffne die nächste Hilfe erst, wenn dir die vorherige nicht gereicht hat.
+    Halte alle Ergebnisse (mit Screenshots) auf deiner OneNote-Seite fest.
+  </div>
+
+  <div class="note">
+    <strong>Was du aus Station 1–3 schon weißt:</strong>
+    <div class="wiss">
+      <div><b>Spannung $U$ · Volt (V)</b>Der „Antrieb“ der Elektronen. Gemessen mit dem Voltmeter – parallel zum Bauteil.</div>
+      <div><b>Stromstärke $I$ · Ampere (A)</b>Wie viele Elektronen pro Sekunde durch den Draht fließen. Gemessen in Reihe.</div>
+      <div><b>Widerstand $R$ · Ohm ($\Omega$)</b>Hemmt den Strom: Je größer $R$, desto kleiner $I$ (bei gleichem $U$).</div>
+      <div><b>Knotenregel</b>$I_0 = I_1 + I_2$ – an einem Knoten teilt sich der Strom auf.</div>
+      <div><b>Maschenregel</b>In jeder Masche: Summe der Teilspannungen $= U_0$.</div>
+    </div>
+    <a class="simbtn" href="https://phet.colorado.edu/sims/html/circuit-construction-kit-dc-virtual-lab/1.1.4/circuit-construction-kit-dc-virtual-lab_de.html" target="_blank" rel="noopener">▶ Simulation „Virtuelles Gleichstrom-Labor“ öffnen</a>
+  </div>
+
+  <details class="sim">
+    <summary>So bedienst du die Simulation (zum Aufklappen)</summary>
+    <div class="sb2">
+      <ul>
+        <li><strong>Bauteile</strong> (links): <span class="kbd">Draht</span>, <span class="kbd">Batterie</span>, <span class="kbd">Licht</span> (Lampe), <span class="kbd">Widerstand</span> – mit der Maus auf die blaue Fläche ziehen. Enden aufeinanderziehen, bis sie einrasten.</li>
+        <li><strong>Messgeräte</strong> (rechts): <span class="kbd">Voltmeter</span> – rote und schwarze Spitze an zwei Stellen setzen. <span class="kbd">Ampere Meter</span> – Fadenkreuz auf einen Draht ziehen.</li>
+        <li><strong>Werte ändern:</strong> Bauteil antippen → unten erscheint ein Regler (Spannung der Batterie bzw. Widerstand). Löschen mit dem Papierkorb-Knopf.</li>
+        <li><strong>Anzeige:</strong> Haken bei <span class="kbd">Werte</span> zeigt die eingestellten Werte direkt an den Bauteilen. Mit <span class="kbd">—|—</span> schaltest du auf Schaltplan-Ansicht um.</li>
+        <li><strong>Genaue Messwerte:</strong> Unter <span class="kbd">Batterie Innenwiderstand</span> den Regler ganz nach links, unter <span class="kbd">Draht Widerstand</span> auf „winzig“.</li>
+        <li><strong>Kommazahlen:</strong> Steht in der Simulation ein Punkt, bedeutet „0.25 A“ bei uns $0{,}25\,\text{A}$.</li>
+      </ul>
+    </div>
+  </details>
+
+
+  <section class="s1" data-ab="ohm" id="ab-ohm">
+    <div class="ab-head">
+      <span class="ab-badge">Station 4</span><span class="t">Das Ohm’sche Gesetz</span>
+      <span class="desc">Zusammenhang zwischen Stromstärke, Spannung und Widerstand – in 9 Schritten</span>
+    </div>
+    
+    <div class="intro">
+      <div class="flex2">
+        <div>
+          <h4>Das Bauteil „Widerstand“</h4>
+          <p>Jedes elektrische Gerät – Lampe, Wasserkocher, Handy-Ladegerät – hat einen <strong>inneren Widerstand</strong>. Aus Station&nbsp;1 weißt du: <em>Je größer der Widerstand, desto kleiner die Stromstärke</em> (bei gleicher Spannung).</p>
+          <p>Das Bauteil <strong>Widerstand</strong> macht nichts anderes: Es <strong>begrenzt die Stromstärke</strong>. Dabei wird ein Teil der elektrischen Energie in Wärme umgewandelt.</p>
+          <p>Formelzeichen: $R$ (engl. <em>resistance</em>) · Einheit: Ohm, $\Omega$ (griechisches großes Omega).</p>
+          <span class="goal">🎯 Ziel: Du findest heraus, wie Spannung $U$, Stromstärke $I$ und Widerstand $R$ zusammenhängen.</span>
+        </div>
+        <div style="flex:0 1 200px"><svg class="sch" viewBox="0 0 200 70" width="200" role="img" aria-label="Schaltsymbol Widerstand" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="10,35 190,35" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><rect x="78" y="27" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="100" y="20" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R</text></svg><div class="mini" style="text-align:center">Schaltsymbol (Europa): Rechteck</div></div>
+      </div>
+    </div>
+    
+    <article class="card s1" id="ohm-1">
+      <div class="card-head"><h3>Schritt 1 · Messschaltung aufbauen und zeichnen</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Baue in der Simulation einen Stromkreis aus einer <strong>Batterie</strong>, einem <strong>Widerstand</strong> und <strong>Drähten</strong>. Schließe dann zwei Messgeräte an:</p>
+<ul>
+<li>Das <strong>Voltmeter</strong> misst die Spannung $U$ <em>am Widerstand</em>: Setze die rote Spitze an das eine Ende und die schwarze Spitze an das andere Ende des Widerstands.</li>
+<li>Das <strong>Ampere Meter</strong> misst die Stromstärke $I$ <em>im Stromkreis</em>: Ziehe sein Fadenkreuz auf einen Draht.</li>
+</ul>
+<p><strong>a)</strong> Mache einen Screenshot und füge ihn auf deiner OneNote-Seite ein.</p>
+<p><strong>b)</strong> Zeichne den Schaltplan in dein Heft. Verwende diese Schaltsymbole:</p>
+<div class="fig"><svg class="sch" viewBox="0 0 600 100" width="600" role="img" aria-label="Schaltsymbole" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="20,40 100,40" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><text x="60" y="88" font-size="12.5" text-anchor="middle" font-family="Arial, sans-serif" fill="#5c6472">Leiter (Draht)</text><polyline points="140,40 220,40" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(180,40)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="163" y="62" font-size="13">+</text><text x="188" y="64" font-size="15">−</text><text x="180" y="88" font-size="12.5" text-anchor="middle" font-family="Arial, sans-serif" fill="#5c6472">Batterie</text><polyline points="260,40 340,40" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><rect x="278" y="32" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="300" y="88" font-size="12.5" text-anchor="middle" font-family="Arial, sans-serif" fill="#5c6472">Widerstand</text><polyline points="380,40 460,40" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><circle cx="420" cy="40" r="13" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="420" y="45.5" font-size="16" text-anchor="middle" fill="#1c1f26" font-family="Arial, sans-serif" font-weight="700">A</text><text x="420" y="88" font-size="12.5" text-anchor="middle" font-family="Arial, sans-serif" fill="#5c6472">Strommesser</text><polyline points="500,40 580,40" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><circle cx="540" cy="40" r="13" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="540" y="45.5" font-size="16" text-anchor="middle" fill="#1c1f26" font-family="Arial, sans-serif" font-weight="700">V</text><text x="540" y="88" font-size="12.5" text-anchor="middle" font-family="Arial, sans-serif" fill="#5c6472">Spannungsmesser</text></svg></div></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Bauteile finden</button><button type="button">Hilfe 2 · Messgeräte anschließen</button><button type="button">Hilfe 3 · Schaltplan zeichnen</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Wo finde ich was?</h4><p><strong>Links</strong> in der Leiste liegen die Bauteile: <span class="kbd">Draht</span>, <span class="kbd">Batterie</span>, <span class="kbd">Widerstand</span>. Ziehe sie mit der Maus auf die blaue Fläche.</p>
+<p><strong>Rechts</strong> im Kasten liegen die Messgeräte <span class="kbd">Voltmeter</span> und <span class="kbd">Ampere Meter</span>.</p>
+<p>Um zwei Bauteile zu verbinden, ziehst du das Ende eines Bauteils auf das Ende des anderen, bis es einrastet. Setze außerdem rechts oben den Haken bei <span class="kbd">Werte</span> – dann siehst du die Spannung der Batterie und den Widerstandswert direkt am Bauteil.</p></div><div class="hpanel"><h4>Hilfe 2 · Wie werden die Messgeräte angeschlossen?</h4><p><strong>Stromstärke</strong> = wie viele Elektronen pro Sekunde durch den Draht fließen. Das Ampere Meter muss deshalb <em>auf</em> dem Draht sitzen, durch den der Strom fließt. Man sagt: Es wird <strong>in Reihe</strong> gemessen.</p>
+<p><strong>Spannung</strong> vergleicht immer <em>zwei</em> Stellen im Stromkreis – vor und hinter dem Bauteil. Die beiden Spitzen des Voltmeters gehören deshalb an <strong>beide Seiten</strong> des Widerstands. Man sagt: Es wird <strong>parallel</strong> gemessen.</p>
+<p>Zeigt das Ampere Meter nur „?“ an, liegt das Fadenkreuz nicht genau auf dem Draht.</p></div><div class="hpanel"><h4>Hilfe 3 · Schritt für Schritt zum Schaltplan</h4><p><span class="step">1</span>Zeichne mit dem Lineal ein großes Rechteck auf den Kästchenlinien (z.&nbsp;B. 8 cm × 4 cm).</p>
+<p><span class="step">2</span>Setze die <strong>Batterie</strong> in die Mitte der oberen Linie und den <strong>Widerstand</strong> in die Mitte der unteren Linie.</p>
+<p><span class="step">3</span>Setze den Strommesser <strong>Ⓐ</strong> in die linke Seite des Rechtecks – er sitzt mitten in der Leitung.</p>
+<p><span class="step">4</span>Für den Spannungsmesser <strong>Ⓥ</strong>: Führe links und rechts vom Widerstand je eine Leitung nach unten und verbinde sie unten. In diese neue Leitung setzt du Ⓥ. Die Verzweigungsstellen markierst du mit dicken Punkten.</p>
+<p>Denke an die Regeln: nur waagerechte und senkrechte Linien, Bauteile nie in eine Ecke.</p>
+<p>💡 <em>Tipp:</em> Rechts in der Simulation kannst du mit dem Knopf <span class="kbd">—|—</span> auf die Schaltplan-Ansicht umschalten und mit deiner Zeichnung vergleichen.</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Schritt 1</div>
+          <div class="sb"><p>So sieht der Schaltplan aus:</p><div class="fig"><svg class="sch" viewBox="0 0 400 275" width="400" role="img" aria-label="Messschaltung mit Batterie, Widerstand, Strom- und Spannungsmesser" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="60,50 340,50 340,170 60,170 60,50" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="140,170 140,235 260,235 260,170" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(200,50)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="183" y="72" font-size="13">+</text><text x="208" y="74" font-size="15">−</text><text x="200" y="26" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">0</tspan></text><circle cx="60" cy="110" r="13" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="60" y="115.5" font-size="16" text-anchor="middle" fill="#1c1f26" font-family="Arial, sans-serif" font-weight="700">A</text><text x="30" y="115" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">I</text><rect x="178" y="162" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="200" y="153" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R</text><circle cx="200" cy="235" r="13" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="200" y="240.5" font-size="16" text-anchor="middle" fill="#1c1f26" font-family="Arial, sans-serif" font-weight="700">V</text><text x="228" y="262" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U</text><circle cx="140" cy="170" r="4.2" fill="#1c1f26"/><circle cx="260" cy="170" r="4.2" fill="#1c1f26"/></svg><div class="cap">Strommesser in Reihe, Spannungsmesser parallel zum Widerstand</div></div>
+<p>Der Strommesser sitzt mitten im Stromkreis (in Reihe). Der Spannungsmesser ist mit beiden Seiten des Widerstands verbunden (parallel).</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="ohm-2">
+      <div class="card-head"><h3>Schritt 2 · Messwerte aufnehmen</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Stelle den Widerstand auf <strong>$R = 50\,\Omega$</strong> ein. Stelle an der Batterie nacheinander die Spannungen $U_0 = 10\,\text{V}$, $20\,\text{V}$, $30\,\text{V}$ und $40\,\text{V}$ ein. Lies jedes Mal die Spannung $U$ am Widerstand (Voltmeter) und die Stromstärke $I$ (Ampere Meter) ab und trage sie in die Tabelle ein.</p>
+<p>Wiederhole die Messung danach für <strong>$R = 100\,\Omega$</strong>.</p>
+<div class='tw'><table><tr><th></th><th colspan='2'>$R = 50\,\Omega$</th><th colspan='2'>$R = 100\,\Omega$</th></tr><tr><th>$U_0$ (in V)</th><th>$U$ (in V)</th><th>$I$ (in A)</th><th>$U$ (in V)</th><th>$I$ (in A)</th></tr><tr><td class='pre'>10</td><td></td><td></td><td></td><td></td></tr><tr><td class='pre'>20</td><td></td><td></td><td></td><td></td></tr><tr><td class='pre'>30</td><td></td><td></td><td></td><td></td></tr><tr><td class='pre'>40</td><td></td><td></td><td></td><td></td></tr></table></div>
+<p class="mini">Du darfst auch eigene Spannungswerte wählen – mit den vorgegebenen Werten wird das Rechnen später aber leichter.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Werte einstellen</button><button type="button">Hilfe 2 · Ablesen</button><button type="button">Hilfe 3 · Kontrolle</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · So stellst du die Werte ein</h4><p><strong>Tippe die Batterie an</strong> – unten am Bildschirmrand erscheint ein Regler für die Spannung. Stelle damit $U_0$ ein.</p>
+<p><strong>Tippe den Widerstand an</strong> – unten erscheint ein Regler für den Widerstand. Stelle damit $R$ ein.</p>
+<p>Wenn der Haken bei <span class="kbd">Werte</span> gesetzt ist, kannst du direkt am Bauteil kontrollieren, ob der richtige Wert eingestellt ist.</p></div><div class="hpanel"><h4>Hilfe 2 · Richtig ablesen</h4><p>Das Voltmeter zeigt die Spannung in <strong>V</strong> (Volt), das Ampere Meter die Stromstärke in <strong>A</strong> (Ampere).</p>
+<p>Achtung: Schreibt die Simulation Dezimalzahlen mit <strong>Punkt</strong>, dann bedeutet „0.20 A“ bei uns $0{,}20\,\text{A}$.</p>
+<p>Die Stromstärken sind hier alle <strong>kleiner als 1 A</strong>. Schreibe sie mit zwei Nachkommastellen auf.</p></div><div class="hpanel"><h4>Hilfe 3 · Sind meine Werte plausibel?</h4><p>Prüfe deine Tabelle: Wenn du die Spannung <strong>verdoppelst</strong> (z.&nbsp;B. von 10&nbsp;V auf 20&nbsp;V), sollte sich auch die Stromstärke <strong>verdoppeln</strong>.</p>
+<p>Wenn $U$ deutlich kleiner ist als $U_0$: Klicke rechts auf <span class="kbd">Batterie Innenwiderstand</span> und schiebe den Regler ganz nach links. Unter <span class="kbd">Draht Widerstand</span> sollte der Regler auf „winzig“ stehen.</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Schritt 2</div>
+          <div class="sb"><div class='tw'><table><tr><th></th><th colspan='2'>$R = 50\,\Omega$</th><th colspan='2'>$R = 100\,\Omega$</th></tr><tr><th>$U_0$ (in V)</th><th>$U$ (in V)</th><th>$I$ (in A)</th><th>$U$ (in V)</th><th>$I$ (in A)</th></tr><tr><td class='pre'>10</td><td>10</td><td>0,20</td><td>10</td><td>0,10</td></tr><tr><td class='pre'>20</td><td>20</td><td>0,40</td><td>20</td><td>0,20</td></tr><tr><td class='pre'>30</td><td>30</td><td>0,60</td><td>30</td><td>0,30</td></tr><tr><td class='pre'>40</td><td>40</td><td>0,80</td><td>40</td><td>0,40</td></tr></table></div><p class='mini'>Kleine Abweichungen in der letzten Stelle sind normal (die Drähte haben einen winzigen Widerstand).</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="ohm-3">
+      <div class="card-head"><h3>Schritt 3 · Erste Beobachtungen</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>a)</strong> Beschreibe deine Beobachtungen anhand der Tabelle. Formuliere dazu zwei Sätze:</p>
+<ul><li>einen Je-desto-Satz über die Spannung und die Stromstärke,</li>
+<li>einen Satz darüber, was ein doppelt so großer Widerstand mit der Stromstärke macht.</li></ul>
+<p><strong>b)</strong> Vergleiche die Spannung an der Batterie ($U_0$) mit der Spannung am Widerstand ($U$). Erkläre mit der <strong>Maschenregel</strong>, warum beide Werte gleich sind.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Satzbausteine</button><button type="button">Hilfe 2 · Vergleichen</button><button type="button">Hilfe 3 · Maschenregel</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Satzanfänge für a)</h4><div class="sbz">✏️ <em>Satzbaustein:</em> Je größer die Spannung $U$, desto …</div><div class="sbz">✏️ <em>Satzbaustein:</em> Bei doppelt so großem Widerstand ist die Stromstärke nur …</div></div><div class="hpanel"><h4>Hilfe 2 · Worauf du achten kannst</h4><p>Für a): Lies die Tabelle <strong>zeilenweise</strong> von oben nach unten – was passiert mit $I$, wenn $U$ größer wird?</p>
+<p>Vergleiche dann <strong>dieselbe Zeile</strong> (gleiche Spannung) bei $50\,\Omega$ und bei $100\,\Omega$. Um welchen Faktor unterscheiden sich die Stromstärken?</p></div><div class="hpanel"><h4>Hilfe 3 · Erinnerung an Station 3</h4><p><strong>Maschenregel:</strong> In einer Masche ist die Summe der Teilspannungen genauso groß wie die Gesamtspannung $U_0$ der Batterie.</p>
+<p>Wie viele Bauteile (außer der Batterie) liegen in unserem Stromkreis? Wenn es nur eines ist, auf wie viele Teilspannungen muss sich $U_0$ dann „aufteilen“?</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Schritt 3</div>
+          <div class="sb"><p><strong>a)</strong> Je größer die Spannung $U$, desto größer ist die Stromstärke $I$. Verdoppelt man die Spannung, verdoppelt sich auch die Stromstärke.<br>
+Bei doppelt so großem Widerstand ($100\,\Omega$ statt $50\,\Omega$) ist die Stromstärke bei gleicher Spannung nur halb so groß.</p>
+<p><strong>b)</strong> $U = U_0$. Der Stromkreis besteht aus nur einer Masche, in der nur ein Bauteil – der Widerstand – liegt. Nach der Maschenregel ist die Summe der Teilspannungen gleich $U_0$. Da es nur eine Teilspannung gibt, liegt die gesamte Batteriespannung am Widerstand an.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="ohm-4">
+      <div class="card-head"><h3>Schritt 4 · Der Quotient $U : I$</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Berechne für jede Zeile deiner Messtabelle den Quotienten $\dfrac{U}{I}$ (Spannung geteilt durch Stromstärke).</p>
+<div class='tw'><table><tr><th>$U_0$ (in V)</th><th>$\dfrac{U}{I}$ bei $R = 50\,\Omega$</th><th>$\dfrac{U}{I}$ bei $R = 100\,\Omega$</th></tr><tr><th class='u'></th><th class='u'>(in V/A)</th><th class='u'>(in V/A)</th></tr><tr><td class='pre'>10</td><td></td><td></td></tr><tr><td class='pre'>20</td><td></td><td></td></tr><tr><td class='pre'>30</td><td></td><td></td></tr><tr><td class='pre'>40</td><td></td><td></td></tr></table></div>
+<p><strong>a)</strong> Was fällt dir an den Ergebnissen auf?</p>
+<p><strong>b)</strong> Vergleiche die Ergebnisse mit dem Widerstandswert, den du in der Simulation eingestellt hast.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Rechnen</button><button type="button">Hilfe 2 · Einheit</button><button type="button">Hilfe 3 · Auswerten</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Beispielrechnung</h4><p>Teile die Spannung durch die Stromstärke – mit Einheiten:</p>
+<p>$$\frac{U}{I} = \frac{20\,\text{V}}{0{,}40\,\text{A}} = 50\,\tfrac{\text{V}}{\text{A}}$$</p>
+<p>Tipp für den Taschenrechner: 20 ÷ 0,4 eintippen.</p></div><div class="hpanel"><h4>Hilfe 2 · Eine neue Einheit</h4><p>Die Einheit „Volt pro Ampere“ hat einen eigenen Namen:</p>
+<p>$$1\,\tfrac{\text{V}}{\text{A}} = 1\,\Omega \quad(\text{Ohm})$$</p>
+<p>Schreibe deine Ergebnisse also auch in Ohm auf.</p></div><div class="hpanel"><h4>Hilfe 3 · Was bedeutet das?</h4><p>Sind die Quotienten in einer Spalte (fast) alle <strong>gleich</strong>? Dann sind $U$ und $I$ <strong>proportional</strong> zueinander: Verdoppelt sich $U$, verdoppelt sich $I$.</p>
+<p>Schau jetzt auf den Regler des Widerstands. Welche Zahl steht dort?</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Schritt 4</div>
+          <div class="sb"><div class='tw'><table><tr><th>$U_0$ (in V)</th><th>$U:I$ bei $R = 50\,\Omega$</th><th>$U:I$ bei $R = 100\,\Omega$</th></tr><tr><td class='pre'>10</td><td>10 V : 0,20 A = 50 Ω</td><td>10 V : 0,10 A = 100 Ω</td></tr><tr><td class='pre'>20</td><td>50 Ω</td><td>100 Ω</td></tr><tr><td class='pre'>30</td><td>50 Ω</td><td>100 Ω</td></tr><tr><td class='pre'>40</td><td>50 Ω</td><td>100 Ω</td></tr></table></div><p><strong>a)</strong> In jeder Spalte ist der Quotient immer gleich. $U$ und $I$ sind also proportional.</p>
+<p><strong>b)</strong> Der Quotient ist genau der eingestellte Widerstand.</p><div class="merke"><div class="mt">Merke</div>Der Widerstand gibt an, wie viel Spannung man für eine Stromstärke von 1&nbsp;A braucht: $$R = \frac{U}{I} \qquad 1\,\Omega = 1\,\tfrac{\text{V}}{\text{A}}$$</div></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="ohm-5">
+      <div class="card-head"><h3>Schritt 5 · Das $I$-$U$-Diagramm</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Zeichne beide Messreihen in <strong>ein gemeinsames</strong> Koordinatensystem:</p>
+<ul><li>nach rechts (x-Achse): die Stromstärke $I$ in A</li>
+<li>nach oben (y-Achse): die Spannung $U$ in V</li></ul>
+<p>Wähle die Einteilung der Achsen so, dass alle Messwerte hineinpassen. Zeichne für jede Messreihe eine <strong>Ausgleichsgerade</strong> – nimm für $R = 50\,\Omega$ und $R = 100\,\Omega$ verschiedene Farben.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Achsen</button><button type="button">Hilfe 2 · Punkte</button><button type="button">Hilfe 3 · Ausgleichsgerade</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Achsen einteilen</h4><p>Die größte Stromstärke ist $0{,}80\,\text{A}$, die größte Spannung $40\,\text{V}$. Ein guter Vorschlag:</p>
+<ul><li>x-Achse: <strong>1 cm (2 Kästchen) = 0,1 A</strong> → bis 0,9 A brauchst du 9 cm.</li>
+<li>y-Achse: <strong>1 cm (2 Kästchen) = 5 V</strong> → bis 45 V brauchst du 9 cm.</li></ul>
+<p>Beschrifte die Achsen mit Größe und Einheit: „$I$ in A“ und „$U$ in V“.</p></div><div class="hpanel"><h4>Hilfe 2 · Messpunkte eintragen</h4><p>Jede Zeile der Tabelle ist ein Punkt $(I\,|\,U)$. Beispiel: $(0{,}20\,\text{A}\,|\,10\,\text{V})$</p>
+<p>→ 2 cm nach rechts (0,2 A), dann 2 cm nach oben (10 V). Dort ein kleines Kreuz × machen.</p></div><div class="hpanel"><h4>Hilfe 3 · Die Ausgleichsgerade</h4><p>Lege das Lineal so an, dass die Gerade möglichst genau durch alle Kreuze einer Farbe geht.</p>
+<p>Überlege: Welche Stromstärke fließt, wenn die Spannung $0\,\text{V}$ ist? Durch welchen Punkt muss die Gerade also auch gehen?</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Schritt 5</div>
+          <div class="sb"><div class="fig"><svg class="sch" viewBox="0 0 500 310" width="500" role="img" aria-label="U-I-Diagramm der beiden Messreihen" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><line x1="60.0" y1="270" x2="60.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="60.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0</text><line x1="100.0" y1="270" x2="100.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="100.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,1</text><line x1="140.0" y1="270" x2="140.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="140.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,2</text><line x1="180.0" y1="270" x2="180.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="180.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,3</text><line x1="220.0" y1="270" x2="220.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="220.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,4</text><line x1="260.0" y1="270" x2="260.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="260.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,5</text><line x1="300.0" y1="270" x2="300.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="300.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,6</text><line x1="340.0" y1="270" x2="340.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="340.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,7</text><line x1="380.0" y1="270" x2="380.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="380.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,8</text><line x1="420.0" y1="270" x2="420.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="420.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,9</text><line x1="60" y1="270" x2="420.0" y2="270" stroke="#e3e7ed" stroke-width="1"/><text x="52" y="274" font-size="12" text-anchor="end" font-family="Arial" fill="#5c6472">0</text><line x1="60" y1="245" x2="420.0" y2="245" stroke="#e3e7ed" stroke-width="1"/><line x1="60" y1="220" x2="420.0" y2="220" stroke="#e3e7ed" stroke-width="1"/><text x="52" y="224" font-size="12" text-anchor="end" font-family="Arial" fill="#5c6472">10</text><line x1="60" y1="195" x2="420.0" y2="195" stroke="#e3e7ed" stroke-width="1"/><line x1="60" y1="170" x2="420.0" y2="170" stroke="#e3e7ed" stroke-width="1"/><text x="52" y="174" font-size="12" text-anchor="end" font-family="Arial" fill="#5c6472">20</text><line x1="60" y1="145" x2="420.0" y2="145" stroke="#e3e7ed" stroke-width="1"/><line x1="60" y1="120" x2="420.0" y2="120" stroke="#e3e7ed" stroke-width="1"/><text x="52" y="124" font-size="12" text-anchor="end" font-family="Arial" fill="#5c6472">30</text><line x1="60" y1="95" x2="420.0" y2="95" stroke="#e3e7ed" stroke-width="1"/><line x1="60" y1="70" x2="420.0" y2="70" stroke="#e3e7ed" stroke-width="1"/><text x="52" y="74" font-size="12" text-anchor="end" font-family="Arial" fill="#5c6472">40</text><line x1="60" y1="45" x2="420.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><line x1="60" y1="270" x2="440.0" y2="270" stroke="#1c1f26" stroke-width="2"/><polygon points="440.0,270 432.2,274.5 432.2,265.5" fill="#1c1f26"/><line x1="60" y1="270" x2="60" y2="30" stroke="#1c1f26" stroke-width="2"/><polygon points="60,30 64.5,37.8 55.5,37.8" fill="#1c1f26"/><text x="440.0" y="306" font-size="13" text-anchor="end" font-family="Arial" fill="#1c1f26">Stromstärke I in A</text><text x="54" y="20" font-size="13" text-anchor="start" font-family="Arial" fill="#1c1f26">Spannung U in V</text><line x1="60" y1="270" x2="420.0" y2="45" stroke="#1a7f4b" stroke-width="2.5"/><line x1="60" y1="270" x2="240.0" y2="45" stroke="#c8660a" stroke-width="2.5"/><g stroke="#1a7f4b" stroke-width="2.4"><line x1="135.0" y1="215" x2="145.0" y2="225"/><line x1="135.0" y1="225" x2="145.0" y2="215"/></g><g stroke="#c8660a" stroke-width="2.4"><line x1="95.0" y1="215" x2="105.0" y2="225"/><line x1="95.0" y1="225" x2="105.0" y2="215"/></g><g stroke="#1a7f4b" stroke-width="2.4"><line x1="215.0" y1="165" x2="225.0" y2="175"/><line x1="215.0" y1="175" x2="225.0" y2="165"/></g><g stroke="#c8660a" stroke-width="2.4"><line x1="135.0" y1="165" x2="145.0" y2="175"/><line x1="135.0" y1="175" x2="145.0" y2="165"/></g><g stroke="#1a7f4b" stroke-width="2.4"><line x1="295.0" y1="115" x2="305.0" y2="125"/><line x1="295.0" y1="125" x2="305.0" y2="115"/></g><g stroke="#c8660a" stroke-width="2.4"><line x1="175.0" y1="115" x2="185.0" y2="125"/><line x1="175.0" y1="125" x2="185.0" y2="115"/></g><g stroke="#1a7f4b" stroke-width="2.4"><line x1="375.0" y1="65" x2="385.0" y2="75"/><line x1="375.0" y1="75" x2="385.0" y2="65"/></g><g stroke="#c8660a" stroke-width="2.4"><line x1="215.0" y1="65" x2="225.0" y2="75"/><line x1="215.0" y1="75" x2="225.0" y2="65"/></g><rect x="330" y="190" width="130" height="48" rx="6" fill="#fff" stroke="#dde1e7"/><line x1="340" y1="206" x2="364" y2="206" stroke="#c8660a" stroke-width="3"/><text x="370" y="211" font-size="13" font-family="Arial">R = 100 Ω</text><line x1="340" y1="226" x2="364" y2="226" stroke="#1a7f4b" stroke-width="3"/><text x="370" y="231" font-size="13" font-family="Arial">R = 50 Ω</text></svg><div class="cap">Beide Ausgleichsgeraden gehen durch den Ursprung</div></div><p>Beide Messreihen liegen auf einer Geraden durch den Ursprung (bei $0\,\text{V}$ fließt kein Strom). Die Gerade für $R = 100\,\Omega$ ist steiler.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="ohm-6">
+      <div class="card-head"><h3>Schritt 6 · Steigung und Bedeutung</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>a)</strong> Zeichne an jede Gerade ein Steigungsdreieck und bestimme die Steigung $m$.</p>
+<p><strong>b)</strong> Lies den y-Achsenabschnitt $n$ ab.</p>
+<p><strong>c)</strong> Vergleiche $m$ mit deinen Ergebnissen aus Schritt 4. Welche Bedeutung hat die Steigung $m$ für den Stromkreis?</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Steigung</button><button type="button">Hilfe 2 · Beispiel</button><button type="button">Hilfe 3 · Bedeutung</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Was ist die Steigung?</h4><p>Die Steigung gibt an, wie stark die Gerade ansteigt:</p>
+<p>$$m = \frac{\text{Höhenunterschied}}{\text{Seitenunterschied}} = \frac{\Delta U}{\Delta I}$$</p>
+<p>Wähle zwei Punkte auf der Geraden, die weit auseinander liegen, und zeichne dazwischen ein rechtwinkliges Dreieck.</p></div><div class="hpanel"><h4>Hilfe 2 · Beispiel für R = 50 Ω</h4><div class="fig"><svg class="sch" viewBox="0 0 500 310" width="500" role="img" aria-label="U-I-Diagramm der beiden Messreihen" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><line x1="60.0" y1="270" x2="60.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="60.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0</text><line x1="100.0" y1="270" x2="100.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="100.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,1</text><line x1="140.0" y1="270" x2="140.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="140.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,2</text><line x1="180.0" y1="270" x2="180.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="180.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,3</text><line x1="220.0" y1="270" x2="220.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="220.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,4</text><line x1="260.0" y1="270" x2="260.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="260.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,5</text><line x1="300.0" y1="270" x2="300.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="300.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,6</text><line x1="340.0" y1="270" x2="340.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="340.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,7</text><line x1="380.0" y1="270" x2="380.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="380.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,8</text><line x1="420.0" y1="270" x2="420.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><text x="420.0" y="288" font-size="12" text-anchor="middle" font-family="Arial" fill="#5c6472">0,9</text><line x1="60" y1="270" x2="420.0" y2="270" stroke="#e3e7ed" stroke-width="1"/><text x="52" y="274" font-size="12" text-anchor="end" font-family="Arial" fill="#5c6472">0</text><line x1="60" y1="245" x2="420.0" y2="245" stroke="#e3e7ed" stroke-width="1"/><line x1="60" y1="220" x2="420.0" y2="220" stroke="#e3e7ed" stroke-width="1"/><text x="52" y="224" font-size="12" text-anchor="end" font-family="Arial" fill="#5c6472">10</text><line x1="60" y1="195" x2="420.0" y2="195" stroke="#e3e7ed" stroke-width="1"/><line x1="60" y1="170" x2="420.0" y2="170" stroke="#e3e7ed" stroke-width="1"/><text x="52" y="174" font-size="12" text-anchor="end" font-family="Arial" fill="#5c6472">20</text><line x1="60" y1="145" x2="420.0" y2="145" stroke="#e3e7ed" stroke-width="1"/><line x1="60" y1="120" x2="420.0" y2="120" stroke="#e3e7ed" stroke-width="1"/><text x="52" y="124" font-size="12" text-anchor="end" font-family="Arial" fill="#5c6472">30</text><line x1="60" y1="95" x2="420.0" y2="95" stroke="#e3e7ed" stroke-width="1"/><line x1="60" y1="70" x2="420.0" y2="70" stroke="#e3e7ed" stroke-width="1"/><text x="52" y="74" font-size="12" text-anchor="end" font-family="Arial" fill="#5c6472">40</text><line x1="60" y1="45" x2="420.0" y2="45" stroke="#e3e7ed" stroke-width="1"/><line x1="60" y1="270" x2="440.0" y2="270" stroke="#1c1f26" stroke-width="2"/><polygon points="440.0,270 432.2,274.5 432.2,265.5" fill="#1c1f26"/><line x1="60" y1="270" x2="60" y2="30" stroke="#1c1f26" stroke-width="2"/><polygon points="60,30 64.5,37.8 55.5,37.8" fill="#1c1f26"/><text x="440.0" y="306" font-size="13" text-anchor="end" font-family="Arial" fill="#1c1f26">Stromstärke I in A</text><text x="54" y="20" font-size="13" text-anchor="start" font-family="Arial" fill="#1c1f26">Spannung U in V</text><line x1="60" y1="270" x2="420.0" y2="45" stroke="#1a7f4b" stroke-width="2.5"/><line x1="60" y1="270" x2="240.0" y2="45" stroke="#c8660a" stroke-width="2.5"/><g stroke="#1a7f4b" stroke-width="2.4"><line x1="135.0" y1="215" x2="145.0" y2="225"/><line x1="135.0" y1="225" x2="145.0" y2="215"/></g><g stroke="#c8660a" stroke-width="2.4"><line x1="95.0" y1="215" x2="105.0" y2="225"/><line x1="95.0" y1="225" x2="105.0" y2="215"/></g><g stroke="#1a7f4b" stroke-width="2.4"><line x1="215.0" y1="165" x2="225.0" y2="175"/><line x1="215.0" y1="175" x2="225.0" y2="165"/></g><g stroke="#c8660a" stroke-width="2.4"><line x1="135.0" y1="165" x2="145.0" y2="175"/><line x1="135.0" y1="175" x2="145.0" y2="165"/></g><g stroke="#1a7f4b" stroke-width="2.4"><line x1="295.0" y1="115" x2="305.0" y2="125"/><line x1="295.0" y1="125" x2="305.0" y2="115"/></g><g stroke="#c8660a" stroke-width="2.4"><line x1="175.0" y1="115" x2="185.0" y2="125"/><line x1="175.0" y1="125" x2="185.0" y2="115"/></g><g stroke="#1a7f4b" stroke-width="2.4"><line x1="375.0" y1="65" x2="385.0" y2="75"/><line x1="375.0" y1="75" x2="385.0" y2="65"/></g><g stroke="#c8660a" stroke-width="2.4"><line x1="215.0" y1="65" x2="225.0" y2="75"/><line x1="215.0" y1="75" x2="225.0" y2="65"/></g><polyline points="140.0,220 300.0,220 300.0,120" fill="none" stroke="#1a7f4b" stroke-width="1.6" stroke-dasharray="5 4"/><text x="220.0" y="237" font-size="13" text-anchor="middle" font-family="Arial" fill="#1a7f4b">ΔI = 0,4 A</text><text x="306.0" y="174.0" font-size="13" font-family="Arial" fill="#1a7f4b">ΔU = 20 V</text><rect x="330" y="190" width="130" height="48" rx="6" fill="#fff" stroke="#dde1e7"/><line x1="340" y1="206" x2="364" y2="206" stroke="#c8660a" stroke-width="3"/><text x="370" y="211" font-size="13" font-family="Arial">R = 100 Ω</text><line x1="340" y1="226" x2="364" y2="226" stroke="#1a7f4b" stroke-width="3"/><text x="370" y="231" font-size="13" font-family="Arial">R = 50 Ω</text></svg></div><p>$$m = \frac{30\,\text{V} - 10\,\text{V}}{0{,}6\,\text{A} - 0{,}2\,\text{A}} = \frac{20\,\text{V}}{0{,}4\,\text{A}} = \;?$$</p>
+<p>Mache dasselbe für die Gerade bei $100\,\Omega$.</p></div><div class="hpanel"><h4>Hilfe 3 · Vergleichen</h4><p>Der y-Achsenabschnitt $n$ ist die Stelle, an der die Gerade die y-Achse schneidet.</p>
+<p>Lege deine Ergebnisse für $m$ neben die Quotienten $U : I$ aus Schritt 4. Was stellst du fest? Welche Gerade ist steiler – die mit dem größeren oder mit dem kleineren Widerstand?</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Schritt 6</div>
+          <div class="sb"><p><strong>a)</strong> $R = 50\,\Omega$: $\;m = \dfrac{20\,\text{V}}{0{,}4\,\text{A}} = 50\,\tfrac{\text{V}}{\text{A}} = 50\,\Omega$<br>
+$R = 100\,\Omega$: z.&nbsp;B. $\;m = \dfrac{40\,\text{V} - 10\,\text{V}}{0{,}4\,\text{A} - 0{,}1\,\text{A}} = \dfrac{30\,\text{V}}{0{,}3\,\text{A}} = 100\,\Omega$</p>
+<p><strong>b)</strong> $n = 0$ – beide Geraden gehen durch den Ursprung.</p>
+<p><strong>c)</strong> Die Steigung ist genau der Widerstand: $m = R$. Je größer der Widerstand, desto steiler die Gerade.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="ohm-7">
+      <div class="card-head"><h3>Schritt 7 · Das Ohm’sche Gesetz</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>a)</strong> Die Geraden sind Graphen linearer Funktionen $f(x) = m\cdot x + n$. Gib die Gleichungen der beiden Geraden an. Schreibe dabei $U$ statt $f(x)$ und $I$ statt $x$.</p>
+<p><strong>b)</strong> Der Zusammenhang zwischen Spannung, Stromstärke und Widerstand heißt <strong>Ohm’sches Gesetz</strong>. Schreibe es allgemein mit $U$, $R$ und $I$ auf: $\;U = \;…$</p>
+<p><strong>c)</strong> Ergänze das Formeldreieck und stelle die Formel nach $I$ und nach $R$ um.</p><div class="fig"><svg class="sch" viewBox="0 0 220 180" width="220" role="img" aria-label="Formeldreieck" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polygon points="110,12 205,170 15,170" fill="#fff" stroke="#1c1f26" stroke-width="2.5" stroke-linejoin="round"/><line x1="62" y1="92" x2="158" y2="92" stroke="#1c1f26" stroke-width="2.5"/><line x1="110" y1="92" x2="110" y2="170" stroke="#1c1f26" stroke-width="2.5"/></svg></div></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Übersetzen</button><button type="button">Hilfe 2 · Verallgemeinern</button><button type="button">Hilfe 3 · Formeldreieck</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Vom Mathe- zum Physik-Graphen</h4><p>Übersetze die Bausteine: $\;x \to I$, $\;f(x) \to U$.</p>
+<p>Setze dann $m$ und $n$ aus Schritt 6 ein. Für $R = 50\,\Omega$ beginnt es so: $\;U = 50\,\Omega \cdot I + \;…$</p></div><div class="hpanel"><h4>Hilfe 2 · Allgemeine Form</h4><p>Vergleiche die beiden Gleichungen: Was steht jeweils an der Stelle von $m$?</p>
+<p>In Schritt 6 hast du herausgefunden: $m = R$ und $n = 0$. Setze das in $\;U = m\cdot I + n\;$ ein.</p></div><div class="hpanel"><h4>Hilfe 3 · So funktioniert das Formeldreieck</h4><p>Oben steht die Größe, die das <strong>Produkt</strong> ist (links vom „=“). Unten stehen die beiden Faktoren nebeneinander.</p>
+<p>Zum Umstellen hältst du die gesuchte Größe mit dem Finger zu:</p>
+<ul><li>Stehen die anderen beiden <strong>nebeneinander</strong> → malnehmen.</li>
+<li>Stehen sie <strong>übereinander</strong> → teilen (oben durch unten).</li></ul></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Schritt 7</div>
+          <div class="sb"><p><strong>a)</strong> $R = 50\,\Omega$: $\;U = 50\,\Omega\cdot I\qquad$ $R = 100\,\Omega$: $\;U = 100\,\Omega\cdot I$</p>
+<p><strong>b)</strong> und <strong>c)</strong></p><div class="fig"><svg class="sch" viewBox="0 0 220 180" width="220" role="img" aria-label="Formeldreieck" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polygon points="110,12 205,170 15,170" fill="#fff" stroke="#1c1f26" stroke-width="2.5" stroke-linejoin="round"/><line x1="62" y1="92" x2="158" y2="92" stroke="#1c1f26" stroke-width="2.5"/><line x1="110" y1="92" x2="110" y2="170" stroke="#1c1f26" stroke-width="2.5"/><text x="110" y="75" font-size="30" text-anchor="middle" fill="#1c1f26" font-style="italic">U</text><text x="76" y="145" font-size="28" text-anchor="middle" fill="#1c1f26" font-style="italic">R</text><text x="144" y="145" font-size="28" text-anchor="middle" fill="#1c1f26" font-style="italic">I</text></svg></div><div class="merke"><div class="mt">Merke</div><strong>Ohm’sches Gesetz:</strong> $$U = R\cdot I$$
+umgestellt: $\quad I = \dfrac{U}{R} \qquad R = \dfrac{U}{I}$<br>
+Bei gleichem Widerstand sind Spannung und Stromstärke proportional zueinander.</div></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="ohm-8">
+      <div class="card-head"><h3>Schritt 8 · Üben mit dem Ohm’schen Gesetz</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>a)</strong> Durch einen Widerstand mit $R = 20\,\Omega$ fließt ein Strom von $I = 0{,}5\,\text{A}$. Berechne die Spannung am Widerstand.</p>
+<p><strong>b)</strong> Eine Taschenlampenbirne ($R = 15\,\Omega$) wird an eine Batterie mit $4{,}5\,\text{V}$ angeschlossen. Wie groß ist die Stromstärke?</p>
+<p><strong>c)</strong> Ein Wasserkocher am Haushaltsnetz ($230\,\text{V}$) nimmt einen Strom von $10\,\text{A}$ auf. Berechne seinen Widerstand.</p>
+<p><strong>d)</strong> Überprüfe dein Ergebnis aus a) in der Simulation.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Gegeben/Gesucht</button><button type="button">Hilfe 2 · Formel</button><button type="button">Hilfe 3 · Einsetzen</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Sortieren</h4><p>Schreibe bei jeder Aufgabe zuerst auf:</p>
+<p><em>Gegeben:</em> … &nbsp;&nbsp; <em>Gesucht:</em> …</p>
+<p>Beispiel a): Gegeben $R = 20\,\Omega$, $I = 0{,}5\,\text{A}$ — Gesucht: $U$</p></div><div class="hpanel"><h4>Hilfe 2 · Welche Formel?</h4><p>Halte im Formeldreieck die gesuchte Größe zu:</p>
+<ul><li>gesucht $U$: $\;U = R\cdot I$</li><li>gesucht $I$: $\;I = \dfrac{U}{R}$</li><li>gesucht $R$: $\;R = \dfrac{U}{I}$</li></ul></div><div class="hpanel"><h4>Hilfe 3 · Zahlen einsetzen</h4><p>a) $\;U = 20\,\Omega \cdot 0{,}5\,\text{A} = \;…$</p>
+<p>b) $\;I = \dfrac{4{,}5\,\text{V}}{15\,\Omega} = \;…$</p>
+<p>c) $\;R = \dfrac{230\,\text{V}}{10\,\text{A}} = \;…$</p>
+<p>d) Stelle in der Simulation $R = 20\,\Omega$ und als Batteriespannung dein Ergebnis aus a) ein. Was zeigt das Ampere Meter?</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Schritt 8</div>
+          <div class="sb"><p><strong>a)</strong> $U = R\cdot I = 20\,\Omega\cdot 0{,}5\,\text{A} = 10\,\text{V}$</p>
+<p><strong>b)</strong> $I = \dfrac{U}{R} = \dfrac{4{,}5\,\text{V}}{15\,\Omega} = 0{,}3\,\text{A}$</p>
+<p><strong>c)</strong> $R = \dfrac{U}{I} = \dfrac{230\,\text{V}}{10\,\text{A}} = 23\,\Omega$</p>
+<p><strong>d)</strong> Bei $R = 20\,\Omega$ und $U_0 = 10\,\text{V}$ zeigt das Ampere Meter $0{,}50\,\text{A}$ an. <span class="ok">✓</span></p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s1" id="ohm-9">
+      <div class="card-head"><h3>Schritt 9 · Ausblick: Zwei Widerstände in Reihe</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Baue zwei Widerstände <strong>in Reihe</strong> in denselben Stromkreis: $R_1 = 20\,\Omega$ und $R_2 = 40\,\Omega$. Stelle die Batterie auf $U_0 = 30\,\text{V}$.</p>
+<div class="fig"><svg class="sch" viewBox="0 0 440 280" width="440" role="img" aria-label="Reihenschaltung zweier Widerstände" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="40,60 400,60 400,170 40,170 40,60" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(220,60)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="203" y="82" font-size="13">+</text><text x="228" y="84" font-size="15">−</text><text x="220" y="34" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">0</tspan></text><circle cx="40" cy="115" r="13" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="40" y="120.5" font-size="16" text-anchor="middle" fill="#1c1f26" font-family="Arial, sans-serif" font-weight="700">A</text><text x="14" y="120" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">I</text><polyline points="110,170 110,232 190,232 190,170" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="250,170 250,232 330,232 330,170" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><circle cx="150" cy="232" r="13" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="150" y="237.5" font-size="16" text-anchor="middle" fill="#1c1f26" font-family="Arial, sans-serif" font-weight="700">V</text><text x="150" y="268" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">1</tspan></text><circle cx="290" cy="232" r="13" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="290" y="237.5" font-size="16" text-anchor="middle" fill="#1c1f26" font-family="Arial, sans-serif" font-weight="700">V</text><text x="290" y="268" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">2</tspan></text><circle cx="110" cy="170" r="4.2" fill="#1c1f26"/><circle cx="190" cy="170" r="4.2" fill="#1c1f26"/><circle cx="250" cy="170" r="4.2" fill="#1c1f26"/><circle cx="330" cy="170" r="4.2" fill="#1c1f26"/><rect x="128" y="162" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="150" y="153" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">1</tspan></text><rect x="268" y="162" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="290" y="153" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">2</tspan></text></svg><div class="cap">Reihenschaltung mit Strommesser und zwei Spannungsmessern</div></div>
+<p><strong>a)</strong> Miss die Stromstärke an drei Stellen: vor $R_1$, zwischen den Widerständen und hinter $R_2$. Was stellst du fest?</p>
+<p><strong>b)</strong> Miss die Spannung $U_1$ an $R_1$ und die Spannung $U_2$ an $R_2$. Berechne $U_1 + U_2$ und vergleiche mit $U_0$.</p>
+<p><strong>c)</strong> Berechne $\dfrac{U_1}{I}$ und $\dfrac{U_2}{I}$. Was stellst du fest?</p>
+<p><strong>d)</strong> Ergänze den Satz: „Am größeren Widerstand liegt die … Teilspannung.“</p>
+<p><strong>e)</strong> <em>Ausblick auf Station 5:</em> Welchen <strong>einzelnen</strong> Widerstand müsste man statt $R_1$ und $R_2$ einbauen, damit bei $30\,\text{V}$ dieselbe Stromstärke fließt? Berechne ihn mit $R = \dfrac{U_0}{I}$ und probiere es in der Simulation aus.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Aufbau</button><button type="button">Hilfe 2 · Regeln</button><button type="button">Hilfe 3 · Rechnen</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Aufbau in der Simulation</h4><p>Löse an einer Stelle einen Draht vom Widerstand und setze dort den zweiten Widerstand dazwischen. Alle Bauteile liegen dann in <strong>einem einzigen Kreis</strong> hintereinander.</p>
+<p>Miss die beiden Spannungen nacheinander mit dem Voltmeter: Spitzen links und rechts von $R_1$, danach links und rechts von $R_2$.</p></div><div class="hpanel"><h4>Hilfe 2 · Erinnerung an Station 2 und 3</h4><p><strong>Knotenregel / Reihenschaltung:</strong> In einem Stromkreis ohne Verzweigung gibt es nur einen Weg für die Elektronen.</p>
+<p><strong>Maschenregel:</strong> In einer Masche ist die Summe der Teilspannungen gleich der Gesamtspannung.</p>
+<p>Vergleiche damit deine Messwerte.</p></div><div class="hpanel"><h4>Hilfe 3 · Rechenwege</h4><p>c) Beispiel: $\;\dfrac{U_1}{I} = \dfrac{10\,\text{V}}{0{,}5\,\text{A}} = \;…\;$ Vergleiche mit $R_1$.</p>
+<p>e) $\;R = \dfrac{U_0}{I} = \dfrac{30\,\text{V}}{0{,}5\,\text{A}} = \;…\;$ Fällt dir ein Zusammenhang mit $20\,\Omega$ und $40\,\Omega$ auf?</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Schritt 9</div>
+          <div class="sb"><p><strong>a)</strong> Die Stromstärke ist überall gleich: $I = 0{,}5\,\text{A}$.</p>
+<p><strong>b)</strong> $U_1 = 10\,\text{V}$, $\;U_2 = 20\,\text{V}$, $\;U_1 + U_2 = 30\,\text{V} = U_0$ – die Maschenregel gilt.</p>
+<p><strong>c)</strong> $\dfrac{U_1}{I} = \dfrac{10\,\text{V}}{0{,}5\,\text{A}} = 20\,\Omega = R_1\;$ und $\;\dfrac{U_2}{I} = \dfrac{20\,\text{V}}{0{,}5\,\text{A}} = 40\,\Omega = R_2$. Das Ohm’sche Gesetz gilt für jeden einzelnen Widerstand.</p>
+<p><strong>d)</strong> Am größeren Widerstand liegt die größere Teilspannung. (Doppelter Widerstand → doppelte Teilspannung.)</p>
+<p><strong>e)</strong> $R = \dfrac{30\,\text{V}}{0{,}5\,\text{A}} = 60\,\Omega$. Mit einem einzelnen $60\,\Omega$-Widerstand fließen ebenfalls $0{,}5\,\text{A}$. Auffällig: $60\,\Omega = 20\,\Omega + 40\,\Omega$ – mehr dazu in Station 5!</p><div class="merke"><div class="mt">Merke</div>In einer Reihenschaltung <strong>teilt sich die Spannung</strong> der Batterie auf die einzelnen Widerstände auf: $U_0 = U_1 + U_2$. Die Stromstärke ist überall gleich.</div></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="s2" data-ab="ersatz" id="ab-ersatz">
+    <div class="ab-head">
+      <span class="ab-badge">Station 5</span><span class="t">Regeln für Widerstände</span>
+      <span class="desc">Mit Ohm’schem Gesetz, Knoten- und Maschenregel zum Ersatzwiderstand</span>
+    </div>
+    
+    <div class="intro">
+      <h4>Was ist ein Ersatzwiderstand?</h4>
+      <div class="flex2">
+        <div>
+          <p>Stell dir vor, du ersetzt zwei Widerstände $R_1$ und $R_2$ durch <strong>einen einzigen</strong> Widerstand $R_E$. Die Batterie soll davon nichts „merken“: Bei gleicher Spannung $U_0$ soll dieselbe Stromstärke $I_0$ fließen.</p>
+          <p>Diesen einen Widerstand nennt man <strong>Ersatzwiderstand</strong> $R_E$. Du findest jetzt mit dem Ohm’schen Gesetz, der Knotenregel und der Maschenregel heraus, wie man ihn berechnet.</p>
+          <span class="goal">🎯 Ziel: Regeln für den Ersatzwiderstand in Reihen- und Parallelschaltung</span>
+        </div>
+      </div>
+    </div>
+    
+    <article class="card s2" id="ers-1">
+      <div class="card-head"><h3>Aufgabe 1a · Reihenschaltung: Gesamtspannung</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><div class="fig"><svg class="sch" viewBox="0 0 440 280" width="440" role="img" aria-label="Reihenschaltung zweier Widerstände" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="40,60 400,60 400,170 40,170 40,60" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(220,60)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="203" y="82" font-size="13">+</text><text x="228" y="84" font-size="15">−</text><text x="220" y="34" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">0</tspan></text><polyline points="110,170 110,232 190,232 190,170" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="250,170 250,232 330,232 330,170" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><circle cx="150" cy="232" r="13" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="150" y="237.5" font-size="16" text-anchor="middle" fill="#1c1f26" font-family="Arial, sans-serif" font-weight="700">V</text><text x="150" y="268" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">1</tspan></text><circle cx="290" cy="232" r="13" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="290" y="237.5" font-size="16" text-anchor="middle" fill="#1c1f26" font-family="Arial, sans-serif" font-weight="700">V</text><text x="290" y="268" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">2</tspan></text><circle cx="110" cy="170" r="4.2" fill="#1c1f26"/><circle cx="190" cy="170" r="4.2" fill="#1c1f26"/><circle cx="250" cy="170" r="4.2" fill="#1c1f26"/><circle cx="330" cy="170" r="4.2" fill="#1c1f26"/><rect x="128" y="162" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="150" y="153" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">1</tspan></text><rect x="268" y="162" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="290" y="153" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">2</tspan></text></svg><div class="cap">Reihenschaltung aus R<sub>1</sub> und R<sub>2</sub> …</div></div>
+<div class="fig"><svg class="sch" viewBox="0 0 440 165" width="440" role="img" aria-label="Ersatzschaltung mit einem Widerstand" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="40,40 400,40 400,140 40,140 40,40" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(220,40)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="203" y="62" font-size="13">+</text><text x="228" y="64" font-size="15">−</text><text x="220" y="18" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">0</tspan></text><rect x="198" y="132" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="220" y="123" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">E</tspan></text><line x1="48" y1="75" x2="48" y2="105" stroke="#c8660a" stroke-width="2"/><polygon points="48,105 43.5,97.2 52.5,97.2" fill="#c8660a"/><text x="68" y="94" font-size="16" text-anchor="middle" fill="#c8660a" font-style="italic">I<tspan baseline-shift="sub" font-size="12">0</tspan></text></svg><div class="cap">… soll ersetzt werden durch einen einzigen Widerstand R<sub>E</sub>, bei dem dieselbe Stromstärke I<sub>0</sub> fließt.</div></div>
+<p>Am Widerstand $R_1$ beträgt die Spannung $U_1 = 50\,\text{V}$, am Widerstand $R_2$ beträgt sie $U_2 = 180\,\text{V}$.</p>
+<p><em>Begründe</em> mithilfe der <strong>Maschenregel</strong>, wie groß die Gesamtspannung $U_0$ ist.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Maschenregel</button><button type="button">Hilfe 2 · Maschen zählen</button><button type="button">Hilfe 3 · Rechnung</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Die Maschenregel</h4><p>Eine <strong>Masche</strong> ist ein geschlossener Weg vom Minuspol zum Pluspol der Batterie. In einer Masche gilt: Die Summe der Teilspannungen ist gleich der Gesamtspannung.</p></div><div class="hpanel"><h4>Hilfe 2 · Wie viele Maschen?</h4><p>Fahre den Weg im Schaltplan mit dem Finger nach. In der Reihenschaltung gibt es nur <strong>einen</strong> Weg – und auf diesem liegen <strong>beide</strong> Widerstände.</p></div><div class="hpanel"><h4>Hilfe 3 · Fast fertig</h4><p>$$U_0 = U_1 + U_2 = 50\,\text{V} + 180\,\text{V} = \;…$$</p><div class="sbz">✏️ <em>Satzbaustein:</em> Nach der Maschenregel ist … , weil beide Widerstände in derselben Masche liegen.</div></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 1a</div>
+          <div class="sb"><p>Die Reihenschaltung hat nur eine Masche, in der beide Widerstände liegen. Nach der Maschenregel ist die Summe der Teilspannungen gleich der Gesamtspannung:</p>
+<p>$$U_0 = U_1 + U_2 = 50\,\text{V} + 180\,\text{V} = 230\,\text{V}$$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="ers-2">
+      <div class="card-head"><h3>Aufgabe 1b · Reihenschaltung: Widerstände berechnen</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>In der Reihenschaltung fließt ein Strom von $I_0 = 4\,\text{A}$. Berechne mit dem <strong>Ohm’schen Gesetz</strong> …</p>
+<p><strong>(i)</strong> … und den Teilspannungen $U_1$ und $U_2$ die Einzelwiderstände $R_1$ und $R_2$.</p>
+<p><strong>(ii)</strong> … und der Gesamtspannung $U_0$ den Ersatzwiderstand $R_E$.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Stromstärke</button><button type="button">Hilfe 2 · Formel</button><button type="button">Hilfe 3 · Einsetzen</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Welcher Strom fließt durch R₁ und R₂?</h4><p>In einer Reihenschaltung gibt es keine Verzweigung. Die Stromstärke ist deshalb <strong>überall gleich</strong> (vgl. Station 2 und Schritt 9 in Station 4). Durch $R_1$ und $R_2$ fließen also auch $4\,\text{A}$.</p></div><div class="hpanel"><h4>Hilfe 2 · Die passende Formel</h4><p>Gesucht ist jeweils ein Widerstand. Halte im Formeldreieck das $R$ zu:</p><p>$$R = \frac{U}{I}$$</p></div><div class="hpanel"><h4>Hilfe 3 · Einsetzen</h4><p>$$R_1 = \frac{U_1}{I_0} = \frac{50\,\text{V}}{4\,\text{A}} = \;…\qquad R_2 = \frac{U_2}{I_0} = \frac{180\,\text{V}}{4\,\text{A}} = \;…$$</p><p>$$R_E = \frac{U_0}{I_0} = \frac{230\,\text{V}}{4\,\text{A}} = \;…$$</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 1b</div>
+          <div class="sb"><p><strong>(i)</strong> $R_1 = \dfrac{50\,\text{V}}{4\,\text{A}} = 12{,}5\,\Omega \qquad R_2 = \dfrac{180\,\text{V}}{4\,\text{A}} = 45\,\Omega$</p>
+<p><strong>(ii)</strong> $R_E = \dfrac{230\,\text{V}}{4\,\text{A}} = 57{,}5\,\Omega$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="ers-3">
+      <div class="card-head"><h3>Aufgabe 1c · Regel für die Reihenschaltung</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>a)</strong> Stelle für die Reihenschaltung einen Zusammenhang zwischen den Teilwiderständen $R_1$, $R_2$ und dem Ersatzwiderstand $R_E$ her. Formuliere ihn als <strong>Gleichung</strong> und als <strong>Merksatz</strong>. Verwende die Begriffe <em>Ersatzwiderstand</em>, <em>Teilwiderstände</em> und <em>Reihenschaltung</em>.</p>
+<p><strong>b)</strong> Ist der Ersatzwiderstand größer oder kleiner als die Teilwiderstände? Erkläre anschaulich, warum.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Vergleichen</button><button type="button">Hilfe 2 · Merksatz</button><button type="button">Hilfe 3 · Erklären</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Zahlen vergleichen</h4><p>Lege die Ergebnisse nebeneinander: $R_1 = 12{,}5\,\Omega$, $R_2 = 45\,\Omega$, $R_E = 57{,}5\,\Omega$. Welche Rechnung mit $R_1$ und $R_2$ ergibt $R_E$?</p><p>Kontrolle mit Station 4, Schritt 9: $20\,\Omega$, $40\,\Omega$ → $60\,\Omega$.</p></div><div class="hpanel"><h4>Hilfe 2 · Satzbaustein</h4><div class="sbz">✏️ <em>Satzbaustein:</em> In einer Reihenschaltung ist der Ersatzwiderstand so groß wie …</div></div><div class="hpanel"><h4>Hilfe 3 · Anschaulich erklären</h4><p>Stell dir die Widerstände als <strong>Engstellen</strong> vor, durch die sich die Elektronen drängen müssen. In der Reihenschaltung müssen alle Elektronen nacheinander durch <em>beide</em> Engstellen. Wird es dadurch für die Elektronen leichter oder schwerer?</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 1c</div>
+          <div class="sb"><div class="merke"><div class="mt">Regel · Reihenschaltung</div>$$R_E = R_1 + R_2$$
+<strong>In einer Reihenschaltung ist der Ersatzwiderstand gleich der Summe der Teilwiderstände.</strong></div><p><strong>b)</strong> Der Ersatzwiderstand ist <strong>größer</strong> als jeder Teilwiderstand. Die Elektronen müssen nacheinander durch beide Widerstände – zwei „Engstellen“ hintereinander behindern den Strom stärker als eine.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="ers-4">
+      <div class="card-head"><h3>Aufgabe 2a · Parallelschaltung: Teilspannungen</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Auch für eine <strong>Parallelschaltung</strong> soll ein Ersatzwiderstand gefunden werden.</p>
+<div class="fig"><svg class="sch" viewBox="0 0 440 245" width="440" role="img" aria-label="Parallelschaltung mit Spannungsmessern" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="110,140 40,140 40,40 400,40 400,140 330,140" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,140 110,100 330,100 330,140" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,140 110,180 330,180 330,140" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="180,100 180,66 260,66 260,100" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="180,180 180,214 260,214 260,180" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(368,40)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="351" y="62" font-size="13">+</text><text x="376" y="64" font-size="15">−</text><text x="368" y="18" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">0</tspan></text><rect x="198" y="92" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><rect x="198" y="172" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="295" y="94" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">1</tspan></text><text x="295" y="174" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">2</tspan></text><circle cx="220" cy="66" r="13" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="220" y="71.5" font-size="16" text-anchor="middle" fill="#1c1f26" font-family="Arial, sans-serif" font-weight="700">V</text><text x="250" y="62" font-size="16" text-anchor="start" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">1</tspan></text><circle cx="220" cy="214" r="13" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="220" y="219.5" font-size="16" text-anchor="middle" fill="#1c1f26" font-family="Arial, sans-serif" font-weight="700">V</text><text x="250" y="232" font-size="16" text-anchor="start" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">2</tspan></text><circle cx="110" cy="140" r="4.2" fill="#1c1f26"/><circle cx="330" cy="140" r="4.2" fill="#1c1f26"/><circle cx="180" cy="100" r="4.2" fill="#1c1f26"/><circle cx="260" cy="100" r="4.2" fill="#1c1f26"/><circle cx="180" cy="180" r="4.2" fill="#1c1f26"/><circle cx="260" cy="180" r="4.2" fill="#1c1f26"/><line x1="48" y1="105" x2="48" y2="127" stroke="#c8660a" stroke-width="2"/><polygon points="48,127 43.5,119.2 52.5,119.2" fill="#c8660a"/><text x="66" y="113" font-size="16" text-anchor="middle" fill="#c8660a" font-style="italic">I<tspan baseline-shift="sub" font-size="12">0</tspan></text><line x1="125" y1="92" x2="150" y2="92" stroke="#c8660a" stroke-width="2"/><polygon points="150,92 142.2,96.5 142.2,87.5" fill="#c8660a"/><text x="137" y="85" font-size="16" text-anchor="middle" fill="#c8660a" font-style="italic">I<tspan baseline-shift="sub" font-size="12">1</tspan></text><line x1="125" y1="172" x2="150" y2="172" stroke="#c8660a" stroke-width="2"/><polygon points="150,172 142.2,176.5 142.2,167.5" fill="#c8660a"/><text x="137" y="166" font-size="16" text-anchor="middle" fill="#c8660a" font-style="italic">I<tspan baseline-shift="sub" font-size="12">2</tspan></text></svg><div class="cap">Parallelschaltung: Die Elektronen haben zwei Wege.</div></div>
+<p>Die Gesamtspannung an der Batterie beträgt $U_0 = 230\,\text{V}$. <em>Begründe</em> mit der <strong>Maschenregel</strong>, wie groß die Spannungen $U_1$ und $U_2$ sind.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Maschen finden</button><button type="button">Hilfe 2 · Bauteile je Masche</button><button type="button">Hilfe 3 · Maschenregel anwenden</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Wie viele Maschen?</h4><p>Fahre mit dem Finger alle Wege vom Minuspol zum Pluspol nach. An einem Knoten (dicker Punkt) kannst du dich entscheiden: oben oder unten. Wie viele Maschen gibt es?</p></div><div class="hpanel"><h4>Hilfe 2 · Was liegt in jeder Masche?</h4><p>Die obere Masche führt nur durch $R_1$, die untere Masche nur durch $R_2$. In jeder Masche gibt es also nur <strong>eine</strong> Teilspannung.</p></div><div class="hpanel"><h4>Hilfe 3 · Fast fertig</h4><p>Obere Masche: $\;U_0 = U_1$<br>Untere Masche: $\;U_0 = U_2$</p><div class="sbz">✏️ <em>Satzbaustein:</em> Da in jeder Masche nur ein Widerstand liegt, …</div></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 2a</div>
+          <div class="sb"><p>Die Parallelschaltung hat zwei Maschen: eine durch $R_1$, eine durch $R_2$. In jeder Masche liegt nur ein Widerstand. Nach der Maschenregel liegt an jedem Widerstand deshalb die ganze Batteriespannung:</p>
+<p>$$U_1 = U_2 = U_0 = 230\,\text{V}$$</p><div class="merke"><div class="mt">Merke</div>In einer Parallelschaltung liegt an jedem Zweig die <strong>gleiche Spannung</strong> – die Spannung der Batterie.</div></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="ers-5">
+      <div class="card-head"><h3>Aufgabe 2b · Parallelschaltung: Teilströme</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Die Widerstände sind $R_1 = 10\,\Omega$ und $R_2 = 40\,\Omega$. Berechne mit dem <strong>Ohm’schen Gesetz</strong> die Stromstärken $I_1$ und $I_2$ in den beiden Zweigen.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Formel</button><button type="button">Hilfe 2 · Spannung</button><button type="button">Hilfe 3 · Einsetzen</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Welche Formel?</h4><p>Gesucht ist eine Stromstärke. Halte im Formeldreieck das $I$ zu: $\;I = \dfrac{U}{R}$</p></div><div class="hpanel"><h4>Hilfe 2 · Welche Spannung setze ich ein?</h4><p>Du brauchst die Spannung, die <strong>an diesem Widerstand</strong> anliegt. Die hast du in Aufgabe 2a bestimmt.</p></div><div class="hpanel"><h4>Hilfe 3 · Einsetzen</h4><p>$$I_1 = \frac{U_1}{R_1} = \frac{230\,\text{V}}{10\,\Omega} = \;… \qquad I_2 = \frac{U_2}{R_2} = \frac{230\,\text{V}}{40\,\Omega} = \;…$$</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 2b</div>
+          <div class="sb"><p>$$I_1 = \frac{230\,\text{V}}{10\,\Omega} = 23\,\text{A} \qquad I_2 = \frac{230\,\text{V}}{40\,\Omega} = 5{,}75\,\text{A}$$</p>
+<p>Durch den kleineren Widerstand fließt der größere Strom.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="ers-6">
+      <div class="card-head"><h3>Aufgabe 2c/d · Gesamtstrom und Ersatzwiderstand</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>c)</strong> Begründe mit der <strong>Knotenregel</strong>, wie groß die Gesamtstromstärke $I_0$ ist.</p>
+<p><strong>d)</strong> Berechne mit $U_0$ und $I_0$ den Ersatzwiderstand $R_E$ (Ohm’sches Gesetz). Vergleiche $R_E$ mit den Teilwiderständen.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Knotenregel</button><button type="button">Hilfe 2 · Formeln</button><button type="button">Hilfe 3 · Einsetzen</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Die Knotenregel</h4><p>An einem Knoten teilt sich der Strom auf. Es gehen keine Elektronen verloren und es kommen keine dazu: <strong>Der Strom, der in einen Knoten hineinfließt, fließt auch wieder heraus.</strong></p></div><div class="hpanel"><h4>Hilfe 2 · Die Formeln</h4><p>c) $\;I_0 = I_1 + I_2$</p><p>d) $\;R_E = \dfrac{U_0}{I_0}$</p></div><div class="hpanel"><h4>Hilfe 3 · Einsetzen und vergleichen</h4><p>c) $\;I_0 = 23\,\text{A} + 5{,}75\,\text{A} = \;…$</p><p>d) $\;R_E = \dfrac{230\,\text{V}}{I_0} = \;…$</p><p>Ist $R_E$ größer als $40\,\Omega$? Zwischen $10\,\Omega$ und $40\,\Omega$? Oder sogar kleiner als $10\,\Omega$?</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 2c/d</div>
+          <div class="sb"><p><strong>c)</strong> Nach der Knotenregel ist der Strom vor dem Knoten so groß wie die Summe der Ströme in den Zweigen:</p>
+<p>$$I_0 = I_1 + I_2 = 23\,\text{A} + 5{,}75\,\text{A} = 28{,}75\,\text{A}$$</p>
+<p><strong>d)</strong> $$R_E = \frac{U_0}{I_0} = \frac{230\,\text{V}}{28{,}75\,\text{A}} = 8\,\Omega$$</p>
+<p>Der Ersatzwiderstand ist <strong>kleiner als der kleinste Teilwiderstand</strong>. Durch den zweiten Zweig bekommen die Elektronen einen zusätzlichen Weg – wie eine zusätzlich geöffnete Kasse im Supermarkt: Insgesamt kommen mehr durch.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="ers-7">
+      <div class="card-head"><h3>Aufgabe 2e/f · Regel für die Parallelschaltung</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>e)</strong> Trage die Ergebnisse in die Tabelle ein und berechne die <strong>Kehrwerte</strong> der Widerstände.</p>
+<div class='tw'><table><tr><th>$R_1$ (in Ω)</th><th>$R_2$ (in Ω)</th><th>$R_E$ (in Ω)</th><th>$\frac{1}{R_1}$ (in $\frac{1}{\Omega}$)</th><th>$\frac{1}{R_2}$ (in $\frac{1}{\Omega}$)</th><th>$\frac{1}{R_E}$ (in $\frac{1}{\Omega}$)</th></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></table></div>
+<p><strong>f)</strong> Stelle für die Parallelschaltung einen Zusammenhang zwischen den <strong>Kehrwerten</strong> der Teilwiderstände und dem <strong>Kehrwert</strong> des Ersatzwiderstands her. Formuliere ihn als <strong>Gleichung</strong> und als <strong>Merksatz</strong> mit den Begriffen <em>Ersatzwiderstand</em>, <em>Teilwiderstände</em> und <em>Parallelschaltung</em>.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Kehrwert</button><button type="button">Hilfe 2 · Suchen</button><button type="button">Hilfe 3 · Formulieren</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Was ist ein Kehrwert?</h4><p>Den Kehrwert einer Zahl erhältst du, wenn du 1 durch die Zahl teilst. Beispiel:</p><p>$$\frac{1}{R_1} = \frac{1}{10\,\Omega} = 0{,}1\,\tfrac{1}{\Omega}$$</p><p>Taschenrechner: 1 ÷ 10 oder die Taste $x^{-1}$.</p></div><div class="hpanel"><h4>Hilfe 2 · Den Zusammenhang finden</h4><p>Addiere die beiden Kehrwerte $\frac{1}{R_1} + \frac{1}{R_2}$ und vergleiche das Ergebnis mit $\frac{1}{R_E}$.</p></div><div class="hpanel"><h4>Hilfe 3 · Gleichung und Merksatz</h4><p>$$\frac{1}{R_E} = \;…\; + \;…$$</p><div class="sbz">✏️ <em>Satzbaustein:</em> In einer Parallelschaltung ist der Kehrwert des Ersatzwiderstands gleich …</div></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 2e/f</div>
+          <div class="sb"><div class='tw'><table><tr><th>$R_1$ (in Ω)</th><th>$R_2$ (in Ω)</th><th>$R_E$ (in Ω)</th><th>$\frac{1}{R_1}$ (in $\frac{1}{\Omega}$)</th><th>$\frac{1}{R_2}$ (in $\frac{1}{\Omega}$)</th><th>$\frac{1}{R_E}$ (in $\frac{1}{\Omega}$)</th></tr><tr><td>10</td><td>40</td><td>8</td><td>0,1</td><td>0,025</td><td>0,125</td></tr></table></div><p>$0{,}1 + 0{,}025 = 0{,}125$ ✓</p><div class="merke"><div class="mt">Regel · Parallelschaltung</div>$$\frac{1}{R_E} = \frac{1}{R_1} + \frac{1}{R_2}$$
+<strong>In einer Parallelschaltung ist der Kehrwert des Ersatzwiderstands gleich der Summe der Kehrwerte der Teilwiderstände.</strong> Der Ersatzwiderstand ist immer kleiner als der kleinste Teilwiderstand.</div></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="ers-8">
+      <div class="card-head"><h3>Aufgabe 3 · Überprüfen in der Simulation</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Überprüfe die Regel für die Parallelschaltung in der Simulation. (230&nbsp;V und 28&nbsp;A wären in echt gefährlich – wir nehmen kleinere Werte.)</p>
+<div class="fig"><svg class="sch" viewBox="0 0 440 205" width="440" role="img" aria-label="Parallelschaltung zweier Widerstände" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="110,120 40,120 40,40 400,40 400,120 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,120 110,85 330,85 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,120 110,165 330,165 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(368,40)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="351" y="62" font-size="13">+</text><text x="376" y="64" font-size="15">−</text><text x="368" y="18" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">0</tspan></text><rect x="198" y="77" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><rect x="198" y="157" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="220" y="113" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">1</tspan></text><text x="220" y="194" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">2</tspan></text><circle cx="110" cy="120" r="4.2" fill="#1c1f26"/><circle cx="330" cy="120" r="4.2" fill="#1c1f26"/><line x1="48" y1="92" x2="48" y2="112" stroke="#c8660a" stroke-width="2"/><polygon points="48,112 43.5,104.2 52.5,104.2" fill="#c8660a"/><text x="66" y="100" font-size="16" text-anchor="middle" fill="#c8660a" font-style="italic">I<tspan baseline-shift="sub" font-size="12">0</tspan></text><line x1="140" y1="78" x2="165" y2="78" stroke="#c8660a" stroke-width="2"/><polygon points="165,78 157.2,82.5 157.2,73.5" fill="#c8660a"/><text x="152" y="70" font-size="16" text-anchor="middle" fill="#c8660a" font-style="italic">I<tspan baseline-shift="sub" font-size="12">1</tspan></text><line x1="140" y1="158" x2="165" y2="158" stroke="#c8660a" stroke-width="2"/><polygon points="165,158 157.2,162.5 157.2,153.5" fill="#c8660a"/><text x="152" y="150" font-size="16" text-anchor="middle" fill="#c8660a" font-style="italic">I<tspan baseline-shift="sub" font-size="12">2</tspan></text></svg></div>
+<p><strong>a)</strong> Baue eine Parallelschaltung aus $R_1 = 10\,\Omega$ und $R_2 = 40\,\Omega$ mit $U_0 = 20\,\text{V}$.</p>
+<p><strong>b)</strong> Miss $I_0$ vor dem Knoten, $I_1$ im oberen und $I_2$ im unteren Zweig.</p>
+<p><strong>c)</strong> Ersetze beide Widerstände durch <strong>einen</strong> Widerstand $R_E = 8\,\Omega$ und miss erneut die Stromstärke. Was stellst du fest?</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Aufbau</button><button type="button">Hilfe 2 · Messen</button><button type="button">Hilfe 3 · Erwartung</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Eine Verzweigung bauen</h4><p>Ein Knoten entsteht, wenn du die Enden von <strong>drei</strong> Drähten (oder Bauteilen) an <strong>denselben Punkt</strong> ziehst. Baue zuerst den Kreis mit $R_1$. Lege dann $R_2$ darunter und verbinde seine beiden Enden mit Drähten links und rechts mit den Enden von $R_1$.</p></div><div class="hpanel"><h4>Hilfe 2 · Wo messe ich?</h4><p>$I_0$: Fadenkreuz auf einen Draht <strong>zwischen Batterie und Knoten</strong>.<br>$I_1$: auf einen Draht im oberen Zweig.<br>$I_2$: auf einen Draht im unteren Zweig.</p><p>Beim Austauschen: Tippe einen Widerstand an und lösche ihn mit dem Papierkorb-Knopf, der unten erscheint.</p></div><div class="hpanel"><h4>Hilfe 3 · Was erwartest du?</h4><p>Rechne vorher aus: $\;I_1 = \dfrac{20\,\text{V}}{10\,\Omega}$, $\;I_2 = \dfrac{20\,\text{V}}{40\,\Omega}$, $\;I_0 = I_1 + I_2$.</p><p>Wenn $R_E$ wirklich die beiden Widerstände ersetzt, muss bei c) wieder derselbe Strom $I_0$ fließen.</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 3</div>
+          <div class="sb"><p><strong>b)</strong> $I_1 = 2{,}0\,\text{A}$, $\;I_2 = 0{,}50\,\text{A}$, $\;I_0 = 2{,}5\,\text{A}$ (Knotenregel: $2{,}0\,\text{A} + 0{,}5\,\text{A} = 2{,}5\,\text{A}$ ✓)</p>
+<p><strong>c)</strong> Mit dem einzelnen $8\,\Omega$-Widerstand fließen ebenfalls $2{,}5\,\text{A}$. Die Batterie „merkt“ keinen Unterschied – $8\,\Omega$ ist wirklich der Ersatzwiderstand. <span class="ok">✓</span></p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s2" id="ers-9">
+      <div class="card-head"><h3>Aufgabe 4 · Üben</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Berechne jeweils den Ersatzwiderstand.</p>
+<p><strong>a)</strong> $R_1 = 30\,\Omega$ und $R_2 = 50\,\Omega$ in <strong>Reihe</strong>.</p>
+<p><strong>b)</strong> $R_1 = 30\,\Omega$ und $R_2 = 60\,\Omega$ <strong>parallel</strong>.</p>
+<p><strong>c)</strong> Zwei <strong>gleiche</strong> Widerstände mit je $100\,\Omega$ <strong>parallel</strong>. Fällt dir etwas auf?</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Regel wählen</button><button type="button">Hilfe 2 · Parallel rechnen</button><button type="button">Hilfe 3 · Zwischenergebnisse</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Welche Regel?</h4><p>Reihenschaltung: $\;R_E = R_1 + R_2$<br>Parallelschaltung: $\;\dfrac{1}{R_E} = \dfrac{1}{R_1} + \dfrac{1}{R_2}$</p></div><div class="hpanel"><h4>Hilfe 2 · So rechnest du parallel</h4><p><span class='step'>1</span>Kehrwerte berechnen und addieren → das Ergebnis ist $\frac{1}{R_E}$.</p><p><span class='step'>2</span>Davon noch einmal den Kehrwert nehmen → das ist $R_E$. <em>Diesen Schritt vergisst man leicht!</em></p></div><div class="hpanel"><h4>Hilfe 3 · Zwischenergebnisse zur Kontrolle</h4><p>b) $\;\dfrac{1}{R_E} = \dfrac{1}{30\,\Omega} + \dfrac{1}{60\,\Omega} = \dfrac{2}{60\,\Omega} + \dfrac{1}{60\,\Omega} = \dfrac{3}{60\,\Omega}$ → $R_E = \;…$</p><p>c) $\;\dfrac{1}{R_E} = \dfrac{1}{100\,\Omega} + \dfrac{1}{100\,\Omega} = \dfrac{2}{100\,\Omega}$ → $R_E = \;…$</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Aufgabe 4</div>
+          <div class="sb"><p><strong>a)</strong> $R_E = 30\,\Omega + 50\,\Omega = 80\,\Omega$</p>
+<p><strong>b)</strong> $\dfrac{1}{R_E} = \dfrac{3}{60\,\Omega} = \dfrac{1}{20\,\Omega}\;\Rightarrow\; R_E = 20\,\Omega$ (kleiner als $30\,\Omega$ ✓)</p>
+<p><strong>c)</strong> $\dfrac{1}{R_E} = \dfrac{2}{100\,\Omega} = \dfrac{1}{50\,\Omega}\;\Rightarrow\; R_E = 50\,\Omega$. Zwei gleiche Widerstände parallel ergeben die <strong>Hälfte</strong> eines Widerstands.</p></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="s3" data-ab="uebersicht" id="ab-uebersicht">
+    <div class="ab-head">
+      <span class="ab-badge">Station 6</span><span class="t">Übersicht: Regeln in elektrischen Schaltungen</span>
+      <span class="desc">Hilfen zum Ausfüllen des Übersichtsblatts</span>
+    </div>
+    
+    <div class="intro">
+      <h4>Das Übersichtsblatt</h4>
+      <p>Jetzt fasst du alles zusammen. Fülle auf dem Übersichtsblatt <strong>Spalte für Spalte</strong> die Zeilen <em>Messgröße</em>, <em>Formel</em>, <em>Merksatz</em> und <em>Beispielaufgabe</em> aus. Zu jeder Spalte findest du hier eine Karte mit Hilfen.</p>
+      <span class="goal">🎯 Ziel: Alle Regeln des Stromkreises auf einen Blick</span>
+    </div>
+    
+    <article class="card s3" id="ueb-1">
+      <div class="card-head"><h3>Spalte 1 · Knotenregel</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><div class="fig"><svg class="sch" viewBox="0 0 440 205" width="440" role="img" aria-label="Parallelschaltung zweier Widerstände" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="110,120 40,120 40,40 400,40 400,120 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,120 110,85 330,85 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,120 110,165 330,165 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(368,40)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="351" y="62" font-size="13">+</text><text x="376" y="64" font-size="15">−</text><text x="368" y="18" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">0</tspan></text><rect x="198" y="77" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><rect x="198" y="157" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="220" y="113" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">1</tspan></text><text x="220" y="194" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">2</tspan></text><circle cx="110" cy="120" r="4.2" fill="#1c1f26"/><circle cx="330" cy="120" r="4.2" fill="#1c1f26"/><line x1="48" y1="92" x2="48" y2="112" stroke="#c8660a" stroke-width="2"/><polygon points="48,112 43.5,104.2 52.5,104.2" fill="#c8660a"/><text x="66" y="100" font-size="16" text-anchor="middle" fill="#c8660a" font-style="italic">I<tspan baseline-shift="sub" font-size="12">0</tspan></text><line x1="140" y1="78" x2="165" y2="78" stroke="#c8660a" stroke-width="2"/><polygon points="165,78 157.2,82.5 157.2,73.5" fill="#c8660a"/><text x="152" y="70" font-size="16" text-anchor="middle" fill="#c8660a" font-style="italic">I<tspan baseline-shift="sub" font-size="12">1</tspan></text><line x1="140" y1="158" x2="165" y2="158" stroke="#c8660a" stroke-width="2"/><polygon points="165,158 157.2,162.5 157.2,153.5" fill="#c8660a"/><text x="152" y="150" font-size="16" text-anchor="middle" fill="#c8660a" font-style="italic">I<tspan baseline-shift="sub" font-size="12">2</tspan></text></svg></div>
+<p>Fülle die Spalte <strong>Knotenregel</strong> aus: Messgröße mit Formelzeichen und Einheit, Formel, Merksatz.</p>
+<p><strong>Beispielaufgabe:</strong> Berechne $I_1$, wenn $I_0 = 2\,\text{A}$ und $I_2 = 0{,}5\,\text{A}$.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Wo gelernt?</button><button type="button">Hilfe 2 · Formel</button><button type="button">Hilfe 3 · Beispielaufgabe</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Schau zurück</h4><p>Die Knotenregel hast du in <strong>Station 2</strong> gefunden. Sie handelt von der Größe, die man mit dem <span class='kbd'>Ampere Meter</span> misst.</p></div><div class="hpanel"><h4>Hilfe 2 · Formel vervollständigen</h4><p>$$I_0 = \;… + \;…$$</p><div class="sbz">✏️ <em>Satzbaustein:</em> An einem Knoten ist die Summe der zufließenden Ströme …</div></div><div class="hpanel"><h4>Hilfe 3 · Beispielaufgabe umstellen</h4><p>$I_0 = I_1 + I_2\;$ → $\;I_1 = I_0 - I_2 = 2\,\text{A} - 0{,}5\,\text{A} = \;…$</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Spalte 1</div>
+          <div class="sb"><p><strong>Messgröße:</strong> Stromstärke · Formelzeichen $I$ · Einheit Ampere (A)</p>
+<p><strong>Formel:</strong> $I_0 = I_1 + I_2$</p>
+<p><strong>Merksatz:</strong> An einem Knoten ist die Summe der zufließenden Ströme gleich der Summe der abfließenden Ströme. (Der Strom teilt sich auf, geht aber nicht verloren.)</p>
+<p><strong>Beispiel:</strong> $I_1 = I_0 - I_2 = 2\,\text{A} - 0{,}5\,\text{A} = 1{,}5\,\text{A}$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s3" id="ueb-2">
+      <div class="card-head"><h3>Spalte 2 · Maschenregel</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><div class="fig"><svg class="sch" viewBox="0 0 440 205" width="440" role="img" aria-label="Schaltung zur Maschenregel" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="110,120 40,120 40,40 400,40 400,120 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,120 110,85 330,85 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,120 110,165 330,165 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(368,40)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="351" y="62" font-size="13">+</text><text x="376" y="64" font-size="15">−</text><text x="368" y="18" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">0</tspan></text><rect x="148" y="77" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><rect x="248" y="77" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><rect x="198" y="157" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="170" y="72" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">1</tspan></text><text x="270" y="72" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">2</tspan></text><text x="220" y="194" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">3</tspan></text><circle cx="110" cy="120" r="4.2" fill="#1c1f26"/><circle cx="330" cy="120" r="4.2" fill="#1c1f26"/></svg></div>
+<p>Fülle die Spalte <strong>Maschenregel</strong> aus: Messgröße mit Formelzeichen und Einheit, Formel, Merksatz.</p>
+<p><strong>Beispielaufgabe:</strong> $U_0 = 230\,\text{V}$, $U_2 = 100\,\text{V}$. Berechne $U_1$ und $U_3$.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Wo gelernt?</button><button type="button">Hilfe 2 · Maschen</button><button type="button">Hilfe 3 · Beispielaufgabe</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Schau zurück</h4><p>Die Maschenregel hast du in <strong>Station 3</strong> gefunden. Sie handelt von der Größe, die man mit dem <span class='kbd'>Voltmeter</span> misst.</p></div><div class="hpanel"><h4>Hilfe 2 · Zwei Maschen</h4><p>Die Schaltung hat <strong>zwei Maschen</strong>: Die obere führt durch die Widerstände mit $U_1$ und $U_2$, die untere durch den Widerstand mit $U_3$. Stelle für jede Masche eine Gleichung auf:</p><p>$$U_0 = \;… + \;… \qquad U_0 = \;…$$</p><div class="sbz">✏️ <em>Satzbaustein:</em> In einer Masche ist die Summe der Teilspannungen …</div></div><div class="hpanel"><h4>Hilfe 3 · Beispielaufgabe</h4><p>Obere Masche: $\;U_1 = U_0 - U_2 = 230\,\text{V} - 100\,\text{V} = \;…$</p><p>Untere Masche: In ihr liegt nur ein Widerstand → $\;U_3 = \;…$</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Spalte 2</div>
+          <div class="sb"><div class="fig"><svg class="sch" viewBox="0 0 440 205" width="440" role="img" aria-label="Schaltung zur Maschenregel" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="46,120 46,46 394,46 394,120 324,120 324,91 116,91 116,120 46,120" fill="none" stroke="#1a7f4b" stroke-width="6" stroke-opacity=".35"/><polyline points="34,120 34,34 406,34 406,120 336,120 336,171 104,171 104,120 34,120" fill="none" stroke="#6b3fa0" stroke-width="6" stroke-opacity=".35"/><polyline points="110,120 40,120 40,40 400,40 400,120 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,120 110,85 330,85 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,120 110,165 330,165 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(368,40)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="351" y="62" font-size="13">+</text><text x="376" y="64" font-size="15">−</text><text x="368" y="18" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">0</tspan></text><rect x="148" y="77" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><rect x="248" y="77" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><rect x="198" y="157" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="170" y="72" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">1</tspan></text><text x="270" y="72" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">2</tspan></text><text x="220" y="194" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">3</tspan></text><circle cx="110" cy="120" r="4.2" fill="#1c1f26"/><circle cx="330" cy="120" r="4.2" fill="#1c1f26"/></svg><div class="cap">grün: obere Masche · lila: untere Masche</div></div><p><strong>Messgröße:</strong> Spannung · Formelzeichen $U$ · Einheit Volt (V)</p>
+<p><strong>Formel:</strong> obere Masche $U_0 = U_1 + U_2$; untere Masche $U_0 = U_3$</p>
+<p><strong>Merksatz:</strong> In jeder Masche ist die Summe der Teilspannungen gleich der Gesamtspannung der Spannungsquelle.</p>
+<p><strong>Beispiel:</strong> $U_1 = 230\,\text{V} - 100\,\text{V} = 130\,\text{V}$; $\;U_3 = U_0 = 230\,\text{V}$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s3" id="ueb-3">
+      <div class="card-head"><h3>Spalte 3 · Ersatzwiderstand in Reihenschaltungen</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><div class="fig"><svg class="sch" viewBox="0 0 440 200" width="440" role="img" aria-label="Reihenschaltung zweier Widerstände" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="40,60 400,60 400,170 40,170 40,60" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(220,60)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="203" y="82" font-size="13">+</text><text x="228" y="84" font-size="15">−</text><text x="220" y="34" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">0</tspan></text><rect x="128" y="162" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="150" y="153" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">1</tspan></text><rect x="268" y="162" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="290" y="153" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">2</tspan></text></svg></div>
+<p>Fülle die Spalte <strong>Ersatzwiderstand in Reihenschaltungen</strong> aus: Formel $R_E = …$ und Merksatz.</p>
+<p><strong>Beispielaufgabe:</strong> $R_1 = 20\,\Omega$, $R_2 = 70\,\Omega$. Berechne $R_\text{ersatz}$.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Wo gelernt?</button><button type="button">Hilfe 2 · Formel</button><button type="button">Hilfe 3 · Beispielaufgabe</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Schau zurück</h4><p>Die Regel hast du in <strong>Station 5, Aufgabe 1c</strong> gefunden.</p></div><div class="hpanel"><h4>Hilfe 2 · Formel</h4><p>$$R_E = \;… + \;…$$</p><div class="sbz">✏️ <em>Satzbaustein:</em> In einer Reihenschaltung ist der Ersatzwiderstand gleich …</div></div><div class="hpanel"><h4>Hilfe 3 · Beispielaufgabe</h4><p>$R_E = 20\,\Omega + 70\,\Omega = \;…$</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Spalte 3</div>
+          <div class="sb"><p><strong>Formel:</strong> $R_E = R_1 + R_2$</p>
+<p><strong>Merksatz:</strong> In einer Reihenschaltung ist der Ersatzwiderstand gleich der Summe der Teilwiderstände. Er ist größer als jeder Teilwiderstand.</p>
+<p><strong>Beispiel:</strong> $R_E = 20\,\Omega + 70\,\Omega = 90\,\Omega$</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s3" id="ueb-4">
+      <div class="card-head"><h3>Spalte 4 · Ersatzwiderstand in Parallelschaltungen</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><div class="fig"><svg class="sch" viewBox="0 0 440 205" width="440" role="img" aria-label="Parallelschaltung zweier Widerstände" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polyline points="110,120 40,120 40,40 400,40 400,120 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,120 110,85 330,85 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><polyline points="110,120 110,165 330,165 330,120" fill="none" stroke="#1c1f26" stroke-width="2" stroke-linejoin="miter"/><g transform="translate(368,40)"><rect x="-7" y="-4" width="14" height="8" fill="#fff"/><line x1="-5" y1="-15" x2="-5" y2="15" stroke="#1c1f26" stroke-width="2"/><line x1="5" y1="-8" x2="5" y2="8" stroke="#1c1f26" stroke-width="5"/></g><text x="351" y="62" font-size="13">+</text><text x="376" y="64" font-size="15">−</text><text x="368" y="18" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">U<tspan baseline-shift="sub" font-size="12">0</tspan></text><rect x="198" y="77" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><rect x="198" y="157" width="44" height="16" fill="#fff" stroke="#1c1f26" stroke-width="2"/><text x="220" y="113" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">1</tspan></text><text x="220" y="194" font-size="16" text-anchor="middle" fill="#1c1f26" font-style="italic">R<tspan baseline-shift="sub" font-size="12">2</tspan></text><circle cx="110" cy="120" r="4.2" fill="#1c1f26"/><circle cx="330" cy="120" r="4.2" fill="#1c1f26"/></svg></div>
+<p>Fülle die Spalte <strong>Ersatzwiderstand in Parallelschaltungen</strong> aus: Formel und Merksatz.</p>
+<p><strong>Beispielaufgabe:</strong> $R_1 = 20\,\Omega$, $R_2 = 70\,\Omega$. Berechne $R_\text{ersatz}$.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Wo gelernt?</button><button type="button">Hilfe 2 · Formel</button><button type="button">Hilfe 3 · Beispielaufgabe</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Schau zurück</h4><p>Die Regel hast du in <strong>Station 5, Aufgabe 2f</strong> gefunden. Denk an die <strong>Kehrwerte</strong>!</p></div><div class="hpanel"><h4>Hilfe 2 · Formel</h4><p>$$\frac{1}{R_E} = \frac{1}{…} + \frac{1}{…}$$</p><div class="sbz">✏️ <em>Satzbaustein:</em> In einer Parallelschaltung ist der Kehrwert des Ersatzwiderstands …</div></div><div class="hpanel"><h4>Hilfe 3 · Beispielaufgabe in zwei Schritten</h4><p><span class='step'>1</span>$\;\dfrac{1}{R_E} = \dfrac{1}{20\,\Omega} + \dfrac{1}{70\,\Omega} = 0{,}05\,\tfrac{1}{\Omega} + 0{,}0143\,\tfrac{1}{\Omega} = \;…$</p><p><span class='step'>2</span>$\;R_E = \dfrac{1}{\;…\;}$ — Kontrolle: Das Ergebnis muss kleiner als $20\,\Omega$ sein.</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Spalte 4</div>
+          <div class="sb"><p><strong>Formel:</strong> $\dfrac{1}{R_E} = \dfrac{1}{R_1} + \dfrac{1}{R_2}$</p>
+<p><strong>Merksatz:</strong> In einer Parallelschaltung ist der Kehrwert des Ersatzwiderstands gleich der Summe der Kehrwerte der Teilwiderstände. Der Ersatzwiderstand ist kleiner als der kleinste Teilwiderstand.</p>
+<p><strong>Beispiel:</strong> $\dfrac{1}{R_E} = \dfrac{1}{20\,\Omega} + \dfrac{1}{70\,\Omega} \approx 0{,}0643\,\tfrac{1}{\Omega}\;\Rightarrow\; R_E \approx 15{,}6\,\Omega$</p>
+<p class="mini">Exakt mit Brüchen: $\frac{1}{20} + \frac{1}{70} = \frac{7}{140} + \frac{2}{140} = \frac{9}{140}$, also $R_E = \frac{140}{9}\,\Omega \approx 15{,}6\,\Omega$.</p></div>
+        </div>
+      </div>
+    </article>
+    <article class="card s3" id="ueb-5">
+      <div class="card-head"><h3>Letzte Zeile · Ohm’sches Gesetz</h3><span class="right"><button class="qrbtn" type="button" title="QR-Code zu dieser Aufgabe">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Fülle die letzte Zeile des Übersichtsblatts aus: Schreibe das <strong>Ohm’sche Gesetz</strong> mit Formel, den beiden Umstellungen und dem Formeldreieck auf.</p>
+<p><em>Zusatz:</em> Schreibe in einem Satz auf, für welche Größe das Ohm’sche Gesetz einen Zusammenhang herstellt und wann man es braucht.</p></div>
+        <div class="assess">
+          <span class="lab">Einschätzung:</span>
+          <button data-v="ok" type="button">✓ Fertig &amp; verstanden</button>
+          <button data-v="mid" type="button">~ Noch unsicher</button>
+          <button data-v="ask" type="button">? Frage an Lehrer</button>
+        </div>
+        <div class="hints">
+          <div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Wo gelernt?</button><button type="button">Hilfe 2 · Formel</button><button type="button">Hilfe 3 · Formeldreieck</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Schau zurück</h4><p>Das Ohm’sche Gesetz hast du in <strong>Station 4, Schritt 7</strong> hergeleitet.</p></div><div class="hpanel"><h4>Hilfe 2 · Formel</h4><p>$$U = \;…\cdot\;…$$</p><p>Steigung im $I$-$U$-Diagramm = ?</p></div><div class="hpanel"><h4>Hilfe 3 · Formeldreieck</h4><div class="fig"><svg class="sch" viewBox="0 0 220 180" width="220" role="img" aria-label="Formeldreieck" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polygon points="110,12 205,170 15,170" fill="#fff" stroke="#1c1f26" stroke-width="2.5" stroke-linejoin="round"/><line x1="62" y1="92" x2="158" y2="92" stroke="#1c1f26" stroke-width="2.5"/><line x1="110" y1="92" x2="110" y2="170" stroke="#1c1f26" stroke-width="2.5"/><text x="110" y="75" font-size="30" text-anchor="middle" fill="#1c1f26" font-style="italic">U</text><text x="76" y="145" font-size="28" text-anchor="middle" fill="#1c1f26" font-style="italic">R</text><text x="144" y="145" font-size="28" text-anchor="middle" fill="#1c1f26" font-style="italic">I</text></svg></div><p>Halte die gesuchte Größe zu, um die Formel umzustellen.</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol">
+          <div class="sh">✓ Musterlösung · Letzte Zeile</div>
+          <div class="sb"><div class="merke"><div class="mt">Ohm’sches Gesetz</div>$$U = R\cdot I \qquad I = \frac{U}{R} \qquad R = \frac{U}{I}$$ Das Ohm’sche Gesetz verbindet Spannung, Stromstärke und Widerstand. Man braucht es, um aus zwei bekannten Größen die dritte zu berechnen – für ein einzelnes Bauteil oder für die ganze Schaltung (dann mit $U_0$, $I_0$ und $R_E$).</div><div class="fig"><svg class="sch" viewBox="0 0 220 180" width="220" role="img" aria-label="Formeldreieck" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif"><polygon points="110,12 205,170 15,170" fill="#fff" stroke="#1c1f26" stroke-width="2.5" stroke-linejoin="round"/><line x1="62" y1="92" x2="158" y2="92" stroke="#1c1f26" stroke-width="2.5"/><line x1="110" y1="92" x2="110" y2="170" stroke="#1c1f26" stroke-width="2.5"/><text x="110" y="75" font-size="30" text-anchor="middle" fill="#1c1f26" font-style="italic">U</text><text x="76" y="145" font-size="28" text-anchor="middle" fill="#1c1f26" font-style="italic">R</text><text x="144" y="145" font-size="28" text-anchor="middle" fill="#1c1f26" font-style="italic">I</text></svg></div></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+</div>
+
+<div id="qrmodal" role="dialog" aria-modal="true">
+  <div class="box">
+    <h4 id="qrtitle">QR-Code</h4>
+    <div id="qrcanvas"></div>
+    <div id="qrurl"></div>
+    <button id="qrcopy" type="button" class="pri">Link kopieren</button>
+    <button id="qrclose" type="button">Schließen</button>
+  </div>
+</div>
+
+<footer class="bot">
+  Sek I Unterrichtsmaterialien · Friedrich-Bährens-Gymnasium Schwerte ·
+  Simulation: <a href="https://phet.colorado.edu" target="_blank" rel="noopener">PhET Interactive Simulations</a>, University of Colorado Boulder
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ---------- KaTeX ---------- */
+  function render(){
+    if (window.renderMathInElement) {
+      renderMathInElement(document.body, {
+        delimiters: [{left:'$$', right:'$$', display:true}, {left:'$', right:'$', display:false}],
+        throwOnError:false
+      });
+    }
+  }
+  if (window.renderMathInElement) render(); else window.addEventListener('load', render);
+
+  /* ---------- Karten auf/zu ---------- */
+  document.querySelectorAll('.card-head').forEach(function(h){
+    h.addEventListener('click', function(e){
+      if (e.target.closest('.qrbtn')) return;
+      h.parentElement.classList.toggle('open');
+    });
+  });
+
+  /* ---------- Hilfe-Reiter (Hilfe 2 erst nach Hilfe 1 usw.) ---------- */
+  document.querySelectorAll('.hints').forEach(function(box){
+    var tabs = box.querySelectorAll('.htabs button');
+    var panels = box.querySelectorAll('.hpanel');
+    tabs.forEach(function(tab, i){
+      tab.addEventListener('click', function(){
+        var wasOn = tab.classList.contains('on');
+        tabs.forEach(function(t){ t.classList.remove('on'); });
+        panels.forEach(function(p){ p.classList.remove('on'); });
+        if (!wasOn) { tab.classList.add('on'); if (panels[i]) panels[i].classList.add('on'); }
+      });
+    });
+  });
+
+  /* ---------- Selbsteinschätzung ---------- */
+  document.querySelectorAll('.assess').forEach(function(box){
+    var btns = box.querySelectorAll('button');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var wasOn = b.classList.contains('on');
+        btns.forEach(function(x){ x.classList.remove('on'); });
+        if (!wasOn) b.classList.add('on');
+      });
+    });
+  });
+
+  /* ---------- Filter nach Arbeitsblatt ---------- */
+  function setFilter(f){
+    document.querySelectorAll('.filters button').forEach(function(x){
+      x.classList.toggle('on', x.dataset.f === f);
+    });
+    document.querySelectorAll('section[data-ab]').forEach(function(sec){
+      sec.style.display = (f === 'all' || sec.dataset.ab === f) ? '' : 'none';
+    });
+  }
+  document.querySelectorAll('.filters button').forEach(function(b){
+    b.addEventListener('click', function(){ setFilter(b.dataset.f); });
+  });
+
+  /* ---------- Musterlösungen freischalten ---------- */
+  var CODE = 'OHM';
+  var input = document.getElementById('code');
+  var msg = document.getElementById('msg');
+  function tryUnlock(){
+    var val = (input.value || '').trim().toUpperCase();
+    if (val === CODE) {
+      document.body.classList.add('unlocked');
+      msg.textContent = '✓ freigeschaltet'; msg.className = 'msg ok';
+      render();
+    } else {
+      msg.textContent = '✗ Code stimmt nicht'; msg.className = 'msg bad';
+    }
+  }
+  document.getElementById('btn-unlock').addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e){ if (e.key === 'Enter') tryUnlock(); });
+
+  /* ---------- Direktlinks (#lage-4a, #kin, ...) – z. B. für QR-Codes ---------- */
+  function openFromHash(){
+    var id = decodeURIComponent((location.hash || '').slice(1));
+    if (!id) return false;
+    var sec = document.querySelector('section[data-ab="' + id + '"]');
+    if (sec) {
+      setFilter(id);
+      var first = sec.querySelector('.card'); if (first) first.classList.add('open');
+      sec.scrollIntoView();
+      return true;
+    }
+    var card = document.getElementById(id);
+    if (card && card.classList.contains('card')) {
+      setFilter(card.closest('section').dataset.ab);
+      card.classList.add('open', 'flash');
+      setTimeout(function(){ card.classList.remove('flash'); }, 2200);
+      card.scrollIntoView();
+      return true;
+    }
+    return false;
+  }
+  if (!openFromHash()) {
+    document.querySelectorAll('section[data-ab]').forEach(function(sec){
+      var first = sec.querySelector('.card'); if (first) first.classList.add('open');
+    });
+  }
+  window.addEventListener('hashchange', openFromHash);
+
+  /* ---------- QR-Code je Aufgabe (nur für Lehrkraft nach Freischaltung) ---------- */
+  var modal = document.getElementById('qrmodal');
+  var qrUrl = '';
+  document.querySelectorAll('.qrbtn').forEach(function(b){
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      var card = b.closest('.card');
+      qrUrl = location.origin + location.pathname + '#' + card.id;
+      document.getElementById('qrtitle').textContent = card.querySelector('h3').textContent;
+      document.getElementById('qrurl').textContent = qrUrl;
+      var box = document.getElementById('qrcanvas'); box.innerHTML = '';
+      if (window.QRCode) {
+        new QRCode(box, {text: qrUrl, width: 220, height: 220, correctLevel: QRCode.CorrectLevel.M});
+      } else {
+        box.textContent = 'QR-Bibliothek konnte nicht geladen werden.';
+      }
+      modal.classList.add('on');
+    });
+  });
+  document.getElementById('qrclose').addEventListener('click', function(){ modal.classList.remove('on'); });
+  modal.addEventListener('click', function(e){ if (e.target === modal) modal.classList.remove('on'); });
+  document.getElementById('qrcopy').addEventListener('click', function(){
+    var btn = this;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(qrUrl).then(function(){
+        btn.textContent = '✓ kopiert'; setTimeout(function(){ btn.textContent = 'Link kopieren'; }, 1500);
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
