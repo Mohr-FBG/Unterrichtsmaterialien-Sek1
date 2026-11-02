@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testvorbereitung Energie · Physik Klasse 9</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --blue:#004a8a; --blue-dark:#00325f;
+  --c1:#1a7f4b; --c2:#c8660a; --c3:#6b3fa0; --c4:#0b7285;
+  --green:#1a7f4b;
+  --border:#dde1e7; --bg:#f4f5f7; --text:#1c1f26; --muted:#5c6472;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.55; font-size:16px}
+.wrap{max-width:960px; margin:0 auto; padding:0 16px 64px}
+
+header.top{background:var(--blue); border-bottom:4px solid var(--blue-dark); color:#fff}
+header.top .inner{max-width:960px; margin:0 auto; padding:22px 16px 24px}
+header.top .kap{font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.92}
+header.top h1{margin:6px 0 4px; font-size:1.7rem; line-height:1.2}
+header.top .sub{font-size:.92rem; opacity:.95}
+
+.backnav{margin:18px 0 4px}
+.backnav a{display:inline-flex; align-items:center; gap:6px; font-size:.86rem; font-weight:600;
+  color:var(--muted); text-decoration:none; border:1px solid var(--border); border-radius:20px;
+  padding:5px 13px; background:#fff}
+.backnav a:hover{border-color:var(--muted); color:var(--text)}
+
+.controls{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 16px;
+  margin:18px 0 22px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between}
+.unlock{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.unlock label{font-size:.9rem; color:var(--muted)}
+.unlock input{border:1px solid var(--border); border-radius:6px; padding:6px 10px; font-size:.95rem;
+  width:130px; font-family:inherit}
+.unlock button{background:var(--blue); color:#fff; border:0; border-radius:6px; padding:7px 14px;
+  font-size:.9rem; font-weight:600; cursor:pointer; font-family:inherit}
+.unlock button:hover{background:var(--blue-dark)}
+.unlock .msg{font-size:.85rem; font-weight:600}
+.unlock .msg.ok{color:var(--green)}
+.unlock .msg.bad{color:#c0392b}
+.filters{display:flex; gap:6px; flex-wrap:wrap}
+.filters button{background:#fff; border:1px solid var(--border); border-radius:20px; padding:6px 14px;
+  font-size:.85rem; cursor:pointer; color:var(--muted); font-family:inherit; font-weight:600}
+.filters button:hover{border-color:var(--muted)}
+.filters button.on{background:var(--text); border-color:var(--text); color:#fff}
+
+.note{background:#e8f0f9; border-left:3px solid var(--blue); border-radius:6px; padding:10px 14px;
+  font-size:.9rem; margin:12px 0}
+.note a.simbtn{display:inline-block; margin-top:6px; background:var(--blue); color:#fff; text-decoration:none;
+  border-radius:6px; padding:5px 12px; font-weight:600; font-size:.85rem}
+.howto{background:#fff; border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:.9rem;
+  margin:12px 0; color:var(--muted)}
+.howto strong{color:var(--text)}
+
+.ab-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:34px 0 12px;
+  padding-bottom:8px; border-bottom:2px solid var(--border)}
+.ab-badge{color:#fff; border-radius:6px; padding:4px 12px; font-weight:700; font-size:.9rem}
+.ab-head .t{font-weight:700; font-size:1.1rem}
+.ab-head .desc{color:var(--muted); font-size:.9rem; flex-basis:100%}
+.s1 .ab-badge{background:var(--c1)} .s2 .ab-badge{background:var(--c2)} .s3 .ab-badge{background:var(--c3)} .s4 .ab-badge{background:var(--c4)}
+
+.card{background:#fff; border:1px solid var(--border); border-radius:10px; margin-bottom:14px; overflow:hidden;
+  scroll-margin-top:12px}
+.card.s1{border-top:4px solid var(--c1)} .card.s2{border-top:4px solid var(--c2)} .card.s3{border-top:4px solid var(--c3)} .card.s4{border-top:4px solid var(--c4)}
+.card.flash{box-shadow:0 0 0 3px rgba(0,74,138,.35)}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 18px;
+  cursor:pointer; user-select:none}
+.card-head:hover{background:#fafbfc}
+.card-head h3{margin:0; font-size:1.03rem; font-weight:700}
+.card-head .right{display:flex; align-items:center; gap:10px}
+.chev{color:var(--muted); font-size:1.1rem; transition:transform .18s}
+.card.open .chev{transform:rotate(180deg)}
+.card-body{display:none; padding:0 18px 18px}
+.card.open .card-body{display:block}
+.qrbtn{display:none; border:1px solid var(--border); background:#fff; border-radius:6px; padding:3px 9px;
+  font-size:.78rem; font-weight:600; color:var(--blue); cursor:pointer; font-family:inherit}
+body.unlocked .qrbtn{display:inline-block}
+
+.task{background:#fbfcfd; border:1px solid var(--border); border-left:3px solid var(--blue); border-radius:6px;
+  padding:12px 15px; margin-bottom:14px}
+.task p{margin:.5em 0} .task p:first-child{margin-top:0} .task p:last-child{margin-bottom:0}
+.task ul, .sol ul{margin:.4em 0; padding-left:1.3em}
+.tw{overflow-x:auto}
+table{border-collapse:collapse; margin:10px auto}
+td,th{border:1px solid var(--border); padding:5px 12px; font-size:.92rem; text-align:center; min-width:70px}
+th{background:#f3f5f8; font-weight:600}
+th.u{background:#fafbfc; font-weight:400; color:var(--muted); font-size:.82rem}
+.task td{height:1.9em}
+
+.assess{display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:14px}
+.assess .lab{font-size:.83rem; color:var(--muted); margin-right:2px}
+.assess button{border:1px solid var(--border); background:#fff; border-radius:16px; padding:4px 12px;
+  font-size:.8rem; cursor:pointer; color:var(--muted); font-family:inherit}
+.assess button.on[data-v="ok"]{background:var(--c1); border-color:var(--c1); color:#fff}
+.assess button.on[data-v="mid"]{background:var(--c2); border-color:var(--c2); color:#fff}
+.assess button.on[data-v="ask"]{background:var(--blue); border-color:var(--blue); color:#fff}
+
+.hints{border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:14px}
+.hints .htitle{background:#f7f8fa; padding:7px 14px; font-size:.8rem; font-weight:700; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border)}
+.htabs{display:flex; flex-wrap:wrap; gap:6px; padding:10px 14px; background:#fdfdfe}
+.htabs button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:5px 11px;
+  font-size:.82rem; cursor:pointer; color:var(--text); font-family:inherit}
+.htabs button:hover{border-color:var(--blue)}
+.htabs button.on{background:var(--blue); border-color:var(--blue); color:#fff; font-weight:600}
+.hpanel{display:none; padding:12px 15px; border-top:1px solid var(--border); font-size:.95rem}
+.hpanel.on{display:block}
+.hpanel h4{margin:0 0 8px; font-size:.92rem; color:var(--blue-dark)}
+.hpanel p{margin:.5em 0}
+
+.sol-lock{background:#f7f8fa; border:1px dashed var(--border); border-radius:8px; padding:12px 15px;
+  font-size:.9rem; color:var(--muted); text-align:center}
+.sol{display:none; border:1px solid var(--green); border-radius:8px; overflow:hidden}
+.sol .sh{background:var(--green); color:#fff; padding:7px 15px; font-weight:700; font-size:.88rem}
+.sol .sb{padding:13px 15px; font-size:.95rem}
+.sol .sb p{margin:.55em 0} .sol .sb p:first-child{margin-top:0}
+body.unlocked .sol{display:block}
+body.unlocked .sol-lock{display:none}
+
+.katex{font-size:1.04em}
+.katex-display{margin:.6em 0; overflow-x:auto; overflow-y:hidden}
+
+#qrmodal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center;
+  justify-content:center; z-index:50; padding:16px}
+#qrmodal.on{display:flex}
+#qrmodal .box{background:#fff; border-radius:10px; padding:20px 22px; max-width:360px; width:100%; text-align:center}
+#qrmodal h4{margin:0 0 10px; font-size:1rem}
+#qrcanvas{display:flex; justify-content:center; margin:10px 0}
+#qrurl{font-size:.75rem; color:var(--muted); word-break:break-all; margin:8px 0 12px}
+#qrmodal button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:6px 12px;
+  font-size:.85rem; cursor:pointer; font-family:inherit; margin:0 3px}
+#qrmodal button.pri{background:var(--blue); color:#fff; border-color:var(--blue)}
+
+footer.bot{text-align:center; color:var(--muted); font-size:.82rem; padding:26px 16px;
+  border-top:1px solid var(--border); margin-top:34px}
+footer.bot a{color:var(--blue)}
+@media(max-width:600px){
+  header.top h1{font-size:1.32rem}
+  .controls{flex-direction:column; align-items:stretch}
+  .card-head h3{font-size:.95rem}
+}
+
+.privacy{background:#e9f6ef; border:1px solid #9fd3b6; border-left:5px solid var(--green); border-radius:8px;
+  padding:12px 16px; margin:16px 0; font-size:.95rem}
+.privacy strong{color:#145c37}
+.steps{background:#fff; border:1px solid var(--border); border-radius:8px; padding:10px 16px; margin:12px 0; font-size:.92rem}
+.steps ol{margin:.3em 0 .2em; padding-left:1.3em}
+h2.sec{font-size:1.15rem; margin:30px 0 10px; padding-bottom:6px; border-bottom:2px solid var(--border)}
+
+/* Checkliste */
+.check{background:#fff; border:1px solid var(--border); border-radius:10px; overflow:hidden}
+.crow{display:flex; align-items:center; gap:12px; padding:10px 14px; border-top:1px solid var(--border); flex-wrap:wrap}
+.crow:first-child{border-top:0}
+.crow .num{font-weight:700; color:var(--blue); min-width:24px}
+.crow .txt{flex:1; min-width:220px; font-size:.95rem}
+.crow .txt a{font-size:.8rem; color:var(--blue); text-decoration:none; font-weight:600; white-space:nowrap}
+.emo{display:flex; gap:6px}
+.emo button{font-size:1.35rem; line-height:1; background:#fff; border:2px solid var(--border); border-radius:10px;
+  padding:5px 8px; cursor:pointer; filter:grayscale(1); opacity:.55; transition:all .12s}
+.emo button:hover{opacity:.9; filter:none}
+.emo button.on{filter:none; opacity:1}
+.emo button.on[data-v="gut"]{border-color:var(--c1); background:#e7f5ed}
+.emo button.on[data-v="mittel"]{border-color:#d9a400; background:#fff7dc}
+.emo button.on[data-v="schlecht"]{border-color:#c0392b; background:#fdecea}
+.legend{font-size:.82rem; color:var(--muted); margin:6px 2px 0}
+.summary{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
+  background:#f7f8fa; padding:10px 14px; border-top:1px solid var(--border); font-size:.9rem}
+.summary button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:4px 10px;
+  font-size:.8rem; cursor:pointer; color:var(--muted); font-family:inherit}
+.tipp{font-size:.9rem; margin-top:8px}
+
+/* Bereiche und Aufgaben */
+.b-head{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:34px 0 10px; padding-bottom:8px;
+  border-bottom:2px solid var(--border)}
+.b-badge{background:var(--blue); color:#fff; border-radius:6px; padding:3px 10px; font-weight:700; font-size:.85rem}
+.b-head .t{font-weight:700; font-size:1.1rem; flex:1}
+.b-head .state{font-size:1.3rem}
+.merke{background:#eef4fb; border-left:4px solid var(--blue); border-radius:6px; padding:8px 14px; margin:0 0 14px; font-size:.93rem}
+.merke .mt{font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-dark)}
+.merke p{margin:.35em 0}
+.stern{font-size:.78rem; font-weight:700; border-radius:12px; padding:2px 9px; margin-right:8px; white-space:nowrap}
+.stern.s1{background:#e7f5ed; color:#145c37} .stern.s2{background:#fff1dc; color:#8a4b00} .stern.s3{background:#efe7f8; color:#4b2a73}
+.card.done .card-head h3::after{content:" ✓"; color:var(--c1)}
+.card{border-top:4px solid var(--blue)}
+.actions{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px}
+.actions button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:6px 12px; font-size:.85rem;
+  cursor:pointer; font-family:inherit; font-weight:600}
+.actions .showsol{color:var(--green); border-color:var(--green)}
+.actions .showsol.on{background:var(--green); color:#fff}
+.actions .donebtn.on{background:var(--c1); color:#fff; border-color:var(--c1)}
+.sol.open{display:block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <div class="kap">Reihe Energieübertragung · Physik Klasse 9</div>
+    <h1>Testvorbereitung: Energie</h1>
+    <div class="sub">Checkliste · Kurzwiederholung · 24 Übungsaufgaben in drei Stufen mit Hilfen und Lösungen</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="backnav"><a href="../">← Zurück zu Klasse 9</a></div>
+
+  <div class="privacy">
+    🔒 <strong>Nur für dich:</strong> Deine Einschätzungen in der Checkliste und deine „geschafft“-Markierungen werden
+    <strong>nur auf deinem eigenen Gerät</strong> (in deinem Browser) gespeichert. Sie werden nicht verschickt –
+    <strong>deine Lehrkraft kann sie nicht sehen</strong>. Die Seite ist ausschließlich zum Üben gedacht und wird nicht bewertet.
+  </div>
+
+  <div class="steps">
+    <strong>So gehst du vor:</strong>
+    <ol>
+      <li>Schätze dich in der <strong>Checkliste</strong> ehrlich ein: 😀 kann ich gut · 😐 teilweise · 😟 noch nicht.</li>
+      <li>Beginne mit den Bereichen, bei denen du 😟 oder 😐 gewählt hast – zuerst die ★-Aufgaben, dann ★★ und ★★★.</li>
+      <li>Rechne auf Papier. Wenn du nicht weiterkommst, öffne die Hilfen der Reihe nach. Vergleiche erst danach mit der Lösung.</li>
+      <li>Passe deine Einschätzung in der Checkliste an, wenn du sicherer geworden bist.</li>
+    </ol>
+  </div>
+
+  <h2 class="sec">✅ Meine Checkliste</h2>
+  <div class="check">
+    <div class="crow" data-b="b1" data-nr="1">
+      <span class="num">1</span>
+      <span class="txt">Ich kann Energieformen erkennen und Energieumwandlungsketten aufstellen. <a href="#b1">→ üben</a></span>
+      <span class="emo">
+        <button type="button" data-v="gut" title="kann ich gut">😀</button>
+        <button type="button" data-v="mittel" title="kann ich teilweise">😐</button>
+        <button type="button" data-v="schlecht" title="kann ich noch nicht">😟</button>
+      </span>
+    </div>
+    <div class="crow" data-b="b2" data-nr="2">
+      <span class="num">2</span>
+      <span class="txt">Ich kann die Lageenergie berechnen – auch wenn eine andere Größe gesucht ist. <a href="#b2">→ üben</a></span>
+      <span class="emo">
+        <button type="button" data-v="gut" title="kann ich gut">😀</button>
+        <button type="button" data-v="mittel" title="kann ich teilweise">😐</button>
+        <button type="button" data-v="schlecht" title="kann ich noch nicht">😟</button>
+      </span>
+    </div>
+    <div class="crow" data-b="b3" data-nr="3">
+      <span class="num">3</span>
+      <span class="txt">Ich kann die kinetische Energie berechnen – auch wenn die Geschwindigkeit gesucht ist. <a href="#b3">→ üben</a></span>
+      <span class="emo">
+        <button type="button" data-v="gut" title="kann ich gut">😀</button>
+        <button type="button" data-v="mittel" title="kann ich teilweise">😐</button>
+        <button type="button" data-v="schlecht" title="kann ich noch nicht">😟</button>
+      </span>
+    </div>
+    <div class="crow" data-b="b4" data-nr="4">
+      <span class="num">4</span>
+      <span class="txt">Ich kann das Hookesche Gesetz anwenden und die Spannenergie einer Feder berechnen. <a href="#b4">→ üben</a></span>
+      <span class="emo">
+        <button type="button" data-v="gut" title="kann ich gut">😀</button>
+        <button type="button" data-v="mittel" title="kann ich teilweise">😐</button>
+        <button type="button" data-v="schlecht" title="kann ich noch nicht">😟</button>
+      </span>
+    </div>
+    <div class="crow" data-b="b5" data-nr="5">
+      <span class="num">5</span>
+      <span class="txt">Ich kann Einheiten richtig umrechnen (km/h ↔ m/s, g → kg, cm/mm → m). <a href="#b5">→ üben</a></span>
+      <span class="emo">
+        <button type="button" data-v="gut" title="kann ich gut">😀</button>
+        <button type="button" data-v="mittel" title="kann ich teilweise">😐</button>
+        <button type="button" data-v="schlecht" title="kann ich noch nicht">😟</button>
+      </span>
+    </div>
+    <div class="crow" data-b="b6" data-nr="6">
+      <span class="num">6</span>
+      <span class="txt">Ich kann mit dem Energieerhaltungssatz rechnen – auch an Stellen zwischen ganz oben und ganz unten. <a href="#b6">→ üben</a></span>
+      <span class="emo">
+        <button type="button" data-v="gut" title="kann ich gut">😀</button>
+        <button type="button" data-v="mittel" title="kann ich teilweise">😐</button>
+        <button type="button" data-v="schlecht" title="kann ich noch nicht">😟</button>
+      </span>
+    </div>
+    <div class="crow" data-b="b7" data-nr="7">
+      <span class="num">7</span>
+      <span class="txt">Ich kann erklären und berechnen, wie viel Energie durch Reibung in thermische Energie umgewandelt wird. <a href="#b7">→ üben</a></span>
+      <span class="emo">
+        <button type="button" data-v="gut" title="kann ich gut">😀</button>
+        <button type="button" data-v="mittel" title="kann ich teilweise">😐</button>
+        <button type="button" data-v="schlecht" title="kann ich noch nicht">😟</button>
+      </span>
+    </div>
+    <div class="crow" data-b="b8" data-nr="8">
+      <span class="num">8</span>
+      <span class="txt">Ich kann erklären, warum sich die Energie vervierfacht, wenn sich v (oder s) verdoppelt. <a href="#b8">→ üben</a></span>
+      <span class="emo">
+        <button type="button" data-v="gut" title="kann ich gut">😀</button>
+        <button type="button" data-v="mittel" title="kann ich teilweise">😐</button>
+        <button type="button" data-v="schlecht" title="kann ich noch nicht">😟</button>
+      </span>
+    </div>
+    <div class="summary"><span id="sum"></span><button type="button" id="reset">Zurücksetzen</button></div>
+  </div>
+  <div class="legend">😀 kann ich gut &nbsp;·&nbsp; 😐 kann ich teilweise &nbsp;·&nbsp; 😟 kann ich noch nicht &nbsp;–&nbsp; nochmal tippen hebt die Auswahl auf.</div>
+  <div class="tipp" id="tipp"></div>
+
+  <h2 class="sec">✏️ Übungsaufgaben</h2>
+  <div class="controls">
+    <div class="filters">
+      <button class="on" data-f="all" type="button">Alle Stufen</button>
+      <button data-f="1" type="button">★ Grundlagen</button>
+      <button data-f="2" type="button">★★ Anwenden</button>
+      <button data-f="3" type="button">★★★ Knobeln</button>
+    </div>
+    <div class="filters"><button id="mine" type="button">😀-Bereiche ausblenden</button></div>
+  </div>
+  <div class="note">Rechne mit $g = 10\,\tfrac{\text{N}}{\text{kg}}$ und schreibe immer <strong>Formel – Einsetzen mit Einheiten – Ergebnis</strong> auf.
+  Ein Taschenrechner ist erlaubt.</div>
+
+  <section data-b="b1" id="b1">
+    <div class="b-head"><span class="b-badge">Bereich 1</span><span class="t">Energieformen und Umwandlungsketten</span><span class="state"></span></div>
+    <div class="merke"><div class="mt">Kurz wiederholt</div><p><strong>Lageenergie</strong> $E_\text{Pot}$ (Körper ist hochgehoben) · <strong>Bewegungsenergie</strong> $E_\text{kin}$ (Körper bewegt sich) · <strong>Spannenergie</strong> $E_\text{Spann}$ (Körper ist elastisch verformt) · <strong>thermische Energie</strong> $E_\text{therm}$ (Wärme, entsteht z.&nbsp;B. durch Reibung).</p>
+<p>Eine Umwandlungskette schreibst du mit Pfeilen: $E_\text{Pot} \rightarrow E_\text{kin} \rightarrow E_\text{therm}$</p></div>
+
+    <article class="card" id="b1-1" data-stufe="1">
+      <div class="card-head"><h3><span class="stern s1">★ Grundlagen</span>Welche Energie steckt darin?</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Gib jeweils an, welche Energieform vor allem vorliegt:</p>
+<p>(1) Wasser im hoch gelegenen Stausee · (2) ein fahrender Zug · (3) ein gespanntes Gummiband · (4) eine heiße Bremsscheibe · (5) ein Kind oben auf dem Sprungturm</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Frage dich</button>
+            <button type="button">Hilfe 2 · Tipp</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Drei Fragen</h4><p>Ist der Körper <em>hoch oben</em>? Bewegt er sich? Ist er <em>verformt</em>? Ist er <em>warm geworden</em>?</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Zwei Beispiele</h4><p>Der Zug bewegt sich → Bewegungsenergie. Das Gummiband ist gedehnt → …?</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Kontrolle</h4><p>Zwei der fünf Beispiele haben dieselbe Energieform: Stausee und Sprungturm.</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>(1) Lageenergie · (2) Bewegungsenergie · (3) Spannenergie · (4) thermische Energie · (5) Lageenergie</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b1-2" data-stufe="2">
+      <div class="card-head"><h3><span class="stern s2">★★ Anwenden</span>Auf dem Trampolin</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Eine Turnerin springt auf einem Trampolin. Beschreibe die Energieumwandlungen vom <strong>höchsten Punkt</strong> über das <strong>tiefste Eindrücken des Trampolins</strong> bis wieder zum höchsten Punkt. Stelle eine Energieumwandlungskette auf.</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Gliedern</button>
+            <button type="button">Hilfe 2 · Tuch</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Drei Abschnitte</h4><p>Teile den Sprung auf: (1) Fallen bis zum Tuch, (2) Tuch wird eingedrückt, (3) Hochschleudern bis zum höchsten Punkt.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Was macht das Tuch?</h4><p>Das Trampolintuch und die Federn werden gedehnt – wie eine Feder speichern sie dabei Energie.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Kette</h4><p>$E_\text{Pot} \rightarrow E_\text{kin} \rightarrow \;?\; \rightarrow E_\text{kin} \rightarrow E_\text{Pot}$</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>Beim Fallen wird Lageenergie in Bewegungsenergie umgewandelt. Beim Eindrücken wird die Bewegungsenergie in Spannenergie des Tuchs und der Federn umgewandelt. Das Tuch entspannt sich und gibt die Energie als Bewegungsenergie zurück, die beim Steigen wieder zu Lageenergie wird.</p>
+<p>$$E_\text{Pot} \rightarrow E_\text{kin} \rightarrow {\color{#1a7f4b}\boldsymbol{E_\text{Spann}}} \rightarrow E_\text{kin} \rightarrow E_\text{Pot}$$</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b1-3" data-stufe="3">
+      <div class="card-head"><h3><span class="stern s3">★★★ Knobeln</span>Die Schaukel bleibt stehen</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Eine Schaukel, die man nicht mehr anschubst, schwingt immer weniger hoch und bleibt irgendwann stehen. Tom sagt: „Die Energie ist verschwunden.“ Nimm mit dem Energieerhaltungssatz Stellung und stelle eine vollständige Energieumwandlungskette auf.</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Energieerhaltung</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Was bremst?</h4><p>Überlege, wo bei der Schaukel Reibung auftritt (Aufhängung, Luft).</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Kann Energie verschwinden?</h4><p>Der Energieerhaltungssatz sagt: Energie wird weder erzeugt noch vernichtet – nur umgewandelt. In welche Form wandelt Reibung um?</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Kette</h4><p>$E_\text{Pot} \rightleftarrows E_\text{kin}$ (hin und her) – und bei jeder Schwingung ein Teil $\rightarrow$ …</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>Tom hat nicht recht. Lage- und Bewegungsenergie wandeln sich bei jeder Schwingung ineinander um. Durch Reibung in der Aufhängung und an der Luft wird dabei jedes Mal ein Teil in <strong>thermische Energie</strong> umgewandelt (Aufhängung und Luft erwärmen sich minimal). Die Gesamtenergie bleibt erhalten, sie ist nur nicht mehr als Bewegung nutzbar.</p>
+<p>$$E_\text{Pot} \rightleftarrows E_\text{kin}\;\rightarrow\;{\color{#1a7f4b}\boldsymbol{E_\text{therm}}}$$</p></div></div>
+      </div>
+    </article>
+  </section>
+  <section data-b="b2" id="b2">
+    <div class="b-head"><span class="b-badge">Bereich 2</span><span class="t">Lageenergie berechnen</span><span class="state"></span></div>
+    <div class="merke"><div class="mt">Kurz wiederholt</div><p>$$E_\text{Pot} = m\cdot g\cdot h \qquad g = 10\,\tfrac{\text{N}}{\text{kg}} \qquad [\,\text{kg}\cdot\tfrac{\text{N}}{\text{kg}}\cdot\text{m} = \text{N}\cdot\text{m} = \text{J}\,]$$</p>
+<p>Umstellen: $h = \dfrac{E_\text{Pot}}{m\cdot g}$ und $m = \dfrac{E_\text{Pot}}{g\cdot h}$</p></div>
+
+    <article class="card" id="b2-1" data-stufe="1">
+      <div class="card-head"><h3><span class="stern s1">★ Grundlagen</span>Der Blumentopf auf dem Balkon</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Blumentopf ($m = 2{,}5\,\text{kg}$) steht auf einem Balkon in $6{,}0\,\text{m}$ Höhe. Berechne seine Lageenergie bezogen auf den Boden.</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Ordnen</button>
+            <button type="button">Hilfe 2 · Formel</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Gegeben – gesucht</h4><p>Gegeben: $m = 2{,}5\,\text{kg}$, $h = 6{,}0\,\text{m}$, $g = 10\,\tfrac{\text{N}}{\text{kg}}$. Gesucht: $E_\text{Pot}$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Formel</h4><p>$E_\text{Pot} = m\cdot g\cdot h$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Einsetzen</h4><p>$E_\text{Pot} = 2{,}5\cdot 10\cdot 6{,}0\,\text{J} = \;?$</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$$E_\text{Pot} = 2{,}5\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 6{,}0\,\text{m} = {\color{#1a7f4b}\boldsymbol{150\,\text{J}}}$$</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b2-2" data-stufe="2">
+      <div class="card-head"><h3><span class="stern s2">★★ Anwenden</span>Wandern in den Alpen</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Wanderer ($m = 70\,\text{kg}$) steigt von einer Hütte in $400\,\text{m}$ Höhe auf einen Gipfel in $1200\,\text{m}$ Höhe. Um wie viel nimmt seine Lageenergie zu? Gib das Ergebnis in kJ an.</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Höhenunterschied</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Nur der Unterschied zählt</h4><p>Gefragt ist die <em>Zunahme</em>. Du brauchst den Höhenunterschied $\Delta h$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Rechnen</h4><p>$\Delta h = 1200\,\text{m} - 400\,\text{m} = 800\,\text{m}$, dann $\Delta E_\text{Pot} = m\cdot g\cdot\Delta h$.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Einheit</h4><p>$70\cdot 10\cdot 800\,\text{J} = 560\,000\,\text{J}$. Wie viel kJ sind das? ($1\,\text{kJ} = 1000\,\text{J}$)</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$$\Delta E_\text{Pot} = 70\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 800\,\text{m} = 560\,000\,\text{J} = {\color{#1a7f4b}\boldsymbol{560\,\text{kJ}}}$$</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b2-3" data-stufe="3">
+      <div class="card-head"><h3><span class="stern s3">★★★ Knobeln</span>Der Baukran</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Kran hebt eine Palette mit Ziegeln ($m = 500\,\text{kg}$). Dabei nimmt ihre Lageenergie um $60\,\text{kJ}$ zu. Wie hoch wurde die Palette gehoben?</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Einheiten</button>
+            <button type="button">Hilfe 2 · Umstellen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Erst umrechnen</h4><p>$60\,\text{kJ} = 60\,000\,\text{J}$. Gesucht ist diesmal die Höhe $h$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Formel umstellen</h4><p>$E_\text{Pot} = m\cdot g\cdot h \;\Rightarrow\; h = \dfrac{E_\text{Pot}}{m\cdot g}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Einsetzen</h4><p>$h = \dfrac{60\,000\,\text{J}}{500\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}} = \dfrac{60\,000}{5000}\,\text{m} = \;?$</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$$h = \frac{E_\text{Pot}}{m\cdot g} = \frac{60\,000\,\text{J}}{500\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}} = {\color{#1a7f4b}\boldsymbol{12\,\text{m}}}$$</p></div></div>
+      </div>
+    </article>
+  </section>
+  <section data-b="b3" id="b3">
+    <div class="b-head"><span class="b-badge">Bereich 3</span><span class="t">Kinetische Energie berechnen</span><span class="state"></span></div>
+    <div class="merke"><div class="mt">Kurz wiederholt</div><p>$$E_\text{kin} = \tfrac{1}{2}\,m\cdot v^2 \qquad [\,\text{kg}\cdot\tfrac{\text{m}^2}{\text{s}^2} = \text{J}\,]$$</p>
+<p>Achtung: Nur $v$ wird quadriert! Umstellen: $v = \sqrt{\dfrac{2\,E_\text{kin}}{m}}$ · Geschwindigkeit immer in $\tfrac{\text{m}}{\text{s}}$ einsetzen.</p></div>
+
+    <article class="card" id="b3-1" data-stufe="1">
+      <div class="card-head"><h3><span class="stern s1">★ Grundlagen</span>Der Tennisaufschlag</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Tennisball ($m = 0{,}058\,\text{kg}$) fliegt nach dem Aufschlag mit $v = 30\,\tfrac{\text{m}}{\text{s}}$. Berechne seine kinetische Energie.</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Formel</button>
+            <button type="button">Hilfe 2 · Reihenfolge</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Formel</h4><p>$E_\text{kin} = \tfrac{1}{2}\,m\cdot v^2$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Zuerst quadrieren</h4><p>$v^2 = 30\cdot 30 = 900\,\tfrac{\text{m}^2}{\text{s}^2}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Einsetzen</h4><p>$E_\text{kin} = 0{,}5\cdot 0{,}058\cdot 900\,\text{J} = \;?$</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$$E_\text{kin} = \tfrac{1}{2}\cdot 0{,}058\,\text{kg}\cdot(30\,\tfrac{\text{m}}{\text{s}})^2 = 26{,}1\,\text{J} \approx {\color{#1a7f4b}\boldsymbol{26\,\text{J}}}$$</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b3-2" data-stufe="2">
+      <div class="card-head"><h3><span class="stern s2">★★ Anwenden</span>Mit dem Mofa unterwegs</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Mofa mit Fahrer ($m = 120\,\text{kg}$) fährt mit $45\,\tfrac{\text{km}}{\text{h}}$. Berechne die kinetische Energie.</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Einheit</button>
+            <button type="button">Hilfe 2 · Umrechnen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · km/h geht nicht!</h4><p>Die Formel braucht $\tfrac{\text{m}}{\text{s}}$. Teile die Angabe in km/h durch $3{,}6$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Geschwindigkeit</h4><p>$45\,\tfrac{\text{km}}{\text{h}} : 3{,}6 = 12{,}5\,\tfrac{\text{m}}{\text{s}}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Einsetzen</h4><p>$E_\text{kin} = \tfrac{1}{2}\cdot 120\cdot 12{,}5^2\,\text{J} = 60\cdot 156{,}25\,\text{J} = \;?$</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$v = 45 : 3{,}6 = 12{,}5\,\tfrac{\text{m}}{\text{s}}$</p>
+<p>$$E_\text{kin} = \tfrac{1}{2}\cdot 120\,\text{kg}\cdot(12{,}5\,\tfrac{\text{m}}{\text{s}})^2 = {\color{#1a7f4b}\boldsymbol{9375\,\text{J} \approx 9{,}4\,\text{kJ}}}$$</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b3-3" data-stufe="3">
+      <div class="card-head"><h3><span class="stern s3">★★★ Knobeln</span>Der Eishockey-Puck</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Puck ($m = 0{,}16\,\text{kg}$) besitzt nach einem Schlagschuss $72\,\text{J}$ Bewegungsenergie. Wie schnell ist er? Gib das Ergebnis in $\tfrac{\text{m}}{\text{s}}$ und in $\tfrac{\text{km}}{\text{h}}$ an.</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Gesucht</button>
+            <button type="button">Hilfe 2 · Umstellen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Diesmal ist v gesucht</h4><p>Setze die bekannten Werte in $E_\text{kin} = \tfrac12\,m\,v^2$ ein und löse nach $v$ auf.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Schritt für Schritt</h4><p>$72\,\text{J} = 0{,}5\cdot 0{,}16\,\text{kg}\cdot v^2 = 0{,}08\,\text{kg}\cdot v^2 \;\Rightarrow\; v^2 = \dfrac{72}{0{,}08}\,\tfrac{\text{m}^2}{\text{s}^2}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Wurzel</h4><p>$v^2 = 900\,\tfrac{\text{m}^2}{\text{s}^2}$ – Wurzel ziehen und mit $3{,}6$ malnehmen.</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$$v = \sqrt{\frac{2\,E_\text{kin}}{m}} = \sqrt{\frac{2\cdot 72\,\text{J}}{0{,}16\,\text{kg}}} = \sqrt{900}\,\tfrac{\text{m}}{\text{s}} = {\color{#1a7f4b}\boldsymbol{30\,\tfrac{\text{m}}{\text{s}}}} = {\color{#1a7f4b}\boldsymbol{108\,\tfrac{\text{km}}{\text{h}}}}$$</p></div></div>
+      </div>
+    </article>
+  </section>
+  <section data-b="b4" id="b4">
+    <div class="b-head"><span class="b-badge">Bereich 4</span><span class="t">Spannenergie und Hookesches Gesetz</span><span class="state"></span></div>
+    <div class="merke"><div class="mt">Kurz wiederholt</div><p>$$F = D\cdot s \qquad\qquad E_\text{Spann} = \tfrac{1}{2}\,D\cdot s^2$$</p>
+<p>$D$: Federhärte in $\tfrac{\text{N}}{\text{m}}$ · $s$: Auslenkung (Dehnung oder Stauchung) <strong>in Metern</strong>.</p></div>
+
+    <article class="card" id="b4-1" data-stufe="1">
+      <div class="card-head"><h3><span class="stern s1">★ Grundlagen</span>Die Federwaage</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>An eine Feder mit $D = 50\,\tfrac{\text{N}}{\text{m}}$ wird ein Gegenstand gehängt, der mit $F = 4{,}0\,\text{N}$ an ihr zieht.</p>
+<p><strong>a)</strong> Um wie viele Zentimeter wird die Feder gedehnt? <strong>b)</strong> Wie viel Spannenergie ist in ihr gespeichert?</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · a)</button>
+            <button type="button">Hilfe 2 · a) rechnen</button>
+            <button type="button">Hilfe 3 · b)</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Hookesches Gesetz</h4><p>$F = D\cdot s \;\Rightarrow\; s = \dfrac{F}{D}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Dehnung</h4><p>$s = \dfrac{4{,}0\,\text{N}}{50\,\tfrac{\text{N}}{\text{m}}} = 0{,}08\,\text{m}$ – wie viel cm sind das?</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Spannenergie</h4><p>$E_\text{Spann} = \tfrac12\cdot 50\cdot 0{,}08^2\,\text{J}$ – rechne mit $s$ in Metern!</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p><strong>a)</strong> $s = \dfrac{F}{D} = \dfrac{4{,}0\,\text{N}}{50\,\tfrac{\text{N}}{\text{m}}} = 0{,}08\,\text{m} = {\color{#1a7f4b}\boldsymbol{8{,}0\,\text{cm}}}$</p>
+<p><strong>b)</strong> $E_\text{Spann} = \tfrac{1}{2}\cdot 50\,\tfrac{\text{N}}{\text{m}}\cdot(0{,}08\,\text{m})^2 = {\color{#1a7f4b}\boldsymbol{0{,}16\,\text{J}}}$</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b4-2" data-stufe="2">
+      <div class="card-head"><h3><span class="stern s2">★★ Anwenden</span>Die Kugelschreiberfeder</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Die Feder in einem Kugelschreiber hat die Federhärte $D = 600\,\tfrac{\text{N}}{\text{m}}$. Beim Drücken wird sie um $8\,\text{mm}$ zusammengedrückt. Berechne die gespeicherte Spannenergie.</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Einheit</button>
+            <button type="button">Hilfe 2 · Quadrieren</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Millimeter!</h4><p>$1\,\text{m} = 1000\,\text{mm}$, also $8\,\text{mm} = 0{,}008\,\text{m}$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · s²</h4><p>$s^2 = 0{,}008^2 = 0{,}000064\,\text{m}^2$ (Taschenrechner!)</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Einsetzen</h4><p>$E_\text{Spann} = 300\,\tfrac{\text{N}}{\text{m}}\cdot 0{,}000064\,\text{m}^2 = \;?$</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$$E_\text{Spann} = \tfrac{1}{2}\cdot 600\,\tfrac{\text{N}}{\text{m}}\cdot(0{,}008\,\text{m})^2 = {\color{#1a7f4b}\boldsymbol{0{,}0192\,\text{J} \approx 0{,}019\,\text{J}}}$$</p>
+<p>Sehr wenig – deshalb ist es so leicht, einen Kuli zu drücken.</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b4-3" data-stufe="3">
+      <div class="card-head"><h3><span class="stern s3">★★★ Knobeln</span>Wie hart ist der Expander?</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>In einem Expander sind bei einer Dehnung um $40\,\text{cm}$ genau $20\,\text{J}$ Spannenergie gespeichert.</p>
+<p><strong>a)</strong> Bestimme die Federhärte $D$. <strong>b)</strong> Mit welcher Kraft muss man bei dieser Dehnung ziehen?</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Umstellen</button>
+            <button type="button">Hilfe 2 · Rechnen</button>
+            <button type="button">Hilfe 3 · b)</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · D gesucht</h4><p>$E_\text{Spann} = \tfrac12\,D\,s^2 \;\Rightarrow\; D = \dfrac{2\,E_\text{Spann}}{s^2}$ (mit $s = 0{,}40\,\text{m}$)</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · a)</h4><p>$D = \dfrac{2\cdot 20\,\text{J}}{0{,}16\,\text{m}^2} = \;?$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Kraft</h4><p>Mit dem Hookeschen Gesetz: $F = D\cdot s$.</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p><strong>a)</strong> $$D = \frac{2\cdot 20\,\text{J}}{(0{,}40\,\text{m})^2} = {\color{#1a7f4b}\boldsymbol{250\,\tfrac{\text{N}}{\text{m}}}}$$</p>
+<p><strong>b)</strong> $F = D\cdot s = 250\,\tfrac{\text{N}}{\text{m}}\cdot 0{,}40\,\text{m} = {\color{#1a7f4b}\boldsymbol{100\,\text{N}}}$</p></div></div>
+      </div>
+    </article>
+  </section>
+  <section data-b="b5" id="b5">
+    <div class="b-head"><span class="b-badge">Bereich 5</span><span class="t">Einheiten umrechnen</span><span class="state"></span></div>
+    <div class="merke"><div class="mt">Kurz wiederholt</div><p>$\tfrac{\text{km}}{\text{h}} \xrightarrow{\;:\,3{,}6\;} \tfrac{\text{m}}{\text{s}}$ und $\tfrac{\text{m}}{\text{s}} \xrightarrow{\;\cdot\,3{,}6\;} \tfrac{\text{km}}{\text{h}}$ · $1\,\text{kg} = 1000\,\text{g}$ · $1\,\text{t} = 1000\,\text{kg}$ · $1\,\text{m} = 100\,\text{cm} = 1000\,\text{mm}$ · $1\,\text{kJ} = 1000\,\text{J}$</p>
+<p><strong>In die Formeln immer kg, m und $\tfrac{\text{m}}{\text{s}}$ einsetzen!</strong></p></div>
+
+    <article class="card" id="b5-1" data-stufe="1">
+      <div class="card-head"><h3><span class="stern s1">★ Grundlagen</span>Umrechnen üben</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Rechne um: (1) $72\,\tfrac{\text{km}}{\text{h}}$ in $\tfrac{\text{m}}{\text{s}}$ · (2) $15\,\tfrac{\text{m}}{\text{s}}$ in $\tfrac{\text{km}}{\text{h}}$ · (3) $250\,\text{g}$ in kg · (4) $35\,\text{cm}$ in m · (5) $1{,}2\,\text{t}$ in kg</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Geschwindigkeit</button>
+            <button type="button">Hilfe 2 · Masse</button>
+            <button type="button">Hilfe 3 · Länge</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Faktor 3,6</h4><p>Von km/h nach m/s: durch $3{,}6$ teilen. Umgekehrt: mal $3{,}6$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Gramm</h4><p>$1000\,\text{g} = 1\,\text{kg}$ – also durch 1000 teilen.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Zentimeter</h4><p>$100\,\text{cm} = 1\,\text{m}$ – also durch 100 teilen.</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>(1) ${\color{#1a7f4b}\boldsymbol{20\,\tfrac{\text{m}}{\text{s}}}}$ · (2) ${\color{#1a7f4b}\boldsymbol{54\,\tfrac{\text{km}}{\text{h}}}}$ · (3) ${\color{#1a7f4b}\boldsymbol{0{,}25\,\text{kg}}}$ · (4) ${\color{#1a7f4b}\boldsymbol{0{,}35\,\text{m}}}$ · (5) ${\color{#1a7f4b}\boldsymbol{1200\,\text{kg}}}$</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b5-2" data-stufe="2">
+      <div class="card-head"><h3><span class="stern s2">★★ Anwenden</span>Gepard gegen Windhund</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Gepard erreicht $108\,\tfrac{\text{km}}{\text{h}}$, ein Windhund $18\,\tfrac{\text{m}}{\text{s}}$. Wer ist schneller? Begründe mit einer Rechnung.</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Umrechnen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Gleiche Einheit</h4><p>Vergleichen kannst du nur Werte in derselben Einheit.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Gepard</h4><p>$108 : 3{,}6 = \;?\;\tfrac{\text{m}}{\text{s}}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Vergleich</h4><p>Vergleiche dein Ergebnis mit $18\,\tfrac{\text{m}}{\text{s}}$.</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$108\,\tfrac{\text{km}}{\text{h}} = 30\,\tfrac{\text{m}}{\text{s}} > 18\,\tfrac{\text{m}}{\text{s}}$ – <strong>der Gepard ist schneller</strong> (der Windhund läuft $64{,}8\,\tfrac{\text{km}}{\text{h}}$).</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b5-3" data-stufe="3">
+      <div class="card-head"><h3><span class="stern s3">★★★ Knobeln</span>Finde den Fehler</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Lena soll die Bewegungsenergie eines Balls ($500\,\text{g}$, $36\,\tfrac{\text{km}}{\text{h}}$) berechnen. Sie rechnet:</p>
+<p>$$E_\text{kin} = \tfrac12\cdot 500\cdot 36^2 = 324\,000\,\text{J}$$</p>
+<p>Finde ihre Fehler und berechne das richtige Ergebnis. Um welchen Faktor lag sie daneben?</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Prüfen</button>
+            <button type="button">Hilfe 2 · Zwei Fehler</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Einheiten prüfen</h4><p>Welche Einheiten müssen in die Formel? Hat Lena sie benutzt?</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Masse und Geschwindigkeit</h4><p>$500\,\text{g} = 0{,}5\,\text{kg}$ und $36\,\tfrac{\text{km}}{\text{h}} = 10\,\tfrac{\text{m}}{\text{s}}$.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Richtig rechnen</h4><p>$E_\text{kin} = \tfrac12\cdot 0{,}5\cdot 10^2\,\text{J} = \;?$ Teile dann $324\,000$ durch dein Ergebnis.</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>Lena hat die Masse in Gramm statt Kilogramm und die Geschwindigkeit in km/h statt m/s eingesetzt.</p>
+<p>$$E_\text{kin} = \tfrac12\cdot 0{,}5\,\text{kg}\cdot(10\,\tfrac{\text{m}}{\text{s}})^2 = {\color{#1a7f4b}\boldsymbol{25\,\text{J}}}$$</p>
+<p>Ihr Ergebnis war fast $13\,000$-mal zu groß ($324\,000 : 25 = 12\,960$).</p></div></div>
+      </div>
+    </article>
+  </section>
+  <section data-b="b6" id="b6">
+    <div class="b-head"><span class="b-badge">Bereich 6</span><span class="t">Energieerhaltung ohne Reibung</span><span class="state"></span></div>
+    <div class="merke"><div class="mt">Kurz wiederholt</div><p>Ohne Reibung gilt an <strong>jeder</strong> Stelle: $$E_\text{ges} = E_\text{Pot} + E_\text{kin} = \text{konstant}$$</p>
+<p>Ganz oben (in Ruhe): nur $E_\text{Pot}$ · ganz unten: nur $E_\text{kin}$ · <strong>dazwischen: beides!</strong> Dann gilt $E_\text{kin} = E_\text{ges} - E_\text{Pot}$.</p></div>
+
+    <article class="card" id="b6-1" data-stufe="1">
+      <div class="card-head"><h3><span class="stern s1">★ Grundlagen</span>Der fallende Apfel</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Apfel ($m = 0{,}20\,\text{kg}$) fällt aus $3{,}2\,\text{m}$ Höhe vom Baum. Berechne seine Lageenergie am Anfang und seine Geschwindigkeit kurz vor dem Boden (ohne Luftwiderstand).</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Lageenergie</button>
+            <button type="button">Hilfe 2 · Erhaltung</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Oben</h4><p>$E_\text{Pot} = 0{,}20\cdot 10\cdot 3{,}2\,\text{J}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Unten</h4><p>Unten ist die ganze Lageenergie zu Bewegungsenergie geworden: $E_\text{kin} = E_\text{Pot}$.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Geschwindigkeit</h4><p>$6{,}4\,\text{J} = \tfrac12\cdot 0{,}20\,\text{kg}\cdot v^2 \Rightarrow v^2 = 64\,\tfrac{\text{m}^2}{\text{s}^2}$</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$E_\text{Pot} = 0{,}20\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 3{,}2\,\text{m} = {\color{#1a7f4b}\boldsymbol{6{,}4\,\text{J}}}$</p>
+<p>$$v = \sqrt{\frac{2\cdot 6{,}4\,\text{J}}{0{,}20\,\text{kg}}} = \sqrt{64}\,\tfrac{\text{m}}{\text{s}} = {\color{#1a7f4b}\boldsymbol{8{,}0\,\tfrac{\text{m}}{\text{s}}}}$$</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b6-2" data-stufe="2">
+      <div class="card-head"><h3><span class="stern s2">★★ Anwenden</span>Die Achterbahn</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Achterbahnwagen ($m = 400\,\text{kg}$) startet aus der Ruhe in $20\,\text{m}$ Höhe. Reibung wird vernachlässigt.</p>
+<p><strong>a)</strong> Wie schnell ist er im Tal ($0\,\text{m}$)? <strong>b)</strong> Danach fährt er über einen Hügel, der $15\,\text{m}$ hoch ist. Wie schnell ist er oben auf dem Hügel?</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Gesamtenergie</button>
+            <button type="button">Hilfe 2 · b) Zwischenpunkt</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Start</h4><p>$E_\text{ges} = E_\text{Pot,Start} = 400\cdot 10\cdot 20\,\text{J} = 80\,000\,\text{J}$. Diese Energie bleibt immer gleich.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Beide Energien</h4><p>Auf dem Hügel hat der Wagen noch Lageenergie: $E_\text{Pot} = 400\cdot 10\cdot 15\,\text{J} = 60\,000\,\text{J}$. Der Rest ist Bewegungsenergie.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Geschwindigkeit</h4><p>$E_\text{kin} = 80\,000 - 60\,000 = 20\,000\,\text{J} \Rightarrow v^2 = \dfrac{2\cdot 20\,000}{400}\,\tfrac{\text{m}^2}{\text{s}^2}$</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p><strong>a)</strong> $E_\text{kin} = 80\,000\,\text{J} \Rightarrow v = \sqrt{\dfrac{2\cdot 80\,000}{400}}\,\tfrac{\text{m}}{\text{s}} = \sqrt{400}\,\tfrac{\text{m}}{\text{s}} = {\color{#1a7f4b}\boldsymbol{20\,\tfrac{\text{m}}{\text{s}}}}$</p>
+<p><strong>b)</strong> $E_\text{kin} = 80\,000\,\text{J} - 60\,000\,\text{J} = 20\,000\,\text{J} \Rightarrow v = \sqrt{100}\,\tfrac{\text{m}}{\text{s}} = {\color{#1a7f4b}\boldsymbol{10\,\tfrac{\text{m}}{\text{s}}}}$</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b6-3" data-stufe="3">
+      <div class="card-head"><h3><span class="stern s3">★★★ Knobeln</span>Ball senkrecht nach oben</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Ball wird mit $12\,\tfrac{\text{m}}{\text{s}}$ senkrecht nach oben geworfen (Luftwiderstand vernachlässigen).</p>
+<p><strong>a)</strong> Wie hoch steigt er? <strong>b)</strong> Wie schnell ist er noch in $4{,}0\,\text{m}$ Höhe? <em>Tipp: Die Masse ist nicht angegeben – du brauchst sie nicht.</em></p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · a)</button>
+            <button type="button">Hilfe 3 · b)</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Masse kürzen</h4><p>Aus $\tfrac12\,m\,v^2 = m\,g\,h$ kürzt sich $m$ heraus: $h = \dfrac{v^2}{2\,g}$. Oder rechne mit einer ausgedachten Masse, z.&nbsp;B. $1\,\text{kg}$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Höhe</h4><p>$h = \dfrac{12^2}{2\cdot 10}\,\text{m} = \dfrac{144}{20}\,\text{m}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Zwischenpunkt</h4><p>Mit $m = 1\,\text{kg}$: $E_\text{ges} = 72\,\text{J}$, in $4\,\text{m}$ Höhe $E_\text{Pot} = 40\,\text{J}$, also $E_\text{kin} = 32\,\text{J}$.</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p><strong>a)</strong> $h = \dfrac{v^2}{2\,g} = \dfrac{144}{20}\,\text{m} = {\color{#1a7f4b}\boldsymbol{7{,}2\,\text{m}}}$</p>
+<p><strong>b)</strong> $v^2 = 12^2 - 2\cdot 10\cdot 4{,}0 = 144 - 80 = 64 \Rightarrow v = {\color{#1a7f4b}\boldsymbol{8{,}0\,\tfrac{\text{m}}{\text{s}}}}$</p></div></div>
+      </div>
+    </article>
+  </section>
+  <section data-b="b7" id="b7">
+    <div class="b-head"><span class="b-badge">Bereich 7</span><span class="t">Energieumwandlung mit Reibung</span><span class="state"></span></div>
+    <div class="merke"><div class="mt">Kurz wiederholt</div><p>Mit Reibung wird ein Teil der Energie in <strong>thermische Energie</strong> umgewandelt. Die Gesamtenergie bleibt trotzdem erhalten: $$E_\text{Anfang} = E_\text{Ende} + E_\text{therm}$$</p>
+<p>Anteil in Prozent: $\dfrac{E_\text{therm}}{E_\text{Anfang}}\cdot 100\,\%$</p></div>
+
+    <article class="card" id="b7-1" data-stufe="1">
+      <div class="card-head"><h3><span class="stern s1">★ Grundlagen</span>Heiße Bremsen</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Eine Radfahrerin fährt einen langen Berg hinunter und bremst dabei so, dass sie immer gleich schnell bleibt. Unten sind ihre Bremsen sehr heiß. Erkläre, welche Energieumwandlung stattgefunden hat.</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Welche Energie nimmt ab?</button>
+            <button type="button">Hilfe 2 · Bewegung</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Höhe</h4><p>Sie kommt von oben nach unten – welche Energie verliert sie?</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Gleich schnell</h4><p>Weil sie gleich schnell bleibt, nimmt ihre Bewegungsenergie <em>nicht</em> zu.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Wohin?</h4><p>Die Bremsen werden heiß – das ist …</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>Ihre <strong>Lageenergie</strong> nimmt ab. Da ihre Geschwindigkeit gleich bleibt, wird sie nicht zu Bewegungsenergie, sondern durch die Reibung in den Bremsen in <strong>thermische Energie</strong> umgewandelt: $E_\text{Pot} \rightarrow {\color{#1a7f4b}\boldsymbol{E_\text{therm}}}$</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b7-2" data-stufe="2">
+      <div class="card-head"><h3><span class="stern s2">★★ Anwenden</span>Die Schlittenfahrt</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Schlitten mit Kind ($m = 30\,\text{kg}$) startet aus der Ruhe auf einem $5{,}0\,\text{m}$ hohen Hügel. Unten ist er $8{,}0\,\tfrac{\text{m}}{\text{s}}$ schnell. Wie viel Energie wurde durch Reibung in thermische Energie umgewandelt? Wie viel Prozent sind das?</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Vorher – nachher</button>
+            <button type="button">Hilfe 2 · Rechnen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Zwei Energien</h4><p>Berechne $E_\text{Pot}$ oben und $E_\text{kin}$ unten.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Werte</h4><p>$E_\text{Pot} = 30\cdot 10\cdot 5{,}0\,\text{J} = 1500\,\text{J}$; $E_\text{kin} = \tfrac12\cdot 30\cdot 8{,}0^2\,\text{J} = 960\,\text{J}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Differenz und Prozent</h4><p>$E_\text{therm} = 1500 - 960\,\text{J}$; Prozent: $\dfrac{E_\text{therm}}{1500}\cdot 100\,\%$</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$E_\text{Pot} = 1500\,\text{J}$, $E_\text{kin} = 960\,\text{J}$</p>
+<p>$$E_\text{therm} = 1500\,\text{J} - 960\,\text{J} = {\color{#1a7f4b}\boldsymbol{540\,\text{J}}} \qquad \frac{540}{1500}\cdot 100\,\% = {\color{#1a7f4b}\boldsymbol{36\,\%}}$$</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b7-3" data-stufe="3">
+      <div class="card-head"><h3><span class="stern s3">★★★ Knobeln</span>Tischtennisball hüpft</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein Tischtennisball ($m = 2{,}7\,\text{g}$) fällt aus $1{,}0\,\text{m}$ Höhe auf den Tisch und springt $75\,\text{cm}$ hoch zurück.</p>
+<p><strong>a)</strong> Wie viel Prozent der Energie gehen beim Aufprall verloren? <strong>b)</strong> Angenommen, bei jedem Aufprall geht derselbe Prozentsatz verloren: Wie hoch springt er nach dem 2. und nach dem 3. Aufprall?</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · a)</button>
+            <button type="button">Hilfe 3 · b)</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Höhe statt Energie</h4><p>Weil $E_\text{Pot} = m\,g\,h$ ist, ist die Energie proportional zur Höhe. Du kannst den Prozentsatz direkt aus den Höhen berechnen.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Prozent</h4><p>Von $1{,}00\,\text{m}$ auf $0{,}75\,\text{m}$: $25\,\text{cm}$ weniger – wie viel Prozent von $1\,\text{m}$?</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Wiederholen</h4><p>Bei jedem Aufprall bleiben $75\,\%$ übrig: $0{,}75\,\text{m}\cdot 0{,}75 = \;?$, danach nochmals $\cdot\,0{,}75$.</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p><strong>a)</strong> $E_1 = 0{,}0027\cdot 10\cdot 1{,}0\,\text{J} = 0{,}027\,\text{J}$, $E_2 = 0{,}0027\cdot 10\cdot 0{,}75\,\text{J} = 0{,}02025\,\text{J}$ – Verlust ${\color{#1a7f4b}\boldsymbol{25\,\%}}$.</p>
+<p><strong>b)</strong> 2. Aufprall: $0{,}75\,\text{m}\cdot 0{,}75 \approx {\color{#1a7f4b}\boldsymbol{0{,}56\,\text{m}}}$ · 3. Aufprall: $0{,}5625\,\text{m}\cdot 0{,}75 \approx {\color{#1a7f4b}\boldsymbol{0{,}42\,\text{m}}}$</p></div></div>
+      </div>
+    </article>
+  </section>
+  <section data-b="b8" id="b8">
+    <div class="b-head"><span class="b-badge">Bereich 8</span><span class="t">Doppelt so schnell – viermal so viel Energie</span><span class="state"></span></div>
+    <div class="merke"><div class="mt">Kurz wiederholt</div><p>$E_\text{kin}\sim v^2$ und $E_\text{Spann}\sim s^2$: Wird $v$ (bzw. $s$) mit dem Faktor $k$ multipliziert, ändert sich die Energie um den Faktor $k^2$.</p>
+<p>Doppelt so schnell → $2^2 = 4$-fache Energie · dreimal so schnell → $9$-fache Energie · halb so schnell → $\tfrac14$ der Energie.</p></div>
+
+    <article class="card" id="b8-1" data-stufe="1">
+      <div class="card-head"><h3><span class="stern s1">★ Grundlagen</span>Faktoren bestimmen</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Um welchen Faktor ändert sich die Energie?</p>
+<p>(1) Ein Auto fährt <strong>dreimal</strong> so schnell. · (2) Eine Feder wird nur <strong>halb</strong> so weit gedehnt. · (3) Ein Lkw hat die <strong>doppelte</strong> Masse, fährt aber gleich schnell.</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Regel</button>
+            <button type="button">Hilfe 2 · Masse</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Quadrat</h4><p>Bei $v$ und $s$ musst du den Faktor quadrieren.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Nicht quadriert!</h4><p>Die Masse steht in $E_\text{kin} = \tfrac12\,m\,v^2$ ohne Quadrat.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Rechnen</h4><p>$3^2 = \;?$ · $\left(\tfrac12\right)^2 = \;?$ · Masse: Faktor 2 bleibt Faktor …</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>(1) ${\color{#1a7f4b}\boldsymbol{9}}$-fache Energie · (2) ${\color{#1a7f4b}\boldsymbol{\tfrac14}}$ der Energie · (3) ${\color{#1a7f4b}\boldsymbol{2}}$-fache Energie</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b8-2" data-stufe="2">
+      <div class="card-head"><h3><span class="stern s2">★★ Anwenden</span>Warum ein Fahrradhelm wichtig ist</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Eine Radfahrerin ($m = 60\,\text{kg}$) stürzt einmal bei $15\,\tfrac{\text{km}}{\text{h}}$ und einmal bei $30\,\tfrac{\text{km}}{\text{h}}$. Berechne jeweils die Bewegungsenergie und vergleiche. Was bedeutet das für die Verletzungsgefahr?</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Einheiten</button>
+            <button type="button">Hilfe 2 · Rechnen</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Umrechnen</h4><p>$15\,\tfrac{\text{km}}{\text{h}} \approx 4{,}17\,\tfrac{\text{m}}{\text{s}}$ und $30\,\tfrac{\text{km}}{\text{h}} \approx 8{,}33\,\tfrac{\text{m}}{\text{s}}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Formel</h4><p>$E_\text{kin} = \tfrac12\cdot 60\cdot v^2$ für beide Werte.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Vergleich</h4><p>Teile das größere Ergebnis durch das kleinere.</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$E_{15} = \tfrac12\cdot 60\cdot 4{,}17^2\,\text{J} \approx {\color{#1a7f4b}\boldsymbol{521\,\text{J}}}$ · $E_{30} = \tfrac12\cdot 60\cdot 8{,}33^2\,\text{J} \approx {\color{#1a7f4b}\boldsymbol{2083\,\text{J}}}$</p>
+<p>Bei doppelter Geschwindigkeit ist die Energie <strong>viermal so groß</strong>. Beim Aufprall muss viel mehr Energie „abgebaut“ werden – die Verletzungen werden deutlich schwerer.</p></div></div>
+      </div>
+    </article>
+    <article class="card" id="b8-3" data-stufe="3">
+      <div class="card-head"><h3><span class="stern s3">★★★ Knobeln</span>Die Unfallaufnahme</h3><span class="chev">▾</span></div>
+      <div class="card-body">
+        <div class="task"><p>Die Polizei misst nach einem Unfall in einer 50er-Zone eine Bremsspur von $36\,\text{m}$. Bei diesem Auto und dieser Straße beträgt der Bremsweg bei $50\,\tfrac{\text{km}}{\text{h}}$ genau $25\,\text{m}$. Die Bremsen wandeln auf jedem Meter gleich viel Energie um. War das Auto zu schnell? Wie schnell war es?</p></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Idee</button>
+            <button type="button">Hilfe 2 · Faktor</button>
+            <button type="button">Hilfe 3 · Fast fertig</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Bremsweg und Energie</h4><p>Gleich viel Energie pro Meter bedeutet: Der Bremsweg ist proportional zur Bewegungsenergie. Also gilt auch: Bremsweg $\sim v^2$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Bremsweg-Faktor</h4><p>$\dfrac{36\,\text{m}}{25\,\text{m}} = 1{,}44$ – so viel mal größer war die Energie, also auch $v^2$.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Rückwärts</h4><p>Wenn $v^2$ um den Faktor $1{,}44$ größer ist, ist $v$ um den Faktor $\sqrt{1{,}44}$ größer.</p></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="showsol">Lösung anzeigen</button>
+          <button type="button" class="donebtn">Als geschafft markieren</button>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>Faktor beim Bremsweg: $36 : 25 = 1{,}44$ → Faktor bei $v$: $\sqrt{1{,}44} = 1{,}2$</p>
+<p>$$v = 1{,}2\cdot 50\,\tfrac{\text{km}}{\text{h}} = {\color{#1a7f4b}\boldsymbol{60\,\tfrac{\text{km}}{\text{h}}}}$$</p>
+<p>Das Auto war also $10\,\tfrac{\text{km}}{\text{h}}$ zu schnell.</p></div></div>
+      </div>
+    </article>
+  </section>
+
+</div>
+
+<footer class="bot">Sek I Unterrichtsmaterialien · Friedrich-Bährens-Gymnasium Schwerte · Übungsseite ohne Bewertung</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var KEY = 'fbg-kl9-energie-test-v1';
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+  function save(d){ try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){} }
+  var data = load(); data.check = data.check || {}; data.done = data.done || {};
+
+  function render(){
+    if (window.renderMathInElement) renderMathInElement(document.body, {
+      delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });
+  }
+  if (window.renderMathInElement) render(); else window.addEventListener('load', render);
+
+  /* Karten auf/zu */
+  document.querySelectorAll('.card-head').forEach(function(h){
+    h.addEventListener('click', function(){ h.parentElement.classList.toggle('open'); });
+  });
+
+  /* Hilfen (eine zur Zeit) */
+  document.querySelectorAll('.hints').forEach(function(box){
+    var tabs = box.querySelectorAll('.htabs button'), panels = box.querySelectorAll('.hpanel');
+    tabs.forEach(function(tab, i){
+      tab.addEventListener('click', function(){
+        var was = tab.classList.contains('on');
+        tabs.forEach(function(t){ t.classList.remove('on'); });
+        panels.forEach(function(p){ p.classList.remove('on'); });
+        if (!was){ tab.classList.add('on'); panels[i].classList.add('on'); }
+      });
+    });
+  });
+
+  /* Lösung zeigen / Aufgabe geschafft */
+  document.querySelectorAll('.card').forEach(function(card){
+    var sb = card.querySelector('.showsol'), sol = card.querySelector('.sol'), db = card.querySelector('.donebtn');
+    sb.addEventListener('click', function(){
+      var on = sol.classList.toggle('open'); sb.classList.toggle('on', on);
+      sb.textContent = on ? 'Lösung ausblenden' : 'Lösung anzeigen';
+    });
+    function setDone(on){ card.classList.toggle('done', on); db.classList.toggle('on', on);
+      db.textContent = on ? '✓ geschafft' : 'Als geschafft markieren'; }
+    setDone(!!data.done[card.id]);
+    db.addEventListener('click', function(){
+      data.done[card.id] = !data.done[card.id]; if (!data.done[card.id]) delete data.done[card.id];
+      setDone(!!data.done[card.id]); save(data); summary();
+    });
+  });
+
+  /* Checkliste */
+  var EMO = {gut:'😀', mittel:'😐', schlecht:'😟'};
+  function paint(){
+    document.querySelectorAll('.crow').forEach(function(row){
+      var k = row.dataset.b, v = data.check[k];
+      row.querySelectorAll('.emo button').forEach(function(b){ b.classList.toggle('on', b.dataset.v === v); });
+      var st = document.querySelector('#' + k + ' .state'); if (st) st.textContent = v ? EMO[v] : '';
+    });
+    summary();
+  }
+  function summary(){
+    var n = {gut:0, mittel:0, schlecht:0}, open = [];
+    document.querySelectorAll('.crow').forEach(function(row){
+      var v = data.check[row.dataset.b]; if (v) n[v]++;
+      if (v === 'schlecht' || v === 'mittel') open.push(row.dataset.nr);
+    });
+    var total = document.querySelectorAll('.card').length, done = Object.keys(data.done).length;
+    document.getElementById('sum').innerHTML = '😀 ' + n.gut + ' &nbsp; 😐 ' + n.mittel + ' &nbsp; 😟 ' + n.schlecht +
+      ' &nbsp;·&nbsp; Aufgaben geschafft: <strong>' + done + ' / ' + total + '</strong>';
+    document.getElementById('tipp').innerHTML = open.length
+      ? '💡 <strong>Tipp:</strong> Übe zuerst ' + (open.length > 1 ? 'die Bereiche ' : 'den Bereich ') + open.join(', ') + '. Beginne dort mit den ★-Aufgaben.'
+      : '';
+  }
+  document.querySelectorAll('.crow').forEach(function(row){
+    row.querySelectorAll('.emo button').forEach(function(b){
+      b.addEventListener('click', function(){
+        var k = row.dataset.b;
+        if (data.check[k] === b.dataset.v) delete data.check[k]; else data.check[k] = b.dataset.v;
+        save(data); paint();
+      });
+    });
+  });
+  document.getElementById('reset').addEventListener('click', function(){
+    if (confirm('Checkliste und „geschafft“-Markierungen auf diesem Gerät zurücksetzen?')) {
+      data = {check:{}, done:{}}; save(data);
+      document.querySelectorAll('.card').forEach(function(c){ c.classList.remove('done');
+        var d = c.querySelector('.donebtn'); d.classList.remove('on'); d.textContent = 'Als geschafft markieren'; });
+      paint();
+    }
+  });
+
+  /* Filter */
+  var fStufe = 'all', fMine = false;
+  function applyFilter(){
+    document.querySelectorAll('section[data-b]').forEach(function(sec){
+      var v = data.check[sec.dataset.b];
+      var showSec = !fMine || v === 'mittel' || v === 'schlecht' || !v;
+      sec.style.display = showSec ? '' : 'none';
+      sec.querySelectorAll('.card').forEach(function(c){
+        c.style.display = (fStufe === 'all' || c.dataset.stufe === fStufe) ? '' : 'none';
+      });
+    });
+  }
+  document.querySelectorAll('.filters button[data-f]').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.filters button[data-f]').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on'); fStufe = b.dataset.f; applyFilter();
+    });
+  });
+  document.getElementById('mine').addEventListener('click', function(){
+    fMine = !fMine; this.classList.toggle('on', fMine); applyFilter();
+  });
+
+  /* Direktlink #b6-2 o. ä. öffnet die Aufgabe */
+  var id = (location.hash || '').slice(1);
+  var t = id && document.getElementById(id);
+  if (t && t.classList.contains('card')) { t.classList.add('open'); t.scrollIntoView(); }
+
+  paint();
+});
+</script>
+</body>
+</html>
