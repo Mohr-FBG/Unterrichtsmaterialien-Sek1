@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stationen zur Leistung · Physik Klasse 9</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --blue:#004a8a; --blue-dark:#00325f;
+  --c1:#1a7f4b; --c2:#c8660a; --c3:#6b3fa0; --c4:#0b7285;
+  --green:#1a7f4b;
+  --border:#dde1e7; --bg:#f4f5f7; --text:#1c1f26; --muted:#5c6472;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.55; font-size:16px}
+.wrap{max-width:960px; margin:0 auto; padding:0 16px 64px}
+
+header.top{background:var(--blue); border-bottom:4px solid var(--blue-dark); color:#fff}
+header.top .inner{max-width:960px; margin:0 auto; padding:22px 16px 24px}
+header.top .kap{font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.92}
+header.top h1{margin:6px 0 4px; font-size:1.7rem; line-height:1.2}
+header.top .sub{font-size:.92rem; opacity:.95}
+
+.backnav{margin:18px 0 4px}
+.backnav a{display:inline-flex; align-items:center; gap:6px; font-size:.86rem; font-weight:600;
+  color:var(--muted); text-decoration:none; border:1px solid var(--border); border-radius:20px;
+  padding:5px 13px; background:#fff}
+.backnav a:hover{border-color:var(--muted); color:var(--text)}
+
+.controls{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 16px;
+  margin:18px 0 22px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between}
+.unlock{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.unlock label{font-size:.9rem; color:var(--muted)}
+.unlock input{border:1px solid var(--border); border-radius:6px; padding:6px 10px; font-size:.95rem;
+  width:130px; font-family:inherit}
+.unlock button{background:var(--blue); color:#fff; border:0; border-radius:6px; padding:7px 14px;
+  font-size:.9rem; font-weight:600; cursor:pointer; font-family:inherit}
+.unlock button:hover{background:var(--blue-dark)}
+.unlock .msg{font-size:.85rem; font-weight:600}
+.unlock .msg.ok{color:var(--green)}
+.unlock .msg.bad{color:#c0392b}
+.filters{display:flex; gap:6px; flex-wrap:wrap}
+.filters button{background:#fff; border:1px solid var(--border); border-radius:20px; padding:6px 14px;
+  font-size:.85rem; cursor:pointer; color:var(--muted); font-family:inherit; font-weight:600}
+.filters button:hover{border-color:var(--muted)}
+.filters button.on{background:var(--text); border-color:var(--text); color:#fff}
+
+.note{background:#e8f0f9; border-left:3px solid var(--blue); border-radius:6px; padding:10px 14px;
+  font-size:.9rem; margin:12px 0}
+.note a.simbtn{display:inline-block; margin-top:6px; background:var(--blue); color:#fff; text-decoration:none;
+  border-radius:6px; padding:5px 12px; font-weight:600; font-size:.85rem}
+.howto{background:#fff; border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:.9rem;
+  margin:12px 0; color:var(--muted)}
+.howto strong{color:var(--text)}
+
+.ab-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:34px 0 12px;
+  padding-bottom:8px; border-bottom:2px solid var(--border)}
+.ab-badge{color:#fff; border-radius:6px; padding:4px 12px; font-weight:700; font-size:.9rem}
+.ab-head .t{font-weight:700; font-size:1.1rem}
+.ab-head .desc{color:var(--muted); font-size:.9rem; flex-basis:100%}
+.s1 .ab-badge{background:var(--c1)} .s2 .ab-badge{background:var(--c2)} .s3 .ab-badge{background:var(--c3)} .s4 .ab-badge{background:var(--c4)}
+
+.card{background:#fff; border:1px solid var(--border); border-radius:10px; margin-bottom:14px; overflow:hidden;
+  scroll-margin-top:12px}
+.card.s1{border-top:4px solid var(--c1)} .card.s2{border-top:4px solid var(--c2)} .card.s3{border-top:4px solid var(--c3)} .card.s4{border-top:4px solid var(--c4)}
+.card.flash{box-shadow:0 0 0 3px rgba(0,74,138,.35)}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 18px;
+  cursor:pointer; user-select:none}
+.card-head:hover{background:#fafbfc}
+.card-head h3{margin:0; font-size:1.03rem; font-weight:700}
+.card-head .right{display:flex; align-items:center; gap:10px}
+.chev{color:var(--muted); font-size:1.1rem; transition:transform .18s}
+.card.open .chev{transform:rotate(180deg)}
+.card-body{display:none; padding:0 18px 18px}
+.card.open .card-body{display:block}
+.qrbtn{display:none; border:1px solid var(--border); background:#fff; border-radius:6px; padding:3px 9px;
+  font-size:.78rem; font-weight:600; color:var(--blue); cursor:pointer; font-family:inherit}
+body.unlocked .qrbtn{display:inline-block}
+
+.task{background:#fbfcfd; border:1px solid var(--border); border-left:3px solid var(--blue); border-radius:6px;
+  padding:12px 15px; margin-bottom:14px}
+.task p{margin:.5em 0} .task p:first-child{margin-top:0} .task p:last-child{margin-bottom:0}
+.task ul, .sol ul{margin:.4em 0; padding-left:1.3em}
+.tw{overflow-x:auto}
+table{border-collapse:collapse; margin:10px auto}
+td,th{border:1px solid var(--border); padding:5px 12px; font-size:.92rem; text-align:center; min-width:70px}
+th{background:#f3f5f8; font-weight:600}
+th.u{background:#fafbfc; font-weight:400; color:var(--muted); font-size:.82rem}
+.task td{height:1.9em}
+
+.assess{display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:14px}
+.assess .lab{font-size:.83rem; color:var(--muted); margin-right:2px}
+.assess button{border:1px solid var(--border); background:#fff; border-radius:16px; padding:4px 12px;
+  font-size:.8rem; cursor:pointer; color:var(--muted); font-family:inherit}
+.assess button.on[data-v="ok"]{background:var(--c1); border-color:var(--c1); color:#fff}
+.assess button.on[data-v="mid"]{background:var(--c2); border-color:var(--c2); color:#fff}
+.assess button.on[data-v="ask"]{background:var(--blue); border-color:var(--blue); color:#fff}
+
+.hints{border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:14px}
+.hints .htitle{background:#f7f8fa; padding:7px 14px; font-size:.8rem; font-weight:700; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border)}
+.htabs{display:flex; flex-wrap:wrap; gap:6px; padding:10px 14px; background:#fdfdfe}
+.htabs button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:5px 11px;
+  font-size:.82rem; cursor:pointer; color:var(--text); font-family:inherit}
+.htabs button:hover{border-color:var(--blue)}
+.htabs button.on{background:var(--blue); border-color:var(--blue); color:#fff; font-weight:600}
+.hpanel{display:none; padding:12px 15px; border-top:1px solid var(--border); font-size:.95rem}
+.hpanel.on{display:block}
+.hpanel h4{margin:0 0 8px; font-size:.92rem; color:var(--blue-dark)}
+.hpanel p{margin:.5em 0}
+
+.sol-lock{background:#f7f8fa; border:1px dashed var(--border); border-radius:8px; padding:12px 15px;
+  font-size:.9rem; color:var(--muted); text-align:center}
+.sol{display:none; border:1px solid var(--green); border-radius:8px; overflow:hidden}
+.sol .sh{background:var(--green); color:#fff; padding:7px 15px; font-weight:700; font-size:.88rem}
+.sol .sb{padding:13px 15px; font-size:.95rem}
+.sol .sb p{margin:.55em 0} .sol .sb p:first-child{margin-top:0}
+body.unlocked .sol{display:block}
+body.unlocked .sol-lock{display:none}
+
+.katex{font-size:1.04em}
+.katex-display{margin:.6em 0; overflow-x:auto; overflow-y:hidden}
+
+#qrmodal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center;
+  justify-content:center; z-index:50; padding:16px}
+#qrmodal.on{display:flex}
+#qrmodal .box{background:#fff; border-radius:10px; padding:20px 22px; max-width:360px; width:100%; text-align:center}
+#qrmodal h4{margin:0 0 10px; font-size:1rem}
+#qrcanvas{display:flex; justify-content:center; margin:10px 0}
+#qrurl{font-size:.75rem; color:var(--muted); word-break:break-all; margin:8px 0 12px}
+#qrmodal button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:6px 12px;
+  font-size:.85rem; cursor:pointer; font-family:inherit; margin:0 3px}
+#qrmodal button.pri{background:var(--blue); color:#fff; border-color:var(--blue)}
+
+footer.bot{text-align:center; color:var(--muted); font-size:.82rem; padding:26px 16px;
+  border-top:1px solid var(--border); margin-top:34px}
+footer.bot a{color:var(--blue)}
+@media(max-width:600px){
+  header.top h1{font-size:1.32rem}
+  .controls{flex-direction:column; align-items:stretch}
+  .card-head h3{font-size:.95rem}
+}
+
+.lz{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin:10px 0 6px}
+.lz button{background:#fff; border:1px solid var(--border); border-top:4px solid var(--blue); border-radius:8px;
+  padding:10px 10px 8px; text-align:left; cursor:pointer; font-family:inherit; color:var(--text)}
+.lz button:hover{box-shadow:0 3px 10px rgba(0,0,0,.08)}
+.lz button.cur{outline:3px solid rgba(0,74,138,.35)}
+.lz button.fertig{border-top-color:var(--c1); background:#f2faf5}
+.lz .ic{font-size:1.4rem} .lz .nr{font-size:.75rem; font-weight:700; color:var(--blue); text-transform:uppercase}
+.lz .tt{display:block; font-weight:700; font-size:.88rem; line-height:1.25; margin-top:2px}
+.lz .st{display:block; font-size:.75rem; color:var(--muted); margin-top:4px}
+.lz button.fertig .st{color:var(--c1); font-weight:700}
+.lz button.zusatz{border-top-color:var(--c3)}
+.st-head{display:flex; align-items:center; gap:12px; margin:24px 0 8px; flex-wrap:wrap}
+.st-head .big{font-size:2.2rem}
+.st-head h2{margin:0; font-size:1.45rem}
+.st-head .meta{color:var(--muted); font-size:.85rem}
+.grid2{display:grid; grid-template-columns:1.25fr 1fr; gap:14px; align-items:start; margin:10px 0 16px}
+.grid2>*{min-width:0}
+.sim select{width:100%; margin:4px 0 0}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.panel{background:#fff; border:1px solid var(--border); border-radius:10px; padding:12px 14px}
+.panel .pt{font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-dark); margin-bottom:4px}
+.cap{font-size:.8rem; color:var(--muted)}
+.tri-title{font-size:.85rem; font-weight:700; color:var(--muted); margin-bottom:6px}
+.tri-btns{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px}
+.tri-btns button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:6px 10px; cursor:pointer; font-family:inherit; font-size:.85rem}
+.tri-btns button.on{background:var(--blue); border-color:var(--blue); color:#fff}
+.tri-out{background:#f7f8fa; border-radius:8px; padding:4px 10px; min-height:60px}
+.bars .bar{display:grid; grid-template-columns:170px 1fr 70px; gap:8px; align-items:center; margin:5px 0; font-size:.85rem}
+@media(max-width:520px){.bars .bar{grid-template-columns:1fr 70px}.bars .bt{grid-column:1 / span 2; grid-row:2}}
+.bars .bt{background:#eef1f5; border-radius:4px; height:16px; overflow:hidden}
+.bars .bf{display:block; height:100%; background:var(--blue); border-radius:4px; transition:width .4s}
+.bars .own .bf{background:var(--c2)}
+.bars .own input{width:70px; padding:2px 5px; border:1px solid var(--border); border-radius:4px; font-family:inherit}
+.bars .bv{text-align:right; font-weight:600}
+.sim label{display:block; font-size:.9rem; margin:6px 0}
+.sim input[type=range]{width:100%}
+.sim select{font-family:inherit; font-size:.9rem; padding:4px; border-radius:6px; border:1px solid var(--border); margin-left:6px; max-width:100%}
+.simout{background:#f7f8fa; border-radius:8px; padding:8px 10px; margin:8px 0 4px; font-size:.92rem}
+.psw-svg{width:100%; height:auto; display:block; background:#e8f3fb; border-radius:8px}
+#flow{animation:dash 1.2s linear infinite}
+.psw.turb #flow{animation-direction:reverse}
+@keyframes dash{to{stroke-dashoffset:36}}
+.psw.turb #flow{stroke:#ffd27a}
+.flow{display:flex; height:30px; border-radius:6px; overflow:hidden; font-size:.8rem; font-weight:700; color:#fff; margin-top:6px}
+.flow .fn{background:var(--c1); display:flex; align-items:center; justify-content:center; transition:width .3s; white-space:nowrap}
+.flow .fw{background:#c0392b; display:flex; align-items:center; justify-content:center; transition:width .3s; white-space:nowrap; overflow:hidden}
+.aufg{background:#fff; border:1px solid var(--border); border-top:4px solid var(--blue); border-radius:10px; padding:12px 16px; margin-bottom:14px}
+.aufg h3{margin:0 0 6px; font-size:1.05rem}
+.aufg.allok{border-top-color:var(--c1)}
+.inrow{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:6px 0; font-size:.93rem}
+.inrow .lab{min-width:170px}
+.inrow input{width:150px; padding:6px 8px; border:1px solid var(--border); border-radius:6px; font-size:.95rem; font-family:inherit}
+.inrow input.ok{border-color:var(--c1); background:#eef8f2}
+.inrow input.bad{border-color:#c0392b; background:#fdf0ee}
+.inrow .u{color:var(--muted); min-width:40px}
+.inrow .fb{font-size:.85rem; font-weight:600}
+.inrow .fb.ok{color:var(--c1)} .inrow .fb.bad{color:#c0392b}
+.btnrow{display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 10px}
+.btnrow button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:6px 12px; font-size:.85rem; cursor:pointer; font-family:inherit; font-weight:600}
+.btnrow .chk{background:var(--blue); color:#fff; border-color:var(--blue)}
+.btnrow .showsol{color:var(--green); border-color:var(--green)}
+.btnrow .showsol.on{background:var(--green); color:#fff}
+.sol.open{display:block}
+.onenote{background:#f3eefb; border:1px solid #cdb8ec; border-left:5px solid #7719aa; border-radius:8px; padding:12px 16px; margin:18px 0}
+.onenote .ot{font-weight:700; color:#5b0f85; margin-bottom:4px}
+.onenote ul{margin:.3em 0 .6em; padding-left:1.3em}
+.onenote button{border:0; border-radius:6px; padding:8px 14px; font-weight:700; cursor:pointer; font-family:inherit; margin-right:6px}
+.onenote .copy{background:#7719aa; color:#fff}
+.onenote .fertig{background:#fff; border:1px solid var(--c1); color:var(--c1)}
+.onenote .fertig.on{background:var(--c1); color:#fff}
+.onenote .msg{font-size:.85rem; color:#5b0f85; margin-left:6px}
+.stnav{display:flex; justify-content:space-between; gap:10px; margin:18px 0}
+.stnav button{border:1px solid var(--border); background:#fff; border-radius:20px; padding:7px 14px; cursor:pointer; font-family:inherit; font-weight:600; color:var(--muted)}
+.station{display:none} .station.cur{display:block}
+.privacy{background:#e9f6ef; border:1px solid #9fd3b6; border-left:5px solid var(--green); border-radius:8px; padding:10px 14px; margin:12px 0; font-size:.9rem}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <div class="kap">Reihe Energieübertragung · Physik Klasse 9</div>
+    <h1>Stationen zur Leistung</h1>
+    <div class="sub">Fünf Stationen und eine Zusatzstation · Ergebnisse prüfen · im OneNote-Heft sichern</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="backnav"><a href="../">← Zurück zu Klasse 9</a></div>
+
+  <div class="note"><strong>So arbeitet ihr:</strong> Bearbeitet die Stationen 1–5 in beliebiger Reihenfolge, die Zusatzstation, wenn ihr fertig seid.
+  Rechnet zuerst im <strong>OneNote-Heft</strong>, tragt dann eure Ergebnisse auf der Seite ein und klickt auf <strong>Prüfen</strong>.
+  Kommt ihr nicht weiter, helfen euch die gestuften Hilfen. Rechnet mit $g = 10\,\tfrac{\text{N}}{\text{kg}}$ und $P = \tfrac{E}{t}$.</div>
+
+  <div class="privacy">🔒 Eure Eingaben und der Laufzettel werden nur auf eurem Gerät gespeichert. Die Lehrkraft sieht sie nicht –
+  entscheidend ist, was ihr in eurem <strong>OneNote-Heft</strong> sichert.</div>
+
+  <h2 class="sec" id="top-st" style="font-size:1.1rem;margin:22px 0 4px">🗺️ Laufzettel</h2>
+  <div class="lz">
+    <button type="button" data-go="s1" class=""><span class="ic">🏃</span>
+      <span class="nr">Station 1</span><span class="tt">Der Mensch als Motor</span><span class="st">offen</span></button>
+    <button type="button" data-go="s2" class=""><span class="ic">🏗️</span>
+      <span class="nr">Station 2</span><span class="tt">Maschinen heben Lasten</span><span class="st">offen</span></button>
+    <button type="button" data-go="s3" class=""><span class="ic">🚗</span>
+      <span class="nr">Station 3</span><span class="tt">Das Auto beschleunigt</span><span class="st">offen</span></button>
+    <button type="button" data-go="s4" class=""><span class="ic">🔌</span>
+      <span class="nr">Station 4</span><span class="tt">Typenschilder und Kilowattstunden</span><span class="st">offen</span></button>
+    <button type="button" data-go="s5" class=""><span class="ic">💧</span>
+      <span class="nr">Station 5</span><span class="tt">Das Pumpspeicherkraftwerk in Herdecke</span><span class="st">offen</span></button>
+    <button type="button" data-go="z" class="zusatz"><span class="ic">⚡</span>
+      <span class="nr">Zusatz</span><span class="tt">Der Wirkungsgrad</span><span class="st">offen</span></button>
+  </div>
+
+  <section class="station" id="s1" data-title="Station 1 – Der Mensch als Motor">
+    <div class="st-head"><span class="big">🏃</span>
+      <div><div class="meta">Station 1 · ca. 12 min</div><h2>Der Mensch als Motor</h2></div></div>
+    <p>Beim Treppenlauf habt ihr selbst gemerkt: Wer schneller läuft, braucht nicht mehr Energie – aber eine größere <strong>Leistung</strong>. Wie leistungsfähig ist der Mensch im Vergleich zu anderen „Motoren“?</p>
+    <div class="grid2">
+      <div class="panel"><div class="bars" id="bars1">
+  <div class="bar"><span class="bl">Mensch in Ruhe</span><span class="bt"><span class="bf" style="width:5.6%"></span></span><span class="bv">≈ 100 W</span></div>
+  <div class="bar"><span class="bl">Radprofi, 1 Stunde lang</span><span class="bt"><span class="bf" style="width:22%"></span></span><span class="bv">≈ 400 W</span></div>
+  <div class="bar"><span class="bl">Pferd (1 PS)</span><span class="bt"><span class="bf" style="width:41%"></span></span><span class="bv">≈ 735 W</span></div>
+  <div class="bar"><span class="bl">Radprofi im Zielsprint</span><span class="bt"><span class="bf" style="width:100%"></span></span><span class="bv">≈ 1800 W</span></div>
+  <div class="bar own"><span class="bl">Mein Treppenlauf:
+    <input type="text" inputmode="decimal" id="own1" placeholder="Wert"> W</span><span class="bt"><span class="bf" id="ownbar1" style="width:0%"></span></span><span class="bv" id="ownv1">–</span></div>
+  <div class="cap">Richtwerte. Trage deinen eigenen Wert aus der letzten Stunde ein und vergleiche!</div>
+</div></div>
+      <div class="panel"><div class="pt">Das brauchst du</div><p>$$P = \frac{E}{t} \qquad E_\text{Pot} = m\cdot g\cdot h \qquad 1\,\text{W} = 1\,\tfrac{\text{J}}{\text{s}}$$</p><p>Rechne beim Treppenlauf mit der Rechenmasse $m = 60\,\text{kg}$.</p></div>
+    </div>
+
+      <div class="aufg" id="s1a" data-title="a) Jonas rennt die Treppe hoch">
+        <h3>a) Jonas rennt die Treppe hoch</h3>
+        <div class="task"><p>Jonas ($m = 60\,\text{kg}$) rennt vom Erdgeschoss in den 2. Stock. Der Höhenunterschied beträgt $7{,}2\,\text{m}$, er braucht $9{,}0\,\text{s}$. Berechne die Energie, die er dafür umwandelt, und seine Leistung.</p></div>
+        <div class="inrow"><span class="lab">Energie $E$ =</span>
+          <input type="text" inputmode="decimal" id="s1a_0" data-soll="4320" data-tol="0.02" data-unit="J" data-label="Energie E" autocomplete="off">
+          <span class="u">J</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Leistung $P$ =</span>
+          <input type="text" inputmode="decimal" id="s1a_1" data-soll="480" data-tol="0.02" data-unit="W" data-label="Leistung P" autocomplete="off">
+          <span class="u">W</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Erst die Energie</button>
+            <button type="button">Hilfe 2 · Einsetzen</button>
+            <button type="button">Hilfe 3 · Leistung</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Erst die Energie</h4><p>Er gewinnt Lageenergie: $E = m\cdot g\cdot h$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Einsetzen</h4><p>$E = 60\cdot 10\cdot 7{,}2\,\text{J}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Leistung</h4><p>$P = \dfrac{E}{t} = \dfrac{4320\,\text{J}}{9{,}0\,\text{s}}$</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$E = 60\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 7{,}2\,\text{m} = {\color{#1a7f4b}\boldsymbol{4320\,\text{J}}}$ · $P = \dfrac{4320\,\text{J}}{9{,}0\,\text{s}} = {\color{#1a7f4b}\boldsymbol{480\,\text{W}}}$</p></div></div>
+      </div>
+      <div class="aufg" id="s1b" data-title="b) Und wenn er gemütlich geht?">
+        <h3>b) Und wenn er gemütlich geht?</h3>
+        <div class="task"><p>Beim gemütlichen Hochgehen braucht Jonas für dieselbe Treppe $24\,\text{s}$. Berechne seine Leistung. Wie viel mal größer ist seine Leistung beim Rennen?</p></div>
+        <div class="inrow"><span class="lab">Leistung beim Gehen =</span>
+          <input type="text" inputmode="decimal" id="s1b_0" data-soll="180" data-tol="0.02" data-unit="W" data-label="Leistung beim Gehen" autocomplete="off">
+          <span class="u">W</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Faktor Rennen : Gehen =</span>
+          <input type="text" inputmode="decimal" id="s1b_1" data-soll="2.67" data-tol="0.03" data-unit="" data-label="Faktor Rennen : Gehen" autocomplete="off">
+          <span class="u"></span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Was bleibt gleich?</button>
+            <button type="button">Hilfe 2 · Leistung</button>
+            <button type="button">Hilfe 3 · Faktor</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Was bleibt gleich?</h4><p>Die Energie ist dieselbe wie in a) – nur die Zeit ist anders.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Leistung</h4><p>$P = \dfrac{4320\,\text{J}}{24\,\text{s}}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Faktor</h4><p>Teile die Leistung beim Rennen durch die Leistung beim Gehen.</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$P = \dfrac{4320\,\text{J}}{24\,\text{s}} = {\color{#1a7f4b}\boldsymbol{180\,\text{W}}}$ · Faktor $\dfrac{480\,\text{W}}{180\,\text{W}} \approx {\color{#1a7f4b}\boldsymbol{2{,}7}}$ – gleiche Energie, aber $2{,}7$-mal so viel Leistung.</p></div></div>
+      </div>
+      <div class="aufg" id="s1c" data-title="c) Der Radprofi">
+        <h3>c) Der Radprofi ★</h3>
+        <div class="task"><p>Ein Radprofi tritt eine Stunde lang mit einer Leistung von $400\,\text{W}$. Wie viel Energie wandelt er in dieser Stunde um? Wie hoch könnte er sich mit dieser Energie theoretisch selbst heben (Fahrer und Rad: $70\,\text{kg}$)?</p></div>
+        <div class="inrow"><span class="lab">Energie $E$ =</span>
+          <input type="text" inputmode="decimal" id="s1c_0" data-soll="1440000" data-tol="0.02" data-unit="J" data-label="Energie E" autocomplete="off">
+          <span class="u">J</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Höhe $h$ =</span>
+          <input type="text" inputmode="decimal" id="s1c_1" data-soll="2057" data-tol="0.03" data-unit="m" data-label="Höhe h" autocomplete="off">
+          <span class="u">m</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Umstellen</button>
+            <button type="button">Hilfe 2 · Energie</button>
+            <button type="button">Hilfe 3 · Höhe</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Umstellen</h4><p>$P = \dfrac{E}{t} \;\Rightarrow\; E = P\cdot t$. Die Zeit muss in Sekunden: $1\,\text{h} = 3600\,\text{s}$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Energie</h4><p>$E = 400\,\text{W}\cdot 3600\,\text{s}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Höhe</h4><p>$h = \dfrac{E}{m\cdot g} = \dfrac{1\,440\,000\,\text{J}}{70\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}}$</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$E = 400\,\text{W}\cdot 3600\,\text{s} = {\color{#1a7f4b}\boldsymbol{1\,440\,000\,\text{J}}}$ · $h = \dfrac{1\,440\,000\,\text{J}}{700\,\text{N}} \approx {\color{#1a7f4b}\boldsymbol{2060\,\text{m}}}$ – fast doppelt so hoch wie der Brocken im Harz (1141 m)!</p></div></div>
+      </div>
+    <div class="onenote" data-st="s1">
+      <div class="ot">📓 In deinem OneNote-Heft sichern</div>
+      <div>Lege in OneNote eine Seite „Station 1 – Der Mensch als Motor“ an und notiere dort:</div>
+      <ul><li>Rechnungen zu a)–c) mit Formel, Einsetzen und Ergebnis</li><li>Dein Treppenlauf-Wert im Vergleich: Bist du eher „Radprofi“ oder „Pferd“?</li></ul>
+      <div style="font-size:.88rem;margin-bottom:8px">Rechne immer mit <strong>Formel – Einsetzen mit Einheiten – Ergebnis</strong>.
+      Füge zum Schluss deine geprüften Ergebnisse darunter ein:</div>
+      <button type="button" class="copy">📋 Ergebnisse kopieren</button>
+      <button type="button" class="fertig" data-st="s1">Station als erledigt markieren</button>
+      <span class="msg"></span>
+    </div>
+    <div class="stnav"><span></span><button type="button" data-go="s2">nächste Station →</button></div>
+  </section>
+  <section class="station" id="s2" data-title="Station 2 – Maschinen heben Lasten">
+    <div class="st-head"><span class="big">🏗️</span>
+      <div><div class="meta">Station 2 · ca. 12 min</div><h2>Maschinen heben Lasten</h2></div></div>
+    <p>Aufzüge, Kräne und Gabelstapler heben schwere Lasten mit Elektro- oder Dieselmotoren. Ihre Leistung entscheidet, wie <em>schnell</em> sie das schaffen.</p>
+    <div class="grid2">
+      <div class="panel"><div class="triangle">
+  <div class="tri-title">Formel umstellen – tippe auf die gesuchte Größe:</div>
+  <div class="tri-btns"><button type="button" data-f="P">$P$ gesucht</button><button type="button" data-f="E">$E$ gesucht</button><button type="button" data-f="t">$t$ gesucht</button></div>
+  <div class="tri-out" id="triout">$$P = \frac{E}{t}$$</div>
+</div></div>
+      <div class="panel"><div class="pt">Das brauchst du</div><p>$$P = \frac{E}{t} \qquad E = P\cdot t \qquad t = \frac{E}{P}$$</p><p>$1\,\text{t} = 1000\,\text{kg}$ · $1\,\text{kW} = 1000\,\text{W}$ · Wir betrachten nur die Energie zum Anheben der Last.</p></div>
+    </div>
+
+      <div class="aufg" id="s2a" data-title="a) Der Aufzug">
+        <h3>a) Der Aufzug</h3>
+        <div class="task"><p>Ein Aufzug hebt 8 Personen (zusammen $600\,\text{kg}$) in $25\,\text{s}$ um $20\,\text{m}$ nach oben. Berechne die Energie und die Leistung, die dafür nötig ist.</p></div>
+        <div class="inrow"><span class="lab">Energie $E$ =</span>
+          <input type="text" inputmode="decimal" id="s2a_0" data-soll="120000" data-tol="0.02" data-unit="J" data-label="Energie E" autocomplete="off">
+          <span class="u">J</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Leistung $P$ =</span>
+          <input type="text" inputmode="decimal" id="s2a_1" data-soll="4800" data-tol="0.02" data-unit="W" data-label="Leistung P" autocomplete="off">
+          <span class="u">W</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Energie</button>
+            <button type="button">Hilfe 2 · Leistung</button>
+            <button type="button">Hilfe 3 · Kontrolle</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Energie</h4><p>$E = m\cdot g\cdot h = 600\cdot 10\cdot 20\,\text{J}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Leistung</h4><p>$P = \dfrac{E}{t}$ mit $t = 25\,\text{s}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Kontrolle</h4><p>Das Ergebnis liegt knapp unter $5\,\text{kW}$.</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$E = 600\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 20\,\text{m} = {\color{#1a7f4b}\boldsymbol{120\,000\,\text{J}}}$ · $P = \dfrac{120\,000\,\text{J}}{25\,\text{s}} = {\color{#1a7f4b}\boldsymbol{4800\,\text{W} = 4{,}8\,\text{kW}}}$</p></div></div>
+      </div>
+      <div class="aufg" id="s2b" data-title="b) Der Baukran">
+        <h3>b) Der Baukran</h3>
+        <div class="task"><p>Der Motor eines Baukrans hat eine Leistung von $15\,\text{kW}$. Er hebt einen Betonkübel ($1{,}5\,\text{t}$) um $30\,\text{m}$ nach oben. Wie lange dauert das mindestens?</p></div>
+        <div class="inrow"><span class="lab">Energie $E$ =</span>
+          <input type="text" inputmode="decimal" id="s2b_0" data-soll="450000" data-tol="0.02" data-unit="J" data-label="Energie E" autocomplete="off">
+          <span class="u">J</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Zeit $t$ =</span>
+          <input type="text" inputmode="decimal" id="s2b_1" data-soll="30" data-tol="0.02" data-unit="s" data-label="Zeit t" autocomplete="off">
+          <span class="u">s</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Einheiten</button>
+            <button type="button">Hilfe 2 · Energie</button>
+            <button type="button">Hilfe 3 · Zeit</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Einheiten</h4><p>$1{,}5\,\text{t} = 1500\,\text{kg}$ und $15\,\text{kW} = 15\,000\,\text{W}$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Energie</h4><p>$E = 1500\cdot 10\cdot 30\,\text{J}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Zeit</h4><p>$t = \dfrac{E}{P} = \dfrac{450\,000\,\text{J}}{15\,000\,\text{W}}$</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$E = 1500\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 30\,\text{m} = {\color{#1a7f4b}\boldsymbol{450\,000\,\text{J}}}$ · $t = \dfrac{450\,000\,\text{J}}{15\,000\,\text{W}} = {\color{#1a7f4b}\boldsymbol{30\,\text{s}}}$</p></div></div>
+      </div>
+      <div class="aufg" id="s2c" data-title="c) Der Gabelstapler – wer ist der Stärkste?">
+        <h3>c) Der Gabelstapler – wer ist der Stärkste?</h3>
+        <div class="task"><p>Ein Gabelstapler hebt eine Palette ($800\,\text{kg}$) in $4{,}0\,\text{s}$ um $2{,}5\,\text{m}$ an. Berechne seine Leistung. Ordne dann Aufzug, Kran und Gabelstapler nach ihrer Leistung.</p></div>
+        <div class="inrow"><span class="lab">Leistung $P$ =</span>
+          <input type="text" inputmode="decimal" id="s2c_0" data-soll="5000" data-tol="0.02" data-unit="W" data-label="Leistung P" autocomplete="off">
+          <span class="u">W</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Energie</button>
+            <button type="button">Hilfe 2 · Leistung</button>
+            <button type="button">Hilfe 3 · Ordnen</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Energie</h4><p>$E = 800\cdot 10\cdot 2{,}5\,\text{J} = 20\,000\,\text{J}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Leistung</h4><p>$P = \dfrac{20\,000\,\text{J}}{4{,}0\,\text{s}}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Ordnen</h4><p>Vergleiche mit $4{,}8\,\text{kW}$ (Aufzug) und $15\,\text{kW}$ (Kran) – alles in derselben Einheit!</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$P = \dfrac{20\,000\,\text{J}}{4{,}0\,\text{s}} = {\color{#1a7f4b}\boldsymbol{5000\,\text{W} = 5{,}0\,\text{kW}}}$</p><p>Reihenfolge: <strong>Kran (15 kW) &gt; Gabelstapler (5,0 kW) &gt; Aufzug (4,8 kW)</strong>. Der Gabelstapler hebt weniger Energie als der Aufzug, ist aber schneller fertig.</p></div></div>
+      </div>
+    <div class="onenote" data-st="s2">
+      <div class="ot">📓 In deinem OneNote-Heft sichern</div>
+      <div>Lege in OneNote eine Seite „Station 2 – Maschinen heben Lasten“ an und notiere dort:</div>
+      <ul><li>Rechnungen zu a)–c)</li><li>Die drei Formen der Formel ($P$, $E$, $t$ gesucht)</li><li>Rangfolge der drei Maschinen mit Begründung</li></ul>
+      <div style="font-size:.88rem;margin-bottom:8px">Rechne immer mit <strong>Formel – Einsetzen mit Einheiten – Ergebnis</strong>.
+      Füge zum Schluss deine geprüften Ergebnisse darunter ein:</div>
+      <button type="button" class="copy">📋 Ergebnisse kopieren</button>
+      <button type="button" class="fertig" data-st="s2">Station als erledigt markieren</button>
+      <span class="msg"></span>
+    </div>
+    <div class="stnav"><button type="button" data-go="s1">← vorherige Station</button><button type="button" data-go="s3">nächste Station →</button></div>
+  </section>
+  <section class="station" id="s3" data-title="Station 3 – Das Auto beschleunigt">
+    <div class="st-head"><span class="big">🚗</span>
+      <div><div class="meta">Station 3 · ca. 15 min</div><h2>Das Auto beschleunigt</h2></div></div>
+    <p>„Von 0 auf 100 in 4 Sekunden!“ – mit solchen Angaben werben Autohersteller. Beim Beschleunigen wandelt der Motor Energie in <strong>Bewegungsenergie</strong> um. Je schneller das geht, desto größer muss die Leistung sein.</p>
+    <div class="grid2">
+      <div class="panel"><div class="sim">
+  <div class="tri-title">Ausprobieren (nach den Aufgaben): Beschleunigung von 0 auf 100 km/h</div>
+  <label>Masse $m$: <strong><span id="m3v">1000</span> kg</strong><input type="range" id="m3" min="800" max="2500" step="50" value="1000"></label>
+  <label>Zeit $t$: <strong><span id="t3v">12,0</span> s</strong><input type="range" id="t3" min="3" max="20" step="0.5" value="12"></label>
+  <div class="simout">$E_\text{kin}$ = <strong id="e3">–</strong> &nbsp;·&nbsp; mittlere Leistung $P$ = <strong id="p3">–</strong> &nbsp;=&nbsp; <strong id="ps3">–</strong></div>
+  <div class="cap">Frage für dein Heft: Was passiert mit der Leistung, wenn du die Zeit halbierst? Und wenn du die Masse verdoppelst?</div>
+</div></div>
+      <div class="panel"><div class="pt">Das brauchst du</div><p>$$E_\text{kin} = \tfrac12\,m\cdot v^2 \qquad P = \frac{E}{t} \qquad 1\,\text{PS} \approx 735\,\text{W}$$</p><p>Geschwindigkeit immer in $\tfrac{\text{m}}{\text{s}}$: $100\,\tfrac{\text{km}}{\text{h}} : 3{,}6 \approx 27{,}8\,\tfrac{\text{m}}{\text{s}}$</p></div>
+    </div>
+
+      <div class="aufg" id="s3a" data-title="a) Der Kleinwagen">
+        <h3>a) Der Kleinwagen</h3>
+        <div class="task"><p>Ein Kleinwagen ($m = 1000\,\text{kg}$) beschleunigt in $12\,\text{s}$ von 0 auf $100\,\tfrac{\text{km}}{\text{h}}$. Berechne die Geschwindigkeit in $\tfrac{\text{m}}{\text{s}}$, die Bewegungsenergie bei 100 km/h und die mittlere Leistung in kW und PS.</p></div>
+        <div class="inrow"><span class="lab">Geschwindigkeit $v$ =</span>
+          <input type="text" inputmode="decimal" id="s3a_0" data-soll="27.78" data-tol="0.02" data-unit="m/s" data-label="Geschwindigkeit v" autocomplete="off">
+          <span class="u">m/s</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Energie $E_\text{kin}$ =</span>
+          <input type="text" inputmode="decimal" id="s3a_1" data-soll="385802" data-tol="0.03" data-unit="J" data-label="Energie E_kin" autocomplete="off">
+          <span class="u">J</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Leistung $P$ =</span>
+          <input type="text" inputmode="decimal" id="s3a_2" data-soll="32.15" data-tol="0.03" data-unit="kW" data-label="Leistung P" autocomplete="off">
+          <span class="u">kW</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Leistung in PS =</span>
+          <input type="text" inputmode="decimal" id="s3a_3" data-soll="43.7" data-tol="0.03" data-unit="PS" data-label="Leistung in PS" autocomplete="off">
+          <span class="u">PS</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Umrechnen</button>
+            <button type="button">Hilfe 2 · Energie</button>
+            <button type="button">Hilfe 3 · Leistung</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Umrechnen</h4><p>$v = 100 : 3{,}6 \approx 27{,}8\,\tfrac{\text{m}}{\text{s}}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Energie</h4><p>$E_\text{kin} = \tfrac12\cdot 1000\cdot 27{,}8^2\,\text{J}$ – rechne mit dem genauen Wert aus dem Taschenrechner weiter.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Leistung</h4><p>$P = \dfrac{E}{12\,\text{s}}$ in W, dann durch 1000 (kW) bzw. durch 735 (PS).</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$v = 27{,}8\,\tfrac{\text{m}}{\text{s}}$ · $E_\text{kin} = \tfrac12\cdot 1000\,\text{kg}\cdot(27{,}8\,\tfrac{\text{m}}{\text{s}})^2 \approx {\color{#1a7f4b}\boldsymbol{386\,000\,\text{J}}}$</p><p>$P = \dfrac{386\,000\,\text{J}}{12\,\text{s}} \approx {\color{#1a7f4b}\boldsymbol{32\,\text{kW}}} \approx {\color{#1a7f4b}\boldsymbol{44\,\text{PS}}}$</p></div></div>
+      </div>
+      <div class="aufg" id="s3b" data-title="b) Der Sportwagen">
+        <h3>b) Der Sportwagen</h3>
+        <div class="task"><p>Ein Sportwagen ($m = 1500\,\text{kg}$) schafft 0 auf $100\,\tfrac{\text{km}}{\text{h}}$ in $4{,}0\,\text{s}$. Berechne die Bewegungsenergie und die mittlere Leistung in kW und PS.</p></div>
+        <div class="inrow"><span class="lab">Energie $E_\text{kin}$ =</span>
+          <input type="text" inputmode="decimal" id="s3b_0" data-soll="578704" data-tol="0.03" data-unit="J" data-label="Energie E_kin" autocomplete="off">
+          <span class="u">J</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Leistung $P$ =</span>
+          <input type="text" inputmode="decimal" id="s3b_1" data-soll="144.7" data-tol="0.03" data-unit="kW" data-label="Leistung P" autocomplete="off">
+          <span class="u">kW</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Leistung in PS =</span>
+          <input type="text" inputmode="decimal" id="s3b_2" data-soll="196.8" data-tol="0.03" data-unit="PS" data-label="Leistung in PS" autocomplete="off">
+          <span class="u">PS</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Gleiches Vorgehen</button>
+            <button type="button">Hilfe 2 · Energie</button>
+            <button type="button">Hilfe 3 · Leistung</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Gleiches Vorgehen</h4><p>Wie in a): $v \approx 27{,}8\,\tfrac{\text{m}}{\text{s}}$, aber andere Masse und Zeit.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Energie</h4><p>$E_\text{kin} = \tfrac12\cdot 1500\cdot 27{,}8^2\,\text{J}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Leistung</h4><p>$P = \dfrac{E}{4{,}0\,\text{s}}$</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$E_\text{kin} \approx {\color{#1a7f4b}\boldsymbol{579\,000\,\text{J}}}$ · $P = \dfrac{579\,000\,\text{J}}{4{,}0\,\text{s}} \approx {\color{#1a7f4b}\boldsymbol{145\,\text{kW}}} \approx {\color{#1a7f4b}\boldsymbol{197\,\text{PS}}}$</p></div></div>
+      </div>
+      <div class="aufg" id="s3c" data-title="c) Denke nach: Warum ist der Motor stärker?">
+        <h3>c) Denke nach: Warum ist der Motor stärker? ★</h3>
+        <div class="task"><p>Für den Kleinwagen aus a) gibt der Hersteller eine Motorleistung von $70\,\text{PS}$ an – deutlich mehr als dein Ergebnis. Nenne mindestens zwei Gründe, warum der Motor mehr leisten muss, als zum Beschleunigen allein nötig ist. <em>Schreibe deine Antwort in OneNote.</em></p></div>
+
+        <div class="btnrow"><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Energieerhaltung</button>
+            <button type="button">Hilfe 2 · Fahrt</button>
+            <button type="button">Hilfe 3 · Motor</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Energieerhaltung</h4><p>Erinnere dich an die Energieerhaltung mit Reibung: Wohin geht ein Teil der Energie?</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Fahrt</h4><p>Welche „Bremsen“ wirken während der Fahrt auf das Auto, auch ohne Bremspedal?</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Motor</h4><p>Wird der Motor selbst warm? Läuft er beim Beschleunigen die ganze Zeit mit voller Leistung?</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><ul><li><strong>Luftwiderstand</strong> und <strong>Rollreibung</strong> der Reifen: Ein Teil der Energie wird in thermische Energie umgewandelt.</li><li>Auch im <strong>Motor und Getriebe</strong> entsteht Wärme – nur ein Teil der Energie des Kraftstoffs wird nutzbar (Wirkungsgrad).</li><li>Der Motor erreicht seine Höchstleistung nicht während der ganzen Beschleunigung (Schalten, niedrige Drehzahl).</li></ul></div></div>
+      </div>
+    <div class="onenote" data-st="s3">
+      <div class="ot">📓 In deinem OneNote-Heft sichern</div>
+      <div>Lege in OneNote eine Seite „Station 3 – Das Auto beschleunigt“ an und notiere dort:</div>
+      <ul><li>Rechnungen zu a) und b)</li><li>Antwort zu c) mit mindestens zwei Gründen</li><li>Ergebnis deines Experiments mit den Schiebereglern: Zeit halbiert → Leistung …? Masse verdoppelt → Leistung …?</li></ul>
+      <div style="font-size:.88rem;margin-bottom:8px">Rechne immer mit <strong>Formel – Einsetzen mit Einheiten – Ergebnis</strong>.
+      Füge zum Schluss deine geprüften Ergebnisse darunter ein:</div>
+      <button type="button" class="copy">📋 Ergebnisse kopieren</button>
+      <button type="button" class="fertig" data-st="s3">Station als erledigt markieren</button>
+      <span class="msg"></span>
+    </div>
+    <div class="stnav"><button type="button" data-go="s2">← vorherige Station</button><button type="button" data-go="s4">nächste Station →</button></div>
+  </section>
+  <section class="station" id="s4" data-title="Station 4 – Typenschilder und Kilowattstunden">
+    <div class="st-head"><span class="big">🔌</span>
+      <div><div class="meta">Station 4 · ca. 15 min</div><h2>Typenschilder und Kilowattstunden</h2></div></div>
+    <p>Auf jedem Elektrogerät steht ein <strong>Typenschild</strong> mit seiner Leistung in Watt. Die Stromrechnung zählt dagegen die umgewandelte <strong>Energie</strong> – in der Einheit <strong>Kilowattstunde (kWh)</strong>.</p>
+    <div class="grid2">
+      <div class="panel"><div class="sim">
+  <div class="tri-title">Energiekosten-Rechner (nach den Aufgaben ausprobieren)</div>
+  <label>Gerät:
+    <select id="dev4">
+      <option value="2000">Wasserkocher (2000 W)</option>
+      <option value="1800">Föhn (1800 W)</option>
+      <option value="150">Spielekonsole (150 W)</option>
+      <option value="60">Laptop (60 W)</option>
+      <option value="20">Handy-Ladegerät (20 W)</option>
+      <option value="8">LED-Lampe (8 W)</option>
+    </select></label>
+  <label>Nutzung pro Tag: <strong><span id="min4v">30</span> min</strong><input type="range" id="min4" min="5" max="600" step="5" value="30"></label>
+  <div class="simout">Pro Jahr: <strong id="kwh4">–</strong> &nbsp;·&nbsp; Kosten: <strong id="eur4">–</strong> <span class="cap">(bei 0,35 € pro kWh)</span></div>
+</div></div>
+      <div class="panel"><div class="pt">Das brauchst du</div><p>$$E = P\cdot t \qquad 1\,\text{kWh} = 1000\,\text{W}\cdot 3600\,\text{s} = 3\,600\,000\,\text{J}$$</p><p>Mit kWh rechnest du am einfachsten so: $E$ in kWh $=$ $P$ in kW $\cdot$ $t$ in h. · Strompreis (Beispielwert): $0{,}35\,€$ pro kWh.</p></div>
+    </div>
+
+      <div class="aufg" id="s4a" data-title="a) Der Wasserkocher">
+        <h3>a) Der Wasserkocher</h3>
+        <div class="task"><p>Ein Wasserkocher ($2000\,\text{W}$) braucht $3{,}0\,\text{min}$, um Wasser für Tee zu kochen. Berechne die umgewandelte Energie in J und in kWh. Was kostet das?</p></div>
+        <div class="inrow"><span class="lab">Energie $E$ =</span>
+          <input type="text" inputmode="decimal" id="s4a_0" data-soll="360000" data-tol="0.02" data-unit="J" data-label="Energie E" autocomplete="off">
+          <span class="u">J</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Energie $E$ =</span>
+          <input type="text" inputmode="decimal" id="s4a_1" data-soll="0.1" data-tol="0.02" data-unit="kWh" data-label="Energie E" autocomplete="off">
+          <span class="u">kWh</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Kosten =</span>
+          <input type="text" inputmode="decimal" id="s4a_2" data-soll="3.5" data-tol="0.03" data-unit="Cent" data-label="Kosten" autocomplete="off">
+          <span class="u">Cent</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Zeit in s</button>
+            <button type="button">Hilfe 2 · kWh</button>
+            <button type="button">Hilfe 3 · Kosten</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Zeit in s</h4><p>$3{,}0\,\text{min} = 180\,\text{s}$, dann $E = P\cdot t$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · kWh</h4><p>$2000\,\text{W} = 2\,\text{kW}$ und $3\,\text{min} = 0{,}05\,\text{h}$ → $E = 2\,\text{kW}\cdot 0{,}05\,\text{h}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Kosten</h4><p>$0{,}1\,\text{kWh}\cdot 0{,}35\,\tfrac{€}{\text{kWh}}$ – Ergebnis in Cent angeben.</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$E = 2000\,\text{W}\cdot 180\,\text{s} = {\color{#1a7f4b}\boldsymbol{360\,000\,\text{J}}} = {\color{#1a7f4b}\boldsymbol{0{,}1\,\text{kWh}}}$ · Kosten: $0{,}1\cdot 0{,}35\,€ = {\color{#1a7f4b}\boldsymbol{3{,}5\,\text{Cent}}}$</p></div></div>
+      </div>
+      <div class="aufg" id="s4b" data-title="b) LED gegen Glühlampe">
+        <h3>b) LED gegen Glühlampe</h3>
+        <div class="task"><p>Eine alte Glühlampe ($60\,\text{W}$) wird durch eine gleich helle LED-Lampe ($8\,\text{W}$) ersetzt. Die Lampe leuchtet 5 Stunden pro Tag, an 365 Tagen. Berechne für beide Lampen die Energie pro Jahr in kWh und die Ersparnis in Euro.</p></div>
+        <div class="inrow"><span class="lab">Energie LED =</span>
+          <input type="text" inputmode="decimal" id="s4b_0" data-soll="14.6" data-tol="0.02" data-unit="kWh" data-label="Energie LED" autocomplete="off">
+          <span class="u">kWh</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Energie Glühlampe =</span>
+          <input type="text" inputmode="decimal" id="s4b_1" data-soll="109.5" data-tol="0.02" data-unit="kWh" data-label="Energie Glühlampe" autocomplete="off">
+          <span class="u">kWh</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Ersparnis pro Jahr =</span>
+          <input type="text" inputmode="decimal" id="s4b_2" data-soll="33.2" data-tol="0.03" data-unit="€" data-label="Ersparnis pro Jahr" autocomplete="off">
+          <span class="u">€</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Stunden pro Jahr</button>
+            <button type="button">Hilfe 2 · Energie</button>
+            <button type="button">Hilfe 3 · Ersparnis</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Stunden pro Jahr</h4><p>$5\,\text{h}\cdot 365 = 1825\,\text{h}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Energie</h4><p>LED: $0{,}008\,\text{kW}\cdot 1825\,\text{h}$ · Glühlampe: $0{,}060\,\text{kW}\cdot 1825\,\text{h}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Ersparnis</h4><p>Differenz der beiden Energien mal $0{,}35\,\tfrac{€}{\text{kWh}}$.</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>LED: $0{,}008\,\text{kW}\cdot 1825\,\text{h} = {\color{#1a7f4b}\boldsymbol{14{,}6\,\text{kWh}}}$ · Glühlampe: $0{,}06\,\text{kW}\cdot 1825\,\text{h} = {\color{#1a7f4b}\boldsymbol{109{,}5\,\text{kWh}}}$</p><p>Ersparnis: $94{,}9\,\text{kWh}\cdot 0{,}35\,\tfrac{€}{\text{kWh}} \approx {\color{#1a7f4b}\boldsymbol{33\,€}}$ pro Jahr – für eine einzige Lampe!</p></div></div>
+      </div>
+      <div class="aufg" id="s4c" data-title="c) Handy laden">
+        <h3>c) Handy laden ★</h3>
+        <div class="task"><p>Ein Ladegerät ($20\,\text{W}$) lädt ein Handy in $1{,}5\,\text{h}$ voll. Wie viel Energie (kWh) braucht eine Ladung, und was kostet sie in Cent? Wie oft könntest du dein Handy für $1\,€$ laden?</p></div>
+        <div class="inrow"><span class="lab">Energie $E$ =</span>
+          <input type="text" inputmode="decimal" id="s4c_0" data-soll="0.03" data-tol="0.03" data-unit="kWh" data-label="Energie E" autocomplete="off">
+          <span class="u">kWh</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Kosten pro Ladung =</span>
+          <input type="text" inputmode="decimal" id="s4c_1" data-soll="1.05" data-tol="0.05" data-unit="Cent" data-label="Kosten pro Ladung" autocomplete="off">
+          <span class="u">Cent</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Ladungen für 1 € =</span>
+          <input type="text" inputmode="decimal" id="s4c_2" data-soll="95" data-tol="0.05" data-unit="" data-label="Ladungen für 1 €" autocomplete="off">
+          <span class="u"></span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Einheiten</button>
+            <button type="button">Hilfe 2 · Energie</button>
+            <button type="button">Hilfe 3 · Kosten</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Einheiten</h4><p>$20\,\text{W} = 0{,}02\,\text{kW}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Energie</h4><p>$E = 0{,}02\,\text{kW}\cdot 1{,}5\,\text{h}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Kosten</h4><p>$0{,}03\cdot 35\,\text{Cent}$; dann $100\,\text{Cent}$ durch die Kosten pro Ladung teilen.</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$E = 0{,}02\,\text{kW}\cdot 1{,}5\,\text{h} = {\color{#1a7f4b}\boldsymbol{0{,}03\,\text{kWh}}}$ · Kosten: $0{,}03\cdot 35\,\text{Cent} \approx {\color{#1a7f4b}\boldsymbol{1{,}05\,\text{Cent}}}$ · für $1\,€$ etwa ${\color{#1a7f4b}\boldsymbol{95}}$ Ladungen.</p></div></div>
+      </div>
+    <div class="onenote" data-st="s4">
+      <div class="ot">📓 In deinem OneNote-Heft sichern</div>
+      <div>Lege in OneNote eine Seite „Station 4 – Typenschilder und Kilowattstunden“ an und notiere dort:</div>
+      <ul><li>Rechnungen zu a)–c)</li><li>Merksatz: Was ist der Unterschied zwischen <strong>W</strong> (Leistung) und <strong>kWh</strong> (Energie)?</li><li>Ein Gerät aus dem Rechner, das dich überrascht hat – mit Begründung</li></ul>
+      <div style="font-size:.88rem;margin-bottom:8px">Rechne immer mit <strong>Formel – Einsetzen mit Einheiten – Ergebnis</strong>.
+      Füge zum Schluss deine geprüften Ergebnisse darunter ein:</div>
+      <button type="button" class="copy">📋 Ergebnisse kopieren</button>
+      <button type="button" class="fertig" data-st="s4">Station als erledigt markieren</button>
+      <span class="msg"></span>
+    </div>
+    <div class="stnav"><button type="button" data-go="s3">← vorherige Station</button><button type="button" data-go="s5">nächste Station →</button></div>
+  </section>
+  <section class="station" id="s5" data-title="Station 5 – Das Pumpspeicherkraftwerk in Herdecke">
+    <div class="st-head"><span class="big">💧</span>
+      <div><div class="meta">Station 5 · ca. 15 min</div><h2>Das Pumpspeicherkraftwerk in Herdecke</h2></div></div>
+    <p>Gleich bei uns um die Ecke, am Hengsteysee in Herdecke, steht ein riesiger „Akku“: Wenn viel Strom da ist, wird Wasser in ein Becken auf dem Berg <strong>hochgepumpt</strong>. Wird Strom gebraucht, fließt es durch <strong>Turbinen</strong> wieder hinunter. Schon 1930 ging hier mit dem Koepchenwerk eines der ersten großen Pumpspeicherkraftwerke in Betrieb.</p>
+    <div class="grid2">
+      <div class="panel"><div class="psw">
+  <div class="tri-btns"><button type="button" class="on" data-mode="pump">⬆️ Pumpbetrieb (Energie speichern)</button><button type="button" data-mode="turb">⬇️ Turbinenbetrieb (Strom erzeugen)</button></div>
+  <svg viewBox="0 0 560 250" class="psw-svg" id="pswsvg" role="img" aria-label="Schema eines Pumpspeicherkraftwerks">
+    <path d="M0 230 L120 230 L220 60 L560 60 L560 250 L0 250 Z" fill="#cfe3c4"/>
+    <rect x="300" y="38" width="200" height="30" rx="4" fill="#5aa0d8"/>
+    <text x="400" y="30" text-anchor="middle" font-size="13" fill="#1c1f26">Oberbecken (ca. 1,5 Mio. m³)</text>
+    <rect x="0" y="222" width="130" height="18" fill="#5aa0d8"/>
+    <text x="65" y="215" text-anchor="middle" font-size="13" fill="#1c1f26">Hengsteysee</text>
+    <path id="pipe" d="M305 66 C 260 70, 200 150, 160 222" stroke="#5c6472" stroke-width="7" fill="none"/>
+    <path id="flow" d="M305 66 C 260 70, 200 150, 160 222" stroke="#bfe0ff" stroke-width="3" fill="none" stroke-dasharray="10 8"/>
+    <rect x="135" y="200" width="44" height="30" fill="#7a5a3a"/>
+    <text x="157" y="246" text-anchor="middle" font-size="12" fill="#1c1f26">Maschinenhaus</text>
+    <line x1="520" y1="60" x2="520" y2="230" stroke="#1c1f26" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/>
+    <text x="512" y="150" text-anchor="end" font-size="13" fill="#1c1f26">≈ 160 m</text>
+    <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#1c1f26"/></marker></defs>
+  </svg>
+  <div class="cap" id="pswcap">Pumpbetrieb: Elektrische Energie (z.&nbsp;B. überschüssiger Wind- und Solarstrom) treibt Pumpen an. Das Wasser gewinnt <strong>Lageenergie</strong>.</div>
+</div></div>
+      <div class="panel"><div class="pt">Das brauchst du</div><p><strong>Daten:</strong> Oberbecken gut $1{,}5$ Mio. m³ Wasser · Höhenunterschied zum Hengsteysee gut $160\,\text{m}$ · Leistung der Turbine bis zu $162\,\text{MW}$ für bis zu vier Stunden. <span class="cap">(Quelle: Wikipedia, „Pumpspeicherkraftwerk Herdecke“)</span></p>
+<p>$1\,\text{m}^3$ Wasser $= 1000\,\text{kg}$ · $1\,\text{MW} = 1\,000\,000\,\text{W}$ · $1\,\text{MWh} = 3\,600\,000\,000\,\text{J}$ · Tipp: Der Taschenrechner zeigt große Zahlen z.&nbsp;B. als 2.4E12 – das bedeutet $2{,}4\cdot 10^{12}$. Du kannst so auch eintippen: <code>2,4e12</code>.</p></div>
+    </div>
+
+      <div class="aufg" id="s5a" data-title="a) Wie viel Wasser?">
+        <h3>a) Wie viel Wasser?</h3>
+        <div class="task"><p>Berechne die Masse des Wassers im vollen Oberbecken ($1{,}5$ Mio. m³).</p></div>
+        <div class="inrow"><span class="lab">Masse $m$ =</span>
+          <input type="text" inputmode="decimal" id="s5a_0" data-soll="1500000000.0" data-tol="0.02" data-unit="kg" data-label="Masse m" autocomplete="off">
+          <span class="u">kg</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Umrechnen</button>
+            <button type="button">Hilfe 2 · Rechnen</button>
+            <button type="button">Hilfe 3 · Kontrolle</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Umrechnen</h4><p>Jeder Kubikmeter wiegt $1000\,\text{kg}$.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Rechnen</h4><p>$1\,500\,000\cdot 1000\,\text{kg}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Kontrolle</h4><p>Das Ergebnis sind 1,5 Milliarden Kilogramm.</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$m = 1\,500\,000\cdot 1000\,\text{kg} = {\color{#1a7f4b}\boldsymbol{1\,500\,000\,000\,\text{kg} = 1{,}5\cdot 10^9\,\text{kg}}}$</p></div></div>
+      </div>
+      <div class="aufg" id="s5b" data-title="b) Die gespeicherte Energie">
+        <h3>b) Die gespeicherte Energie</h3>
+        <div class="task"><p>Berechne die Lageenergie des Wassers im Oberbecken (Höhenunterschied $160\,\text{m}$) in J und in MWh.</p></div>
+        <div class="inrow"><span class="lab">Energie $E_\text{Pot}$ =</span>
+          <input type="text" inputmode="decimal" id="s5b_0" data-soll="2400000000000.0" data-tol="0.02" data-unit="J" data-label="Energie E_Pot" autocomplete="off">
+          <span class="u">J</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Energie $E_\text{Pot}$ =</span>
+          <input type="text" inputmode="decimal" id="s5b_1" data-soll="667" data-tol="0.02" data-unit="MWh" data-label="Energie E_Pot" autocomplete="off">
+          <span class="u">MWh</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Formel</button>
+            <button type="button">Hilfe 2 · Taschenrechner</button>
+            <button type="button">Hilfe 3 · MWh</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Formel</h4><p>$E_\text{Pot} = m\cdot g\cdot h = 1{,}5\cdot 10^9\cdot 10\cdot 160\,\text{J}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Taschenrechner</h4><p>Das Ergebnis lautet 2.4E12 J. Gib es als <code>2,4e12</code> ein.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · MWh</h4><p>Teile durch $3\,600\,000\,000$ (das ist $3{,}6\cdot 10^9$).</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$E_\text{Pot} = 1{,}5\cdot 10^9\,\text{kg}\cdot 10\,\tfrac{\text{N}}{\text{kg}}\cdot 160\,\text{m} = {\color{#1a7f4b}\boldsymbol{2{,}4\cdot 10^{12}\,\text{J}}}$</p><p>$E = \dfrac{2{,}4\cdot 10^{12}\,\text{J}}{3{,}6\cdot 10^{9}\,\tfrac{\text{J}}{\text{MWh}}} \approx {\color{#1a7f4b}\boldsymbol{667\,\text{MWh}}}$</p></div></div>
+      </div>
+      <div class="aufg" id="s5c" data-title="c) Wie lange reicht die Energie?">
+        <h3>c) Wie lange reicht die Energie?</h3>
+        <div class="task"><p>Wie lange könnte das Kraftwerk mit dieser Energie mit voller Leistung ($162\,\text{MW}$) Strom erzeugen? Vergleiche mit der Angabe „bis zu vier Stunden“.</p></div>
+        <div class="inrow"><span class="lab">Zeit $t$ =</span>
+          <input type="text" inputmode="decimal" id="s5c_0" data-soll="4.12" data-tol="0.04" data-unit="h" data-label="Zeit t" autocomplete="off">
+          <span class="u">h</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Umstellen</button>
+            <button type="button">Hilfe 2 · Einfacher Weg</button>
+            <button type="button">Hilfe 3 · Vergleich</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Umstellen</h4><p>$t = \dfrac{E}{P}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Einfacher Weg</h4><p>Mit MWh und MW: $t = \dfrac{667\,\text{MWh}}{162\,\text{MW}}$ – das Ergebnis ist dann direkt in Stunden.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Vergleich</h4><p>Angegeben sind „bis zu vier Stunden“.</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$t = \dfrac{667\,\text{MWh}}{162\,\text{MW}} \approx {\color{#1a7f4b}\boldsymbol{4{,}1\,\text{h}}}$ – passt sehr gut zur Angabe „bis zu vier Stunden“. (In Wirklichkeit geht beim Umwandeln etwas Energie verloren.)</p></div></div>
+      </div>
+      <div class="aufg" id="s5d" data-title="d) Wie viele Haushalte?">
+        <h3>d) Wie viele Haushalte? ★</h3>
+        <div class="task"><p>Ein durchschnittlicher Haushalt braucht etwa $3500\,\text{kWh}$ elektrische Energie pro Jahr. Wie viele Haushalte könnte das volle Oberbecken einen Tag lang versorgen?</p></div>
+        <div class="inrow"><span class="lab">Anzahl Haushalte =</span>
+          <input type="text" inputmode="decimal" id="s5d_0" data-soll="69444" data-tol="0.05" data-unit="" data-label="Anzahl Haushalte" autocomplete="off">
+          <span class="u"></span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Pro Tag</button>
+            <button type="button">Hilfe 2 · Einheiten</button>
+            <button type="button">Hilfe 3 · Teilen</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Pro Tag</h4><p>$3500\,\text{kWh} : 365 \approx 9{,}6\,\text{kWh}$ pro Haushalt und Tag.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Einheiten</h4><p>$667\,\text{MWh} = 667\,000\,\text{kWh}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Teilen</h4><p>$667\,000\,\text{kWh} : 9{,}6\,\text{kWh}$</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>Pro Haushalt und Tag: $3500 : 365 \approx 9{,}6\,\text{kWh}$ · $\dfrac{667\,000\,\text{kWh}}{9{,}6\,\text{kWh}} \approx {\color{#1a7f4b}\boldsymbol{69\,000}}$ Haushalte – bei rund zwei Personen pro Haushalt entspricht das einer Stadt mit etwa 140&nbsp;000 Einwohnern.</p></div></div>
+      </div>
+    <div class="onenote" data-st="s5">
+      <div class="ot">📓 In deinem OneNote-Heft sichern</div>
+      <div>Lege in OneNote eine Seite „Station 5 – Das Pumpspeicherkraftwerk in Herdecke“ an und notiere dort:</div>
+      <ul><li>Skizze des Pumpspeicherkraftwerks mit Pump- und Turbinenbetrieb und den Energieumwandlungen</li><li>Rechnungen zu a)–d)</li><li>Ein Satz: Warum braucht man solche „Akkus“ für Wind- und Sonnenstrom?</li></ul>
+      <div style="font-size:.88rem;margin-bottom:8px">Rechne immer mit <strong>Formel – Einsetzen mit Einheiten – Ergebnis</strong>.
+      Füge zum Schluss deine geprüften Ergebnisse darunter ein:</div>
+      <button type="button" class="copy">📋 Ergebnisse kopieren</button>
+      <button type="button" class="fertig" data-st="s5">Station als erledigt markieren</button>
+      <span class="msg"></span>
+    </div>
+    <div class="stnav"><button type="button" data-go="s4">← vorherige Station</button><button type="button" data-go="z">nächste Station →</button></div>
+  </section>
+  <section class="station" id="z" data-title="Zusatzstation – Der Wirkungsgrad">
+    <div class="st-head"><span class="big">⚡</span>
+      <div><div class="meta">Zusatzstation · für Schnelle</div><h2>Zusatzstation: Der Wirkungsgrad</h2></div></div>
+    <p>Keine Maschine wandelt die zugeführte Energie vollständig in nutzbare Energie um. Ein Teil wird – wie bei der Reibung – zu <strong>thermischer Energie</strong>. Wie gut eine Maschine ist, beschreibt der <strong>Wirkungsgrad</strong> $\eta$ (sprich: „eta“).</p>
+    <div class="grid2">
+      <div class="panel"><div class="sim">
+  <div class="tri-title">Wirkungsgrad sichtbar machen: Von 100 J zugeführter Energie …</div>
+  <label>Wirkungsgrad $\eta$: <strong><span id="etav">75</span> %</strong><input type="range" id="eta" min="1" max="100" step="1" value="75"></label>
+  <div class="flow"><span class="fn" id="fn" style="width:75%">nutzbar: 75 J</span><span class="fw" id="fw" style="width:25%">25 J</span></div>
+  <div class="cap">grün: nutzbare Energie · rot: thermische Energie (Wärme)</div>
+</div></div>
+      <div class="panel"><div class="pt">Das brauchst du</div><p>$$\eta = \frac{E_\text{nutz}}{E_\text{zu}} = \frac{P_\text{nutz}}{P_\text{zu}} \qquad (\text{Angabe meist in } \%)$$</p></div>
+    </div>
+
+      <div class="aufg" id="za" data-title="a) Pumpspeicher">
+        <h3>a) Pumpspeicher</h3>
+        <div class="task"><p>Ein Pumpspeicherkraftwerk braucht zum Hochpumpen $1000\,\text{MWh}$ elektrische Energie. Beim Herunterfließen gewinnt es $750\,\text{MWh}$ zurück. Berechne den Wirkungsgrad.</p></div>
+        <div class="inrow"><span class="lab">Wirkungsgrad $\eta$ =</span>
+          <input type="text" inputmode="decimal" id="za_0" data-soll="75" data-tol="0.02" data-unit="%" data-label="Wirkungsgrad η" autocomplete="off">
+          <span class="u">%</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Was ist nutzbar?</button>
+            <button type="button">Hilfe 2 · Formel</button>
+            <button type="button">Hilfe 3 · Prozent</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Was ist nutzbar?</h4><p>Nutzbar ist die zurückgewonnene Energie, zugeführt die Energie zum Pumpen.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Formel</h4><p>$\eta = \dfrac{750}{1000}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Prozent</h4><p>Mal $100\,\%$.</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$\eta = \dfrac{750\,\text{MWh}}{1000\,\text{MWh}} = 0{,}75 = {\color{#1a7f4b}\boldsymbol{75\,\%}}$</p></div></div>
+      </div>
+      <div class="aufg" id="zb" data-title="b) Der Aufzugsmotor">
+        <h3>b) Der Aufzugsmotor</h3>
+        <div class="task"><p>Der Elektromotor des Aufzugs aus Station 2 nimmt $6{,}0\,\text{kW}$ elektrische Leistung auf. Zum Heben werden $4{,}8\,\text{kW}$ genutzt. Berechne den Wirkungsgrad.</p></div>
+        <div class="inrow"><span class="lab">Wirkungsgrad $\eta$ =</span>
+          <input type="text" inputmode="decimal" id="zb_0" data-soll="80" data-tol="0.02" data-unit="%" data-label="Wirkungsgrad η" autocomplete="off">
+          <span class="u">%</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Leistungen</button>
+            <button type="button">Hilfe 2 · Formel</button>
+            <button type="button">Hilfe 3 · Prozent</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Leistungen</h4><p>$P_\text{nutz} = 4{,}8\,\text{kW}$, $P_\text{zu} = 6{,}0\,\text{kW}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Formel</h4><p>$\eta = \dfrac{P_\text{nutz}}{P_\text{zu}}$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Prozent</h4><p>$\dfrac{4{,}8}{6{,}0}\cdot 100\,\%$</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$\eta = \dfrac{4{,}8\,\text{kW}}{6{,}0\,\text{kW}} = {\color{#1a7f4b}\boldsymbol{80\,\%}}$</p></div></div>
+      </div>
+      <div class="aufg" id="zc" data-title="c) Die Glühlampe">
+        <h3>c) Die Glühlampe</h3>
+        <div class="task"><p>Eine Glühlampe nimmt $60\,\text{W}$ auf, gibt aber nur etwa $3\,\text{W}$ als Licht ab. Berechne den Wirkungsgrad. Wie viel Leistung wird in Wärme umgewandelt? Erkläre damit, warum Glühlampen in der EU nicht mehr verkauft werden dürfen.</p></div>
+        <div class="inrow"><span class="lab">Wirkungsgrad $\eta$ =</span>
+          <input type="text" inputmode="decimal" id="zc_0" data-soll="5" data-tol="0.03" data-unit="%" data-label="Wirkungsgrad η" autocomplete="off">
+          <span class="u">%</span><span class="fb"></span></div>
+        <div class="inrow"><span class="lab">Wärme =</span>
+          <input type="text" inputmode="decimal" id="zc_1" data-soll="57" data-tol="0.02" data-unit="W" data-label="Wärme" autocomplete="off">
+          <span class="u">W</span><span class="fb"></span></div>
+        <div class="btnrow"><button type="button" class="chk">Prüfen</button><button type="button" class="showsol">Lösung anzeigen</button></div>
+        <div class="hints">
+          <div class="htitle">Hilfen – öffne sie der Reihe nach</div>
+          <div class="htabs">
+            <button type="button">Hilfe 1 · Formel</button>
+            <button type="button">Hilfe 2 · Wärme</button>
+            <button type="button">Hilfe 3 · Begründung</button>
+          </div>
+          <div class="hpanel"><h4>Hilfe 1 · Formel</h4><p>$\eta = \dfrac{3\,\text{W}}{60\,\text{W}}$</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Wärme</h4><p>Der Rest der Leistung wird zu thermischer Energie: $60\,\text{W} - 3\,\text{W}$.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Begründung</h4><p>Vergleiche mit der LED aus Station 4.</p></div>
+        </div>
+        <div class="sol"><div class="sh">✓ Lösung</div><div class="sb"><p>$\eta = \dfrac{3\,\text{W}}{60\,\text{W}} = {\color{#1a7f4b}\boldsymbol{5\,\%}}$ · Wärme: ${\color{#1a7f4b}\boldsymbol{57\,\text{W}}}$ – 95 % werden „verheizt“. Eine LED liefert dasselbe Licht mit viel weniger Leistung, deshalb dürfen Glühlampen in der EU nicht mehr verkauft werden.</p></div></div>
+      </div>
+    <div class="onenote" data-st="z">
+      <div class="ot">📓 In deinem OneNote-Heft sichern</div>
+      <div>Lege in OneNote eine Seite „Zusatzstation – Der Wirkungsgrad“ an und notiere dort:</div>
+      <ul><li>Definition des Wirkungsgrads mit Formel</li><li>Rechnungen zu a)–c)</li></ul>
+      <div style="font-size:.88rem;margin-bottom:8px">Rechne immer mit <strong>Formel – Einsetzen mit Einheiten – Ergebnis</strong>.
+      Füge zum Schluss deine geprüften Ergebnisse darunter ein:</div>
+      <button type="button" class="copy">📋 Ergebnisse kopieren</button>
+      <button type="button" class="fertig" data-st="z">Station als erledigt markieren</button>
+      <span class="msg"></span>
+    </div>
+    <div class="stnav"><button type="button" data-go="s5">← vorherige Station</button><span></span></div>
+  </section>
+</div>
+
+<footer class="bot">Sek I Unterrichtsmaterialien · Friedrich-Bährens-Gymnasium Schwerte · Daten zum Pumpspeicherkraftwerk: Wikipedia</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var KEY = 'fbg-kl9-leistung-stationen-v1';
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(D)); } catch(e){} }
+  var D = load(); D.v = D.v || {}; D.done = D.done || {};
+  function render(el){
+    if (window.renderMathInElement) renderMathInElement(el || document.body, {
+      delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });
+  }
+  if (window.renderMathInElement) render(); else window.addEventListener('load', function(){ render(); });
+
+  function fmt(x, d){ return x.toLocaleString('de-DE', {maximumFractionDigits: d === undefined ? 1 : d}); }
+  function parseNum(s){
+    if (s === undefined || s === null) return NaN;
+    s = String(s).trim().replace(/[\s\u202f\u00a0]/g, '');
+    s = s.replace(/(·|\*|x|×)10\^?/i, 'e');
+    if (!s) return NaN;
+    if (s.indexOf(',') >= 0) s = s.replace(/\./g, '').replace(',', '.');
+    else if ((s.match(/\./g) || []).length > 1) s = s.replace(/\./g, '');
+    var x = Number(s); return isFinite(x) ? x : NaN;
+  }
+
+  /* ---------- Stationen umschalten ---------- */
+  var order = Array.prototype.map.call(document.querySelectorAll('.station'), function(s){ return s.id; });
+  function show(id){
+    if (order.indexOf(id) < 0) id = order[0];
+    document.querySelectorAll('.station').forEach(function(s){ s.classList.toggle('cur', s.id === id); });
+    document.querySelectorAll('.lz button').forEach(function(b){ b.classList.toggle('cur', b.dataset.go === id); });
+    if (location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id);
+  }
+  document.querySelectorAll('[data-go]').forEach(function(b){
+    b.addEventListener('click', function(){ show(b.dataset.go);
+      document.getElementById('top-st').scrollIntoView({behavior:'smooth'}); });
+  });
+  window.addEventListener('hashchange', function(){ show(location.hash.slice(1)); });
+  show(location.hash.slice(1));
+
+  function paintDone(){
+    document.querySelectorAll('.lz button').forEach(function(b){
+      var f = !!D.done[b.dataset.go]; b.classList.toggle('fertig', f);
+      b.querySelector('.st').textContent = f ? '✓ erledigt' : 'offen';
+    });
+    document.querySelectorAll('.onenote .fertig').forEach(function(b){
+      var f = !!D.done[b.dataset.st]; b.classList.toggle('on', f);
+      b.textContent = f ? '✓ Station erledigt' : 'Station als erledigt markieren';
+    });
+  }
+
+  /* ---------- Hilfen ---------- */
+  document.querySelectorAll('.hints').forEach(function(box){
+    var tabs = box.querySelectorAll('.htabs button'), panels = box.querySelectorAll('.hpanel');
+    tabs.forEach(function(tab, i){
+      tab.addEventListener('click', function(){
+        var was = tab.classList.contains('on');
+        tabs.forEach(function(t){ t.classList.remove('on'); });
+        panels.forEach(function(p){ p.classList.remove('on'); });
+        if (!was){ tab.classList.add('on'); panels[i].classList.add('on'); }
+      });
+    });
+  });
+
+  /* ---------- Eingaben prüfen ---------- */
+  function checkInput(inp){
+    var fb = inp.parentElement.querySelector('.fb');
+    var x = parseNum(inp.value), soll = Number(inp.dataset.soll), tol = Number(inp.dataset.tol);
+    inp.classList.remove('ok', 'bad'); fb.className = 'fb'; fb.textContent = '';
+    if (inp.value.trim() === '') return null;
+    if (isNaN(x)) { inp.classList.add('bad'); fb.classList.add('bad'); fb.textContent = 'Bitte eine Zahl eingeben'; return false; }
+    var ok = Math.abs(x - soll) <= tol * Math.abs(soll);
+    inp.classList.add(ok ? 'ok' : 'bad'); fb.classList.add(ok ? 'ok' : 'bad');
+    if (ok) fb.textContent = '✓ richtig';
+    else {
+      var r = x / soll, tip = 'Noch nicht richtig – nutze die Hilfen.';
+      if (r > 0.9 && r < 1.1) tip = 'Fast! Prüfe das Runden.';
+      else if ([1000, 0.001, 3.6, 1/3.6, 60, 1/60, 3600, 1/3600, 100, 0.01].some(function(f){ return Math.abs(r / f - 1) < 0.05; }))
+        tip = 'Prüfe die Einheiten (Umrechnung)!';
+      fb.textContent = '✗ ' + tip;
+    }
+    return ok;
+  }
+  document.querySelectorAll('.aufg').forEach(function(a){
+    var inputs = a.querySelectorAll('input[data-soll]');
+    inputs.forEach(function(inp){
+      if (D.v[inp.id] !== undefined) { inp.value = D.v[inp.id]; checkInput(inp); }
+      inp.addEventListener('keydown', function(e){ if (e.key === 'Enter') a.querySelector('.chk').click(); });
+      inp.addEventListener('input', function(){ D.v[inp.id] = inp.value; save(); });
+    });
+    function allok(){ var n = 0; inputs.forEach(function(i){ if (i.classList.contains('ok')) n++; });
+      a.classList.toggle('allok', inputs.length > 0 && n === inputs.length); }
+    allok();
+    var chk = a.querySelector('.chk');
+    if (chk) chk.addEventListener('click', function(){ inputs.forEach(checkInput); allok(); });
+    var sb = a.querySelector('.showsol'), sol = a.querySelector('.sol');
+    sb.addEventListener('click', function(){
+      var on = sol.classList.toggle('open'); sb.classList.toggle('on', on);
+      sb.textContent = on ? 'Lösung ausblenden' : 'Lösung anzeigen';
+    });
+  });
+
+  /* ---------- OneNote: Ergebnisse kopieren ---------- */
+  document.querySelectorAll('.onenote').forEach(function(box){
+    var st = document.getElementById(box.dataset.st);
+    box.querySelector('.copy').addEventListener('click', function(){
+      var lines = [st.dataset.title + ' – meine Ergebnisse (' + new Date().toLocaleDateString('de-DE') + ')'];
+      st.querySelectorAll('.aufg').forEach(function(a){
+        var ins = a.querySelectorAll('input[data-soll]');
+        if (!ins.length) { lines.push(a.dataset.title + ': (Antwort im Heft)'); return; }
+        lines.push(a.dataset.title + ':');
+        ins.forEach(function(i){
+          var v = i.value.trim(), ok = i.classList.contains('ok');
+          lines.push('   ' + i.dataset.label + ' = ' + (v || '—') + ' ' + i.dataset.unit +
+                     (v ? (ok ? '  ✓' : '  (noch nicht richtig)') : ''));
+        });
+      });
+      var txt = lines.join('\n'), msg = box.querySelector('.msg');
+      function done(){ msg.textContent = '✓ Kopiert – jetzt in OneNote einfügen (Strg+V bzw. lange tippen → Einsetzen).'; }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, fallback);
+      else fallback();
+      function fallback(){
+        var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch(e){ msg.textContent = 'Kopieren nicht möglich – bitte abschreiben.'; }
+        document.body.removeChild(ta);
+      }
+    });
+    box.querySelector('.fertig').addEventListener('click', function(){
+      var k = box.dataset.st; if (D.done[k]) delete D.done[k]; else D.done[k] = true; save(); paintDone();
+    });
+  });
+  paintDone();
+
+  /* ---------- Station 1: eigener Wert im Balkendiagramm ---------- */
+  var own = document.getElementById('own1');
+  if (own) {
+    function upd1(){ var x = parseNum(own.value), bar = document.getElementById('ownbar1'), v = document.getElementById('ownv1');
+      if (isNaN(x) || x <= 0) { bar.style.width = '0%'; v.textContent = '–'; return; }
+      bar.style.width = Math.min(100, x / 1800 * 100) + '%'; v.textContent = '≈ ' + fmt(x, 0) + ' W';
+      D.v.own1 = own.value; save(); }
+    if (D.v.own1) own.value = D.v.own1;
+    own.addEventListener('input', upd1); upd1();
+  }
+
+  /* ---------- Station 2: Formel umstellen ---------- */
+  var F = {P:'$$P = \\frac{E}{t}$$', E:'$$E = P\\cdot t$$', t:'$$t = \\frac{E}{P}$$'};
+  document.querySelectorAll('.triangle .tri-btns button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.triangle .tri-btns button').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on'); var o = document.getElementById('triout'); o.innerHTML = F[b.dataset.f]; render(o);
+    });
+  });
+
+  /* ---------- Station 3: Beschleunigungs-Rechner ---------- */
+  var m3 = document.getElementById('m3'), t3 = document.getElementById('t3');
+  if (m3) {
+    function upd3(){ var m = +m3.value, t = +t3.value, v = 100 / 3.6, E = 0.5 * m * v * v, P = E / t;
+      document.getElementById('m3v').textContent = fmt(m, 0); document.getElementById('t3v').textContent = fmt(t, 1);
+      document.getElementById('e3').textContent = fmt(E / 1000, 0) + ' kJ';
+      document.getElementById('p3').textContent = fmt(P / 1000, 1) + ' kW';
+      document.getElementById('ps3').textContent = fmt(P / 735, 0) + ' PS'; }
+    m3.addEventListener('input', upd3); t3.addEventListener('input', upd3); upd3();
+  }
+
+  /* ---------- Station 4: Energiekosten-Rechner ---------- */
+  var dev = document.getElementById('dev4'), min4 = document.getElementById('min4');
+  if (dev) {
+    function upd4(){ var P = +dev.value, mn = +min4.value, kwh = P / 1000 * mn / 60 * 365;
+      document.getElementById('min4v').textContent = mn;
+      document.getElementById('kwh4').textContent = fmt(kwh, 1) + ' kWh';
+      document.getElementById('eur4').textContent = fmt(kwh * 0.35, 2) + ' €'; }
+    dev.addEventListener('change', upd4); min4.addEventListener('input', upd4); upd4();
+  }
+
+  /* ---------- Station 5: Pump- / Turbinenbetrieb ---------- */
+  var psw = document.querySelector('.psw');
+  if (psw) psw.querySelectorAll('.tri-btns button').forEach(function(b){
+    b.addEventListener('click', function(){
+      psw.querySelectorAll('.tri-btns button').forEach(function(x){ x.classList.remove('on'); }); b.classList.add('on');
+      var turb = b.dataset.mode === 'turb'; psw.classList.toggle('turb', turb);
+      document.getElementById('pswcap').innerHTML = turb
+        ? 'Turbinenbetrieb: Das Wasser fließt hinunter. Seine <strong>Lageenergie</strong> wird über die <strong>Bewegungsenergie</strong> des Wassers in den Turbinen und Generatoren in <strong>elektrische Energie</strong> umgewandelt.'
+        : 'Pumpbetrieb: Elektrische Energie (z.&nbsp;B. überschüssiger Wind- und Solarstrom) treibt Pumpen an. Das Wasser gewinnt <strong>Lageenergie</strong>.';
+    });
+  });
+
+  /* ---------- Zusatz: Wirkungsgrad ---------- */
+  var eta = document.getElementById('eta');
+  if (eta) {
+    function updZ(){ var e = +eta.value; document.getElementById('etav').textContent = e;
+      var fn = document.getElementById('fn'), fw = document.getElementById('fw');
+      fn.style.width = e + '%'; fw.style.width = (100 - e) + '%';
+      fn.textContent = e >= 18 ? 'nutzbar: ' + e + ' J' : e + ' J'; fw.textContent = (100 - e) >= 12 ? 'Wärme: ' + (100 - e) + ' J' : ''; }
+    eta.addEventListener('input', updZ); updZ();
+  }
+});
+</script>
+</body>
+</html>
