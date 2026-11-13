@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energieversorgung · Physik Klasse 10 · Sek I Unterrichtsmaterialien</title>
+<style>
+  :root { --blue:#004a8a; --blue-dark:#00325f; --orange:#e8740c;
+          --border:#dde1e7; --bg:#f4f5f7; --text:#1c1f26; --muted:#5c6472; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text);
+         font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+         line-height:1.55; font-size:16px; }
+  .wrap { max-width:1100px; margin:0 auto; padding:0 16px 64px; }
+  header.top { background:var(--blue); border-bottom:4px solid var(--blue-dark); color:#fff; }
+  header.top .inner { max-width:1100px; margin:0 auto; padding:32px 16px; }
+  header.top .breadcrumb { font-size:.82rem; opacity:.8; margin-bottom:8px; }
+  header.top .breadcrumb a { color:#fff; text-decoration:none; }
+  header.top .breadcrumb a:hover { text-decoration:underline; }
+  header.top h1 { font-size:2rem; font-weight:700; margin-bottom:6px; }
+  header.top p { font-size:1rem; opacity:.88; }
+  .section-title { font-size:1.1rem; font-weight:600; color:var(--muted); letter-spacing:.04em; text-transform:uppercase;
+                   margin:36px 0 14px; border-bottom:1px solid var(--border); padding-bottom:8px; }
+  .karte { background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px; }
+  .karte img { width:100%; height:auto; display:block; border-radius:6px; }
+  .seqbtns { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
+  .seqbtns button { background:#fff; border:1px solid var(--border); border-radius:20px; padding:6px 14px; font-size:.88rem;
+                    font-weight:600; color:var(--muted); cursor:pointer; font-family:inherit; }
+  .seqbtns button.on { background:var(--orange); border-color:var(--orange); color:#fff; }
+  .dl { font-size:.85rem; color:var(--muted); margin-top:10px; }
+  .dl a { color:var(--blue); font-weight:600; }
+  .kapitel-liste { display:flex; flex-direction:column; gap:10px; }
+  .kapitel-card { background:#fff; border:1px solid var(--border); border-left:4px solid var(--blue); border-radius:4px;
+                  padding:14px 20px; text-decoration:none; color:var(--text); display:flex; align-items:center; gap:16px; }
+  a.kapitel-card:hover { box-shadow:0 3px 10px rgba(0,0,0,.07); }
+  .kapitel-nr { font-size:1.05rem; font-weight:700; color:var(--blue); min-width:64px; }
+  .kapitel-info { flex:1; }
+  .kapitel-info h3 { font-size:1rem; font-weight:600; margin-bottom:3px; }
+  .kapitel-info p { font-size:.88rem; color:var(--muted); }
+  .kapitel-arr { color:var(--blue); font-size:1.1rem; }
+  .kapitel-card.pending { border-left-color:var(--border); opacity:.6; }
+  .kapitel-card.pending .kapitel-nr { color:var(--muted); }
+  .badge { display:inline-block; font-size:.72rem; font-weight:600; padding:1px 6px; border-radius:3px; margin-left:8px; vertical-align:middle; }
+  .badge.verfuegbar { background:#e1ecf7; color:var(--blue); }
+  .badge.vorbereitung { background:#f0f0f0; color:var(--muted); }
+  .badge.sim { background:#fdebd9; color:#a14f05; }
+  footer { text-align:center; color:var(--muted); font-size:.85rem; margin-top:60px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <div class="breadcrumb"><a href="../../../">Startseite</a> / <a href="../../">Physik</a> / <a href="../">Klasse 10</a> / Energieversorgung</div>
+    <h1>Energieversorgung</h1>
+    <p>Woher kommt der Strom aus der Steckdose? – Simulationen, Aufgaben und gestufte Hilfen</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="section-title" id="reisekarte">Reisekarte · Die Reise der Energie</div>
+  <div class="karte">
+    <div class="seqbtns" id="seqbtns">
+      <button data-v="gesamt" class="on" type="button">Gesamt</button>
+      <button data-v="A" type="button">A · Energiewandler</button>
+      <button data-v="B" type="button">B · Elektromagnetismus</button>
+      <button data-v="C" type="button">C · Elektromotor</button>
+      <button data-v="D" type="button">D · Induktion, Generator</button>
+      <button data-v="E" type="button">E · Transformator, Übertragung</button>
+      <button data-v="F" type="button">F · Zukunft</button>
+    </div>
+    <img id="kartenbild" src="Reisekarte/reisekarte_gesamt.svg" alt="Reisekarte: Kraftwerk, Generator, Umspannwerk, Hochspannungsleitung, Trafostation, Steckdose und Gerät">
+    <div class="dl">Für OneNote (Seite <b>EV00 Reisekarte</b>): Bild herunterladen und einfügen –
+      <a id="dl-png" href="Reisekarte/reisekarte_gesamt.png" download>PNG herunterladen</a></div>
+  </div>
+
+  <div class="section-title">Doppelstunden</div>
+  <div class="kapitel-liste">
+    <a class="kapitel-card" href="S1_Energiewandler/">
+      <div class="kapitel-nr">EV01</div>
+      <div class="kapitel-info">
+        <h3>Motor und Generator als Energiewandler <span class="badge sim">Simulation S1</span></h3>
+        <p>Energiewandler-Labor: Ein Motor hebt ein Gewichtsstück, ein sinkendes Gewicht treibt einen Generator an – Wirkungsgrad bestimmen (EV01-A1 bis A3)</p>
+      </div>
+      <div class="kapitel-arr">→</div>
+    </a>
+    <div class="kapitel-card pending"><div class="kapitel-nr">EV02</div><div class="kapitel-info"><h3>Magnetfelder elektrischer Ströme <span class="badge vorbereitung">in Vorbereitung</span></h3><p>Feldlinien von Leiter und Spule, Linke-Hand-Regel</p></div></div>
+    <div class="kapitel-card pending"><div class="kapitel-nr">EV03</div><div class="kapitel-info"><h3>Der Elektromotor <span class="badge vorbereitung">in Vorbereitung</span></h3><p>Leiterschaukel, Rotor, Stator, Kommutator</p></div></div>
+    <div class="kapitel-card pending"><div class="kapitel-nr">EV04–05</div><div class="kapitel-info"><h3>Projekt: Elektromotor selbst bauen <span class="badge vorbereitung">in Vorbereitung</span></h3><p>Bauanleitung und Hilfen zur Fehlersuche</p></div></div>
+    <div class="kapitel-card pending"><div class="kapitel-nr">EV05–06</div><div class="kapitel-info"><h3>Induktion und Generator <span class="badge vorbereitung">in Vorbereitung</span></h3><p>Induktionslabor, Wechselspannung</p></div></div>
+    <div class="kapitel-card pending"><div class="kapitel-nr">EV07–08</div><div class="kapitel-info"><h3>Transformator und Energieübertragung <span class="badge vorbereitung">in Vorbereitung</span></h3><p>Transformator, Fernleitung, vom Kraftwerk zum Haushalt</p></div></div>
+    <div class="kapitel-card pending"><div class="kapitel-nr">EV09–11</div><div class="kapitel-info"><h3>Energieversorgung der Zukunft und Podcast <span class="badge vorbereitung">in Vorbereitung</span></h3><p>Strommix, Speicher, Themenkarten und Kriterien für den Podcast</p></div></div>
+  </div>
+</div>
+
+<footer>Sek I Unterrichtsmaterialien · Friedrich-Bährens-Gymnasium Schwerte</footer>
+
+<script>
+  const img = document.getElementById("kartenbild"), dl = document.getElementById("dl-png");
+  document.querySelectorAll("#seqbtns button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll("#seqbtns button").forEach(x => x.classList.toggle("on", x === b));
+    img.src = "Reisekarte/reisekarte_" + b.dataset.v + ".svg";
+    dl.href = "Reisekarte/reisekarte_" + b.dataset.v + ".png";
+  }));
+</script>
+</body>
+</html>

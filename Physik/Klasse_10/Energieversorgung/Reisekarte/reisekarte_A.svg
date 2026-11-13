@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">
+<rect width="1600" height="900" fill="#ffffff"/>
+<rect width="1600" height="104" fill="#004a8a"/><rect y="104" width="1600" height="6" fill="#00325f"/>
+<text x="60" y="48" font-size="20" fill="#ffffff" opacity="0.85" letter-spacing="1.5">PHYSIK KLASSE 10 · ENERGIEVERSORGUNG · REISEKARTE</text>
+<text x="60" y="88" font-size="34" font-weight="700" fill="#ffffff">Woher kommt der Strom aus der Steckdose? – Die Reise der Energie</text>
+<rect x="1260" y="14" width="280" height="42" rx="21" fill="#e8740c"/>
+<text x="1400" y="42" font-size="20" font-weight="700" text-anchor="middle" fill="#fff">Heute: Sequenz A</text>
+<g opacity="1"><rect x="60.0" y="132" width="1480.0" height="74" rx="12" fill="#fff7ee" stroke="#e8740c" stroke-width="4" stroke-dasharray="0"/>
+<text x="84.0" y="164" font-size="22" font-weight="700" fill="#1c1f26">Begleiter auf jeder Station: Wirkungsgrad und Energieentwertung</text>
+<text x="84.0" y="192" font-size="19" fill="#5c6472">Bei jeder Umwandlung geht ein Teil der Energie als thermische Energie „verloren“.   η = E_nutz / E_zu</text>
+<text x="1516.0" y="178" font-size="18" font-weight="700" text-anchor="end" fill="#004a8a">Sequenz A · EV01  |  E · EV08</text></g>
+<g opacity="0.35">
+<rect x="60.0" y="250" width="210" height="420" rx="14" fill="#ffffff" stroke="#c9d2de" stroke-width="2"/>
+<rect x="60.0" y="250" width="210" height="8" rx="4" fill="#004a8a"/>
+<circle cx="94.0" cy="292" r="20" fill="#004a8a"/><text x="94.0" y="300" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">1</text>
+<g stroke="#1c1f26" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"><path d="M95.0,445 Q113.0,400 103.0,360 L147.0,360 Q137.0,400 155.0,445 Z" fill="#eef1f5"/><path d="M113.0,352 q6,-10 0,-18 q-6,-8 2,-16" stroke="#5c6472" stroke-width="2.5"/><path d="M133.0,352 q6,-10 0,-18 q-6,-8 2,-16" stroke="#5c6472" stroke-width="2.5"/><line x1="207.0" y1="380" x2="203.0" y2="445"/><line x1="207.0" y1="380" x2="211.0" y2="445"/><line x1="207.0" y1="380" x2="207.0" y2="336" stroke-width="4"/><line x1="207.0" y1="380" x2="245.0" y2="402" stroke-width="4"/><line x1="207.0" y1="380" x2="169.0" y2="402" stroke-width="4"/><circle cx="207.0" cy="380" r="4" fill="#1c1f26"/><line x1="80.0" y1="445" x2="250.0" y2="445" stroke-width="2"/></g>
+<text x="165.0" y="512" font-size="21" font-weight="700" text-anchor="middle" fill="#1c1f26">Kraftwerk</text>
+<text x="165.0" y="568" font-size="15.5" text-anchor="middle" fill="#5c6472">Turbine wird angetrieben</text>
+<text x="165.0" y="590" font-size="15.5" text-anchor="middle" fill="#5c6472">(Dampf, Wind, Wasser)</text>
+<rect x="70.0" y="618" width="190" height="34" rx="17" fill="#e8f0f9"/>
+<text x="165.0" y="641" font-size="14.5" font-weight="700" text-anchor="middle" fill="#004a8a">Sequenz F · EV09–EV11</text>
+</g>
+<path d="M274.0,400 L306.0,400" stroke="#e8740c" stroke-width="6"/>
+<path d="M302.0,388 L314.0,400 L302.0,412 Z" fill="#e8740c"/>
+<g opacity="1">
+<rect x="314.0" y="250" width="210" height="420" rx="14" fill="#ffffff" stroke="#e8740c" stroke-width="5"/>
+<rect x="314.0" y="250" width="210" height="8" rx="4" fill="#004a8a"/>
+<circle cx="348.0" cy="292" r="20" fill="#004a8a"/><text x="348.0" y="300" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">2</text>
+<g stroke="#1c1f26" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"><line x1="339.0" y1="400" x2="379.0" y2="400" stroke-width="5"/><circle cx="419.0" cy="400" r="40" fill="#fff"/><text x="419.0" y="414" font-size="40" font-weight="700" text-anchor="middle" fill="#1c1f26" stroke="none" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">G</text><path d="M361.0,370 A66,66 0 0 1 399.0,338" stroke="#e8740c" stroke-width="3"/><path d="M392.0,330 L401.0,338 L389.0,343" stroke="#e8740c" stroke-width="3"/><line x1="459.0" y1="388" x2="499.0" y2="388"/><line x1="459.0" y1="412" x2="499.0" y2="412"/></g>
+<text x="419.0" y="512" font-size="21" font-weight="700" text-anchor="middle" fill="#1c1f26">Generator</text>
+<text x="419.0" y="568" font-size="15.5" text-anchor="middle" fill="#5c6472">Bewegungsenergie →</text>
+<text x="419.0" y="590" font-size="15.5" text-anchor="middle" fill="#5c6472">elektrische Energie</text>
+<rect x="324.0" y="618" width="190" height="34" rx="17" fill="#e8f0f9"/>
+<text x="419.0" y="641" font-size="14.5" font-weight="700" text-anchor="middle" fill="#004a8a">Sequenz D · EV05–EV06</text>
+<rect x="349.0" y="228" width="140" height="36" rx="18" fill="#e8740c"/>
+<text x="419.0" y="253" font-size="17" font-weight="700" text-anchor="middle" fill="#fff">Hier sind wir</text>
+</g>
+<path d="M528.0,400 L560.0,400" stroke="#e8740c" stroke-width="6"/>
+<path d="M556.0,388 L568.0,400 L556.0,412 Z" fill="#e8740c"/>
+<text x="548.0" y="438" font-size="14" font-weight="700" text-anchor="middle" fill="#1c1f26" transform="rotate(-90 548.0 438)" dx="-34">ca. 20 kV</text>
+<g opacity="0.35">
+<rect x="568.0" y="250" width="210" height="420" rx="14" fill="#ffffff" stroke="#c9d2de" stroke-width="2"/>
+<rect x="568.0" y="250" width="210" height="8" rx="4" fill="#004a8a"/>
+<circle cx="602.0" cy="292" r="20" fill="#004a8a"/><text x="602.0" y="300" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">3</text>
+<g stroke="#1c1f26" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"><circle cx="657.0" cy="400" r="32" fill="none"/><circle cx="689.0" cy="400" r="32" fill="none"/><line x1="593.0" y1="400" x2="625.0" y2="400"/><line x1="721.0" y1="400" x2="753.0" y2="400"/><text x="673.0" y="356" font-size="30" font-weight="700" text-anchor="middle" fill="#004a8a" stroke="none" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">↑</text></g>
+<text x="673.0" y="512" font-size="21" font-weight="700" text-anchor="middle" fill="#1c1f26">Umspannwerk</text>
+<text x="673.0" y="568" font-size="15.5" text-anchor="middle" fill="#5c6472">Spannung wird</text>
+<text x="673.0" y="590" font-size="15.5" text-anchor="middle" fill="#5c6472">hochtransformiert</text>
+<rect x="578.0" y="618" width="190" height="34" rx="17" fill="#e8f0f9"/>
+<text x="673.0" y="641" font-size="14.5" font-weight="700" text-anchor="middle" fill="#004a8a">Sequenz E · EV07</text>
+</g>
+<path d="M782.0,400 L814.0,400" stroke="#e8740c" stroke-width="6"/>
+<path d="M810.0,388 L822.0,400 L810.0,412 Z" fill="#e8740c"/>
+<text x="802.0" y="438" font-size="14" font-weight="700" text-anchor="middle" fill="#1c1f26" transform="rotate(-90 802.0 438)" dx="-34">380 kV</text>
+<g opacity="0.35">
+<rect x="822.0" y="250" width="210" height="420" rx="14" fill="#ffffff" stroke="#c9d2de" stroke-width="2"/>
+<rect x="822.0" y="250" width="210" height="8" rx="4" fill="#004a8a"/>
+<circle cx="856.0" cy="292" r="20" fill="#004a8a"/><text x="856.0" y="300" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">4</text>
+<g stroke="#1c1f26" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"><path d="M893.0,450 L919.0,338 L935.0,338 L961.0,450"/><path d="M900.0,430 L947.0,405 M954.0,430 L907.0,405 M908.0,405 L939.0,370 M946.0,405 L915.0,370" stroke-width="2"/><line x1="877.0" y1="358" x2="977.0" y2="358"/><line x1="891.0" y1="382" x2="963.0" y2="382"/><line x1="877.0" y1="358" x2="877.0" y2="368" stroke-width="2"/><line x1="977.0" y1="358" x2="977.0" y2="368" stroke-width="2"/><line x1="891.0" y1="382" x2="891.0" y2="392" stroke-width="2"/><line x1="963.0" y1="382" x2="963.0" y2="392" stroke-width="2"/><path d="M832.0,370 Q855.0,378 877.0,368 M977.0,368 Q999.0,378 1022.0,370" stroke="#5c6472" stroke-width="2"/></g>
+<text x="927.0" y="500" font-size="21" font-weight="700" text-anchor="middle" fill="#1c1f26">Hochspannungs-</text>
+<text x="927.0" y="527" font-size="21" font-weight="700" text-anchor="middle" fill="#1c1f26">leitung</text>
+<text x="927.0" y="568" font-size="15.5" text-anchor="middle" fill="#5c6472">Transport über</text>
+<text x="927.0" y="590" font-size="15.5" text-anchor="middle" fill="#5c6472">weite Strecken</text>
+<rect x="832.0" y="618" width="190" height="34" rx="17" fill="#e8f0f9"/>
+<text x="927.0" y="641" font-size="14.5" font-weight="700" text-anchor="middle" fill="#004a8a">Sequenz E · EV08</text>
+</g>
+<path d="M1036.0,400 L1068.0,400" stroke="#e8740c" stroke-width="6"/>
+<path d="M1064.0,388 L1076.0,400 L1064.0,412 Z" fill="#e8740c"/>
+<text x="1056.0" y="438" font-size="14" font-weight="700" text-anchor="middle" fill="#1c1f26" transform="rotate(-90 1056.0 438)" dx="-34">380 kV</text>
+<g opacity="0.35">
+<rect x="1076.0" y="250" width="210" height="420" rx="14" fill="#ffffff" stroke="#c9d2de" stroke-width="2"/>
+<rect x="1076.0" y="250" width="210" height="8" rx="4" fill="#004a8a"/>
+<circle cx="1110.0" cy="292" r="20" fill="#004a8a"/><text x="1110.0" y="300" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">5</text>
+<g stroke="#1c1f26" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"><path d="M1121.0,448 L1121.0,385 L1181.0,345 L1241.0,385 L1241.0,448 Z" fill="#eef1f5"/><path d="M1185.0,370 L1169.0,402 L1183.0,402 L1173.0,432 L1197.0,394 L1183.0,394 L1193.0,370 Z" fill="#e8740c" stroke="#e8740c" stroke-width="1.5"/><text x="1223.0" y="438" font-size="30" font-weight="700" text-anchor="middle" fill="#004a8a" stroke="none" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">↓</text></g>
+<text x="1181.0" y="512" font-size="21" font-weight="700" text-anchor="middle" fill="#1c1f26">Trafostation</text>
+<text x="1181.0" y="568" font-size="15.5" text-anchor="middle" fill="#5c6472">Spannung wird auf</text>
+<text x="1181.0" y="590" font-size="15.5" text-anchor="middle" fill="#5c6472">230 V gesenkt</text>
+<rect x="1086.0" y="618" width="190" height="34" rx="17" fill="#e8f0f9"/>
+<text x="1181.0" y="641" font-size="14.5" font-weight="700" text-anchor="middle" fill="#004a8a">Sequenz E · EV07–EV08</text>
+</g>
+<path d="M1290.0,400 L1322.0,400" stroke="#e8740c" stroke-width="6"/>
+<path d="M1318.0,388 L1330.0,400 L1318.0,412 Z" fill="#e8740c"/>
+<text x="1310.0" y="438" font-size="14" font-weight="700" text-anchor="middle" fill="#1c1f26" transform="rotate(-90 1310.0 438)" dx="-34">230 V</text>
+<g opacity="1">
+<rect x="1330.0" y="250" width="210" height="420" rx="14" fill="#ffffff" stroke="#e8740c" stroke-width="5"/>
+<rect x="1330.0" y="250" width="210" height="8" rx="4" fill="#004a8a"/>
+<circle cx="1364.0" cy="292" r="20" fill="#004a8a"/><text x="1364.0" y="300" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">6</text>
+<g stroke="#1c1f26" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"><rect x="1361.0" y="366" width="68" height="68" rx="10" fill="#fff"/><circle cx="1395.0" cy="400" r="24" fill="#eef1f5"/><circle cx="1385.0" cy="400" r="4" fill="#1c1f26"/><circle cx="1405.0" cy="400" r="4" fill="#1c1f26"/><path d="M1429.0,400 C1445.0,400 1433.0,440 1457.0,420" stroke-width="2.5"/><circle cx="1483.0" cy="400" r="26" fill="#fff"/><text x="1483.0" y="410" font-size="28" font-weight="700" text-anchor="middle" fill="#1c1f26" stroke="none" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">M</text><path d="M1503.0,364 A40,40 0 0 1 1521.0,392" stroke="#e8740c" stroke-width="3"/><path d="M1514.0,388 L1521.0,396 L1526.0,385" stroke="#e8740c" stroke-width="3"/></g>
+<text x="1435.0" y="500" font-size="21" font-weight="700" text-anchor="middle" fill="#1c1f26">Steckdose</text>
+<text x="1435.0" y="527" font-size="21" font-weight="700" text-anchor="middle" fill="#1c1f26">und Gerät</text>
+<text x="1435.0" y="568" font-size="15.5" text-anchor="middle" fill="#5c6472">z. B. Motor: elektrische</text>
+<text x="1435.0" y="590" font-size="15.5" text-anchor="middle" fill="#5c6472">Energie → Bewegung</text>
+<rect x="1340.0" y="618" width="190" height="34" rx="17" fill="#e8f0f9"/>
+<text x="1435.0" y="641" font-size="14.5" font-weight="700" text-anchor="middle" fill="#004a8a">Sequenz C · EV03–EV05</text>
+<rect x="1365.0" y="228" width="140" height="36" rx="18" fill="#e8740c"/>
+<text x="1435.0" y="253" font-size="17" font-weight="700" text-anchor="middle" fill="#fff">Hier sind wir</text>
+</g>
+<g opacity="0.35"><rect x="60.0" y="704" width="1480.0" height="80" rx="12" fill="#eef1f5" stroke="#c9d2de" stroke-width="2"/>
+<g fill="none" stroke="#004a8a" stroke-width="2.5"><ellipse cx="112.0" cy="744" rx="30" ry="12"/><ellipse cx="112.0" cy="744" rx="18" ry="7"/></g><line x1="112.0" y1="712" x2="112.0" y2="776" stroke="#1c1f26" stroke-width="4"/>
+<text x="164.0" y="738" font-size="22" font-weight="700" fill="#1c1f26">Fundament: Elektrischer Strom erzeugt ein Magnetfeld – und ein Magnetfeld kann Spannung erzeugen</text>
+<text x="164.0" y="766" font-size="18" fill="#5c6472">Ohne Magnetismus gäbe es weder Generator noch Transformator noch Motor.</text>
+<text x="1516.0" y="766" font-size="18" font-weight="700" text-anchor="end" fill="#004a8a">Sequenz B · EV02</text></g>
+<text x="800.0" y="870" font-size="18" text-anchor="middle" fill="#5c6472">Sequenz A · Energiewandler Motor und Generator</text>
+</svg>

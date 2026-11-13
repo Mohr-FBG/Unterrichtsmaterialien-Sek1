@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S1 Energiewandler-Labor · Energieversorgung · Physik Klasse 10</title>
+<style>
+:root{
+  --blue:#004a8a; --blue-dark:#00325f; --orange:#e8740c; --green:#1a7f4b; --red:#c0392b;
+  --border:#dde1e7; --bg:#f4f5f7; --text:#1c1f26; --muted:#5c6472;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.5; font-size:16px}
+.wrap{max-width:1100px; margin:0 auto; padding:0 16px 64px}
+header.top{background:var(--blue); border-bottom:4px solid var(--blue-dark); color:#fff}
+header.top .inner{max-width:1100px; margin:0 auto; padding:22px 16px 24px}
+header.top .kap{font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.92}
+header.top h1{margin:6px 0 4px; font-size:1.7rem; line-height:1.2}
+header.top .sub{font-size:.92rem; opacity:.95}
+.backnav{margin:18px 0 4px}
+.backnav a{display:inline-flex; align-items:center; gap:6px; font-size:.86rem; font-weight:600;
+  color:var(--muted); text-decoration:none; border:1px solid var(--border); border-radius:20px;
+  padding:5px 13px; background:#fff}
+.backnav a:hover{border-color:var(--muted); color:var(--text)}
+.note{background:#e8f0f9; border-left:3px solid var(--blue); border-radius:6px; padding:10px 14px;
+  font-size:.92rem; margin:14px 0}
+.onenote{background:#f3eefa; border-left-color:#7719aa}
+.onenote b{color:#7719aa}
+
+.modes{display:flex; gap:8px; margin:16px 0 12px; flex-wrap:wrap}
+.modes button{border:1px solid var(--border); background:#fff; border-radius:22px; padding:8px 18px;
+  font-size:.95rem; font-weight:700; color:var(--muted); cursor:pointer; font-family:inherit}
+.modes button.on{background:var(--blue); border-color:var(--blue); color:#fff}
+
+.lab{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(300px,1fr); gap:16px}
+@media (max-width:760px){.lab{grid-template-columns:1fr}}
+.panel{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px}
+.panel h2{font-size:.82rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:0 0 10px}
+#scene{width:100%; height:auto; display:block}
+
+.meters{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.meter{border:2px solid #2b2f36; border-radius:10px; background:#2b2f36; color:#fff; padding:8px 10px 10px; position:relative}
+.meter .lbl{font-size:.75rem; font-weight:700; letter-spacing:.05em; opacity:.8}
+.meter .val{font-family:"DejaVu Sans Mono",Menlo,Consolas,monospace; font-size:1.9rem; font-weight:700;
+  background:#c9d8b6; color:#1c2a12; border-radius:5px; padding:2px 8px; text-align:right; margin-top:4px}
+.meter .unit{font-size:1rem; margin-left:4px}
+.meter .hold{position:absolute; top:8px; right:10px; font-size:.68rem; font-weight:700; background:var(--orange);
+  border-radius:3px; padding:0 5px; display:none}
+.meter.held .hold{display:block}
+.watch{grid-column:1 / -1; background:#0f3d6e; border-color:#0f3d6e}
+.watch .val{background:#e9eef5; color:#0f2540}
+.watch .btns{display:flex; gap:8px; margin-top:8px}
+.btn{border:0; border-radius:8px; padding:9px 14px; font-size:.95rem; font-weight:700; cursor:pointer; font-family:inherit}
+.btn.primary{background:var(--blue); color:#fff}
+.btn.primary:hover{background:var(--blue-dark)}
+.btn.go{background:var(--green); color:#fff}
+.btn.stop{background:var(--red); color:#fff}
+.btn.ghost{background:#fff; color:var(--text); border:1px solid var(--border)}
+.btn:disabled{opacity:.45; cursor:not-allowed}
+.watch .btn{flex:1}
+
+.ctrl{margin-top:14px}
+.ctrl label{font-size:.9rem; font-weight:600; display:flex; justify-content:space-between}
+.ctrl input[type=range]{width:100%; margin:6px 0 2px}
+.ctrl .row{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+.ctrl .row .btn{flex:1}
+.check{display:flex; align-items:center; gap:8px; font-size:.88rem; color:var(--muted); margin-top:10px}
+.status{margin-top:10px; font-size:.88rem; min-height:1.4em; color:var(--muted)}
+.status.warn{color:var(--red); font-weight:600}
+
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse; width:100%; margin-top:6px}
+th,td{border:1px solid var(--border); padding:6px 8px; text-align:center; font-size:.92rem}
+th{background:#f3f5f8; font-weight:600}
+.calc{display:none; background:#fbf6ee}
+body.showcalc .calc{display:table-cell}
+td.empty{color:var(--muted); font-style:italic}
+.tools{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; align-items:center}
+.tools .check{margin:0 0 0 auto}
+
+details.box{background:#fff; border:1px solid var(--border); border-radius:10px; margin-top:16px}
+details.box summary{padding:12px 14px; font-weight:700; cursor:pointer}
+details.box .in{padding:0 16px 14px}
+#sankey{width:100%; max-width:640px; height:auto; display:block; margin:6px auto}
+.tasks .t{border-left:3px solid var(--blue); background:#fbfcfd; border:1px solid var(--border); border-left-width:3px;
+  border-radius:6px; padding:10px 14px; margin:10px 0; scroll-margin-top:12px}
+.tasks .t b.code{color:var(--blue)}
+.kbd{display:inline-block; border:1px solid var(--border); border-bottom-width:2px; border-radius:4px; padding:0 6px; font-size:.85rem; background:#fafbfc}
+footer{text-align:center; color:var(--muted); font-size:.85rem; margin-top:40px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <div class="kap">Reihe Energieversorgung · Physik Klasse 10 · EV01 · Simulation S1</div>
+    <h1>Energiewandler-Labor: Motor und Generator</h1>
+    <div class="sub">Ein Motor hebt ein Gewichtsstück – ein sinkendes Gewichtsstück treibt einen Generator an. Wie viel der Energie kommt an?</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="backnav"><a href="../">← Zurück zur Reihe Energieversorgung</a></div>
+
+  <div class="note onenote"><b>OneNote: EV01 Energiewandler</b> · Übertrage deine Messwerte und Rechnungen auf diese Seite. Schreibe die Aufgabennummer (z.&nbsp;B. <b>EV01-A1</b>) als Überschrift über deine Lösung.</div>
+
+  <div class="modes" role="tablist">
+    <button id="m-motor" class="on" type="button">⚙️ Motor hebt Gewicht</button>
+    <button id="m-gen" type="button">💡 Generator: Gewicht sinkt</button>
+  </div>
+
+  <div class="lab">
+    <div class="panel">
+      <h2 id="scene-title">Versuchsaufbau</h2>
+      <svg id="scene" viewBox="0 70 620 475" role="img" aria-label="Versuchsaufbau mit Motor, Faden und Gewichtsstück"></svg>
+    </div>
+
+    <div class="panel">
+      <h2>Messgeräte</h2>
+      <div class="meters">
+        <div class="meter" id="mU"><div class="lbl">SPANNUNG U</div><span class="hold">HOLD</span><div class="val"><span id="vU">0,00</span><span class="unit">V</span></div></div>
+        <div class="meter" id="mI"><div class="lbl">STROMSTÄRKE I</div><span class="hold">HOLD</span><div class="val"><span id="vI">0,0</span><span class="unit">mA</span></div></div>
+        <div class="meter watch"><div class="lbl">STOPPUHR Δt</div><div class="val"><span id="vT">0,00</span><span class="unit">s</span></div>
+          <div class="btns"><button class="btn go" id="sw-start" type="button">Start / Stopp</button><button class="btn ghost" id="sw-reset" type="button">Null</button></div>
+        </div>
+      </div>
+
+      <div class="ctrl">
+        <label for="mass"><span id="mass-lbl">Masse des Gewichtsstücks</span><span id="mass-val">50 g</span></label>
+        <input id="mass" type="range" min="0" max="300" step="10" value="50">
+        <div class="row">
+          <button class="btn primary" id="act" type="button">Schalter schließen</button>
+          <button class="btn ghost" id="reset" type="button">Neu aufbauen</button>
+        </div>
+        <label class="check"><input type="checkbox" id="auto"> Lichtschranke: Zeit automatisch messen</label>
+        <div class="status" id="status">Stelle die Masse ein und schließe den Schalter. Starte die Stoppuhr selbst!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:16px">
+    <h2>Messwerttabelle</h2>
+    <div class="tablewrap">
+      <table id="tab">
+        <thead><tr><th>Nr.</th><th>Versuch</th><th>m in g</th><th>h in m</th><th>U in V</th><th>I in mA</th><th>Δt in s</th>
+          <th class="calc">E<sub>el</sub> in J</th><th class="calc">E<sub>L</sub> in J</th><th class="calc">η</th></tr></thead>
+        <tbody id="tbody"><tr><td colspan="10" class="empty">Noch keine Messung übernommen.</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tools">
+      <button class="btn primary" id="take" type="button" disabled>Messwerte übernehmen</button>
+      <button class="btn ghost" id="copy" type="button">Tabelle kopieren</button>
+      <button class="btn ghost" id="clear" type="button">Tabelle leeren</button>
+      <label class="check"><input type="checkbox" id="showcalc"> Auswertung zur Kontrolle einblenden</label>
+    </div>
+    <div class="status" id="tabstatus"></div>
+  </div>
+
+  <details class="box" id="flow">
+    <summary>Energieflussdiagramm des letzten Versuchs (erst nach deiner eigenen Rechnung öffnen)</summary>
+    <div class="in">
+      <svg id="sankey" viewBox="0 0 640 300" role="img" aria-label="Energieflussdiagramm"></svg>
+      <p style="font-size:.88rem;color:var(--muted)">Die Breite der Pfeile entspricht der Energie. Grundlage sind die genauen Werte der Simulation – deine Werte weichen wegen der Zeitmessung etwas ab.</p>
+    </div>
+  </details>
+
+  <details class="box">
+    <summary>So bedienst du die Simulation</summary>
+    <div class="in">
+      <ul>
+        <li>Oben wählst du den Versuch: <span class="kbd">Motor hebt Gewicht</span> oder <span class="kbd">Generator: Gewicht sinkt</span>.</li>
+        <li>Mit dem Regler stellst du die Masse ein. Mit <span class="kbd">Schalter schließen</span> bzw. <span class="kbd">Gewicht loslassen</span> startest du den Versuch.</li>
+        <li>Die Zeit misst du selbst mit der Stoppuhr – genau wie im echten Experiment. Mit der Lichtschranke geht es automatisch.</li>
+        <li>Die Messgeräte halten nach dem Versuch ihren letzten Wert fest (<b>HOLD</b>), damit du in Ruhe ablesen kannst.</li>
+        <li><span class="kbd">Messwerte übernehmen</span> schreibt eine Zeile in die Tabelle. <span class="kbd">Tabelle kopieren</span> legt sie in die Zwischenablage – dann in OneNote einfügen.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="tasks">
+    <div class="t" id="a1"><b class="code">EV01-A1</b> · Miss im Versuch <i>Motor hebt Gewicht</i> für 50&nbsp;g und 100&nbsp;g die Spannung, die Stromstärke und die Zeit. Berechne jeweils die zugeführte elektrische Energie, die Lageenergie und den Wirkungsgrad.</div>
+    <div class="t" id="a2"><b class="code">EV01-A2</b> · Untersuche, wie der Wirkungsgrad des Motors von der Masse abhängt. Führe mindestens fünf Messungen durch (auch ohne Gewichtsstück) und zeichne ein m-η-Diagramm. Beschreibe und erkläre den Verlauf.</div>
+    <div class="t" id="a3"><b class="code">EV01-A3</b> · Wechsle zum Versuch <i>Generator</i>. Bestimme für zwei Massen den Wirkungsgrad. Vergleiche mit dem Motor: Was fällt dir auf?</div>
+  </div>
+</div>
+
+<footer>Sek I Unterrichtsmaterialien · Friedrich-Bährens-Gymnasium Schwerte</footer>
+
+<script>
+(function(){
+"use strict";
+// ---------- Physikalisches Modell (Gleichstrommaschine) ----------
+// U = R·I + K·v  (v: Fadengeschwindigkeit)   K·(I − I0) = m·g  (Kraft am Faden)
+const U0 = 6.0, R = 17, K = 14.9, I0 = 0.007, g = 9.81, RL = 30;
+const H_MOTOR = 0.5, H_GEN = 1.0;
+
+function motorState(m){            // m in kg
+  const I = I0 + m*g/K;
+  const v = (U0 - R*I)/K;
+  return {U:U0, I:I, v:Math.max(v,0)};
+}
+function genState(m){
+  const F0 = K*I0;
+  if (m*g <= F0) return {U:0, I:0, v:0};
+  const I = (m*g - F0)/K;
+  const v = I*(R+RL)/K;
+  return {U:I*RL, I:I, v:v};
+}
+
+// ---------- Zustand ----------
+let mode = "motor";
+let running = false, finished = false;
+let pos = 0;          // Höhe Unterkante Gewicht in m
+let st = null;        // stationärer Zustand
+let tRun = 0, last = null;
+let drumAngle = 0;
+let held = null;      // gehaltene Messwerte
+let sw = {on:false, t:0, t0:0};
+let rows = [];
+let lastTrue = null;
+
+const $ = id => document.getElementById(id);
+const fmt = (x, d) => x.toFixed(d).replace(".", ",");
+const massKg = () => Number($("mass").value)/1000;
+
+// ---------- Szene ----------
+const svg = $("scene");
+const NS = "http://www.w3.org/2000/svg";
+const Y0 = 520, SCALE = 360, RX = 470, SX = 430;   // Boden (0 m), px pro m, Lineal-x, Faden-x
+const yOf = h => Y0 - h*SCALE;
+const DRUM_Y = yOf(1.12);
+
+function el(tag, attrs, parent){
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  (parent||svg).appendChild(e); return e;
+}
+function text(x, y, s, attrs, parent){
+  const t = el("text", Object.assign({x:x, y:y, "font-size":14, fill:"#1c1f26", "font-family":"inherit"}, attrs||{}), parent);
+  t.textContent = s; return t;
+}
+
+let gWeight, gDrum, gFlow, lampGlow, switchLever, machineLabel, schemLabel, startMark, endMark, schem;
+
+function buildScene(){
+  svg.innerHTML = "";
+  // Tisch
+  el("rect", {x:20, y:DRUM_Y+26, width:SX-10, height:14, fill:"#b08a5a", rx:3});
+  el("rect", {x:24, y:DRUM_Y+40, width:10, height:Y0-DRUM_Y-40, fill:"#9a774b"});
+  el("rect", {x:396, y:DRUM_Y+40, width:10, height:Y0-DRUM_Y-40, fill:"#9a774b"});
+  el("line", {x1:0, y1:Y0, x2:620, y2:Y0, stroke:"#8a94a3", "stroke-width":3});
+  // Lineal
+  el("rect", {x:RX, y:yOf(1.0)-10, width:46, height:SCALE+20, fill:"#fff7d6", stroke:"#c9b46a"});
+  for (let i=0;i<=20;i++){
+    const h = i*0.05, y = yOf(h), big = i%2===0;
+    el("line", {x1:RX, y1:y, x2:RX+(big?18:10), y2:y, stroke:"#6b5a1e", "stroke-width":big?1.6:1});
+    if (big) text(RX+21, y+5, fmt(h,1), {"font-size":12, fill:"#6b5a1e"});
+  }
+  text(RX+2, yOf(1.0)-16, "h in m", {"font-size":12, fill:"#6b5a1e"});
+  startMark = el("line", {x1:RX-60, y1:0, x2:RX+46, y2:0, stroke:"#1a7f4b", "stroke-width":2, "stroke-dasharray":"6 4"});
+  endMark   = el("line", {x1:RX-60, y1:0, x2:RX+46, y2:0, stroke:"#c0392b", "stroke-width":2, "stroke-dasharray":"6 4"});
+  // Maschine auf dem Tisch
+  el("rect", {x:SX-120, y:DRUM_Y-24, width:92, height:48, rx:10, fill:"#d5dbe3", stroke:"#4a5260", "stroke-width":2});
+  el("rect", {x:SX-130, y:DRUM_Y-16, width:12, height:32, rx:3, fill:"#4a5260"});
+  machineLabel = text(SX-74, DRUM_Y+7, "M", {"font-size":22, "font-weight":700, "text-anchor":"middle"});
+  el("rect", {x:SX-28, y:DRUM_Y-4, width:20, height:8, fill:"#4a5260"});
+  gDrum = el("g", {});
+  el("circle", {cx:SX-2, cy:DRUM_Y, r:13, fill:"#eef1f5", stroke:"#4a5260", "stroke-width":2}, gDrum);
+  el("line", {x1:SX-2, y1:DRUM_Y-13, x2:SX-2, y2:DRUM_Y+13, stroke:"#4a5260", "stroke-width":2}, gDrum);
+  // Faden + Gewicht
+  gWeight = el("g", {});
+  // Schaltplan
+  schem = el("g", {transform:"translate(44,"+(DRUM_Y+52)+")"});
+  drawSchematic();
+  update();
+}
+
+function drawSchematic(){
+  schem.innerHTML = "";
+  const BW = 340, BH = 250;
+  el("rect", {x:0, y:0, width:BW, height:BH, rx:10, fill:"#fff", stroke:"#dde1e7"}, schem);
+  schemLabel = text(14, 22, "", {"font-size":13, "font-weight":700, fill:"#5c6472"}, schem);
+  const L = 70, Rr = 270, T = 62, B = 212, my = (T+B)/2;
+  const wire = pts => el("polyline", {points:pts, fill:"none", stroke:"#1c1f26", "stroke-width":2}, schem);
+  const dot = (x,y) => el("circle", {cx:x, cy:y, r:3.5, fill:"#1c1f26"}, schem);
+  const meter = (x,y,ch) => { el("circle", {cx:x, cy:y, r:14, fill:"#fff", stroke:"#1c1f26", "stroke-width":2}, schem);
+                              text(x, y+5, ch, {"font-size":15, "font-weight":700, "text-anchor":"middle"}, schem); };
+  // Hauptkreis
+  wire(`${L},${T} ${Rr},${T} ${Rr},${B} ${L},${B} ${L},${T}`);
+  // Schalter oben
+  const sx0 = L+50, sx1 = L+90;
+  el("rect", {x:sx0+3, y:T-4, width:sx1-sx0-6, height:8, fill:"#fff"}, schem);
+  dot(sx0, T); dot(sx1, T);
+  switchLever = el("line", {x1:sx0, y1:T, x2:sx1, y2:T-18, stroke:"#1c1f26", "stroke-width":2.5}, schem);
+  text((sx0+sx1)/2, T-24, "S", {"font-size":12, "text-anchor":"middle", fill:"#5c6472"}, schem);
+  // Strommesser oben
+  meter(L+150, T, "A");
+  // Maschine rechts
+  el("circle", {cx:Rr, cy:my, r:17, fill:"#fff", stroke:"#1c1f26", "stroke-width":2}, schem);
+  text(Rr, my+6, mode==="motor"?"M":"G", {"font-size":17, "font-weight":700, "text-anchor":"middle"}, schem);
+  // linkes Bauteil
+  if (mode==="motor"){
+    lampGlow = null;
+    el("circle", {cx:L, cy:my, r:16, fill:"#fff", stroke:"#1c1f26", "stroke-width":2}, schem);
+    text(L, my+6, "=", {"font-size":18, "font-weight":700, "text-anchor":"middle"}, schem);
+    text(L-24, my+5, "6 V", {"font-size":13, fill:"#5c6472", "text-anchor":"end"}, schem);
+  } else {
+    lampGlow = el("circle", {cx:L, cy:my, r:26, fill:"#ffd23f", opacity:0}, schem);
+    el("circle", {cx:L, cy:my, r:16, fill:"#fff", "fill-opacity":0.25, stroke:"#1c1f26", "stroke-width":2}, schem);
+    el("line", {x1:L-11, y1:my-11, x2:L+11, y2:my+11, stroke:"#1c1f26", "stroke-width":2}, schem);
+    el("line", {x1:L-11, y1:my+11, x2:L+11, y2:my-11, stroke:"#1c1f26", "stroke-width":2}, schem);
+    text(L+24, my+5, "Lampe", {"font-size":12, fill:"#5c6472"}, schem);
+  }
+  // Spannungsmesser parallel: an der Maschine (Motor) bzw. an der Lampe (Generator)
+  const X = mode==="motor" ? Rr : L, dx = mode==="motor" ? 48 : -48;
+  wire(`${X},${my-42} ${X+dx},${my-42} ${X+dx},${my+42} ${X},${my+42}`);
+  dot(X, my-42); dot(X, my+42);
+  meter(X+dx, my, "V");
+}
+
+function drawWeight(){
+  gWeight.innerHTML = "";
+  const m = Number($("mass").value);
+  const bottom = yOf(pos);
+  const n = Math.round(m/50*1000)/1000;     // Anzahl 50-g-Scheiben (kann gebrochen sein)
+  const slab = 11, wW = 46;
+  const full = Math.floor(m/50), rest = m%50;
+  const hW = full*slab + (rest>0 ? slab*0.55 : 0);
+  const top = bottom - hW - 8;
+  // Faden
+  el("line", {x1:SX+11, y1:DRUM_Y, x2:SX+11, y2:top-16, stroke:"#333", "stroke-width":1.6}, gWeight);
+  // Haken
+  el("path", {d:`M${SX+11},${top-16} L${SX+11},${top-4} M${SX+11},${top-4} q-7,0 -7,-6`, stroke:"#333", "stroke-width":2, fill:"none"}, gWeight);
+  // Stange
+  el("rect", {x:SX+9, y:top-4, width:4, height:hW+8, fill:"#666"}, gWeight);
+  for (let i=0;i<full;i++){
+    const y = bottom - (i+1)*slab;
+    el("rect", {x:SX+11-wW/2, y:y, width:wW, height:slab-1.5, rx:2, fill:"#7b8794", stroke:"#4a5260"}, gWeight);
+  }
+  if (rest>0){
+    const y = bottom - full*slab - slab*0.55;
+    el("rect", {x:SX+11-wW/2+8, y:y, width:wW-16, height:slab*0.55-1, rx:2, fill:"#9aa5b1", stroke:"#4a5260"}, gWeight);
+  }
+  // Markierungsstrich an der Unterkante
+  el("line", {x1:SX+11+wW/2, y1:bottom, x2:RX, y2:bottom, stroke:"#e8740c", "stroke-width":1.5}, gWeight);
+  text(SX+11, bottom+18, m>0 ? m+" g" : "nur Haken", {"font-size":12, "text-anchor":"middle", fill:"#5c6472"}, gWeight);
+}
+
+function update(){
+  const hStart = mode==="motor" ? 0 : H_GEN;
+  const hEnd   = mode==="motor" ? H_MOTOR : 0;
+  startMark.setAttribute("y1", yOf(hStart)); startMark.setAttribute("y2", yOf(hStart));
+  endMark.setAttribute("y1", yOf(hEnd));     endMark.setAttribute("y2", yOf(hEnd));
+  drawWeight();
+  gDrum.setAttribute("transform", `rotate(${drumAngle} ${SX-2} ${DRUM_Y})`);
+  machineLabel.textContent = mode==="motor" ? "M" : "G";
+  schemLabel.textContent = mode==="motor" ? "Schaltplan: Motor an einer Quelle" : "Schaltplan: dieselbe Maschine als Generator";
+  if (mode==="motor"){
+    switchLever.setAttribute("y2", running ? 62 : 62-18);
+  } else {
+    switchLever.setAttribute("y2", 62);   // Generator: Kreis geschlossen
+  }
+  if (lampGlow){
+    const P = running && st ? st.U*st.I : 0;
+    lampGlow.setAttribute("opacity", Math.min(P/1.2, 1)*0.95);
+  }
+}
+
+// ---------- Anzeige ----------
+function showMeters(){
+  let U = 0, I = 0;
+  if (running && st){
+    U = st.U*(1 + (Math.random()-0.5)*0.004);
+    I = st.I*(1 + (Math.random()-0.5)*0.01);
+  } else if (held){ U = held.U; I = held.I; }
+  $("vU").textContent = fmt(U, 2);
+  $("vI").textContent = fmt(I*1000, 1);
+  $("mU").classList.toggle("held", !running && !!held);
+  $("mI").classList.toggle("held", !running && !!held);
+}
+function showWatch(){
+  const t = sw.on ? (performance.now()-sw.t0)/1000 + sw.t : sw.t;
+  $("vT").textContent = fmt(t, 2);
+}
+function setStatus(msg, warn){ const s=$("status"); s.textContent = msg; s.className = "status"+(warn?" warn":""); }
+
+// ---------- Ablauf ----------
+function resetRun(){
+  running = false; finished = false; tRun = 0; held = null; st = null;
+  pos = mode==="motor" ? 0 : H_GEN;
+  $("act").textContent = mode==="motor" ? "Schalter schließen" : "Gewicht loslassen";
+  $("act").className = "btn primary"; $("act").disabled = false;
+  $("mass").disabled = false;
+  $("take").disabled = true;
+  update(); showMeters();
+}
+
+function startRun(){
+  const m = massKg();
+  st = mode==="motor" ? motorState(m) : genState(m);
+  if (mode==="gen" && st.v===0){ setStatus("Das Gewichtsstück ist zu leicht – es kann die Reibung im Generator nicht überwinden.", true); return; }
+  if (mode==="motor" && st.v<=0.0005){ setStatus("Das Gewichtsstück ist zu schwer – der Motor schafft es nicht.", true); return; }
+  running = true; finished = false; tRun = 0; last = null; held = null;
+  $("mass").disabled = true;
+  $("act").textContent = mode==="motor" ? "Schalter öffnen" : "Läuft …";
+  $("act").className = mode==="motor" ? "btn stop" : "btn primary";
+  $("act").disabled = mode!=="motor";
+  if ($("auto").checked){ sw.t = 0; sw.on = true; sw.t0 = performance.now(); }
+  setStatus(mode==="motor" ? "Der Motor hebt das Gewichtsstück …" : "Das Gewichtsstück sinkt und treibt den Generator an …");
+  requestAnimationFrame(step);
+}
+
+function stopRun(reachedEnd){
+  running = false;
+  if (reachedEnd){
+    finished = true;
+    held = {U:st.U*(1+(Math.random()-0.5)*0.003), I:st.I*(1+(Math.random()-0.5)*0.008)};
+    const m = massKg(), h = mode==="motor" ? H_MOTOR : H_GEN;
+    const Eel = st.U*st.I*tRun, EL = m*g*h;
+    lastTrue = {mode, m, h, Eel, EL, t:tRun};
+    drawSankey();
+    $("take").disabled = false;
+    setStatus("Fertig. Lies die gehaltenen Messwerte ab und übernimm sie in die Tabelle.");
+  } else {
+    setStatus("Versuch abgebrochen. Mit „Neu aufbauen“ beginnst du von vorn.", true);
+  }
+  if ($("auto").checked && sw.on){ sw.t = tRun; sw.on = false; }
+  $("act").textContent = mode==="motor" ? "Schalter schließen" : "Gewicht loslassen";
+  $("act").className = "btn primary";
+  $("act").disabled = true;
+  update(); showMeters(); showWatch();
+}
+
+function step(ts){
+  if (!running) return;
+  if (last===null) last = ts;
+  const dt = Math.min((ts-last)/1000, 0.05); last = ts;
+  tRun += dt;
+  const dir = mode==="motor" ? 1 : -1;
+  pos += dir*st.v*dt;
+  drumAngle += dir*st.v*dt/0.013*180/Math.PI*0.25;
+  const target = mode==="motor" ? H_MOTOR : 0;
+  if ((mode==="motor" && pos>=target) || (mode==="gen" && pos<=target)){
+    tRun -= Math.abs(pos-target)/st.v; pos = target;
+    update(); stopRun(true); return;
+  }
+  update(); showMeters();
+  requestAnimationFrame(step);
+}
+
+setInterval(()=>{ if (sw.on) showWatch(); if (running) showMeters(); }, 50);
+
+// ---------- Tabelle ----------
+function renderTable(){
+  const tb = $("tbody"); tb.innerHTML = "";
+  if (!rows.length){ tb.innerHTML = '<tr><td colspan="10" class="empty">Noch keine Messung übernommen.</td></tr>'; return; }
+  rows.forEach((r,i)=>{
+    const Eel = r.U*r.I/1000*r.t, EL = r.m/1000*g*r.h;
+    const eta = r.mode==="motor" ? EL/Eel : Eel/EL;
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${i+1}</td><td>${r.mode==="motor"?"Motor":"Generator"}</td><td>${r.m}</td><td>${fmt(r.h,1)}</td>
+      <td>${fmt(r.U,2)}</td><td>${fmt(r.I,1)}</td><td>${fmt(r.t,2)}${r.auto?" (LS)":""}</td>
+      <td class="calc">${fmt(Eel,3)}</td><td class="calc">${fmt(EL,3)}</td><td class="calc">${isFinite(eta)?Math.round(eta*100)+" %":"–"}</td>`;
+    tb.appendChild(tr);
+  });
+}
+$("take").addEventListener("click", ()=>{
+  const t = sw.on ? (performance.now()-sw.t0)/1000+sw.t : sw.t;
+  if (t <= 0){ $("tabstatus").textContent = "Die Stoppuhr zeigt 0,00 s – miss zuerst die Zeit (oder nutze die Lichtschranke)."; $("tabstatus").className="status warn"; return; }
+  rows.push({mode, m:Number($("mass").value), h: mode==="motor"?H_MOTOR:H_GEN,
+    U: Math.round(held.U*100)/100, I: Math.round(held.I*10000)/10, t: Math.round(t*100)/100, auto:$("auto").checked});
+  renderTable();
+  $("take").disabled = true;
+  $("tabstatus").textContent = "Übernommen. Für die nächste Messung: „Neu aufbauen“."; $("tabstatus").className="status";
+});
+$("clear").addEventListener("click", ()=>{ if (rows.length && confirm("Tabelle wirklich leeren?")){ rows=[]; renderTable(); } });
+$("copy").addEventListener("click", ()=>{
+  const calc = document.body.classList.contains("showcalc");
+  let s = "Nr.\tVersuch\tm in g\th in m\tU in V\tI in mA\tΔt in s" + (calc?"\tE_el in J\tE_L in J\tη":"") + "\n";
+  rows.forEach((r,i)=>{
+    const Eel = r.U*r.I/1000*r.t, EL = r.m/1000*g*r.h, eta = r.mode==="motor"?EL/Eel:Eel/EL;
+    s += [i+1, r.mode==="motor"?"Motor":"Generator", r.m, fmt(r.h,1), fmt(r.U,2), fmt(r.I,1), fmt(r.t,2)].join("\t");
+    if (calc) s += "\t"+[fmt(Eel,3), fmt(EL,3), isFinite(eta)?Math.round(eta*100)+" %":"–"].join("\t");
+    s += "\n";
+  });
+  const done = ()=>{ $("tabstatus").textContent = "Tabelle kopiert – jetzt in OneNote einfügen."; $("tabstatus").className="status"; };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(s).then(done, ()=>fallbackCopy(s, done));
+  else fallbackCopy(s, done);
+});
+function fallbackCopy(s, done){
+  const ta = document.createElement("textarea"); ta.value = s; document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); done(); } catch(e){}
+  ta.remove();
+}
+$("showcalc").addEventListener("change", e=> document.body.classList.toggle("showcalc", e.target.checked));
+
+// ---------- Energieflussdiagramm ----------
+function drawSankey(){
+  const s = $("sankey"); s.innerHTML = "";
+  const mk = (tag, a)=>{ const e=document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k,a[k]); s.appendChild(e); return e; };
+  const tx = (x,y,str,a)=>{ const t=mk("text", Object.assign({x:x,y:y,"font-size":14,fill:"#1c1f26"},a||{})); t.textContent=str; return t; };
+  if (!lastTrue){ tx(320,150,"Noch kein Versuch durchgeführt.",{"text-anchor":"middle",fill:"#5c6472"}); return; }
+  const motor = lastTrue.mode==="motor";
+  const Ezu = motor ? lastTrue.Eel : lastTrue.EL;
+  const En  = motor ? lastTrue.EL  : lastTrue.Eel;
+  const Ev  = Math.max(Ezu-En, 0);
+  const Wmax = 110, wz = Wmax, wn = Ezu>0 ? Wmax*En/Ezu : 0, wv = Wmax-wn;
+  const y0 = 40, x0 = 30, xs = 300, xe = 560;
+  const cZu = motor ? "#f2b84b" : "#7bb4e3", cN = motor ? "#7bb4e3" : "#f2b84b", cV = "#e57373";
+  mk("rect",{x:x0,y:y0,width:xs-x0,height:wz,fill:cZu});
+  if (wn>0.5) mk("path",{d:`M${xs},${y0} L${xe},${y0} L${xe+30},${y0+wn/2} L${xe},${y0+wn} L${xs},${y0+wn} Z`,fill:cN});
+  if (wv>0.5) mk("path",{d:`M${xs},${y0+wn} L${xs},${y0+wz} Q${xs+wv+40},${y0+wz} ${xs+wv+40},${y0+wz+60} L${xs+wv/2+40},${y0+wz+90} L${xs+40-0},${y0+wz+60} Q${xs+40},${y0+wn+wv*0} ${xs},${y0+wn} Z`,fill:cV, opacity:0.9});
+  tx(x0+8, y0+wz/2-6, motor ? "elektrische Energie" : "Lageenergie", {"font-weight":700});
+  tx(x0+8, y0+wz/2+14, "E_zu = "+fmt(Ezu,3)+" J");
+  tx(xe-8, y0-10, (motor ? "Lageenergie" : "elektrische Energie (Lampe)")+": "+fmt(En,3)+" J", {"text-anchor":"end","font-weight":700});
+  tx(xs+wv+58, y0+wz+74, "entwertet (v. a. thermische Energie): "+fmt(Ev,3)+" J", {"font-weight":700});
+  tx(xe-8, y0+wz+28, "η = "+Math.round(En/Ezu*100)+" %", {"text-anchor":"end","font-size":20,"font-weight":700,fill:"#004a8a"});
+  tx(x0, 285, (motor?"Motor":"Generator")+", m = "+Math.round(lastTrue.m*1000)+" g, h = "+fmt(lastTrue.h,1)+" m, Δt = "+fmt(lastTrue.t,2)+" s", {fill:"#5c6472","font-size":13});
+}
+
+// ---------- Bedienelemente ----------
+$("act").addEventListener("click", ()=>{
+  if (mode==="motor" && running){ stopRun(false); return; }
+  if (!running && !finished) startRun();
+});
+$("reset").addEventListener("click", resetRun);
+$("mass").addEventListener("input", ()=>{
+  const m = Number($("mass").value);
+  $("mass-val").textContent = m>0 ? m+" g" : "0 g (Leerlauf)";
+  update();
+});
+$("sw-start").addEventListener("click", ()=>{
+  if (sw.on){ sw.t += (performance.now()-sw.t0)/1000; sw.on = false; }
+  else { sw.on = true; sw.t0 = performance.now(); }
+  showWatch();
+});
+$("sw-reset").addEventListener("click", ()=>{ sw.on=false; sw.t=0; showWatch(); });
+
+function setMode(m){
+  mode = m;
+  $("m-motor").classList.toggle("on", m==="motor");
+  $("m-gen").classList.toggle("on", m==="gen");
+  const r = $("mass");
+  if (m==="motor"){ r.min = 0; } else { r.min = 50; if (Number(r.value)<50) r.value = 50; }
+  r.dispatchEvent(new Event("input"));
+  $("scene-title").textContent = m==="motor" ? "Versuchsaufbau: Motor hebt Gewicht um 0,5 m" : "Versuchsaufbau: Gewicht sinkt um 1,0 m und treibt den Generator an";
+  sw.on=false; sw.t=0; showWatch();
+  drawSchematic(); resetRun();
+  setStatus(m==="motor" ? "Stelle die Masse ein und schließe den Schalter. Starte die Stoppuhr selbst!"
+                        : "Stelle die Masse ein und lass das Gewicht los. Starte die Stoppuhr selbst!");
+}
+$("m-motor").addEventListener("click", ()=>setMode("motor"));
+$("m-gen").addEventListener("click", ()=>setMode("gen"));
+
+buildScene();
+setMode(location.hash==="#generator" ? "gen" : "motor");
+drawSankey();
+})();
+</script>
+</body>
+</html>
