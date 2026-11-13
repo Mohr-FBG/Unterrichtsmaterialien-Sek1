@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>S1 Energiewandler-Labor · Energieversorgung · Physik Klasse 10</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 :root{
   --blue:#004a8a; --blue-dark:#00325f; --orange:#e8740c; --green:#1a7f4b; --red:#c0392b;
@@ -34,8 +38,8 @@ header.top .sub{font-size:.92rem; opacity:.95}
   font-size:.95rem; font-weight:700; color:var(--muted); cursor:pointer; font-family:inherit}
 .modes button.on{background:var(--blue); border-color:var(--blue); color:#fff}
 
-.lab{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(300px,1fr); gap:16px}
-@media (max-width:760px){.lab{grid-template-columns:1fr}}
+.labgrid{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(300px,1fr); gap:16px}
+@media (max-width:760px){.labgrid{grid-template-columns:1fr}}
 .panel{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px}
 .panel h2{font-size:.82rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:0 0 10px}
 #scene{width:100%; height:auto; display:block}
@@ -71,8 +75,6 @@ header.top .sub{font-size:.92rem; opacity:.95}
 .status.warn{color:var(--red); font-weight:600}
 
 .tablewrap{overflow-x:auto}
-table{border-collapse:collapse; width:100%; margin-top:6px}
-th,td{border:1px solid var(--border); padding:6px 8px; text-align:center; font-size:.92rem}
 th{background:#f3f5f8; font-weight:600}
 .calc{display:none; background:#fbf6ee}
 body.showcalc .calc{display:table-cell}
@@ -89,6 +91,168 @@ details.box .in{padding:0 16px 14px}
 .tasks .t b.code{color:var(--blue)}
 .kbd{display:inline-block; border:1px solid var(--border); border-bottom-width:2px; border-radius:4px; padding:0 6px; font-size:.85rem; background:#fafbfc}
 footer{text-align:center; color:var(--muted); font-size:.85rem; margin-top:40px}
+
+:root{--c1:#1a7f4b; --c2:#c8660a; --c3:#6b3fa0; --c4:#0b7285}
+.section-head{font-size:1.1rem; font-weight:600; color:var(--muted); letter-spacing:.04em; text-transform:uppercase;
+  margin:40px 0 4px; border-bottom:1px solid var(--border); padding-bottom:8px}
+#tab{width:100%}
+#tab th,#tab td{border:1px solid var(--border); padding:6px 8px; text-align:center; font-size:.92rem}
+.copybar{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:8px}
+.btn.onenote{background:#7719aa; color:#fff}
+.btn.onenote:hover{background:#5c1385}
+#etachart{width:100%; max-width:640px; height:auto; display:block; margin:6px auto}
+.chartbox{display:none; margin-top:14px; border-top:1px dashed var(--border); padding-top:12px}
+body.showcalc .chartbox{display:block}
+.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#1c1f26; color:#fff;
+  padding:10px 18px; border-radius:8px; font-size:.92rem; opacity:0; transition:opacity .25s; pointer-events:none; z-index:60}
+.toast.on{opacity:1}
+.controls{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 16px;
+  margin:18px 0 22px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between}
+.unlock{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.unlock label{font-size:.9rem; color:var(--muted)}
+.unlock input{border:1px solid var(--border); border-radius:6px; padding:6px 10px; font-size:.95rem;
+  width:130px; font-family:inherit}
+.unlock button{background:var(--blue); color:#fff; border:0; border-radius:6px; padding:7px 14px;
+  font-size:.9rem; font-weight:600; cursor:pointer; font-family:inherit}
+.unlock button:hover{background:var(--blue-dark)}
+.unlock .msg{font-size:.85rem; font-weight:600}
+.unlock .msg.ok{color:var(--green)}
+.unlock .msg.bad{color:#c0392b}
+.filters{display:flex; gap:6px; flex-wrap:wrap}
+.filters button{background:#fff; border:1px solid var(--border); border-radius:20px; padding:6px 14px;
+  font-size:.85rem; cursor:pointer; color:var(--muted); font-family:inherit; font-weight:600}
+.filters button:hover{border-color:var(--muted)}
+.filters button.on{background:var(--text); border-color:var(--text); color:#fff}
+
+
+
+.howto{background:#fff; border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:.9rem;
+  margin:12px 0; color:var(--muted)}
+.howto strong{color:var(--text)}
+
+.ab-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:34px 0 12px;
+  padding-bottom:8px; border-bottom:2px solid var(--border)}
+.ab-badge{color:#fff; border-radius:6px; padding:4px 12px; font-weight:700; font-size:.9rem}
+.ab-head .t{font-weight:700; font-size:1.1rem}
+.ab-head .desc{color:var(--muted); font-size:.9rem; flex-basis:100%}
+.s1 .ab-badge{background:var(--c1)} .s2 .ab-badge{background:var(--c2)} .s3 .ab-badge{background:var(--c3)} .s4 .ab-badge{background:var(--c4)}
+
+.card{background:#fff; border:1px solid var(--border); border-radius:10px; margin-bottom:14px; overflow:hidden;
+  scroll-margin-top:12px}
+.card.s1{border-top:4px solid var(--c1)} .card.s2{border-top:4px solid var(--c2)} .card.s3{border-top:4px solid var(--c3)} .card.s4{border-top:4px solid var(--c4)}
+.card.flash{box-shadow:0 0 0 3px rgba(0,74,138,.35)}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 18px;
+  cursor:pointer; user-select:none}
+.card-head:hover{background:#fafbfc}
+.card-head h3{margin:0; font-size:1.03rem; font-weight:700}
+.card-head .right{display:flex; align-items:center; gap:10px}
+.chev{color:var(--muted); font-size:1.1rem; transition:transform .18s}
+.card.open .chev{transform:rotate(180deg)}
+.card-body{display:none; padding:0 18px 18px}
+.card.open .card-body{display:block}
+.qrbtn{display:none; border:1px solid var(--border); background:#fff; border-radius:6px; padding:3px 9px;
+  font-size:.78rem; font-weight:600; color:var(--blue); cursor:pointer; font-family:inherit}
+body.unlocked .qrbtn{display:inline-block}
+
+.task{background:#fbfcfd; border:1px solid var(--border); border-left:3px solid var(--blue); border-radius:6px;
+  padding:12px 15px; margin-bottom:14px}
+.task p{margin:.5em 0} .task p:first-child{margin-top:0} .task p:last-child{margin-bottom:0}
+.task ul, .sol ul{margin:.4em 0; padding-left:1.3em}
+.tw{overflow-x:auto}
+.sol table,.task table{border-collapse:collapse; margin:10px auto; width:auto}
+td,th{border:1px solid var(--border); padding:5px 12px; font-size:.92rem; text-align:center; min-width:70px}
+th{background:#f3f5f8; font-weight:600}
+th.u{background:#fafbfc; font-weight:400; color:var(--muted); font-size:.82rem}
+.task td{height:1.9em}
+
+.assess{display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:14px}
+.assess .lab{font-size:.83rem; color:var(--muted); margin-right:2px}
+.assess button{border:1px solid var(--border); background:#fff; border-radius:16px; padding:4px 12px;
+  font-size:.8rem; cursor:pointer; color:var(--muted); font-family:inherit}
+.assess button.on[data-v="ok"]{background:var(--c1); border-color:var(--c1); color:#fff}
+.assess button.on[data-v="mid"]{background:var(--c2); border-color:var(--c2); color:#fff}
+.assess button.on[data-v="ask"]{background:var(--blue); border-color:var(--blue); color:#fff}
+
+.hints{border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:14px}
+.hints .htitle{background:#f7f8fa; padding:7px 14px; font-size:.8rem; font-weight:700; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border)}
+.htabs{display:flex; flex-wrap:wrap; gap:6px; padding:10px 14px; background:#fdfdfe}
+.htabs button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:5px 11px;
+  font-size:.82rem; cursor:pointer; color:var(--text); font-family:inherit}
+.htabs button:hover{border-color:var(--blue)}
+.htabs button.on{background:var(--blue); border-color:var(--blue); color:#fff; font-weight:600}
+.hpanel{display:none; padding:12px 15px; border-top:1px solid var(--border); font-size:.95rem}
+.hpanel.on{display:block}
+.hpanel h4{margin:0 0 8px; font-size:.92rem; color:var(--blue-dark)}
+.hpanel p{margin:.5em 0}
+
+.sol-lock{background:#f7f8fa; border:1px dashed var(--border); border-radius:8px; padding:12px 15px;
+  font-size:.9rem; color:var(--muted); text-align:center}
+.sol{display:none; border:1px solid var(--green); border-radius:8px; overflow:hidden}
+.sol .sh{background:var(--green); color:#fff; padding:7px 15px; font-weight:700; font-size:.88rem}
+.sol .sb{padding:13px 15px; font-size:.95rem}
+.sol .sb p{margin:.55em 0} .sol .sb p:first-child{margin-top:0}
+body.unlocked .sol{display:block}
+body.unlocked .sol-lock{display:none}
+
+.katex{font-size:1.04em}
+.katex-display{margin:.6em 0; overflow-x:auto; overflow-y:hidden}
+
+#qrmodal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center;
+  justify-content:center; z-index:50; padding:16px}
+#qrmodal.on{display:flex}
+#qrmodal .box{background:#fff; border-radius:10px; padding:20px 22px; max-width:360px; width:100%; text-align:center}
+#qrmodal h4{margin:0 0 10px; font-size:1rem}
+#qrcanvas{display:flex; justify-content:center; margin:10px 0}
+#qrurl{font-size:.75rem; color:var(--muted); word-break:break-all; margin:8px 0 12px}
+#qrmodal button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:6px 12px;
+  font-size:.85rem; cursor:pointer; font-family:inherit; margin:0 3px}
+#qrmodal button.pri{background:var(--blue); color:#fff; border-color:var(--blue)}
+
+
+
+@media(max-width:600px){
+  header.top h1{font-size:1.32rem}
+  .controls{flex-direction:column; align-items:stretch}
+  .card-head h3{font-size:.95rem}
+}
+
+.fig{text-align:center; margin:12px 0}
+.fig svg.sch{max-width:100%; height:auto}
+.fig .cap{font-size:.82rem; color:var(--muted); margin-top:2px}
+.merke{background:#eef7f1; border:1px solid #cfe6d8; border-left:4px solid var(--green); border-radius:8px;
+  padding:11px 15px; margin:12px 0; font-size:.95rem}
+.merke .mt{font-weight:700; color:var(--green); font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:3px}
+.intro{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 18px; margin:0 0 14px; font-size:.95rem}
+.intro h4{margin:0 0 6px; font-size:1rem}
+.intro p{margin:.45em 0}
+.intro .goal{display:inline-block; background:#e8f0f9; color:var(--blue-dark); border-radius:6px; padding:3px 10px;
+  font-size:.86rem; font-weight:600; margin-top:4px}
+.flex2{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+.flex2 > div{flex:1 1 260px}
+.sim{background:#fff; border:1px solid var(--border); border-radius:10px; margin:12px 0 18px; overflow:hidden}
+.sim summary{cursor:pointer; padding:11px 16px; font-weight:700; font-size:.95rem; list-style:none}
+.sim summary::-webkit-details-marker{display:none}
+.sim summary:before{content:"▸ "; color:var(--blue)}
+.sim[open] summary:before{content:"▾ "}
+.sim .sb2{padding:0 16px 14px; font-size:.92rem}
+.sim .sb2 ul{margin:.3em 0; padding-left:1.2em}
+.sim .sb2 li{margin:.25em 0}
+.kbd{display:inline-block; border:1px solid var(--border); background:#f7f8fa; border-radius:4px; padding:0 6px;
+  font-size:.85em; font-weight:600; white-space:nowrap}
+.wiss{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin:10px 0 4px}
+.wiss div{background:#fbfcfd; border:1px solid var(--border); border-radius:8px; padding:9px 12px; font-size:.88rem}
+.wiss b{display:block; color:var(--blue-dark); margin-bottom:2px}
+.step{display:inline-block; background:var(--blue); color:#fff; border-radius:50%; width:1.45em; height:1.45em;
+  line-height:1.45em; text-align:center; font-size:.8rem; font-weight:700; margin-right:6px}
+.sbz{background:#fff7ec; border:1px dashed #e8b979; border-radius:6px; padding:7px 11px; margin:.5em 0; font-size:.93rem}
+.mini{font-size:.86rem; color:var(--muted)}
+.task td.pre{background:#f3f5f8; font-weight:600}
+.ok{color:var(--green); font-weight:700}
+.task li,.hpanel li,.sol li{margin:.45em 0}
+.task,.hpanel,.sol .sb,.merke,.intro{overflow-x:auto; position:relative}
+
+
 </style>
 </head>
 <body>
@@ -111,7 +275,7 @@ footer{text-align:center; color:var(--muted); font-size:.85rem; margin-top:40px}
     <button id="m-gen" type="button">💡 Generator: Gewicht sinkt</button>
   </div>
 
-  <div class="lab">
+  <div class="labgrid">
     <div class="panel">
       <h2 id="scene-title">Versuchsaufbau</h2>
       <svg id="scene" viewBox="0 70 620 475" role="img" aria-label="Versuchsaufbau mit Motor, Faden und Gewichtsstück"></svg>
@@ -151,17 +315,24 @@ footer{text-align:center; color:var(--muted); font-size:.85rem; margin-top:40px}
     </div>
     <div class="tools">
       <button class="btn primary" id="take" type="button" disabled>Messwerte übernehmen</button>
-      <button class="btn ghost" id="copy" type="button">Tabelle kopieren</button>
+      <button class="btn onenote" id="copy" type="button">📋 Tabelle für OneNote kopieren</button>
       <button class="btn ghost" id="clear" type="button">Tabelle leeren</button>
       <label class="check"><input type="checkbox" id="showcalc"> Auswertung zur Kontrolle einblenden</label>
     </div>
     <div class="status" id="tabstatus"></div>
+    <div class="chartbox">
+      <h2>Kontrolldiagramm: Wirkungsgrad des Motors (aus deinen Messwerten)</h2>
+      <p class="mini">Zeichne dein Diagramm für EV01-A2 zuerst selbst – dieses hier dient nur zur Kontrolle.</p>
+      <svg id="etachart" viewBox="0 0 640 340" width="640" height="340" font-family="Arial, Helvetica, sans-serif" role="img" aria-label="Diagramm Wirkungsgrad über Masse"></svg>
+      <div class="copybar"><button class="btn onenote" type="button" data-copyimg="etachart" data-name="Kontrolldiagramm Wirkungsgrad">📋 Bild für OneNote kopieren</button><button class="btn ghost" type="button" data-saveimg="etachart" data-name="Kontrolldiagramm_Wirkungsgrad">⬇ Bild speichern</button></div>
+    </div>
   </div>
 
   <details class="box" id="flow">
     <summary>Energieflussdiagramm des letzten Versuchs (erst nach deiner eigenen Rechnung öffnen)</summary>
     <div class="in">
-      <svg id="sankey" viewBox="0 0 640 300" role="img" aria-label="Energieflussdiagramm"></svg>
+      <svg id="sankey" viewBox="0 0 640 300" width="640" height="300" font-family="Arial, Helvetica, sans-serif" role="img" aria-label="Energieflussdiagramm"></svg>
+      <div class="copybar"><button class="btn onenote" type="button" data-copyimg="sankey" data-name="Energieflussdiagramm">📋 Bild für OneNote kopieren</button><button class="btn ghost" type="button" data-saveimg="sankey" data-name="Energieflussdiagramm">⬇ Bild speichern</button></div>
       <p style="font-size:.88rem;color:var(--muted)">Die Breite der Pfeile entspricht der Energie. Grundlage sind die genauen Werte der Simulation – deine Werte weichen wegen der Zeitmessung etwas ab.</p>
     </div>
   </details>
@@ -174,16 +345,224 @@ footer{text-align:center; color:var(--muted); font-size:.85rem; margin-top:40px}
         <li>Mit dem Regler stellst du die Masse ein. Mit <span class="kbd">Schalter schließen</span> bzw. <span class="kbd">Gewicht loslassen</span> startest du den Versuch.</li>
         <li>Die Zeit misst du selbst mit der Stoppuhr – genau wie im echten Experiment. Mit der Lichtschranke geht es automatisch.</li>
         <li>Die Messgeräte halten nach dem Versuch ihren letzten Wert fest (<b>HOLD</b>), damit du in Ruhe ablesen kannst.</li>
-        <li><span class="kbd">Messwerte übernehmen</span> schreibt eine Zeile in die Tabelle. <span class="kbd">Tabelle kopieren</span> legt sie in die Zwischenablage – dann in OneNote einfügen.</li>
+        <li><span class="kbd">Messwerte übernehmen</span> schreibt eine Zeile in die Tabelle. <span class="kbd">📋 Tabelle für OneNote kopieren</span> legt sie in die Zwischenablage – in OneNote einfach einfügen. Kopierte Tabellen und Bilder tragen den Vermerk „Übernommen aus S1“, damit du in deinem Heft siehst, was kopiert und was selbst erarbeitet ist.</li>
       </ul>
     </div>
   </details>
 
-  <div class="tasks">
-    <div class="t" id="a1"><b class="code">EV01-A1</b> · Miss im Versuch <i>Motor hebt Gewicht</i> für 50&nbsp;g und 100&nbsp;g die Spannung, die Stromstärke und die Zeit. Berechne jeweils die zugeführte elektrische Energie, die Lageenergie und den Wirkungsgrad.</div>
-    <div class="t" id="a2"><b class="code">EV01-A2</b> · Untersuche, wie der Wirkungsgrad des Motors von der Masse abhängt. Führe mindestens fünf Messungen durch (auch ohne Gewichtsstück) und zeichne ein m-η-Diagramm. Beschreibe und erkläre den Verlauf.</div>
-    <div class="t" id="a3"><b class="code">EV01-A3</b> · Wechsle zum Versuch <i>Generator</i>. Bestimme für zwei Massen den Wirkungsgrad. Vergleiche mit dem Motor: Was fällt dir auf?</div>
+  <div class="section-head" id="aufgaben">Aufgaben mit gestuften Hilfen</div>
+
+  <div class="controls">
+    <div class="unlock">
+      <label for="code">🔒 Musterlösungen freischalten:</label>
+      <input id="code" type="text" autocomplete="off" placeholder="Code">
+      <button id="btn-unlock" type="button">Bestätigen</button>
+      <span class="msg" id="msg"></span>
+    </div>
   </div>
+
+  <div class="howto">
+    <strong>So nutzt du die Hilfen:</strong> Versuche die Aufgabe zuerst allein.
+    Wenn du nicht weiterkommst, öffne <strong>Hilfe 1</strong> – sie gibt dir einen Denkanstoß.
+    <strong>Hilfe 2</strong> zeigt dir den Lösungsweg, <strong>Hilfe 3</strong> bringt dich fast ans Ziel.
+    Notiere in OneNote hinter der Aufgabennummer, welche Hilfe du genutzt hast (z.&nbsp;B. <b>EV01-A1c · H2</b>).
+  </div>
+
+  <!-- ===================== A1 ===================== -->
+  <section class="s1" data-ab="a1" id="ab-a1">
+    <div class="ab-head">
+      <span class="ab-badge">EV01-A1</span><span class="t">Wie gut ist der Motor?</span>
+      <span class="desc">Versuch „Motor hebt Gewicht“ · in vier Schritten zum Wirkungsgrad</span>
+    </div>
+
+    <article class="card s1" id="a1a">
+      <div class="card-head"><h3>A1a · Messwerte aufnehmen</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Der Motor hebt ein Gewichtsstück um $h = 0{,}5\,\text{m}$. Führe den Versuch für $m = 50\,\text{g}$ und für $m = 100\,\text{g}$ durch. Miss jeweils</p>
+<ul><li>die Spannung $U$ am Motor,</li><li>die Stromstärke $I$,</li><li>die Zeit $\Delta t$, die der Motor zum Heben braucht.</li></ul>
+<p>Übernimm die Werte in die Messwerttabelle und kopiere sie auf deine OneNote-Seite.</p></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Ablauf</button><button type="button">Hilfe 2 · Zeit messen</button><button type="button">Hilfe 3 · Kontrolle</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · So läuft eine Messung ab</h4><p><span class="step">1</span>Masse mit dem Regler einstellen.</p><p><span class="step">2</span>Stoppuhr auf <span class="kbd">Null</span> stellen.</p><p><span class="step">3</span><span class="kbd">Schalter schließen</span> und gleichzeitig die Stoppuhr starten. Stoppen, wenn das Gewicht die rote Linie bei 0,5&nbsp;m erreicht.</p><p><span class="step">4</span>Die Messgeräte halten ihre Werte fest (<b>HOLD</b>). In Ruhe ablesen, dann <span class="kbd">Messwerte übernehmen</span>.</p><p><span class="step">5</span>Für die nächste Messung: <span class="kbd">Neu aufbauen</span>.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Die Zeit genau messen</h4><p>Die Zeit ist kurz – nur etwa 1 bis 2 Sekunden. Deine Reaktionszeit macht deshalb viel aus.</p><p>Miss jede Zeit <strong>dreimal</strong> und bilde den Mittelwert. Oder vergleiche einmal mit der <span class="kbd">Lichtschranke</span>: Wie weit liegst du daneben?</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Sind meine Werte plausibel?</h4><p>Die Spannung beträgt etwa 6&nbsp;V. Bei 50&nbsp;g liegt die Stromstärke bei etwa 40&nbsp;mA, die Zeit bei etwa 1,4&nbsp;s.</p><p>Bei 100&nbsp;g muss die Stromstärke <strong>größer</strong> sein (der Motor muss stärker ziehen) und der Motor braucht <strong>länger</strong>.</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol"><div class="sh">✓ Musterlösung · A1a</div><div class="sb">
+          <div class="tw"><table><tr><th>$m$ in g</th><th>$h$ in m</th><th>$U$ in V</th><th>$I$ in mA</th><th>$\Delta t$ in s</th></tr>
+          <tr><td>50</td><td>0,5</td><td>6,00</td><td>40</td><td>1,40</td></tr><tr><td>100</td><td>0,5</td><td>6,00</td><td>73</td><td>1,56</td></tr></table></div>
+          <p class="mini">Deine Zeiten können wegen der Reaktionszeit um ein bis zwei Zehntelsekunden abweichen.</p></div></div>
+      </div>
+    </article>
+
+    <article class="card s1" id="a1b">
+      <div class="card-head"><h3>A1b · Lageenergie berechnen</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Berechne für beide Messungen, wie viel <strong>Lageenergie</strong> $E_\text{L}$ das Gewichtsstück durch das Heben gewonnen hat.</p></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Erinnerung Kl. 9</button><button type="button">Hilfe 2 · Formel</button><button type="button">Hilfe 3 · Einheiten</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Was weißt du aus Klasse 9?</h4><p>Die Lageenergie hängt davon ab, <em>wie schwer</em> ein Körper ist und <em>wie hoch</em> er gehoben wird. Außerdem spielt der Ortsfaktor eine Rolle: Auf dem Mond wäre die Lageenergie kleiner.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Die Formel</h4><p>$$E_\text{L} = m \cdot g \cdot h \qquad \text{mit } g = 9{,}81\,\tfrac{\text{N}}{\text{kg}}$$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Achtung bei den Einheiten</h4><p>Die Masse muss in <strong>Kilogramm</strong> eingesetzt werden: $50\,\text{g} = 0{,}050\,\text{kg}$.</p><p>Beispiel mit anderen Zahlen: $m = 80\,\text{g}$, $h = 0{,}5\,\text{m}$:</p><p>$$E_\text{L} = 0{,}080\,\text{kg} \cdot 9{,}81\,\tfrac{\text{N}}{\text{kg}} \cdot 0{,}5\,\text{m} \approx 0{,}39\,\text{J}$$</p><p class="mini">$1\,\text{N} \cdot 1\,\text{m} = 1\,\text{J}$ (Joule)</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol"><div class="sh">✓ Musterlösung · A1b</div><div class="sb">
+          <p>$m = 50\,\text{g}$: $\;E_\text{L} = 0{,}050\,\text{kg} \cdot 9{,}81\,\tfrac{\text{N}}{\text{kg}} \cdot 0{,}5\,\text{m} \approx 0{,}25\,\text{J}$</p>
+          <p>$m = 100\,\text{g}$: $\;E_\text{L} = 0{,}100\,\text{kg} \cdot 9{,}81\,\tfrac{\text{N}}{\text{kg}} \cdot 0{,}5\,\text{m} \approx 0{,}49\,\text{J}$</p></div></div>
+      </div>
+    </article>
+
+    <article class="card s1" id="a1c">
+      <div class="card-head"><h3>A1c · Wie viel elektrische Energie bekommt der Motor?</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="intro">
+          <p>Für die Lageenergie kennst du eine Formel – für die <strong>elektrische Energie</strong> noch nicht. Die findest du jetzt selbst heraus. Drei Größen hast du gemessen: Spannung $U$, Stromstärke $I$ und Zeit $\Delta t$.</p>
+          <span class="goal">🎯 Ziel: eine Formel für die elektrische Energie $E_\text{el}$</span>
+        </div>
+        <div class="task"><p><strong>a)</strong> Überlege für jede der drei Größen: Bekommt der Motor mehr oder weniger Energie, wenn die Größe größer wird? Formuliere drei Je-desto-Sätze.</p>
+<p><strong>b)</strong> Wie lassen sich die drei Größen zu einer Formel für $E_\text{el}$ verbinden? Begründe.</p>
+<p><strong>c)</strong> Berechne $E_\text{el}$ für deine beiden Messungen aus A1a.</p></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Was bedeuten U, I, Δt?</button><button type="button">Hilfe 2 · Zur Formel</button><button type="button">Hilfe 3 · Rechnen</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Was bedeuten die drei Größen?</h4>
+            <div class="wiss">
+              <div><b>Spannung $U$</b>Der „Antrieb“: Wie viel Energie jedes Elektron vom Netzgerät mitbekommt. Doppelte Spannung → jedes Elektron bringt doppelt so viel Energie.</div>
+              <div><b>Stromstärke $I$</b>Wie viele Elektronen pro Sekunde durch den Motor fließen. Doppelte Stromstärke → doppelt so viele Energieträger pro Sekunde.</div>
+              <div><b>Zeit $\Delta t$</b>Wie lange der Motor läuft. Doppelt so lange → doppelt so viel Energie.</div>
+            </div>
+            <p>Formuliere damit deine Je-desto-Sätze: „Je größer …, desto …“</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Von den Je-desto-Sätzen zur Formel</h4><p>Wird <em>eine</em> der drei Größen verdoppelt, verdoppelt sich die Energie. Die Energie ist also zu jeder Größe <strong>proportional</strong>. Das erreicht man, indem man die drei Größen <strong>multipliziert</strong>:</p>
+            <p>$$E_\text{el} = U \cdot I \cdot \Delta t$$</p>
+            <p>Einheit: $1\,\text{V} \cdot 1\,\text{A} \cdot 1\,\text{s} = 1\,\text{J}$ (Joule) – dieselbe Einheit wie bei der Lageenergie. Man kann die Energien also vergleichen.</p>
+            <p class="mini">Vielleicht kennst du $\text{V} \cdot \text{A} = \text{W}$ (Watt) vom Typenschild eines Geräts. Dann ist $1\,\text{J} = 1\,\text{Ws}$ (Wattsekunde) – auf der Stromrechnung steht die größere Einheit kWh.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Richtig einsetzen</h4><p>Die Stromstärke muss in <strong>Ampere</strong> eingesetzt werden: $40\,\text{mA} = 0{,}040\,\text{A}$.</p><p>Beispiel mit anderen Zahlen: $U = 6{,}0\,\text{V}$, $I = 50\,\text{mA}$, $\Delta t = 2{,}0\,\text{s}$:</p>
+            <p>$$E_\text{el} = 6{,}0\,\text{V} \cdot 0{,}050\,\text{A} \cdot 2{,}0\,\text{s} = 0{,}60\,\text{J}$$</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol"><div class="sh">✓ Musterlösung · A1c</div><div class="sb">
+          <p><strong>a)</strong> Je größer die Spannung, desto mehr Energie bekommt der Motor. Je größer die Stromstärke, desto mehr Energie bekommt der Motor. Je länger der Motor läuft, desto mehr Energie bekommt er.</p>
+          <p><strong>b)</strong> Verdoppelt man eine der Größen, verdoppelt sich die Energie. Die Energie ist also proportional zu $U$, zu $I$ und zu $\Delta t$ – deshalb werden die drei Größen multipliziert.</p>
+          <div class="merke"><div class="mt">Merke · in OneNote übernehmen</div>Die elektrische Energie, die ein Gerät in der Zeit $\Delta t$ aufnimmt, beträgt $$E_\text{el} = U \cdot I \cdot \Delta t \qquad [E_\text{el}] = 1\,\text{V} \cdot 1\,\text{A} \cdot 1\,\text{s} = 1\,\text{J}$$</div>
+          <p><strong>c)</strong> $m = 50\,\text{g}$: $\;E_\text{el} = 6{,}00\,\text{V} \cdot 0{,}040\,\text{A} \cdot 1{,}40\,\text{s} \approx 0{,}34\,\text{J}$</p>
+          <p>$m = 100\,\text{g}$: $\;E_\text{el} = 6{,}00\,\text{V} \cdot 0{,}073\,\text{A} \cdot 1{,}56\,\text{s} \approx 0{,}68\,\text{J}$</p></div></div>
+      </div>
+    </article>
+
+    <article class="card s1" id="a1d">
+      <div class="card-head"><h3>A1d · Wirkungsgrad bestimmen</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>a)</strong> Vergleiche die zugeführte elektrische Energie mit der gewonnenen Lageenergie. Was fällt dir auf?</p>
+<p><strong>b)</strong> Berechne für beide Messungen den <strong>Wirkungsgrad</strong> des Motors.</p>
+<p><strong>c)</strong> Zeichne für die Messung mit 50&nbsp;g ein Energieflussdiagramm und erkläre, wo die „fehlende“ Energie geblieben ist.</p></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Was ist der Wirkungsgrad?</button><button type="button">Hilfe 2 · Formel</button><button type="button">Hilfe 3 · Diagramm</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Was ist der Wirkungsgrad?</h4><p>Der Wirkungsgrad gibt an, welcher <strong>Anteil</strong> der zugeführten Energie in die gewünschte Energieform umgewandelt wird. Frage dich: Welche Energie <em>bekommt</em> der Motor? Welche Energie <em>wollen</em> wir haben?</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Die Formel</h4><p>$$\eta = \frac{E_\text{nutz}}{E_\text{zu}} = \frac{E_\text{L}}{E_\text{el}}$$</p><p>Das Ergebnis ist eine Zahl ohne Einheit, meist in Prozent angegeben: $0{,}50 = 50\,\%$.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Das Energieflussdiagramm</h4><p>Zeichne einen breiten Pfeil für die zugeführte Energie. Er teilt sich in einen Pfeil nach rechts (Lageenergie) und einen Pfeil nach unten (entwertete Energie). Die Breite der Pfeile entspricht der Energie.</p><p>Wo wird Energie entwertet? Denke an die <strong>Reibung</strong> in den Lagern und daran, dass sich die <strong>Drähte der Spule</strong> erwärmen. Vergleiche danach mit dem Energieflussdiagramm unter der Simulation.</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol"><div class="sh">✓ Musterlösung · A1d</div><div class="sb">
+          <p><strong>a)</strong> Die Lageenergie ist in beiden Fällen kleiner als die zugeführte elektrische Energie (0,25&nbsp;J &lt; 0,34&nbsp;J und 0,49&nbsp;J &lt; 0,68&nbsp;J). Nur ein Teil der Energie wird genutzt.</p>
+          <p><strong>b)</strong> $m = 50\,\text{g}$: $\;\eta = \dfrac{0{,}25\,\text{J}}{0{,}34\,\text{J}} \approx 0{,}73 = 73\,\%$ &nbsp;&nbsp; $m = 100\,\text{g}$: $\;\eta = \dfrac{0{,}49\,\text{J}}{0{,}68\,\text{J}} \approx 72\,\%$</p>
+          <p><strong>c)</strong> Etwa 0,09&nbsp;J werden entwertet: Durch Reibung in den Lagern und durch die Erwärmung der Spulendrähte entsteht thermische Energie, die an die Umgebung abgegeben wird.</p>
+          <div class="merke"><div class="mt">Merke · in OneNote übernehmen</div>Ein Elektromotor wandelt elektrische Energie in Bewegungsenergie um, ein Generator Bewegungsenergie in elektrische Energie. Der Wirkungsgrad $\eta = \dfrac{E_\text{nutz}}{E_\text{zu}}$ gibt an, welcher Anteil der zugeführten Energie genutzt wird. Der Rest wird entwertet – meist zu thermischer Energie.</div></div></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===================== A2 ===================== -->
+  <section class="s2" data-ab="a2" id="ab-a2">
+    <div class="ab-head"><span class="ab-badge">EV01-A2</span><span class="t">Hängt der Wirkungsgrad von der Last ab?</span>
+      <span class="desc">Versuch „Motor hebt Gewicht“ · Messreihe und Diagramm</span></div>
+    <article class="card s2" id="a2">
+      <div class="card-head"><h3>A2 · Wirkungsgrad und Masse</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>a)</strong> Untersuche, wie der Wirkungsgrad des Motors von der Masse des Gewichtsstücks abhängt. Führe mindestens fünf Messungen durch – auch eine <strong>ohne Gewichtsstück</strong> (0&nbsp;g, Leerlauf).</p>
+<p><strong>b)</strong> Zeichne ein Diagramm: Masse $m$ nach rechts, Wirkungsgrad $\eta$ nach oben.</p>
+<p><strong>c)</strong> Beschreibe den Verlauf und erkläre ihn.</p></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Messplan</button><button type="button">Hilfe 2 · Diagramm</button><button type="button">Hilfe 3 · Erklärung</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Ein Messplan</h4><p>Wähle die Massen gleichmäßig verteilt, z.&nbsp;B. 0&nbsp;g, 50&nbsp;g, 100&nbsp;g, 150&nbsp;g, 200&nbsp;g, 300&nbsp;g. Berechne für jede Messung $E_\text{el}$, $E_\text{L}$ und $\eta$ wie in A1.</p><p>Tipp: Hier darfst du die <span class="kbd">Lichtschranke</span> verwenden – dann geht es schneller und genauer.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Das Diagramm</h4><p>x-Achse: $m$ in g von 0 bis 300 (1&nbsp;cm ≙ 25&nbsp;g). y-Achse: $\eta$ in % von 0 bis 100 (1&nbsp;cm ≙ 10&nbsp;%). Trage die Punkte ein und verbinde sie mit einer glatten Kurve.</p><p>Zur Kontrolle kannst du unter der Messwerttabelle <span class="kbd">Auswertung zur Kontrolle einblenden</span> – dann erscheint ein Kontrolldiagramm. Zeichne deins aber zuerst selbst!</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Den Verlauf erklären</h4><p><strong>Leerlauf:</strong> Der Motor bekommt Energie, hebt aber nichts. Wofür wird die Energie verwendet?</p><p><strong>Große Masse:</strong> Die Stromstärke wird groß. Was passiert dann mit den Drähten der Spule? Und wie lange braucht der Motor?</p><p>Dazwischen liegt ein Bereich, in dem der Motor am besten arbeitet.</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol"><div class="sh">✓ Musterlösung · A2</div><div class="sb">
+          <div class="tw"><table><tr><th>$m$ in g</th><th>0</th><th>50</th><th>100</th><th>150</th><th>200</th><th>250</th><th>300</th></tr>
+          <tr><th>$I$ in mA</th><td>7</td><td>40</td><td>73</td><td>106</td><td>139</td><td>172</td><td>205</td></tr>
+          <tr><th>$\Delta t$ in s</th><td>1,27</td><td>1,40</td><td>1,56</td><td>1,77</td><td>2,05</td><td>2,42</td><td>2,95</td></tr>
+          <tr><th>$E_\text{el}$ in J</th><td>0,05</td><td>0,34</td><td>0,68</td><td>1,13</td><td>1,70</td><td>2,49</td><td>3,62</td></tr>
+          <tr><th>$E_\text{L}$ in J</th><td>0</td><td>0,25</td><td>0,49</td><td>0,74</td><td>0,98</td><td>1,23</td><td>1,47</td></tr>
+          <tr><th>$\eta$</th><td>0&nbsp;%</td><td>73&nbsp;%</td><td>72&nbsp;%</td><td>65&nbsp;%</td><td>58&nbsp;%</td><td>49&nbsp;%</td><td>41&nbsp;%</td></tr></table></div>
+          <p><strong>Beschreibung:</strong> Ohne Last ist der Wirkungsgrad null. Er steigt schnell auf ein Maximum von gut 70&nbsp;% bei etwa 50 bis 100&nbsp;g und fällt bei größeren Massen wieder ab.</p>
+          <p><strong>Erklärung:</strong> Im Leerlauf wird die gesamte Energie für die Reibung gebraucht – nichts wird gehoben. Bei großer Last ist die Stromstärke groß: Die Spulendrähte erwärmen sich stark, und der Motor läuft langsamer, braucht also länger. Dadurch wird ein immer größerer Teil der Energie entwertet. Ein Motor arbeitet deshalb am besten bei mittlerer Belastung.</p></div></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===================== A3 ===================== -->
+  <section class="s3" data-ab="a3" id="ab-a3">
+    <div class="ab-head"><span class="ab-badge">EV01-A3</span><span class="t">Dieselbe Maschine als Generator</span>
+      <span class="desc">Versuch „Generator: Gewicht sinkt“</span></div>
+    <article class="card s3" id="a3">
+      <div class="card-head"><h3>A3 · Wirkungsgrad des Generators</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Wechsle oben zum Versuch <span class="kbd">Generator: Gewicht sinkt</span>. Das Gewichtsstück sinkt um $h = 1{,}0\,\text{m}$ und treibt dabei den Generator an; an den Generator ist eine Lampe angeschlossen.</p>
+<p><strong>a)</strong> Welche Energie wird dem Generator zugeführt, welche Energie wird genutzt? Zeichne eine Energiekette.</p>
+<p><strong>b)</strong> Bestimme für zwei verschiedene Massen den Wirkungsgrad.</p>
+<p><strong>c)</strong> Vergleiche mit dem Motor aus A1: Was ist gleich, was ist umgekehrt?</p></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Was ist anders?</button><button type="button">Hilfe 2 · Formeln</button><button type="button">Hilfe 3 · Beispiel</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Was ist hier anders als beim Motor?</h4><p>Beim Motor kommt die Energie aus dem Netzgerät. Hier gibt es kein Netzgerät – die Energie kommt vom <strong>sinkenden Gewichtsstück</strong>. Der Generator gibt elektrische Energie an die Lampe ab.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Die Formeln</h4><p>Zugeführt: $E_\text{zu} = E_\text{L} = m \cdot g \cdot h$ &nbsp;&nbsp; Genutzt: $E_\text{nutz} = E_\text{el} = U \cdot I \cdot \Delta t$ (an der Lampe gemessen)</p><p>$$\eta = \frac{E_\text{el}}{E_\text{L}}$$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Beispiel mit anderen Zahlen</h4><p>$m = 150\,\text{g}$, $h = 1{,}0\,\text{m}$, $U = 2{,}8\,\text{V}$, $I = 92\,\text{mA}$, $\Delta t = 3{,}4\,\text{s}$:</p><p>$E_\text{L} = 0{,}150\,\text{kg} \cdot 9{,}81\,\tfrac{\text{N}}{\text{kg}} \cdot 1{,}0\,\text{m} \approx 1{,}47\,\text{J}$, &nbsp; $E_\text{el} = 2{,}8\,\text{V} \cdot 0{,}092\,\text{A} \cdot 3{,}4\,\text{s} \approx 0{,}88\,\text{J}$</p><p>$\eta = 0{,}88\,\text{J} : 1{,}47\,\text{J} \approx 60\,\%$</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol"><div class="sh">✓ Musterlösung · A3</div><div class="sb">
+          <p><strong>a)</strong> Lageenergie (Gewichtsstück) → Generator → elektrische Energie → Lampe (Licht und thermische Energie). Zugeführt wird Lageenergie, genutzt wird die elektrische Energie.</p>
+          <div class="tw"><table><tr><th>$m$ in g</th><th>$U$ in V</th><th>$I$ in mA</th><th>$\Delta t$ in s</th><th>$E_\text{L}$ in J</th><th>$E_\text{el}$ in J</th><th>$\eta$</th></tr>
+          <tr><td>100</td><td>1,77</td><td>59</td><td>5,39</td><td>0,98</td><td>0,56</td><td>57&nbsp;%</td></tr>
+          <tr><td>200</td><td>3,74</td><td>125</td><td>2,54</td><td>1,96</td><td>1,19</td><td>60&nbsp;%</td></tr>
+          <tr><td>300</td><td>5,72</td><td>191</td><td>1,66</td><td>2,94</td><td>1,81</td><td>62&nbsp;%</td></tr></table></div>
+          <p><strong>c)</strong> Gleich: Es ist dieselbe Maschine, und auch hier wird ein Teil der Energie durch Reibung und Erwärmung entwertet (Wirkungsgrad etwa 60&nbsp;%). Umgekehrt: Beim Motor wird elektrische Energie in Lageenergie umgewandelt, beim Generator Lageenergie in elektrische Energie.</p></div></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===================== A4 ===================== -->
+  <section class="s4" data-ab="a4" id="ab-a4">
+    <div class="ab-head"><span class="ab-badge">EV01-A4</span><span class="t">Vertiefung</span>
+      <span class="desc">Für Schnelle – ohne Simulation</span></div>
+    <article class="card s4" id="a4">
+      <div class="card-head"><h3>A4 · Ein Generator bringt eine Lampe zum Leuchten</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Ein herabsinkendes Gewichtsstück ($m = 500\,\text{g}$) treibt über einen Faden einen kleinen Generator an, an den eine Glühlampe angeschlossen ist. Das Gewichtsstück sinkt in $2{,}5\,\text{s}$ um $1\,\text{m}$. An der Lampe werden $U = 6\,\text{V}$ und $I = 0{,}2\,\text{A}$ gemessen.</p>
+<p><strong>a)</strong> Zeichne einen Schaltplan mit Strom- und Spannungsmesser.</p>
+<p><strong>b)</strong> Berechne die umgewandelte Lageenergie und die elektrische Energie.</p>
+<p><strong>c)</strong> Bestimme den Wirkungsgrad.</p></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Schaltplan</button><button type="button">Hilfe 2 · Energien</button><button type="button">Hilfe 3 · Wirkungsgrad</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Der Schaltplan</h4><p>Vergleiche mit dem Schaltplan in der Simulation (Versuch Generator): Generator ⓖ und Lampe in einem Stromkreis, der Strommesser in Reihe, der Spannungsmesser parallel zur Lampe.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Die beiden Energien</h4><p>$E_\text{L} = m \cdot g \cdot h$ mit $m = 0{,}5\,\text{kg}$ &nbsp;&nbsp; $E_\text{el} = U \cdot I \cdot \Delta t$</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Der Wirkungsgrad</h4><p>Zugeführt wird die Lageenergie, genutzt die elektrische Energie: $\eta = E_\text{el} : E_\text{L}$.</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol"><div class="sh">✓ Musterlösung · A4</div><div class="sb">
+          <p><strong>b)</strong> $E_\text{L} = 0{,}5\,\text{kg} \cdot 9{,}81\,\tfrac{\text{N}}{\text{kg}} \cdot 1\,\text{m} \approx 4{,}9\,\text{J}$ &nbsp;&nbsp; $E_\text{el} = 6\,\text{V} \cdot 0{,}2\,\text{A} \cdot 2{,}5\,\text{s} = 3{,}0\,\text{J}$</p>
+          <p><strong>c)</strong> $\eta = \dfrac{3{,}0\,\text{J}}{4{,}9\,\text{J}} \approx 0{,}61 = 61\,\%$</p></div></div>
+      </div>
+    </article>
+  </section>
+
+  <div id="qrmodal"><div class="box"><h4 id="qrtitle"></h4><div id="qrcanvas"></div><div id="qrurl"></div>
+    <button id="qrcopy" class="pri" type="button">Link kopieren</button><button id="qrclose" type="button">Schließen</button></div></div>
 </div>
 
 <footer>Sek I Unterrichtsmaterialien · Friedrich-Bährens-Gymnasium Schwerte</footer>
@@ -454,6 +833,7 @@ setInterval(()=>{ if (sw.on) showWatch(); if (running) showMeters(); }, 50);
 
 // ---------- Tabelle ----------
 function renderTable(){
+  if (typeof drawEta === "function") drawEta();
   const tb = $("tbody"); tb.innerHTML = "";
   if (!rows.length){ tb.innerHTML = '<tr><td colspan="10" class="empty">Noch keine Messung übernommen.</td></tr>'; return; }
   rows.forEach((r,i)=>{
@@ -477,47 +857,122 @@ $("take").addEventListener("click", ()=>{
 });
 $("clear").addEventListener("click", ()=>{ if (rows.length && confirm("Tabelle wirklich leeren?")){ rows=[]; renderTable(); } });
 $("copy").addEventListener("click", ()=>{
+  if (!rows.length){ $("tabstatus").textContent = "Die Tabelle ist noch leer."; $("tabstatus").className="status warn"; return; }
   const calc = document.body.classList.contains("showcalc");
-  let s = "Nr.\tVersuch\tm in g\th in m\tU in V\tI in mA\tΔt in s" + (calc?"\tE_el in J\tE_L in J\tη":"") + "\n";
-  rows.forEach((r,i)=>{
+  const head = ["Nr.","Versuch","m in g","h in m","U in V","I in mA","Δt in s"].concat(calc?["E_el in J","E_L in J","η"]:[]);
+  const data = rows.map((r,i)=>{
     const Eel = r.U*r.I/1000*r.t, EL = r.m/1000*g*r.h, eta = r.mode==="motor"?EL/Eel:Eel/EL;
-    s += [i+1, r.mode==="motor"?"Motor":"Generator", r.m, fmt(r.h,1), fmt(r.U,2), fmt(r.I,1), fmt(r.t,2)].join("\t");
-    if (calc) s += "\t"+[fmt(Eel,3), fmt(EL,3), isFinite(eta)?Math.round(eta*100)+" %":"–"].join("\t");
-    s += "\n";
+    const c = [i+1, r.mode==="motor"?"Motor":"Generator", r.m, fmt(r.h,1), fmt(r.U,2), fmt(r.I,1), fmt(r.t,2)];
+    return calc ? c.concat([fmt(Eel,3), fmt(EL,3), isFinite(eta)?Math.round(eta*100)+" %":"–"]) : c;
   });
-  const done = ()=>{ $("tabstatus").textContent = "Tabelle kopiert – jetzt in OneNote einfügen."; $("tabstatus").className="status"; };
-  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(s).then(done, ()=>fallbackCopy(s, done));
-  else fallbackCopy(s, done);
+  const tsv = [head].concat(data).map(r=>r.join("\t")).join("\n") + "\n" + STAMP;
+  const td = 'style="border:1px solid #999;padding:3px 8px;text-align:center"';
+  const html = '<table style="border-collapse:collapse">' +
+    '<tr>' + head.map(h=>'<th '+td+'>'+h+'</th>').join('') + '</tr>' +
+    data.map(r=>'<tr>'+r.map(c=>'<td '+td+'>'+c+'</td>').join('')+'</tr>').join('') + '</table>' +
+    '<p style="color:#777;font-size:9pt">'+STAMP+'</p>';
+  copyRich(html, tsv).then(()=>toast("Tabelle kopiert – in OneNote einfügen"), ()=>toast("Kopieren nicht möglich – bitte markieren und kopieren"));
 });
-function fallbackCopy(s, done){
-  const ta = document.createElement("textarea"); ta.value = s; document.body.appendChild(ta); ta.select();
-  try { document.execCommand("copy"); done(); } catch(e){}
-  ta.remove();
-}
-$("showcalc").addEventListener("change", e=> document.body.classList.toggle("showcalc", e.target.checked));
+$("showcalc").addEventListener("change", e=>{ document.body.classList.toggle("showcalc", e.target.checked); drawEta(); });
 
 // ---------- Energieflussdiagramm ----------
 function drawSankey(){
   const s = $("sankey"); s.innerHTML = "";
   const mk = (tag, a)=>{ const e=document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k,a[k]); s.appendChild(e); return e; };
+  mk("rect",{x:0,y:0,width:640,height:300,fill:"#fff"});
   const tx = (x,y,str,a)=>{ const t=mk("text", Object.assign({x:x,y:y,"font-size":14,fill:"#1c1f26"},a||{})); t.textContent=str; return t; };
   if (!lastTrue){ tx(320,150,"Noch kein Versuch durchgeführt.",{"text-anchor":"middle",fill:"#5c6472"}); return; }
   const motor = lastTrue.mode==="motor";
   const Ezu = motor ? lastTrue.Eel : lastTrue.EL;
   const En  = motor ? lastTrue.EL  : lastTrue.Eel;
   const Ev  = Math.max(Ezu-En, 0);
-  const Wmax = 110, wz = Wmax, wn = Ezu>0 ? Wmax*En/Ezu : 0, wv = Wmax-wn;
-  const y0 = 40, x0 = 30, xs = 300, xe = 560;
+  const wz = 110, wn = Ezu>0 ? wz*En/Ezu : 0, wv = wz-wn;
+  const y0 = 46, x0 = 20, xs = 250, xe = 560, ri = 18, Cy = y0+wz+ri;
   const cZu = motor ? "#f2b84b" : "#7bb4e3", cN = motor ? "#7bb4e3" : "#f2b84b", cV = "#e57373";
   mk("rect",{x:x0,y:y0,width:xs-x0,height:wz,fill:cZu});
-  if (wn>0.5) mk("path",{d:`M${xs},${y0} L${xe},${y0} L${xe+30},${y0+wn/2} L${xe},${y0+wn} L${xs},${y0+wn} Z`,fill:cN});
-  if (wv>0.5) mk("path",{d:`M${xs},${y0+wn} L${xs},${y0+wz} Q${xs+wv+40},${y0+wz} ${xs+wv+40},${y0+wz+60} L${xs+wv/2+40},${y0+wz+90} L${xs+40-0},${y0+wz+60} Q${xs+40},${y0+wn+wv*0} ${xs},${y0+wn} Z`,fill:cV, opacity:0.9});
-  tx(x0+8, y0+wz/2-6, motor ? "elektrische Energie" : "Lageenergie", {"font-weight":700});
-  tx(x0+8, y0+wz/2+14, "E_zu = "+fmt(Ezu,3)+" J");
-  tx(xe-8, y0-10, (motor ? "Lageenergie" : "elektrische Energie (Lampe)")+": "+fmt(En,3)+" J", {"text-anchor":"end","font-weight":700});
-  tx(xs+wv+58, y0+wz+74, "entwertet (v. a. thermische Energie): "+fmt(Ev,3)+" J", {"font-weight":700});
-  tx(xe-8, y0+wz+28, "η = "+Math.round(En/Ezu*100)+" %", {"text-anchor":"end","font-size":20,"font-weight":700,fill:"#004a8a"});
+  if (wn>0.5) mk("path",{d:`M${xs},${y0} L${xe},${y0} L${xe+28},${y0+wn/2} L${xe},${y0+wn} L${xs},${y0+wn} Z`,fill:cN});
+  if (wv>0.5){
+    const ro = ri+wv, xi = xs+ri, xo = xs+ri+wv;
+    mk("path",{d:`M${xs},${y0+wn} A${ro},${ro} 0 0 1 ${xo},${Cy} L${xo},${Cy+46} L${(xi+xo)/2},${Cy+66} L${xi},${Cy+46} L${xi},${Cy} A${ri},${ri} 0 0 0 ${xs},${y0+wz} Z`,fill:cV});
+    tx(xo+12, Cy+30, "entwertet (v. a. thermische Energie)", {"font-weight":700});
+    tx(xo+12, Cy+50, "E_entwertet = "+fmt(Ev,3)+" J");
+  }
+  tx(x0+10, y0+wz/2-6, motor ? "elektrische Energie" : "Lageenergie", {"font-weight":700});
+  tx(x0+10, y0+wz/2+14, "E_zu = "+fmt(Ezu,3)+" J");
+  tx(xe+28, y0-12, (motor ? "Lageenergie" : "elektrische Energie (Lampe)")+": "+fmt(En,3)+" J", {"text-anchor":"end","font-weight":700});
+  tx(620, 262, "η = "+Math.round(En/Ezu*100)+" %", {"text-anchor":"end","font-size":22,"font-weight":700,fill:"#004a8a"});
   tx(x0, 285, (motor?"Motor":"Generator")+", m = "+Math.round(lastTrue.m*1000)+" g, h = "+fmt(lastTrue.h,1)+" m, Δt = "+fmt(lastTrue.t,2)+" s", {fill:"#5c6472","font-size":13});
+}
+
+// ---------- OneNote: Kopieren mit Herkunftsvermerk ----------
+const STAMP = "Übernommen aus: S1 Energiewandler-Labor (EV01) · Physik Klasse 10";
+function toast(msg){
+  let t = document.querySelector(".toast");
+  if (!t){ t = document.createElement("div"); t.className = "toast"; document.body.appendChild(t); }
+  t.textContent = msg; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove("on"), 2200);
+}
+function copyRich(html, plain){
+  if (navigator.clipboard && window.ClipboardItem){
+    return navigator.clipboard.write([new ClipboardItem({
+      "text/html": new Blob([html], {type:"text/html"}),
+      "text/plain": new Blob([plain], {type:"text/plain"})})]);
+  }
+  return new Promise((res, rej)=>{
+    const ta = document.createElement("textarea"); ta.value = plain; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy") ? res() : rej(); } catch(e){ rej(e); } ta.remove();
+  });
+}
+function svgToPng(svgEl, title){
+  return new Promise((resolve, reject)=>{
+    const vb = svgEl.viewBox.baseVal, w = vb.width, h = vb.height, foot = 30, sc = 2;
+    const clone = svgEl.cloneNode(true);
+    clone.setAttribute("xmlns", NS); clone.setAttribute("width", w); clone.setAttribute("height", h);
+    const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(clone)], {type:"image/svg+xml;charset=utf-8"}));
+    const img = new Image();
+    img.onload = ()=>{
+      const c = document.createElement("canvas"); c.width = w*sc; c.height = (h+foot)*sc;
+      const x = c.getContext("2d"); x.scale(sc, sc);
+      x.fillStyle = "#fff"; x.fillRect(0, 0, w, h+foot);
+      x.drawImage(img, 0, 0, w, h);
+      x.fillStyle = "#f1f2f4"; x.fillRect(0, h, w, foot);
+      x.fillStyle = "#666"; x.font = "12px Arial, Helvetica, sans-serif";
+      x.fillText(title + " · " + STAMP, 8, h+19);
+      URL.revokeObjectURL(url);
+      c.toBlob(b => b ? resolve(b) : reject(new Error("toBlob")), "image/png");
+    };
+    img.onerror = reject; img.src = url;
+  });
+}
+document.querySelectorAll("[data-copyimg]").forEach(b => b.addEventListener("click", ()=>{
+  const el = $(b.dataset.copyimg), p = svgToPng(el, b.dataset.name);
+  if (navigator.clipboard && window.ClipboardItem){
+    navigator.clipboard.write([new ClipboardItem({"image/png": p})])
+      .then(()=>toast("Bild kopiert – in OneNote einfügen"), ()=>{ toast("Kopieren nicht erlaubt – Bild wird gespeichert"); saveBlob(p, b.dataset.name); });
+  } else { toast("Kopieren nicht möglich – Bild wird gespeichert"); saveBlob(p, b.dataset.name); }
+}));
+document.querySelectorAll("[data-saveimg]").forEach(b => b.addEventListener("click", ()=> saveBlob(svgToPng($(b.dataset.saveimg), b.dataset.name.replace(/_/g," ")), b.dataset.name)));
+function saveBlob(p, name){
+  p.then(blob=>{ const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+    a.download = "EV01_" + name.replace(/\s+/g,"_") + ".png"; document.body.appendChild(a); a.click();
+    setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 1000); });
+}
+
+// ---------- Kontrolldiagramm m-η ----------
+function drawEta(){
+  const s = $("etachart"); s.innerHTML = "";
+  const mk = (tag,a)=>{ const e=document.createElementNS(NS,tag); for (const k in a) e.setAttribute(k,a[k]); s.appendChild(e); return e; };
+  const tx = (x,y,str,a)=>{ const t=mk("text",Object.assign({x:x,y:y,"font-size":13,fill:"#1c1f26"},a||{})); t.textContent=str; };
+  const L=70, R=610, T=24, B=290, X=m=>L+(R-L)*m/300, Y=e=>B-(B-T)*e/100;
+  mk("rect",{x:0,y:0,width:640,height:340,fill:"#fff"});
+  for (let e=0;e<=100;e+=10){ mk("line",{x1:L,y1:Y(e),x2:R,y2:Y(e),stroke:e%50?"#eef0f3":"#d9dde3"}); tx(L-8,Y(e)+4,e,{"text-anchor":"end","font-size":12,fill:"#5c6472"}); }
+  for (let m=0;m<=300;m+=50){ mk("line",{x1:X(m),y1:T,x2:X(m),y2:B,stroke:"#eef0f3"}); tx(X(m),B+18,m,{"text-anchor":"middle","font-size":12,fill:"#5c6472"}); }
+  mk("line",{x1:L,y1:B,x2:R+6,y2:B,stroke:"#1c1f26","stroke-width":1.5}); mk("line",{x1:L,y1:B,x2:L,y2:T-8,stroke:"#1c1f26","stroke-width":1.5});
+  tx(R, B+36, "m in g", {"text-anchor":"end","font-weight":700});
+  tx(L+10, T+2, "η in %", {"font-weight":700});
+  const pts = rows.filter(r=>r.mode==="motor").map(r=>{ const Eel=r.U*r.I/1000*r.t, EL=r.m/1000*g*r.h; return {m:r.m, e:Eel>0?EL/Eel*100:0}; }).sort((a,b)=>a.m-b.m);
+  if (!pts.length){ tx(340,160,"Noch keine Motor-Messungen in der Tabelle.",{"text-anchor":"middle",fill:"#5c6472"}); return; }
+  if (pts.length>1) mk("polyline",{points:pts.map(p=>X(p.m)+","+Y(p.e)).join(" "),fill:"none",stroke:"#7bb4e3","stroke-width":2});
+  pts.forEach(p=>{ mk("circle",{cx:X(p.m),cy:Y(p.e),r:5,fill:"#004a8a"}); });
 }
 
 // ---------- Bedienelemente ----------
@@ -556,8 +1011,57 @@ $("m-gen").addEventListener("click", ()=>setMode("gen"));
 
 buildScene();
 setMode(location.hash==="#generator" ? "gen" : "motor");
-drawSankey();
+drawSankey(); drawEta();
 })();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  function render(){ if (window.renderMathInElement) renderMathInElement(document.body, {
+    delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false}); }
+  if (window.renderMathInElement) render(); else window.addEventListener('load', render);
+  document.querySelectorAll('.card-head').forEach(function(h){ h.addEventListener('click', function(e){
+    if (e.target.closest('.qrbtn')) return; h.parentElement.classList.toggle('open'); }); });
+  document.querySelectorAll('.hints').forEach(function(box){
+    var tabs = box.querySelectorAll('.htabs button'), panels = box.querySelectorAll('.hpanel');
+    tabs.forEach(function(tab, i){ tab.addEventListener('click', function(){
+      var wasOn = tab.classList.contains('on');
+      tabs.forEach(function(t){ t.classList.remove('on'); }); panels.forEach(function(p){ p.classList.remove('on'); });
+      if (!wasOn){ tab.classList.add('on'); if (panels[i]) panels[i].classList.add('on'); } }); }); });
+  document.querySelectorAll('.assess').forEach(function(box){
+    var btns = box.querySelectorAll('button');
+    btns.forEach(function(b){ b.addEventListener('click', function(){
+      var wasOn = b.classList.contains('on'); btns.forEach(function(x){ x.classList.remove('on'); }); if (!wasOn) b.classList.add('on'); }); }); });
+  var CODE = 'JOULE', input = document.getElementById('code'), msg = document.getElementById('msg');
+  function tryUnlock(){
+    if ((input.value||'').trim().toUpperCase() === CODE){ document.body.classList.add('unlocked'); msg.textContent='✓ freigeschaltet'; msg.className='msg ok'; render(); }
+    else { msg.textContent='✗ Code stimmt nicht'; msg.className='msg bad'; } }
+  document.getElementById('btn-unlock').addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e){ if (e.key==='Enter') tryUnlock(); });
+  function openFromHash(){
+    var id = decodeURIComponent((location.hash||'').slice(1)); if (!id) return false;
+    var card = document.getElementById(id);
+    if (!card) return false;
+    if (!card.classList.contains('card')) card = card.querySelector('.card');
+    if (!card) return false;
+    card.classList.add('open','flash'); setTimeout(function(){ card.classList.remove('flash'); }, 2200);
+    card.scrollIntoView(); return true; }
+  if (!openFromHash()){ var f = document.querySelector('#a1a'); if (f) f.classList.add('open'); }
+  window.addEventListener('hashchange', openFromHash);
+  var modal = document.getElementById('qrmodal'), qrUrl = '';
+  document.querySelectorAll('.qrbtn').forEach(function(b){ b.addEventListener('click', function(e){
+    e.stopPropagation(); var card = b.closest('.card');
+    qrUrl = location.origin + location.pathname + '#' + card.id;
+    document.getElementById('qrtitle').textContent = card.querySelector('h3').textContent;
+    document.getElementById('qrurl').textContent = qrUrl;
+    var box = document.getElementById('qrcanvas'); box.innerHTML = '';
+    if (window.QRCode) new QRCode(box, {text:qrUrl, width:220, height:220, correctLevel:QRCode.CorrectLevel.M});
+    else box.textContent = 'QR-Bibliothek konnte nicht geladen werden.';
+    modal.classList.add('on'); }); });
+  document.getElementById('qrclose').addEventListener('click', function(){ modal.classList.remove('on'); });
+  modal.addEventListener('click', function(e){ if (e.target===modal) modal.classList.remove('on'); });
+  document.getElementById('qrcopy').addEventListener('click', function(){ var btn=this;
+    if (navigator.clipboard) navigator.clipboard.writeText(qrUrl).then(function(){ btn.textContent='✓ kopiert'; setTimeout(function(){ btn.textContent='Link kopieren'; },1500); }); });
+});
 </script>
 </body>
 </html>
