@@ -253,6 +253,12 @@ body.unlocked .sol-lock{display:none}
 .task,.hpanel,.sol .sb,.merke,.intro{overflow-x:auto; position:relative}
 
 
+
+.taskcopy{display:flex; justify-content:flex-end; margin:-6px 0 12px}
+.btn-on{background:#7719aa; color:#fff; border:0; border-radius:6px; padding:6px 12px; font-size:.84rem; font-weight:700;
+  cursor:pointer; font-family:inherit}
+.btn-on:hover{background:#5c1385}
+.ab-head .btn-on{margin-left:auto}
 </style>
 </head>
 <body>
@@ -268,7 +274,7 @@ body.unlocked .sol-lock{display:none}
 <div class="wrap">
   <div class="backnav"><a href="../">← Zurück zur Reihe Energieversorgung</a></div>
 
-  <div class="note onenote"><b>OneNote: EV01 Energiewandler</b> · Übertrage deine Messwerte und Rechnungen auf diese Seite. Schreibe die Aufgabennummer (z.&nbsp;B. <b>EV01-A1</b>) als Überschrift über deine Lösung.</div>
+  <div class="note onenote"><b>OneNote:</b> Lege für jede Aufgabe eine eigene Seite an, deren Titel die Aufgabennummer ist – z.&nbsp;B. <b>EV01-A1</b>. Mit dem Knopf <b>📋 Aufgabe nach OneNote</b> kopierst du die Aufgabe (grauer Kasten = übernommen) und ein gelbes Feld für deine eigene Lösung. Darunter schreibst du deine Aufzeichnungen.</div>
 
   <div class="modes" role="tablist">
     <button id="m-motor" class="on" type="button">⚙️ Motor hebt Gewicht</button>
@@ -1016,6 +1022,74 @@ drawSankey(); drawEta();
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+
+  /* ---------- Aufgaben nach OneNote kopieren ---------- */
+  var PAGEURL = location.origin + location.pathname;
+  function texToHtml(t){
+    var r = t;
+    r = r.replace(/\\[dt]?frac\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}/g, '($1)/($2)');
+    r = r.replace(/_\\text\{([^}]*)\}/g, '<sub>$1</sub>').replace(/_\{([^}]*)\}/g, '<sub>$1</sub>').replace(/_([A-Za-z0-9])/g, '<sub>$1</sub>');
+    r = r.replace(/\\text\{([^}]*)\}/g, '$1');
+    r = r.replace(/\\Delta\s*/g, 'Δ');
+    var map = {'\\cdot':'·','\\eta':'η','\\approx':'≈','\\qquad':'&nbsp;&nbsp;&nbsp;&nbsp;','\\quad':'&nbsp;&nbsp;',
+               '\\,':'&#8239;','\\;':' ','\\!':'','\\%':'%'};
+    for (var k in map) r = r.split(k.replace(/\\\\/g,'\\')).join(map[k]);
+    r = r.replace(/\{,\}/g, ',').replace(/\(([A-Za-z0-9,.\s]+)\)\/\(([A-Za-z0-9,.\s]+)\)/g, '$1/$2');
+    r = r.replace(/[{}]/g, '').replace(/\\/g, '');
+    return r;
+  }
+  function mathify(html){
+    return html.replace(/\$\$([\s\S]*?)\$\$/g, function(m, t){ return '<br><i>' + texToHtml(t) + '</i><br>'; })
+               .replace(/\$([^$]+)\$/g, function(m, t){ return '<i>' + texToHtml(t) + '</i>'; });
+  }
+  function cleanTask(html){
+    return mathify(html).replace(/<span class="kbd">([^<]*)<\/span>/g, '„$1“');
+  }
+  var rawTasks = {};
+  document.querySelectorAll('.card').forEach(function(c){ var t = c.querySelector('.task'); if (t) rawTasks[c.id] = t.innerHTML; });
+  function block(title, bodyHtml){
+    return '<p style="margin:10pt 0 2pt"><b><span style="font-size:13pt;color:#004a8a">' + title + '</span></b></p>' +
+      '<table style="border-collapse:collapse;width:100%"><tr><td style="background:#eeeeee;border:1px solid #bbbbbb;padding:6pt">' +
+      bodyHtml + '<p style="font-size:8pt;color:#777777">Übernommen aus: ' + document.title.split(' · ')[0] + ' · ' + PAGEURL + '</p></td></tr></table>' +
+      '<table style="border-collapse:collapse;width:100%;margin-top:4pt"><tr><td style="background:#fff2b3;border:1px solid #e0c34d;padding:6pt">' +
+      '<b>Meine Lösung</b><br><br><br></td></tr></table><p>&nbsp;</p>';
+  }
+  function plain(title, html){ var d = document.createElement('div'); d.innerHTML = html.replace(/<li>/g, '<li>\n• '); return title + '\n' + d.innerText + '\n\nMeine Lösung:\n\n'; }
+  function copyTask(pageName, parts){
+    var html = '<p style="color:#7719aa;font-size:9pt">OneNote-Seite: <b>' + pageName + '</b></p>', txt = 'OneNote-Seite: ' + pageName + '\n\n';
+    parts.forEach(function(p){ var b = cleanTask(rawTasks[p.id] || ''); html += block(p.title, b); txt += plain(p.title, b); });
+    var done = function(){ showToast('Kopiert! Neue OneNote-Seite „' + pageName + '“ anlegen und einfügen'); };
+    if (navigator.clipboard && window.ClipboardItem){
+      navigator.clipboard.write([new ClipboardItem({'text/html': new Blob([html], {type:'text/html'}), 'text/plain': new Blob([txt], {type:'text/plain'})})])
+        .then(done, function(){ fallback(txt, done); });
+    } else fallback(txt, done);
+  }
+  function fallback(txt, done){
+    var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch(e){ showToast('Kopieren nicht möglich'); } ta.remove();
+  }
+  function showToast(m){
+    var t = document.querySelector('.toast'); if (!t){ t = document.createElement('div'); t.className = 'toast'; document.body.appendChild(t); }
+    t.textContent = m; t.classList.add('on'); clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove('on'); }, 3000);
+  }
+  document.querySelectorAll('section[data-ab]').forEach(function(sec){
+    var page = sec.querySelector('.ab-badge').textContent.trim();
+    var cards = Array.prototype.slice.call(sec.querySelectorAll('.card'));
+    var info = function(c){ return {id: c.id, title: (cards.length > 1 ? 'EV01-' : 'EV01-') + c.querySelector('h3').textContent.trim()}; };
+    cards.forEach(function(c){
+      var bar = document.createElement('div'); bar.className = 'taskcopy';
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'btn-on';
+      b.textContent = '📋 Aufgabe nach OneNote (Seite ' + page + ')';
+      b.addEventListener('click', function(){ copyTask(page, [info(c)]); });
+      bar.appendChild(b); c.querySelector('.task').insertAdjacentElement('afterend', bar);
+    });
+    if (cards.length > 1){
+      var hb = document.createElement('button'); hb.type = 'button'; hb.className = 'btn-on';
+      hb.textContent = '📋 Alle Teile nach OneNote (Seite ' + page + ')';
+      hb.addEventListener('click', function(){ copyTask(page, cards.map(info)); });
+      sec.querySelector('.ab-head .t').insertAdjacentElement('afterend', hb);
+    }
+  });
   function render(){ if (window.renderMathInElement) renderMathInElement(document.body, {
     delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false}); }
   if (window.renderMathInElement) render(); else window.addEventListener('load', render);
