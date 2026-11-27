@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ein Tag voller Joule · Physik Klasse 9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: eine Spalte wie ein Missionsheft – Hero mit Leitfrage, drei Missionen, Lehrkraft-Teil eingeklappt */
+:root{
+  --bg:#f6f7f4; --card:#ffffff; --ink:#14213d; --muted:#55607a; --line:#dde2dc;
+  --volt:#f2b705; --volt-ink:#5a4300; --volt-soft:#fff4cc;
+  --b1:#e4572e; --b2:#1f8a70; --b3:#3a6ea5; --b4:#c23b80; --b5:#8a6d1f; --b6:#6a4c93;
+  --ok:#1f8a70;
+  --f-display:"Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11161f; --card:#1a2130; --ink:#eef1f6; --muted:#a3adc2; --line:#2c3547;
+  --volt:#ffc93c; --volt-ink:#ffe28a; --volt-soft:#2e2812;
+  --b1:#ff7a52; --b2:#3cc29e; --b3:#6fa3dc; --b4:#ec6aad; --b5:#d1ad52; --b6:#a587d0; --ok:#3cc29e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11161f; --card:#1a2130; --ink:#eef1f6; --muted:#a3adc2; --line:#2c3547;
+  --volt:#ffc93c; --volt-ink:#ffe28a; --volt-soft:#2e2812;
+  --b1:#ff7a52; --b2:#3cc29e; --b3:#6fa3dc; --b4:#ec6aad; --b5:#d1ad52; --b6:#a587d0; --ok:#3cc29e; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:17px; line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:0 48px}
+.wrap{max-width:900px; margin:0 auto; display:flex; flex-direction:column; gap:28px}
+h1,h2,h3{font-family:var(--f-display); text-wrap:balance; line-height:1.1; margin:0}
+h2{font-size:clamp(1.5rem, 3.6vw, 2rem)}
+h3{font-size:1.15rem}
+p{margin:0}
+a{color:var(--b3)}
+.eyebrow{font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+
+/* Hero */
+.hero{margin-top:calc(-1 * env(safe-area-inset-top, 0px)); padding-top:calc(env(safe-area-inset-top, 0px) + 2.2rem); padding-bottom:1.6rem;
+  border-bottom:3px solid var(--ink)}
+.hero .row{display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end}
+@media (max-width:640px){.hero .row{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.4rem, 8vw, 4.4rem); letter-spacing:-.02em}
+.hero h1 em{font-style:normal; background:var(--volt); color:#14213d; padding:0 .18em; border-radius:6px}
+.hero .lead{margin-top:14px; max-width:58ch; font-size:1.1rem; color:var(--muted)}
+.meter{font-family:var(--f-display); border:2px solid var(--ink); border-radius:12px; padding:10px 14px; min-width:190px; background:var(--card)}
+.meter .v{font-size:2rem; font-weight:800; font-variant-numeric:tabular-nums}
+.meter .u{font-size:.85rem; color:var(--muted)}
+.meter .bar{height:10px; background:var(--line); border-radius:5px; margin-top:8px; overflow:hidden}
+.meter .bar span{display:block; height:100%; width:0; background:var(--volt); transition:width .4s}
+
+/* Leitfrage */
+.question{background:var(--volt-soft); border:2px dashed var(--volt); border-radius:14px; padding:16px 18px}
+.question p{font-family:var(--f-display); font-size:1.3rem; font-weight:600}
+
+/* Missionen */
+.mission{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:16px}
+.mhead{display:flex; gap:14px; align-items:center}
+.mnum{flex:none; width:52px; height:52px; border-radius:50%; background:var(--ink); color:var(--bg); display:grid; place-items:center;
+  font-family:var(--f-display); font-weight:800; font-size:1.4rem}
+.time{margin-left:auto; font-size:.85rem; font-weight:700; color:var(--volt-ink); background:var(--volt-soft); border-radius:20px; padding:4px 10px; white-space:nowrap}
+
+/* Fotojagd-Karten */
+.hunt{display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px}
+.hunt label{display:flex; gap:10px; align-items:flex-start; border:2px solid var(--line); border-radius:12px; padding:12px; cursor:pointer; background:var(--bg)}
+.hunt input{margin-top:4px; width:20px; height:20px; accent-color:var(--ok)}
+.hunt label:has(input:checked){border-color:var(--ok)}
+.hunt b{display:block}
+.hunt small{color:var(--muted)}
+.rule{font-size:.9rem; color:var(--muted); border-left:4px solid var(--b1); padding-left:10px}
+.props{background:var(--volt-soft); border-radius:12px; padding:12px 14px; font-size:.95rem}
+.props b{font-family:var(--f-display)}
+
+/* Mindmap */
+.mm{overflow-x:auto}
+.mm svg{width:100%; min-width:560px; height:auto; display:block}
+.mm text{font-family:var(--f-display); font-weight:600}
+.branches{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px}
+.br{border-radius:12px; padding:12px 14px; background:var(--bg); border-top:6px solid var(--c)}
+.br h3{color:var(--c); font-size:1.05rem}
+.br ul{margin:6px 0 0; padding-left:1.1em; font-size:.95rem}
+.br li{margin:2px 0}
+
+/* Level */
+.levels{display:flex; gap:8px; flex-wrap:wrap}
+.levels button{font:inherit; font-weight:700; border:2px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px; padding:8px 16px; cursor:pointer}
+.levels button[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.levels button:focus-visible, .hunt label:focus-within, details summary:focus-visible{outline:3px solid var(--volt); outline-offset:2px}
+.lvl{border:2px solid var(--ink); border-radius:12px; padding:14px 16px}
+.lvl ul{margin:6px 0 0; padding-left:1.2em}
+
+/* OneNote-Schritte */
+.steps{counter-reset:s; list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.steps li{counter-increment:s; display:grid; grid-template-columns:36px 1fr; gap:12px; align-items:start}
+.steps li::before{content:counter(s); width:36px; height:36px; border-radius:8px; background:#7719aa; color:#fff; display:grid; place-items:center; font-weight:700}
+.kbd{font-weight:700; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:0 6px; white-space:nowrap}
+.tip{font-size:.92rem; color:var(--muted)}
+
+/* Partner-Check */
+.checks{display:grid; gap:8px}
+.checks label{display:flex; gap:10px; align-items:flex-start; padding:8px 10px; border-radius:10px; background:var(--bg); cursor:pointer}
+.checks input{margin-top:4px; width:20px; height:20px; accent-color:var(--ok)}
+.links{display:flex; flex-wrap:wrap; gap:10px}
+.links a{font-weight:700; text-decoration:none; border:2px solid var(--ink); color:var(--ink); border-radius:999px; padding:8px 16px}
+.links a.main{background:var(--volt); border-color:var(--volt); color:#14213d}
+
+/* Lehrkraft */
+details.teacher{border:2px solid var(--line); border-radius:14px; background:var(--card)}
+details.teacher summary{cursor:pointer; padding:14px 18px; font-family:var(--f-display); font-weight:600; font-size:1.1rem}
+.tbody{padding:0 18px 18px; display:flex; flex-direction:column; gap:12px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse; width:100%; font-size:.93rem}
+th,td{border-bottom:1px solid var(--line); padding:8px; text-align:left; vertical-align:top}
+th{font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+td:first-child{font-variant-numeric:tabular-nums; white-space:nowrap; font-weight:700}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+
+.backnav{padding-top:18px}
+.backnav a{display:inline-block;font-weight:700;font-size:.9rem;text-decoration:none;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 13px;background:var(--card)}
+.hero{padding-top:1.2rem}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<nav class="backnav"><a href="../">← Zurück zu Klasse 9</a></nav>
+
+<header class="hero">
+  <div class="row">
+    <div>
+      <div class="eyebrow">Physik Klasse 9 · Abschluss der Reihe Energie</div>
+      <h1>Ein Tag voller <em>Joule</em></h1>
+      <p class="lead">Lageenergie, Bewegungsenergie, Spannenergie, Energieerhaltung und Leistung: Heute bringst du alles zusammen, was du in den letzten Wochen gelernt hast. Und du findest es in deinem eigenen Alltag wieder.</p>
+    </div>
+    <div class="meter" aria-live="polite">
+      <div class="u">Dein Fortschritt heute</div>
+      <div class="v"><span id="pct">0</span>&nbsp;%</div>
+      <div class="bar"><span id="bar"></span></div>
+    </div>
+  </div>
+</header>
+
+<div class="question">
+  <div class="eyebrow">Leitfrage der Stunde</div>
+  <p>Du hast heute morgen schon tausende Joule umgewandelt, bevor du überhaupt in der Schule warst. Wo genau?</p>
+</div>
+
+<!-- Mission 1 -->
+<section class="mission" id="fotojagd">
+  <div class="mhead"><div class="mnum">1</div><div><div class="eyebrow">Mission 1</div><h2>Energie-Fotojagd</h2></div><span class="time">ca. 10 Minuten</span></div>
+  <p>Geht zu zweit auf Energie-Suche: im Physikraum, im Flur, im Treppenhaus oder auf dem Schulhof. Mach mit der Kamera des iPads <strong>ein Foto zu jedem Auftrag</strong>. Hake ab, was ihr gefunden habt. Die Fotos braucht ihr gleich für eure Mindmap.</p>
+  <div class="hunt">
+    <label><input type="checkbox" id="h1" data-track><span><b>Etwas mit Lageenergie</b><small>Was liegt hoch und könnte herunterfallen?</small></span></label>
+    <label><input type="checkbox" id="h2" data-track><span><b>Etwas mit Bewegungsenergie</b><small>Was bewegt sich gerade oder kann sich bewegen?</small></span></label>
+    <label><input type="checkbox" id="h3" data-track><span><b>Etwas mit Spannenergie</b><small>Tipp: Wie schließt sich eine Tür von selbst?</small></span></label>
+    <label><input type="checkbox" id="h4" data-track><span><b>Ein Typenschild mit Watt-Angabe</b><small>Beamer, Wasserkocher, Ladegerät …</small></span></label>
+    <label><input type="checkbox" id="h5" data-track><span><b>Joker: Hier wird es warm</b><small>Wo wird Energie in thermische Energie umgewandelt?</small></span></label>
+  </div>
+  <p class="props"><b>Szene stellen erlaubt!</b> Nehmt Material mit: Ball, Gummiband oder Feder, Spielzeugauto, Schultasche. Findet ihr kein echtes Beispiel, baut eine Szene nach und fotografiert sie, z.&nbsp;B. den Ball oben auf der Treppenstufe (Lageenergie) oder das gespannte Gummiband (Spannenergie).</p>
+  <p class="rule"><strong>Fotoregel:</strong> Fotografiert nur Gegenstände, keine Personen. Bleibt in den vereinbarten Bereichen und kommt beim Signal zurück. Im Treppenhaus wird nicht gerannt und nichts heruntergeworfen.</p>
+</section>
+
+<!-- Mission 2 -->
+<section class="mission" id="mindmap">
+  <div class="mhead"><div class="mnum">2</div><div><div class="eyebrow">Mission 2</div><h2>Deine Energie-Mindmap</h2></div><span class="time">ca. 20 Minuten</span></div>
+  <p>Erstelle in OneNote eine Mindmap mit <strong>„Energie“ in der Mitte</strong> und diesen sechs Ästen. Jeder Ast bekommt eine eigene Farbe. Die Fragen unter jedem Ast helfen dir beim Füllen.</p>
+
+  <div class="mm" aria-label="Vorlage der Mindmap mit sechs Ästen">
+    <svg viewBox="0 0 760 330" role="img">
+      <g stroke-width="4" fill="none">
+        <path d="M380 165 C 300 165, 260 70, 170 60" stroke="var(--b1)"/>
+        <path d="M380 165 C 300 165, 250 165, 150 165" stroke="var(--b2)"/>
+        <path d="M380 165 C 300 165, 260 260, 170 270" stroke="var(--b3)"/>
+        <path d="M380 165 C 460 165, 500 70, 590 60" stroke="var(--b4)"/>
+        <path d="M380 165 C 460 165, 510 165, 610 165" stroke="var(--b5)"/>
+        <path d="M380 165 C 460 165, 500 260, 590 270" stroke="var(--b6)"/>
+      </g>
+      <ellipse cx="380" cy="165" rx="78" ry="40" fill="var(--volt)" stroke="var(--ink)" stroke-width="3"/>
+      <text x="380" y="173" text-anchor="middle" font-size="24" fill="#14213d">Energie</text>
+      <g font-size="15">
+        <rect x="28" y="40" width="144" height="40" rx="10" fill="var(--card)" stroke="var(--b1)" stroke-width="3"/><text x="100" y="65" text-anchor="middle" fill="var(--b1)">Energieformen</text>
+        <rect x="8" y="145" width="144" height="40" rx="10" fill="var(--card)" stroke="var(--b2)" stroke-width="3"/><text x="80" y="170" text-anchor="middle" fill="var(--b2)">Formeln</text>
+        <rect x="28" y="250" width="144" height="40" rx="10" fill="var(--card)" stroke="var(--b3)" stroke-width="3"/><text x="100" y="275" text-anchor="middle" fill="var(--b3)">Energieerhaltung</text>
+        <rect x="588" y="40" width="144" height="40" rx="10" fill="var(--card)" stroke="var(--b4)" stroke-width="3"/><text x="660" y="65" text-anchor="middle" fill="var(--b4)">Leistung</text>
+        <rect x="608" y="145" width="144" height="40" rx="10" fill="var(--card)" stroke="var(--b5)" stroke-width="3"/><text x="680" y="170" text-anchor="middle" fill="var(--b5)">Einheiten</text>
+        <rect x="588" y="250" width="144" height="40" rx="10" fill="var(--card)" stroke="var(--b6)" stroke-width="3"/><text x="660" y="275" text-anchor="middle" fill="var(--b6)">Energie im Alltag</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="branches">
+    <div class="br" style="--c:var(--b1)"><h3>Energieformen</h3><ul><li>Welche Energieformen kennst du?</li><li>Woran erkennst du jede Form?</li><li>Klebe ein Foto aus Mission 1 dazu.</li></ul></div>
+    <div class="br" style="--c:var(--b2)"><h3>Formeln</h3><ul><li>Wie berechnest du Lage-, Bewegungs- und Spannenergie?</li><li>Was bedeuten die Buchstaben?</li><li>Wo steckt ein Quadrat und was folgt daraus?</li></ul></div>
+    <div class="br" style="--c:var(--b3)"><h3>Energieerhaltung</h3><ul><li>Wie lautet der Energieerhaltungssatz?</li><li>Eine Umwandlungskette, z.&nbsp;B. vom Skatepark</li><li>Was passiert bei Reibung?</li></ul></div>
+    <div class="br" style="--c:var(--b4)"><h3>Leistung</h3><ul><li>Was beschreibt die Leistung?</li><li>Formel und Einheit</li><li>Dein Wert vom Treppenlauf</li></ul></div>
+    <div class="br" style="--c:var(--b5)"><h3>Einheiten</h3><ul><li>Joule, Watt, Kilowattstunde</li><li>km/h in m/s umrechnen</li><li>g in kg, cm in m</li></ul></div>
+    <div class="br" style="--c:var(--b6)"><h3>Energie im Alltag</h3><ul><li>Dein Typenschild-Foto: Was kostet eine Stunde Betrieb?</li><li>Pumpspeicherkraftwerk Herdecke</li><li>Bremsweg und Fahrradhelm</li></ul></div>
+  </div>
+
+  <div>
+    <div class="eyebrow" style="margin-bottom:8px">Wähle dein Level</div>
+    <div class="levels" role="group" aria-label="Level wählen">
+      <button type="button" id="lv-bronze" data-lv="bronze" aria-pressed="true">Bronze</button>
+      <button type="button" id="lv-silber" data-lv="silber" aria-pressed="false">Silber</button>
+      <button type="button" id="lv-gold" data-lv="gold" aria-pressed="false">Gold</button>
+    </div>
+  </div>
+  <div class="lvl" id="lvl-bronze"><h3>Bronze</h3><ul><li>Alle sechs Äste sind beschriftet und farbig.</li><li>Zu jedem Ast mindestens zwei Stichworte.</li><li>Alle drei Energieformeln mit Einheit.</li></ul></div>
+  <div class="lvl" id="lvl-silber" hidden><h3>Silber: alles von Bronze, dazu</h3><ul><li>Bei jedem Ast ein Alltagsbeispiel mit einer echten Zahl (z.&nbsp;B. „Wasserkocher: 2000&nbsp;W“).</li><li>Mindestens zwei Fotos aus Mission 1 eingefügt.</li><li>Eine vollständige Energieumwandlungskette.</li></ul></div>
+  <div class="lvl" id="lvl-gold" hidden><h3>Gold: alles von Silber, dazu</h3><ul><li>Mindestens drei <strong>Querverbindungen</strong> zwischen Ästen mit einem Satz am Pfeil, z.&nbsp;B. Pumpspeicher ↔ Lageenergie ↔ Leistung.</li><li>Eine eigene kleine Rechenaufgabe mit Lösung zu deinem Typenschild-Foto.</li><li>Markiere mit einem Ausrufezeichen, was du für den Test noch üben willst.</li></ul></div>
+
+  <div>
+    <h3 style="margin-bottom:10px">So geht's in OneNote auf dem iPad</h3>
+    <ol class="steps">
+      <li><div>Lege in deinem Abschnitt <span class="kbd">Energie</span> eine neue Seite an und nenne sie <span class="kbd">Mindmap Energie</span>.</div></li>
+      <li><div>Öffne den Reiter <span class="kbd">Zeichnen</span> und wähle einen Stift. Schreibe „Energie“ in die Mitte und kreise es ein.</div></li>
+      <li><div>Zeichne die sechs Äste. Nimm für jeden Ast eine <strong>eigene Stiftfarbe</strong> und schreibe alles zu diesem Ast in derselben Farbe.</div></li>
+      <li><div>Fotos einfügen: Reiter <span class="kbd">Einfügen</span> → <span class="kbd">Bilder</span>, dann das Foto aus Mission 1 auswählen und an den passenden Ast ziehen.</div></li>
+      <li><div>Platz wird knapp? Mit dem <span class="kbd">Lasso</span> im Reiter Zeichnen markierst du einen Ast und schiebst ihn woanders hin.</div></li>
+      <li><div>Gold-Level: Zeichne Querverbindungen als gestrichelte Pfeile und schreibe einen kurzen Satz daran.</div></li>
+    </ol>
+    <p class="tip" style="margin-top:10px">Tipp: Zoome mit zwei Fingern heraus, bevor du anfängst. So hast du genug Platz für alle Äste. Die Bezeichnungen der Menüs können je nach OneNote-Version leicht abweichen.</p>
+  </div>
+</section>
+
+<!-- Mission 3 -->
+<section class="mission" id="check">
+  <div class="mhead"><div class="mnum">3</div><div><div class="eyebrow">Mission 3</div><h2>Partner-Check</h2></div><span class="time">ca. 6 Minuten</span></div>
+  <p>Tauscht die iPads. Prüft die Mindmap eures Partners mit dieser Liste und gebt euch gegenseitig einen Tipp.</p>
+  <div class="checks">
+    <label><input type="checkbox" id="c1" data-track><span>Alle drei Energieformen sind erklärt und mit einem Beispiel versehen.</span></label>
+    <label><input type="checkbox" id="c2" data-track><span>Die Formeln für <i>E</i><sub>Pot</sub>, <i>E</i><sub>kin</sub> und <i>E</i><sub>Spann</sub> stimmen, mit allen Einheiten.</span></label>
+    <label><input type="checkbox" id="c3" data-track><span>Der Energieerhaltungssatz ist in eigenen Worten formuliert. Reibung und Wärme kommen vor.</span></label>
+    <label><input type="checkbox" id="c4" data-track><span>Leistung ist mit Formel <i>P</i> = <i>E</i>/<i>t</i> und der Einheit Watt erklärt.</span></label>
+    <label><input type="checkbox" id="c5" data-track><span>Es gibt mindestens ein Alltagsbeispiel mit einer echten Zahl.</span></label>
+    <label><input type="checkbox" id="c6" data-track><span>Ich habe meinem Partner einen Tipp gegeben und einen bekommen.</span></label>
+  </div>
+</section>
+
+<section class="mission" id="weiter">
+  <div class="eyebrow">Und jetzt?</div>
+  <h2>Bereit für den Test?</h2>
+  <p>Deine Mindmap ist dein Lernzettel. Mit der Checkliste auf der Testvorbereitungsseite findest du heraus, was du noch üben solltest.</p>
+  <div class="links">
+    <a class="main" href="../Testvorbereitung_Energie/">Zur Testvorbereitung</a>
+    <a href="../">Alle Materialien Klasse 9</a>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var KEY='ein-tag-voller-joule-v1', st={};
+  try{ st=JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ st={}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){} }
+  var boxes=[].slice.call(document.querySelectorAll('input[data-track]'));
+  function progress(){
+    var lvlDone = st.lv ? 1 : 0;
+    var n=boxes.filter(function(b){return b.checked;}).length + lvlDone, t=boxes.length+1;
+    var p=Math.round(n/t*100);
+    document.getElementById('pct').textContent=p;
+    document.getElementById('bar').style.width=p+'%';
+  }
+  boxes.forEach(function(b){
+    if(st[b.id]) b.checked=true;
+    b.addEventListener('change', function(){ st[b.id]=b.checked; save(); progress(); });
+  });
+  function setLevel(lv){
+    ['bronze','silber','gold'].forEach(function(k){
+      document.getElementById('lvl-'+k).hidden = (k!==lv);
+      document.getElementById('lv-'+k).setAttribute('aria-pressed', k===lv ? 'true':'false');
+    });
+  }
+  document.querySelectorAll('.levels button').forEach(function(b){
+    b.addEventListener('click', function(){ st.lv=b.dataset.lv; save(); setLevel(st.lv); progress(); });
+  });
+  setLevel(st.lv||'bronze'); progress();
+})();
+</script>
+
+</body>
+</html>
