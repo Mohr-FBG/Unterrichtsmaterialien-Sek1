@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S2 Magnetfeld eines Leiters · Energieversorgung · Physik Klasse 10</title>
+<style>
+:root{ --blue:#004a8a; --blue-dark:#00325f; --orange:#e8740c; --green:#1a7f4b; --red:#c0392b;
+  --border:#dde1e7; --bg:#f4f5f7; --text:#1c1f26; --muted:#5c6472; }
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; line-height:1.5; font-size:16px}
+.wrap{max-width:1100px; margin:0 auto; padding:0 16px 64px}
+header.top{background:var(--blue); border-bottom:4px solid var(--blue-dark); color:#fff}
+header.top .inner{max-width:1100px; margin:0 auto; padding:22px 16px 24px}
+header.top .kap{font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.92}
+header.top h1{margin:6px 0 4px; font-size:1.7rem; line-height:1.2}
+header.top .sub{font-size:.92rem; opacity:.95}
+.backnav{margin:18px 0 4px; display:flex; gap:8px; flex-wrap:wrap}
+.backnav a{display:inline-flex; align-items:center; gap:6px; font-size:.86rem; font-weight:600; color:var(--muted);
+  text-decoration:none; border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:#fff}
+.backnav a:hover{border-color:var(--muted); color:var(--text)}
+.modes{display:flex; gap:8px; margin:16px 0 12px; flex-wrap:wrap}
+.modes button{border:1px solid var(--border); background:#fff; border-radius:22px; padding:8px 18px; font-size:.95rem;
+  font-weight:700; color:var(--muted); cursor:pointer; font-family:inherit}
+.modes button.on{background:var(--blue); border-color:var(--blue); color:#fff}
+.labgrid{display:grid; grid-template-columns:minmax(0,1.4fr) minmax(280px,1fr); gap:16px}
+@media (max-width:760px){.labgrid{grid-template-columns:1fr}}
+.panel{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px}
+.panel h2{font-size:.82rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:0 0 10px}
+svg.scene{width:100%; height:auto; display:block; touch-action:manipulation}
+.btn{border:0; border-radius:8px; padding:10px 14px; font-size:.95rem; font-weight:700; cursor:pointer; font-family:inherit; width:100%}
+.btn.go{background:var(--green); color:#fff} .btn.stop{background:var(--red); color:#fff}
+.btn.ghost{background:#fff; color:var(--text); border:1px solid var(--border)}
+.ctrl{margin-top:14px}
+.ctrl > label{font-size:.9rem; font-weight:600; display:flex; justify-content:space-between}
+.ctrl input[type=range]{width:100%; margin:6px 0 2px}
+.seg{display:flex; border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-top:6px}
+.seg button{flex:1; border:0; background:#fff; padding:8px 6px; font-size:.88rem; font-weight:600; color:var(--muted); cursor:pointer; font-family:inherit}
+.seg button.on{background:#e8f0f9; color:var(--blue)}
+.seg button + button{border-left:1px solid var(--border)}
+.check{display:flex; align-items:center; gap:8px; font-size:.9rem; margin-top:12px}
+.info{margin-top:14px; font-size:.9rem; background:#f7f9fc; border-left:3px solid var(--blue); border-radius:6px; padding:10px 12px}
+.info.lhr{border-left-color:var(--orange); background:#fff7ee; display:none}
+body.lhr .info.lhr{display:block}
+.note{background:#e8f0f9; border-left:3px solid var(--blue); border-radius:6px; padding:10px 14px; font-size:.92rem; margin:14px 0}
+.mode-only{display:none} body.m-top .top-only{display:block} body.m-cross .cross-only{display:block}
+footer{text-align:center; color:var(--muted); font-size:.85rem; margin-top:40px}
+</style>
+</head>
+<body class="m-top">
+<header class="top"><div class="inner">
+  <div class="kap">Reihe Energieversorgung · Physik Klasse 10 · EV02 · Simulation S2</div>
+  <h1>Das Magnetfeld eines stromdurchflossenen Leiters</h1>
+  <div class="sub">Oersted-Versuch von oben betrachtet – und ein Blick auf die Feldlinien rund um den Leiter</div>
+</div></header>
+
+<div class="wrap">
+  <div class="backnav"><a href="../">← Reihe Energieversorgung</a><a href="../EV02_Magnetfelder/#a4">→ Aufgabe EV02-A4</a></div>
+
+  <div class="modes">
+    <button id="m-top" class="on" type="button">🧭 Oersted-Versuch (von oben)</button>
+    <button id="m-cross" type="button">⭕ Feldlinien (Leiter von vorne)</button>
+  </div>
+
+  <div class="labgrid">
+    <div class="panel">
+      <h2 id="scene-title">Blick von oben auf Leiter und Magnetnadel</h2>
+      <svg id="scene" class="scene" viewBox="0 0 600 480" role="img" aria-label="Simulation"></svg>
+    </div>
+    <div class="panel">
+      <h2>Bedienung</h2>
+      <button class="btn go" id="power" type="button">Stromkreis schließen</button>
+
+      <div class="ctrl">
+        <label>Bewegungsrichtung der Elektronen</label>
+        <div class="seg mode-only top-only" id="dir-top"><button data-v="-1" class="on" type="button">↓ nach Süden</button><button data-v="1" type="button">↑ nach Norden</button></div>
+        <div class="seg mode-only cross-only" id="dir-cross"><button data-v="1" class="on" type="button">⊙ aus dem Bild heraus</button><button data-v="-1" type="button">⊗ in das Bild hinein</button></div>
+      </div>
+
+      <div class="ctrl mode-only top-only">
+        <label>Lage der Magnetnadel</label>
+        <div class="seg" id="pos"><button data-v="below" class="on" type="button">unter dem Leiter</button><button data-v="above" type="button">über dem Leiter</button></div>
+      </div>
+
+      <div class="ctrl">
+        <label for="amp"><span>Stromstärke</span><span id="amp-val">2,0 A</span></label>
+        <input id="amp" type="range" min="0.2" max="5" step="0.2" value="2">
+      </div>
+
+      <label class="check mode-only top-only"><input type="checkbox" id="vec"> Magnetfelder als Pfeile zeigen</label>
+      <label class="check mode-only cross-only"><input type="checkbox" id="lines"> Feldlinien zeigen</label>
+      <label class="check"><input type="checkbox" id="lhr"> Linke-Hand-Regel zeigen</label>
+
+      <div class="info mode-only top-only" id="info-top">Die Magnetnadel liegt in Nord-Süd-Richtung, genau wie der Leiter. Ohne Strom zeigt sie nach Norden.</div>
+      <div class="info mode-only cross-only">Der Leiter steht senkrecht zum Bildschirm. Rund um ihn stehen Kompassnadeln. Der Strom ist so stark, dass das Erdmagnetfeld kaum eine Rolle spielt.</div>
+      <div class="info lhr" id="lhr-text"></div>
+    </div>
+  </div>
+
+  <div class="note"><b>OneNote:</b> Bearbeite die Aufgaben zu dieser Simulation auf der Seite <b>EV02-A4</b>. Die Aufgaben mit gestuften Hilfen findest du auf der <a href="../EV02_Magnetfelder/#a4">Aufgabenseite EV02</a>.</div>
+</div>
+<footer>Sek I Unterrichtsmaterialien · Friedrich-Bährens-Gymnasium Schwerte</footer>
+
+<script>
+(function(){
+"use strict";
+const NS = "http://www.w3.org/2000/svg", svg = document.getElementById("scene");
+const $ = id => document.getElementById(id);
+let mode = "top", on = false, edir = { top:-1, cross:1 }, pos = "below", amp = 2;
+let needle = 0, needleT = 0;            // Winkel der Nadel (Grad, im Uhrzeigersinn von Norden)
+let crossAng = [], crossTarget = [];
+let t0 = performance.now();
+
+function el(tag, a, p){ const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); (p||svg).appendChild(e); return e; }
+function tx(x, y, s, a, p){ const t = el("text", Object.assign({x, y, "font-size":15, fill:"#1c1f26", "font-family":"inherit"}, a||{}), p); t.textContent = s; return t; }
+function arrowHead(p, x, y, ang, size, color){
+  const a = ang*Math.PI/180, s = size;
+  const pts = [[x, y], [x - s*Math.cos(a) + s*0.55*Math.sin(a), y - s*Math.sin(a) - s*0.55*Math.cos(a)],
+               [x - s*Math.cos(a) - s*0.55*Math.sin(a), y - s*Math.sin(a) + s*0.55*Math.cos(a)]];
+  el("polygon", {points: pts.map(q=>q.join(",")).join(" "), fill: color}, p);
+}
+function drawNeedle(p, cx, cy, len, deg, w){
+  const g = el("g", {transform:`rotate(${deg} ${cx} ${cy})`}, p);
+  el("polygon", {points:`${cx},${cy-len} ${cx-w},${cy} ${cx+w},${cy}`, fill:"#d62828"}, g);
+  el("polygon", {points:`${cx},${cy+len} ${cx-w},${cy} ${cx+w},${cy}`, fill:"#4d7ea8"}, g);
+  el("circle", {cx, cy, r:Math.max(2.5, w*0.45), fill:"#333"}, g);
+  return g;
+}
+
+// ---------------- Ansicht 1: von oben ----------------
+const C = {x:300, y:250, r:110};
+function targetTop(){
+  if (!on) return 0;
+  const k = amp*2.2;                                  // Verhältnis Leiterfeld : Erdfeld
+  const Bx = (pos==="below" ? 1 : -1) * edir.top * k; // Osten positiv
+  return Math.atan2(Bx, 1)*180/Math.PI;
+}
+function drawTop(t){
+  svg.innerHTML = "";
+  el("rect", {x:0, y:0, width:600, height:480, fill:"#f3efe6"});
+  tx(560, 34, "N", {"font-size":22, "font-weight":700, "text-anchor":"middle", fill:"#5c6472"});
+  el("line", {x1:560, y1:42, x2:560, y2:80, stroke:"#5c6472", "stroke-width":2.5}); arrowHead(svg, 560, 40, -90, 10, "#5c6472");
+  const wire = () => {
+    el("line", {x1:C.x, y1:20, x2:C.x, y2:470, stroke:"#b87333", "stroke-width":9, "stroke-linecap":"round"});
+    el("line", {x1:C.x-2, y1:20, x2:C.x-2, y2:470, stroke:"#e0a96d", "stroke-width":2});
+    tx(C.x+16, 40, edir.top<0 ? "−" : "+", {"font-size":30, "font-weight":700, fill: edir.top<0 ? "#1d4ed8" : "#c0392b"});
+    tx(C.x+16, 470, edir.top<0 ? "+" : "−", {"font-size":30, "font-weight":700, fill: edir.top<0 ? "#c0392b" : "#1d4ed8"});
+    if (on){
+      const sp = 70*amp/2;                                   // Elektronenbewegung (Pixel pro s)
+      for (let y0 = 0; y0 < 470; y0 += 26){
+        let y = ((y0 + (-edir.top)*sp*t) % 450 + 450) % 450 + 20;
+        el("circle", {cx:C.x, cy:y, r:3.4, fill:"#1d4ed8", stroke:"#fff", "stroke-width":1});
+      }
+    }
+  };
+  const compass = () => {
+    el("circle", {cx:C.x, cy:C.y, r:C.r, fill:"#fffdf7", stroke:"#6b5a1e", "stroke-width":3});
+    for (let i=0;i<36;i++){ const a=i*10*Math.PI/180, r1=C.r-(i%9===0?14:7);
+      el("line", {x1:C.x+r1*Math.sin(a), y1:C.y-r1*Math.cos(a), x2:C.x+(C.r-2)*Math.sin(a), y2:C.y-(C.r-2)*Math.cos(a), stroke:"#6b5a1e", "stroke-width":1.4}); }
+    [["N",0],["O",90],["S",180],["W",270]].forEach(([s,d])=>{ const a=d*Math.PI/180;
+      tx(C.x+(C.r-30)*Math.sin(a), C.y-(C.r-30)*Math.cos(a)+6, s, {"font-size":17, "font-weight":700, "text-anchor":"middle", fill:"#6b5a1e"}); });
+    drawNeedle(svg, C.x, C.y, C.r-22, needle, 9);
+  };
+  if (pos==="below"){ compass(); el("g",{}); wire(); }
+  else { wire(); compass(); }
+  tx(20, 470, pos==="below" ? "Magnetnadel liegt UNTER dem Leiter" : "Magnetnadel liegt ÜBER dem Leiter", {"font-size":14, fill:"#5c6472"});
+  tx(20, 34, on ? `Strom fließt (${String(amp.toFixed(1)).replace(".",",")} A)` : "kein Strom", {"font-size":15, "font-weight":700, fill: on ? "#1a7f4b" : "#5c6472"});
+  if ($("vec").checked){
+    const ox = 470, oy = 300, L = 70;
+    el("line", {x1:ox, y1:oy, x2:ox, y2:oy-L, stroke:"#6b7280", "stroke-width":4}); arrowHead(svg, ox, oy-L-4, -90, 12, "#6b7280");
+    tx(ox+8, oy-L/2, "Erdmagnetfeld", {"font-size":13, fill:"#6b7280"});
+    if (on){
+      const k = amp*2.2, Bx = (pos==="below"?1:-1)*edir.top*k, len = Math.min(L*Math.abs(Bx), 120);
+      const x2 = ox + Math.sign(Bx)*len;
+      el("line", {x1:ox, y1:oy, x2:x2, y2:oy, stroke:"#1d4ed8", "stroke-width":4}); arrowHead(svg, x2+Math.sign(Bx)*4, oy, Bx>0?0:180, 12, "#1d4ed8");
+      tx(ox + (Bx>0 ? 6 : -6), oy+22, "Feld des Leiters", {"font-size":13, fill:"#1d4ed8", "text-anchor": Bx>0 ? "start":"end"});
+    }
+  }
+}
+
+// ---------------- Ansicht 2: Querschnitt ----------------
+const W0 = {x:300, y:240};
+const ring = [];
+[[105, 10], [185, 16]].forEach(([r, n]) => { for (let i=0;i<n;i++){ const a = i*2*Math.PI/n + (r>150?Math.PI/n:0); ring.push({x:W0.x+r*Math.cos(a), y:W0.y+r*Math.sin(a), a}); } });
+function targetCross(i){
+  if (!on) return 0;
+  const p = ring[i], a = p.a;
+  // Tangente: Elektronen aus dem Bild heraus -> Feldlinien im Uhrzeigersinn (auf dem Bildschirm)
+  const s = edir.cross;                         // +1 heraus, -1 hinein
+  const bx = -Math.sin(a)*s, by = Math.cos(a)*s; // Bildschirmkoordinaten (y nach unten)
+  const r = Math.hypot(p.x-W0.x, p.y-W0.y), strength = amp*150/r;  // gegen schwaches Erdfeld (nach oben)
+  const Bx = bx*strength, By = by*strength - 1;
+  return Math.atan2(Bx, -By)*180/Math.PI;       // Winkel im Uhrzeigersinn von "oben"
+}
+function drawCross(t){
+  svg.innerHTML = "";
+  el("rect", {x:0, y:0, width:600, height:480, fill:"#f6f8fb"});
+  if ($("lines").checked && on){
+    [70, 145, 225].forEach(r => {
+      el("circle", {cx:W0.x, cy:W0.y, r, fill:"none", stroke:"#1d4ed8", "stroke-width":2, "stroke-dasharray":"7 6", opacity:.75});
+      for (let k=0;k<4;k++){ const a = k*Math.PI/2 + Math.PI/4, x = W0.x+r*Math.cos(a), y = W0.y+r*Math.sin(a);
+        const s = edir.cross, dir = Math.atan2(Math.cos(a)*s, -Math.sin(a)*s)*180/Math.PI;
+        arrowHead(svg, x, y, dir, 13, "#1d4ed8"); }
+    });
+  }
+  ring.forEach((p,i)=>{
+    el("circle", {cx:p.x, cy:p.y, r:19, fill:"#fffdf7", stroke:"#6b5a1e", "stroke-width":1.6});
+    drawNeedle(svg, p.x, p.y, 15, crossAng[i]||0, 5);
+  });
+  el("circle", {cx:W0.x, cy:W0.y, r:26, fill:"#e0a96d", stroke:"#8a5a2b", "stroke-width":3});
+  if (edir.cross>0){ el("circle", {cx:W0.x, cy:W0.y, r:6, fill:"#1c1f26"}); }
+  else { el("line", {x1:W0.x-13, y1:W0.y-13, x2:W0.x+13, y2:W0.y+13, stroke:"#1c1f26", "stroke-width":4});
+         el("line", {x1:W0.x-13, y1:W0.y+13, x2:W0.x+13, y2:W0.y-13, stroke:"#1c1f26", "stroke-width":4}); }
+  tx(20, 30, on ? "Strom fließt" : "kein Strom", {"font-size":15, "font-weight":700, fill: on ? "#1a7f4b" : "#5c6472"});
+  tx(20, 466, edir.cross>0 ? "⊙ Elektronen bewegen sich aus dem Bild heraus" : "⊗ Elektronen bewegen sich in das Bild hinein", {"font-size":14, fill:"#5c6472"});
+  if (document.body.classList.contains("lhr") && on){
+    // gebogener Pfeil um den Leiter für die gekrümmten Finger
+    const r = 44, s = edir.cross, a0 = -Math.PI*0.85, a1 = a0 + s*Math.PI*1.3;
+    const x0 = W0.x+r*Math.cos(a0), y0 = W0.y+r*Math.sin(a0), x1 = W0.x+r*Math.cos(a1), y1 = W0.y+r*Math.sin(a1);
+    el("path", {d:`M${x0},${y0} A${r},${r} 0 1 ${s>0?1:0} ${x1},${y1}`, fill:"none", stroke:"#e8740c", "stroke-width":4});
+    arrowHead(svg, x1, y1, Math.atan2(Math.cos(a1)*s, -Math.sin(a1)*s)*180/Math.PI, 12, "#e8740c");
+  }
+}
+
+// ---------------- Linke-Hand-Regel ----------------
+function lhrText(){
+  if (mode==="top"){
+    const nach = edir.top<0 ? "nach Süden (im Bild nach unten)" : "nach Norden (im Bild nach oben)";
+    return `<b>Linke-Hand-Regel:</b> Umfasse den Leiter mit der linken Hand. Der Daumen zeigt in Bewegungsrichtung der Elektronen – hier ${nach}. Die gekrümmten Finger zeigen die Richtung der Feldlinien. ` +
+      (pos==="below" ? "Unter dem Leiter zeigen die Fingerspitzen " : "Über dem Leiter zeigen die Fingerspitzen ") +
+      "in die Richtung, in die sich der Nordpol der Nadel dreht. Probiere es mit deiner Hand aus!";
+  }
+  return `<b>Linke-Hand-Regel:</b> Der Daumen der linken Hand zeigt in Bewegungsrichtung der Elektronen – hier ${edir.cross>0?"aus dem Bildschirm heraus, also auf dich zu":"in den Bildschirm hinein"}. Die gekrümmten Finger zeigen die Richtung der Feldlinien (oranger Pfeil).`;
+}
+
+// ---------------- Ablauf ----------------
+function frame(now){
+  const t = (now - t0)/1000;
+  if (mode==="top"){ needleT = targetTop(); needle += (needleT - needle)*0.12; drawTop(t); }
+  else { ring.forEach((_,i)=>{ const tg = targetCross(i); let d = tg - (crossAng[i]||0); d = ((d+540)%360)-180; crossAng[i] = (crossAng[i]||0) + d*0.12; }); drawCross(t); }
+  requestAnimationFrame(frame);
+}
+function refreshUI(){
+  $("power").textContent = on ? "Stromkreis öffnen" : "Stromkreis schließen";
+  $("power").className = "btn " + (on ? "stop" : "go");
+  $("amp-val").textContent = amp.toFixed(1).replace(".", ",") + " A";
+  $("lhr-text").innerHTML = lhrText();
+}
+function seg(id, cb){ document.querySelectorAll("#"+id+" button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("#"+id+" button").forEach(x => x.classList.toggle("on", x===b)); cb(b.dataset.v); refreshUI(); })); }
+seg("dir-top", v => edir.top = Number(v));
+seg("dir-cross", v => edir.cross = Number(v));
+seg("pos", v => pos = v);
+$("power").addEventListener("click", () => { on = !on; refreshUI(); });
+$("amp").addEventListener("input", e => { amp = Number(e.target.value); refreshUI(); });
+$("lhr").addEventListener("change", e => { document.body.classList.toggle("lhr", e.target.checked); refreshUI(); });
+function setMode(m){
+  mode = m; document.body.classList.toggle("m-top", m==="top"); document.body.classList.toggle("m-cross", m==="cross");
+  $("m-top").classList.toggle("on", m==="top"); $("m-cross").classList.toggle("on", m==="cross");
+  $("scene-title").textContent = m==="top" ? "Blick von oben auf Leiter und Magnetnadel" : "Blick auf den Leiter von vorne (Querschnitt)";
+  refreshUI();
+}
+$("m-top").addEventListener("click", () => setMode("top"));
+$("m-cross").addEventListener("click", () => setMode("cross"));
+setMode(location.hash === "#querschnitt" ? "cross" : "top");
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

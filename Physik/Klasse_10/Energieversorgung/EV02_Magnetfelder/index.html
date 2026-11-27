@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV02 Magnetfelder elektrischer Ströme · Energieversorgung · Physik Klasse 10</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{
+  --blue:#004a8a; --blue-dark:#00325f; --orange:#e8740c; --green:#1a7f4b; --red:#c0392b;
+  --border:#dde1e7; --bg:#f4f5f7; --text:#1c1f26; --muted:#5c6472;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.5; font-size:16px}
+.wrap{max-width:1100px; margin:0 auto; padding:0 16px 64px}
+header.top{background:var(--blue); border-bottom:4px solid var(--blue-dark); color:#fff}
+header.top .inner{max-width:1100px; margin:0 auto; padding:22px 16px 24px}
+header.top .kap{font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.92}
+header.top h1{margin:6px 0 4px; font-size:1.7rem; line-height:1.2}
+header.top .sub{font-size:.92rem; opacity:.95}
+.backnav{margin:18px 0 4px}
+.backnav a{display:inline-flex; align-items:center; gap:6px; font-size:.86rem; font-weight:600;
+  color:var(--muted); text-decoration:none; border:1px solid var(--border); border-radius:20px;
+  padding:5px 13px; background:#fff}
+.backnav a:hover{border-color:var(--muted); color:var(--text)}
+.note{background:#e8f0f9; border-left:3px solid var(--blue); border-radius:6px; padding:10px 14px;
+  font-size:.92rem; margin:14px 0}
+.onenote{background:#f3eefa; border-left-color:#7719aa}
+.onenote b{color:#7719aa}
+
+.modes{display:flex; gap:8px; margin:16px 0 12px; flex-wrap:wrap}
+.modes button{border:1px solid var(--border); background:#fff; border-radius:22px; padding:8px 18px;
+  font-size:.95rem; font-weight:700; color:var(--muted); cursor:pointer; font-family:inherit}
+.modes button.on{background:var(--blue); border-color:var(--blue); color:#fff}
+
+.labgrid{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(300px,1fr); gap:16px}
+@media (max-width:760px){.labgrid{grid-template-columns:1fr}}
+.panel{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px}
+.panel h2{font-size:.82rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:0 0 10px}
+#scene{width:100%; height:auto; display:block}
+
+.meters{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.meter{border:2px solid #2b2f36; border-radius:10px; background:#2b2f36; color:#fff; padding:8px 10px 10px; position:relative}
+.meter .lbl{font-size:.75rem; font-weight:700; letter-spacing:.05em; opacity:.8}
+.meter .val{font-family:"DejaVu Sans Mono",Menlo,Consolas,monospace; font-size:1.9rem; font-weight:700;
+  background:#c9d8b6; color:#1c2a12; border-radius:5px; padding:2px 8px; text-align:right; margin-top:4px}
+.meter .unit{font-size:1rem; margin-left:4px}
+.meter .hold{position:absolute; top:8px; right:10px; font-size:.68rem; font-weight:700; background:var(--orange);
+  border-radius:3px; padding:0 5px; display:none}
+.meter.held .hold{display:block}
+.watch{grid-column:1 / -1; background:#0f3d6e; border-color:#0f3d6e}
+.watch .val{background:#e9eef5; color:#0f2540}
+.watch .btns{display:flex; gap:8px; margin-top:8px}
+.btn{border:0; border-radius:8px; padding:9px 14px; font-size:.95rem; font-weight:700; cursor:pointer; font-family:inherit}
+.btn.primary{background:var(--blue); color:#fff}
+.btn.primary:hover{background:var(--blue-dark)}
+.btn.go{background:var(--green); color:#fff}
+.btn.stop{background:var(--red); color:#fff}
+.btn.ghost{background:#fff; color:var(--text); border:1px solid var(--border)}
+.btn:disabled{opacity:.45; cursor:not-allowed}
+.watch .btn{flex:1}
+
+.ctrl{margin-top:14px}
+.ctrl label{font-size:.9rem; font-weight:600; display:flex; justify-content:space-between}
+.ctrl input[type=range]{width:100%; margin:6px 0 2px}
+.ctrl .row{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+.ctrl .row .btn{flex:1}
+.check{display:flex; align-items:center; gap:8px; font-size:.88rem; color:var(--muted); margin-top:10px}
+.status{margin-top:10px; font-size:.88rem; min-height:1.4em; color:var(--muted)}
+.status.warn{color:var(--red); font-weight:600}
+
+.tablewrap{overflow-x:auto}
+th{background:#f3f5f8; font-weight:600}
+.calc{display:none; background:#fbf6ee}
+body.showcalc .calc{display:table-cell}
+td.empty{color:var(--muted); font-style:italic}
+.tools{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; align-items:center}
+.tools .check{margin:0 0 0 auto}
+
+details.box{background:#fff; border:1px solid var(--border); border-radius:10px; margin-top:16px}
+details.box summary{padding:12px 14px; font-weight:700; cursor:pointer}
+details.box .in{padding:0 16px 14px}
+#sankey{width:100%; max-width:640px; height:auto; display:block; margin:6px auto}
+.tasks .t{border-left:3px solid var(--blue); background:#fbfcfd; border:1px solid var(--border); border-left-width:3px;
+  border-radius:6px; padding:10px 14px; margin:10px 0; scroll-margin-top:12px}
+.tasks .t b.code{color:var(--blue)}
+.kbd{display:inline-block; border:1px solid var(--border); border-bottom-width:2px; border-radius:4px; padding:0 6px; font-size:.85rem; background:#fafbfc}
+footer{text-align:center; color:var(--muted); font-size:.85rem; margin-top:40px}
+
+:root{--c1:#1a7f4b; --c2:#c8660a; --c3:#6b3fa0; --c4:#0b7285}
+.section-head{font-size:1.1rem; font-weight:600; color:var(--muted); letter-spacing:.04em; text-transform:uppercase;
+  margin:40px 0 4px; border-bottom:1px solid var(--border); padding-bottom:8px}
+#tab{width:100%}
+#tab th,#tab td{border:1px solid var(--border); padding:6px 8px; text-align:center; font-size:.92rem}
+.copybar{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:8px}
+.btn.onenote{background:#7719aa; color:#fff}
+.btn.onenote:hover{background:#5c1385}
+#etachart{width:100%; max-width:640px; height:auto; display:block; margin:6px auto}
+.chartbox{display:none; margin-top:14px; border-top:1px dashed var(--border); padding-top:12px}
+body.showcalc .chartbox{display:block}
+.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#1c1f26; color:#fff;
+  padding:10px 18px; border-radius:8px; font-size:.92rem; opacity:0; transition:opacity .25s; pointer-events:none; z-index:60}
+.toast.on{opacity:1}
+.controls{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 16px;
+  margin:18px 0 22px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between}
+.unlock{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.unlock label{font-size:.9rem; color:var(--muted)}
+.unlock input{border:1px solid var(--border); border-radius:6px; padding:6px 10px; font-size:.95rem;
+  width:130px; font-family:inherit}
+.unlock button{background:var(--blue); color:#fff; border:0; border-radius:6px; padding:7px 14px;
+  font-size:.9rem; font-weight:600; cursor:pointer; font-family:inherit}
+.unlock button:hover{background:var(--blue-dark)}
+.unlock .msg{font-size:.85rem; font-weight:600}
+.unlock .msg.ok{color:var(--green)}
+.unlock .msg.bad{color:#c0392b}
+.filters{display:flex; gap:6px; flex-wrap:wrap}
+.filters button{background:#fff; border:1px solid var(--border); border-radius:20px; padding:6px 14px;
+  font-size:.85rem; cursor:pointer; color:var(--muted); font-family:inherit; font-weight:600}
+.filters button:hover{border-color:var(--muted)}
+.filters button.on{background:var(--text); border-color:var(--text); color:#fff}
+
+
+
+.howto{background:#fff; border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:.9rem;
+  margin:12px 0; color:var(--muted)}
+.howto strong{color:var(--text)}
+
+.ab-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:34px 0 12px;
+  padding-bottom:8px; border-bottom:2px solid var(--border)}
+.ab-badge{color:#fff; border-radius:6px; padding:4px 12px; font-weight:700; font-size:.9rem}
+.ab-head .t{font-weight:700; font-size:1.1rem}
+.ab-head .desc{color:var(--muted); font-size:.9rem; flex-basis:100%}
+.s1 .ab-badge{background:var(--c1)} .s2 .ab-badge{background:var(--c2)} .s3 .ab-badge{background:var(--c3)} .s4 .ab-badge{background:var(--c4)}
+
+.card{background:#fff; border:1px solid var(--border); border-radius:10px; margin-bottom:14px; overflow:hidden;
+  scroll-margin-top:12px}
+.card.s1{border-top:4px solid var(--c1)} .card.s2{border-top:4px solid var(--c2)} .card.s3{border-top:4px solid var(--c3)} .card.s4{border-top:4px solid var(--c4)}
+.card.flash{box-shadow:0 0 0 3px rgba(0,74,138,.35)}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 18px;
+  cursor:pointer; user-select:none}
+.card-head:hover{background:#fafbfc}
+.card-head h3{margin:0; font-size:1.03rem; font-weight:700}
+.card-head .right{display:flex; align-items:center; gap:10px}
+.chev{color:var(--muted); font-size:1.1rem; transition:transform .18s}
+.card.open .chev{transform:rotate(180deg)}
+.card-body{display:none; padding:0 18px 18px}
+.card.open .card-body{display:block}
+.qrbtn{display:none; border:1px solid var(--border); background:#fff; border-radius:6px; padding:3px 9px;
+  font-size:.78rem; font-weight:600; color:var(--blue); cursor:pointer; font-family:inherit}
+body.unlocked .qrbtn{display:inline-block}
+
+.task{background:#fbfcfd; border:1px solid var(--border); border-left:3px solid var(--blue); border-radius:6px;
+  padding:12px 15px; margin-bottom:14px}
+.task p{margin:.5em 0} .task p:first-child{margin-top:0} .task p:last-child{margin-bottom:0}
+.task ul, .sol ul{margin:.4em 0; padding-left:1.3em}
+.tw{overflow-x:auto}
+.sol table,.task table{border-collapse:collapse; margin:10px auto; width:auto}
+td,th{border:1px solid var(--border); padding:5px 12px; font-size:.92rem; text-align:center; min-width:70px}
+th{background:#f3f5f8; font-weight:600}
+th.u{background:#fafbfc; font-weight:400; color:var(--muted); font-size:.82rem}
+.task td{height:1.9em}
+
+.assess{display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:14px}
+.assess .lab{font-size:.83rem; color:var(--muted); margin-right:2px}
+.assess button{border:1px solid var(--border); background:#fff; border-radius:16px; padding:4px 12px;
+  font-size:.8rem; cursor:pointer; color:var(--muted); font-family:inherit}
+.assess button.on[data-v="ok"]{background:var(--c1); border-color:var(--c1); color:#fff}
+.assess button.on[data-v="mid"]{background:var(--c2); border-color:var(--c2); color:#fff}
+.assess button.on[data-v="ask"]{background:var(--blue); border-color:var(--blue); color:#fff}
+
+.hints{border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:14px}
+.hints .htitle{background:#f7f8fa; padding:7px 14px; font-size:.8rem; font-weight:700; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border)}
+.htabs{display:flex; flex-wrap:wrap; gap:6px; padding:10px 14px; background:#fdfdfe}
+.htabs button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:5px 11px;
+  font-size:.82rem; cursor:pointer; color:var(--text); font-family:inherit}
+.htabs button:hover{border-color:var(--blue)}
+.htabs button.on{background:var(--blue); border-color:var(--blue); color:#fff; font-weight:600}
+.hpanel{display:none; padding:12px 15px; border-top:1px solid var(--border); font-size:.95rem}
+.hpanel.on{display:block}
+.hpanel h4{margin:0 0 8px; font-size:.92rem; color:var(--blue-dark)}
+.hpanel p{margin:.5em 0}
+
+.sol-lock{background:#f7f8fa; border:1px dashed var(--border); border-radius:8px; padding:12px 15px;
+  font-size:.9rem; color:var(--muted); text-align:center}
+.sol{display:none; border:1px solid var(--green); border-radius:8px; overflow:hidden}
+.sol .sh{background:var(--green); color:#fff; padding:7px 15px; font-weight:700; font-size:.88rem}
+.sol .sb{padding:13px 15px; font-size:.95rem}
+.sol .sb p{margin:.55em 0} .sol .sb p:first-child{margin-top:0}
+body.unlocked .sol{display:block}
+body.unlocked .sol-lock{display:none}
+
+.katex{font-size:1.04em}
+.katex-display{margin:.6em 0; overflow-x:auto; overflow-y:hidden}
+
+#qrmodal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center;
+  justify-content:center; z-index:50; padding:16px}
+#qrmodal.on{display:flex}
+#qrmodal .box{background:#fff; border-radius:10px; padding:20px 22px; max-width:360px; width:100%; text-align:center}
+#qrmodal h4{margin:0 0 10px; font-size:1rem}
+#qrcanvas{display:flex; justify-content:center; margin:10px 0}
+#qrurl{font-size:.75rem; color:var(--muted); word-break:break-all; margin:8px 0 12px}
+#qrmodal button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:6px 12px;
+  font-size:.85rem; cursor:pointer; font-family:inherit; margin:0 3px}
+#qrmodal button.pri{background:var(--blue); color:#fff; border-color:var(--blue)}
+
+
+
+@media(max-width:600px){
+  header.top h1{font-size:1.32rem}
+  .controls{flex-direction:column; align-items:stretch}
+  .card-head h3{font-size:.95rem}
+}
+
+.fig{text-align:center; margin:12px 0}
+.fig svg.sch{max-width:100%; height:auto}
+.fig .cap{font-size:.82rem; color:var(--muted); margin-top:2px}
+.merke{background:#eef7f1; border:1px solid #cfe6d8; border-left:4px solid var(--green); border-radius:8px;
+  padding:11px 15px; margin:12px 0; font-size:.95rem}
+.merke .mt{font-weight:700; color:var(--green); font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:3px}
+.intro{background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 18px; margin:0 0 14px; font-size:.95rem}
+.intro h4{margin:0 0 6px; font-size:1rem}
+.intro p{margin:.45em 0}
+.intro .goal{display:inline-block; background:#e8f0f9; color:var(--blue-dark); border-radius:6px; padding:3px 10px;
+  font-size:.86rem; font-weight:600; margin-top:4px}
+.flex2{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+.flex2 > div{flex:1 1 260px}
+.sim{background:#fff; border:1px solid var(--border); border-radius:10px; margin:12px 0 18px; overflow:hidden}
+.sim summary{cursor:pointer; padding:11px 16px; font-weight:700; font-size:.95rem; list-style:none}
+.sim summary::-webkit-details-marker{display:none}
+.sim summary:before{content:"▸ "; color:var(--blue)}
+.sim[open] summary:before{content:"▾ "}
+.sim .sb2{padding:0 16px 14px; font-size:.92rem}
+.sim .sb2 ul{margin:.3em 0; padding-left:1.2em}
+.sim .sb2 li{margin:.25em 0}
+.kbd{display:inline-block; border:1px solid var(--border); background:#f7f8fa; border-radius:4px; padding:0 6px;
+  font-size:.85em; font-weight:600; white-space:nowrap}
+.wiss{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin:10px 0 4px}
+.wiss div{background:#fbfcfd; border:1px solid var(--border); border-radius:8px; padding:9px 12px; font-size:.88rem}
+.wiss b{display:block; color:var(--blue-dark); margin-bottom:2px}
+.step{display:inline-block; background:var(--blue); color:#fff; border-radius:50%; width:1.45em; height:1.45em;
+  line-height:1.45em; text-align:center; font-size:.8rem; font-weight:700; margin-right:6px}
+.sbz{background:#fff7ec; border:1px dashed #e8b979; border-radius:6px; padding:7px 11px; margin:.5em 0; font-size:.93rem}
+.mini{font-size:.86rem; color:var(--muted)}
+.task td.pre{background:#f3f5f8; font-weight:600}
+.ok{color:var(--green); font-weight:700}
+.task li,.hpanel li,.sol li{margin:.45em 0}
+.task,.hpanel,.sol .sb,.merke,.intro{overflow-x:auto; position:relative}
+
+
+
+.taskcopy{display:flex; justify-content:flex-end; margin:-6px 0 12px}
+.btn-on{background:#7719aa; color:#fff; border:0; border-radius:6px; padding:6px 12px; font-size:.84rem; font-weight:700;
+  cursor:pointer; font-family:inherit}
+.btn-on:hover{background:#5c1385}
+.ab-head .btn-on{margin-left:auto}
+</style>
+<style>
+.reise{margin:14px 0 4px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:10px}
+.reise img{width:100%; height:auto; display:block; border-radius:6px}
+.quiz{margin:6px 0 14px}
+.quiz .q{border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin:8px 0; background:#fbfcfd}
+.quiz .q p{margin:0 0 8px; font-weight:600}
+.quiz .opts{display:flex; flex-wrap:wrap; gap:6px}
+.quiz .opts button{border:1px solid var(--border); background:#fff; border-radius:6px; padding:6px 10px; font-size:.9rem; cursor:pointer; font-family:inherit; text-align:left}
+.quiz .opts button.right{background:#e3f4ea; border-color:#1a7f4b; color:#14522f; font-weight:700}
+.quiz .opts button.wrong{background:#fbe9e7; border-color:#c0392b; color:#8a1f12; text-decoration:line-through}
+.quiz .fb{font-size:.88rem; margin-top:6px; color:var(--muted); min-height:1.2em}
+.quiz .score{font-weight:700; color:var(--blue); margin-top:8px}
+.checklist{background:#fbfcfd; border:1px solid var(--border); border-radius:8px; padding:10px 14px; margin:12px 0}
+.checklist label{display:block; font-size:.92rem; margin:4px 0}
+table.skript td:first-child{white-space:nowrap; font-weight:600}
+table.skript td{text-align:left}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="inner">
+    <div class="kap">Reihe Energieversorgung · Physik Klasse 10 · EV02</div>
+    <h1>Magnetfelder elektrischer Ströme</h1>
+    <div class="sub">Wiederholung Magnetismus · Der Oersted-Versuch · Ein Erklärvideo vertonen · Feldlinien um einen Leiter</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="backnav"><a href="../">← Zurück zur Reihe Energieversorgung</a></div>
+
+  <div class="reise">
+    <img src="../Reisekarte/reisekarte_B.svg" alt="Reisekarte: Heute Sequenz B – Fundament: Elektrischer Strom erzeugt ein Magnetfeld">
+  </div>
+
+  <div class="note onenote"><b>OneNote:</b> Lege für jede Aufgabe eine eigene Seite an, deren Titel die Aufgabennummer ist – z.&nbsp;B. <b>EV02-A1</b>. Mit dem Knopf <b>📋 Aufgabe nach OneNote</b> kopierst du die Aufgabe (grauer Kasten = übernommen) und ein gelbes Feld für deine eigene Lösung.</div>
+
+  <div class="controls">
+    <div class="unlock">
+      <label for="code">🔒 Musterlösungen freischalten:</label>
+      <input id="code" type="text" autocomplete="off" placeholder="Code">
+      <button id="btn-unlock" type="button">Bestätigen</button>
+      <span class="msg" id="msg"></span>
+    </div>
+  </div>
+
+  <div class="howto">
+    <strong>So nutzt du die Hilfen:</strong> Versuche die Aufgabe zuerst allein. Wenn du nicht weiterkommst, öffne <strong>Hilfe 1</strong> – sie gibt dir einen Denkanstoß.
+    <strong>Hilfe 2</strong> zeigt dir den Weg, <strong>Hilfe 3</strong> bringt dich fast ans Ziel. Notiere in OneNote hinter der Aufgabennummer, welche Hilfe du genutzt hast (z.&nbsp;B. <b>EV02-A2 · H1</b>).
+  </div>
+
+  <!-- ===================== A1 ===================== -->
+  <section class="s1" data-ab="a1" id="ab-a1">
+    <div class="ab-head"><span class="ab-badge">EV02-A1</span><span class="t">Was weißt du noch über Magnete?</span>
+      <span class="desc">Wiederholung · Partnerarbeit</span></div>
+
+    <article class="card s1" id="a1a">
+      <div class="card-head"><h3>A1a · Kurzquiz Magnetismus</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p>Beantworte die sechs Fragen. Du bekommst sofort eine Rückmeldung. Notiere in OneNote die Fragen, bei denen du unsicher warst, und schreibe die richtige Antwort mit einer kurzen Begründung auf.</p></div>
+        <div class="quiz" id="quiz"></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+      </div>
+    </article>
+
+    <article class="card s1" id="a1b">
+      <div class="card-head"><h3>A1b · Feldlinienbild eines Stabmagneten</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>a)</strong> Skizziere in OneNote das Feldlinienbild eines Stabmagneten. Beschrifte Nord- und Südpol und zeichne die Richtung der Feldlinien mit Pfeilen ein.</p>
+<p><strong>b)</strong> Zeichne eine Kompassnadel an drei verschiedenen Stellen in dein Bild ein. Wie richtet sie sich jeweils aus?</p>
+<p><strong>c)</strong> Nenne drei Eigenschaften von Feldlinien.</p></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Eisenfeilspäne</button><button type="button">Hilfe 2 · Richtung</button><button type="button">Hilfe 3 · Eigenschaften</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Erinnere dich an das Video</h4><p>Am Anfang der Stunde hast du gesehen, wie sich Eisenfeilspäne um einen Stabmagneten ordnen. Jeder Span wird selbst zu einem kleinen Magneten und richtet sich aus. Die Linien, die dabei entstehen, sind die Feldlinien.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · In welche Richtung zeigen die Pfeile?</h4><p>Man hat festgelegt: Außerhalb des Magneten verlaufen die Feldlinien <strong>vom Nordpol zum Südpol</strong>. Eine Kompassnadel richtet sich entlang der Feldlinie aus – ihr <strong>Nordpol zeigt in Pfeilrichtung</strong>.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Eigenschaften von Feldlinien</h4><p>Denke an diese Fragen: Können sich zwei Feldlinien kreuzen? Wo liegen die Linien dicht beieinander – und was bedeutet das? Haben Feldlinien einen Anfang und ein Ende?</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol"><div class="sh">✓ Musterlösung · A1b</div><div class="sb">
+          <p><img src="feldlinien_stabmagnet.svg" alt="Feldlinienbild eines Stabmagneten" style="max-width:100%;display:block;margin:0 auto"></p>
+          <p><strong>b)</strong> Die Kompassnadel richtet sich überall entlang der Feldlinie aus; ihr Nordpol zeigt in Pfeilrichtung. Neben der Mitte des Magneten zeigt sie parallel zum Magneten in Richtung Südpol, an den Polen zeigt sie auf den Südpol bzw. vom Nordpol weg.</p>
+          <p><strong>c)</strong> Feldlinien verlaufen außen vom Nord- zum Südpol. Sie schneiden sich nie. Wo sie dicht liegen (an den Polen), ist das Magnetfeld besonders stark. Sie sind geschlossen – im Inneren des Magneten laufen sie vom Süd- zum Nordpol weiter.</p></div></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===================== A2 ===================== -->
+  <section class="s2" data-ab="a2" id="ab-a2">
+    <div class="ab-head"><span class="ab-badge">EV02-A2</span><span class="t">Der Oersted-Versuch</span>
+      <span class="desc">Demonstrationsexperiment · beobachten und vermuten</span></div>
+    <article class="card s2" id="a2">
+      <div class="card-head"><h3>A2 · Was passiert mit der Magnetnadel?</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="intro"><p>Hans Christian Oersted führte 1820 einen Versuch durch, der die Physik verändert hat. Ein gerader Draht liegt in Nord-Süd-Richtung direkt über einer Magnetnadel. Der Draht ist an eine Batterie angeschlossen.</p>
+          <span class="goal">🎯 Ziel: genau beobachten und eine Vermutung aufstellen</span></div>
+        <div class="task"><p><strong>a)</strong> Skizziere den Versuchsaufbau.</p>
+<p><strong>b)</strong> Beschreibe, was mit der Magnetnadel passiert,</p>
+<ul><li>wenn der Stromkreis geschlossen wird,</li><li>wenn der Stromkreis wieder geöffnet wird,</li><li>wenn die Batterie umgepolt wird (Plus- und Minuspol vertauscht),</li><li>wenn die Magnetnadel über statt unter den Draht gelegt wird.</li></ul>
+<p><strong>c)</strong> Stelle eine Vermutung auf: Warum dreht sich die Magnetnadel?</p></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Worauf achten?</button><button type="button">Hilfe 2 · Satzanfänge</button><button type="button">Hilfe 3 · Vermutung</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Worauf solltest du achten?</h4><p>Achte auf die <strong>Richtung</strong>, in die sich der Nordpol der Nadel dreht (nach Osten oder nach Westen?), und wie <strong>weit</strong> er sich dreht. Vergleiche immer mit der Lage ohne Strom.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Satzanfänge</h4><p>„Ohne Strom zeigt die Magnetnadel …“ · „Sobald der Stromkreis geschlossen ist, …“ · „Nach dem Umpolen dreht sich der Nordpol der Nadel …“ · „Liegt die Nadel über dem Draht, …“</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Wie kommst du zu einer Vermutung?</h4><p>Was kann eine Magnetnadel überhaupt ablenken? Du kennst aus der Wiederholung nur eine Ursache. Was muss also in der Nähe des Drahtes entstehen, wenn Strom fließt?</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol"><div class="sh">✓ Musterlösung · A2</div><div class="sb">
+          <p><strong>b)</strong> Ohne Strom zeigt die Nadel nach Norden, parallel zum Draht. Sobald Strom fließt, dreht sie sich und stellt sich fast quer zum Draht. Öffnet man den Stromkreis, dreht sie zurück nach Norden. Nach dem Umpolen schlägt sie in die entgegengesetzte Richtung aus. Liegt die Nadel über dem Draht, dreht sie sich ebenfalls in die entgegengesetzte Richtung.</p>
+          <p><strong>c)</strong> Eine Magnetnadel wird nur von einem Magnetfeld abgelenkt. Also erzeugt der elektrische Strom im Draht ein Magnetfeld. Seine Richtung hängt von der Stromrichtung ab.</p></div></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===================== A3 ===================== -->
+  <section class="s3" data-ab="a3" id="ab-a3">
+    <div class="ab-head"><span class="ab-badge">EV02-A3</span><span class="t">Ein Erklärvideo vertonen</span>
+      <span class="desc">Gruppenarbeit (2–3) · iMovie · Kopfhörer</span></div>
+    <article class="card s3" id="a3a">
+      <div class="card-head"><h3>A3a · Das Skript schreiben</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="intro"><p>Ihr seid die Sprecher eines Erklärvideos für eine 8. Klasse. Das Video zeigt den Oersted-Versuch und erklärt mit einem Modell, warum sich die Magnetnadel dreht – aber der Ton fehlt. Das Video (1:45 Min.) findet ihr im Kursnotizbuch in der <strong>Inhaltsbibliothek</strong> auf der Seite <strong>EV02 Video</strong>.</p>
+          <span class="goal">🎯 Ziel: ein fachlich richtiges, verständliches Erklärvideo</span></div>
+        <div class="task"><p><strong>a)</strong> Seht euch das Video zweimal ohne Unterbrechung an.</p>
+<p><strong>b)</strong> Schreibt in die Skript-Tabelle, was in jedem Abschnitt gesagt werden soll. Verwendet die Fachbegriffe. Euer Text muss in die Zeit passen – lest ihn laut zur Probe.</p>
+<p><strong>c)</strong> Klärt, wer welchen Abschnitt spricht.</p></div>
+        <template class="ontpl"><table style="border-collapse:collapse;width:100%"><tr><th style="border:1px solid #999;padding:4px">Zeit</th><th style="border:1px solid #999;padding:4px">Was man sieht</th><th style="border:1px solid #999;padding:4px">Unser Sprechtext</th><th style="border:1px solid #999;padding:4px">Wer?</th></tr>
+<tr><td style="border:1px solid #999;padding:4px">0:00–0:08</td><td style="border:1px solid #999;padding:4px">Titel</td><td style="border:1px solid #999;padding:4px">&nbsp;</td><td style="border:1px solid #999;padding:4px">&nbsp;</td></tr>
+<tr><td style="border:1px solid #999;padding:4px">0:08–0:13</td><td style="border:1px solid #999;padding:4px">Aufbau</td><td style="border:1px solid #999;padding:4px">&nbsp;</td><td style="border:1px solid #999;padding:4px">&nbsp;</td></tr>
+<tr><td style="border:1px solid #999;padding:4px">0:13–0:26</td><td style="border:1px solid #999;padding:4px">Strom ein und aus</td><td style="border:1px solid #999;padding:4px">&nbsp;</td><td style="border:1px solid #999;padding:4px">&nbsp;</td></tr>
+<tr><td style="border:1px solid #999;padding:4px">0:26–0:51</td><td style="border:1px solid #999;padding:4px">Batterie wird umgepolt</td><td style="border:1px solid #999;padding:4px">&nbsp;</td><td style="border:1px solid #999;padding:4px">&nbsp;</td></tr>
+<tr><td style="border:1px solid #999;padding:4px">0:51–1:25</td><td style="border:1px solid #999;padding:4px">Modell: Blick in den Leiter</td><td style="border:1px solid #999;padding:4px">&nbsp;</td><td style="border:1px solid #999;padding:4px">&nbsp;</td></tr>
+<tr><td style="border:1px solid #999;padding:4px">1:25–1:40</td><td style="border:1px solid #999;padding:4px">Modell: Feldlinien</td><td style="border:1px solid #999;padding:4px">&nbsp;</td><td style="border:1px solid #999;padding:4px">&nbsp;</td></tr>
+<tr><td style="border:1px solid #999;padding:4px">1:40–1:45</td><td style="border:1px solid #999;padding:4px">Abspann</td><td style="border:1px solid #999;padding:4px">&nbsp;</td><td style="border:1px solid #999;padding:4px">&nbsp;</td></tr></table>
+<p><b>Fachbegriffe abhaken:</b> ☐ geschlossener Stromkreis ☐ gerader Leiter ☐ Magnetnadel ☐ Ablenkung ☐ Stromrichtung ☐ Plus-/Minuspol ☐ Elektronen ☐ Modell ☐ Magnetfeld ☐ Feldlinien ☐ kreisförmig</p></template>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Fachbegriffe</button><button type="button">Hilfe 2 · Satzanfänge</button><button type="button">Hilfe 3 · Die ersten Abschnitte</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Diese Fachbegriffe gehören hinein</h4>
+            <div class="wiss">
+              <div><b>Teil 1 · Experiment</b>geschlossener / geöffneter Stromkreis, gerader Leiter, Magnetnadel, Ablenkung, Stromrichtung, Pluspol, Minuspol, umpolen</div>
+              <div><b>Teil 2 · Modell</b>Elektronen, frei beweglich, bewegen sich vom Minuspol zum Pluspol, Magnetfeld, Feldlinien, kreisförmig um den Leiter</div>
+            </div></div>
+          <div class="hpanel"><h4>Hilfe 2 · Satzanfänge</h4><p>„Hier seht ihr …“ · „Sobald der Stromkreis geschlossen ist, …“ · „Wenn man die Batterie umdreht, …“ · „Aber warum …? Dazu schauen wir in den Leiter hinein: …“ · „Die Feldlinien …“ · „Unser Fazit: …“</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · So könnten die ersten Abschnitte klingen</h4><p><b>0:08–0:13:</b> „Hier seht ihr den Aufbau: eine Batterie, einen geraden Leiter und darunter eine Magnetnadel. Die Nadel zeigt nach Norden, in dieselbe Richtung wie der Draht.“</p><p><b>0:13–0:26:</b> „Jetzt wird der Stromkreis geschlossen. Die Magnetnadel dreht sich und stellt sich fast quer zum Leiter! …“</p><p>Wie geht es weiter, wenn die Batterie umgedreht wird? Und was zeigt das Modell?</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol"><div class="sh">✓ Musterskript · A3a</div><div class="sb">
+          <div class="tw"><table class="skript"><tr><th>Zeit</th><th>Sprechtext</th></tr>
+          <tr><td>0:00–0:08</td><td>„Hallo! Wir zeigen euch heute einen berühmten Versuch: den Oersted-Versuch von 1820.“</td></tr>
+          <tr><td>0:08–0:13</td><td>„Hier seht ihr den Aufbau: eine Batterie, einen geraden Leiter – also einen Draht – und darunter eine Magnetnadel. Die Nadel zeigt nach Norden, in dieselbe Richtung wie der Draht.“</td></tr>
+          <tr><td>0:13–0:26</td><td>„Jetzt wird der Stromkreis geschlossen. Die Magnetnadel dreht sich und stellt sich fast quer zum Leiter! Wird der Stromkreis wieder geöffnet, dreht sie zurück nach Norden.“</td></tr>
+          <tr><td>0:26–0:51</td><td>„Nun wird die Batterie umgedreht: Plus- und Minuspol sind vertauscht, der Strom fließt in die andere Richtung. Wir schließen den Stromkreis wieder – die Nadel schlägt jetzt in die andere Richtung aus. Die Richtung der Ablenkung hängt also von der Stromrichtung ab.“</td></tr>
+          <tr><td>0:51–1:25</td><td>„Aber warum passiert das? Wir schauen in den Leiter hinein. Im Draht gibt es viele frei bewegliche Elektronen. Ist der Stromkreis geschlossen, bewegen sie sich durch den Leiter – vom Minuspol zum Pluspol. Die bewegten Elektronen erzeugen ein Magnetfeld, und dieses Magnetfeld lenkt die Kompassnadel ab.“</td></tr>
+          <tr><td>1:25–1:40</td><td>„Hier sind die Magnetfeldlinien eingezeichnet: Sie bilden Kreise um den Leiter. Die Kompassnadel richtet sich entlang dieser Feldlinien aus. Kehrt man die Stromrichtung um, ändert sich auch die Richtung der Feldlinien – deshalb schlägt die Nadel dann andersherum aus.“</td></tr>
+          <tr><td>1:40–1:45</td><td>„Unser Fazit: Ein elektrischer Strom erzeugt ein Magnetfeld – das ist der Oersted-Versuch.“</td></tr></table></div>
+          <div class="merke"><div class="mt">Merke · in OneNote übernehmen</div>Ein elektrischer Strom erzeugt ein Magnetfeld. Ursache sind die bewegten Elektronen im Leiter. Die Feldlinien umgeben den geraden Leiter kreisförmig. Kehrt man die Stromrichtung um, kehrt sich auch die Richtung des Magnetfelds um.</div></div></div>
+      </div>
+    </article>
+
+    <article class="card s3" id="a3b">
+      <div class="card-head"><h3>A3b · Aufnehmen und abgeben</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="task"><p><strong>a)</strong> Nehmt euren Sprechtext in iMovie als Voiceover auf. Benutzt Kopfhörer mit Mikrofon und sucht euch einen ruhigen Platz.</p>
+<p><strong>b)</strong> Exportiert das fertige Video und fügt es auf eurer OneNote-Seite <strong>EV02-A3</strong> ein.</p>
+<p><strong>c)</strong> Prüft euer Video mit der Checkliste unten, bevor ihr es abgebt.</p></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Hilfen zur Technik</div>
+          <div class="htabs"><button type="button">Hilfe 1 · iMovie</button><button type="button">Hilfe 2 · Aufnahme-Tipps</button><button type="button">Hilfe 3 · Export &amp; OneNote</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Voiceover in iMovie</h4><p><span class="step">1</span>Video aus OneNote speichern (lange tippen → „Speichern“ bzw. in „Dateien“ sichern).</p><p><span class="step">2</span>iMovie öffnen → <b>Neues Projekt</b> → <b>Film</b> → Video auswählen → <b>Film erstellen</b>.</p><p><span class="step">3</span>Den Abspielkopf (weiße Linie) an den Anfang des Abschnitts schieben.</p><p><span class="step">4</span>Auf <b>+</b> tippen und <b>Voiceover</b> (Mikrofon) wählen → <b>Aufnehmen</b>. Nach dem Countdown sprechen, dann <b>Stopp</b> → <b>Übernehmen</b> oder <b>Wiederholen</b>.</p><p><span class="step">5</span>So Abschnitt für Abschnitt weiter.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Gut klingende Aufnahmen</h4><p>Mikrofon des Kopfhörers nah an den Mund, nicht direkt anpusten. Langsam und deutlich sprechen. Lieber einen Abschnitt neu aufnehmen als einen Versprecher stehen lassen. Wartet, bis es um euch herum ruhig ist.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Exportieren und einfügen</h4><p>In iMovie auf <b>Fertig</b> tippen → Teilen-Symbol → <b>Video sichern</b>. In OneNote auf der Seite EV02-A3: <b>Einfügen</b> → <b>Datei</b> (oder Video aus „Fotos“) → euer Video auswählen.</p></div>
+        </div>
+        <div class="checklist"><b>Checkliste vor der Abgabe</b>
+          <label><input type="checkbox"> Alles ist fachlich richtig erklärt.</label>
+          <label><input type="checkbox"> Wir haben die Fachbegriffe verwendet.</label>
+          <label><input type="checkbox"> Der Text passt zum Bild und zur Zeit.</label>
+          <label><input type="checkbox"> Man versteht uns gut – deutlich und nicht zu schnell.</label>
+          <label><input type="checkbox"> Das Video ist auf der OneNote-Seite EV02-A3 eingefügt.</label>
+        </div>
+        <p class="mini">Bei der Premiere in der nächsten Stunde geben sich die Gruppen Rückmeldung nach diesen Kriterien: fachlich richtig (40&nbsp;%), Fachbegriffe (25&nbsp;%), passt zum Bild (20&nbsp;%), verständlich gesprochen (15&nbsp;%).</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===================== A4 ===================== -->
+  <section class="s4" data-ab="a4" id="ab-a4">
+    <div class="ab-head"><span class="ab-badge">EV02-A4</span><span class="t">Feldlinien um einen Leiter</span>
+      <span class="desc">Übung / Hausaufgabe · mit Simulation S2</span></div>
+    <article class="card s4" id="a4">
+      <div class="card-head"><h3>A4 · Die Linke-Hand-Regel</h3><span class="right"><button class="qrbtn" type="button">▦ QR</button><span class="chev">▾</span></span></div>
+      <div class="card-body">
+        <div class="intro"><p>Öffne die <a href="../S2_Feldlinien/" target="_blank" rel="noopener"><strong>Simulation S2</strong></a>.</p>
+          <span class="goal">🎯 Ziel: die Richtung des Magnetfelds mit der Linken-Hand-Regel bestimmen</span></div>
+        <div class="task"><p><strong>a)</strong> Ansicht „Feldlinien (Leiter von vorne)“: Schließe den Stromkreis. Beschreibe, wie sich die Kompassnadeln um den Leiter ausrichten. Skizziere das Feldlinienbild.</p>
+<p><strong>b)</strong> Wie ändert sich das Bild, wenn die Elektronen in die andere Richtung fließen?</p>
+<p><strong>c)</strong> Ansicht „Oersted-Versuch (von oben)“: Die Elektronen fließen nach Norden, die Magnetnadel liegt unter dem Leiter. Sage mit der Linken-Hand-Regel voraus, in welche Richtung (Osten oder Westen) sich der Nordpol der Nadel dreht. Überprüfe deine Vorhersage mit der Simulation.</p>
+<p><strong>d)</strong> Erkläre, warum die Nadel in die Gegenrichtung ausschlägt, wenn sie <em>über</em> dem Leiter liegt.</p></div>
+        <div class="assess"><span class="lab">Einschätzung:</span><button data-v="ok" type="button">✓ Fertig &amp; verstanden</button><button data-v="mid" type="button">~ Noch unsicher</button><button data-v="ask" type="button">? Frage an Lehrer</button></div>
+        <div class="hints"><div class="htitle">Gestufte Hilfen – nutze sie der Reihe nach</div>
+          <div class="htabs"><button type="button">Hilfe 1 · Die Regel</button><button type="button">Hilfe 2 · Mit der Hand</button><button type="button">Hilfe 3 · Oben und unten</button></div>
+          <div class="hpanel"><h4>Hilfe 1 · Die Linke-Hand-Regel</h4><p>Umfasse den Leiter mit der <strong>linken</strong> Hand. Der <strong>Daumen</strong> zeigt in die Bewegungsrichtung der <strong>Elektronen</strong> (vom Minus- zum Pluspol). Die <strong>gekrümmten Finger</strong> zeigen die Richtung der Feldlinien. In der Simulation kannst du die Regel einblenden.</p></div>
+          <div class="hpanel"><h4>Hilfe 2 · Probiere es mit deiner Hand</h4><p>Lege einen Stift als „Leiter“ vor dich auf den Tisch, Spitze nach Norden. Umfasse ihn mit der linken Hand, Daumen zur Spitze. Wohin zeigen deine Fingerspitzen <em>unter</em> dem Stift – nach links oder nach rechts? Genau dorthin dreht sich der Nordpol der Nadel.</p></div>
+          <div class="hpanel"><h4>Hilfe 3 · Warum andersherum?</h4><p>Die Feldlinien sind Kreise um den Leiter. Auf einem Kreis zeigt die Richtung <em>oben</em> genau entgegengesetzt zur Richtung <em>unten</em> – denk an ein Rad, das sich dreht: Oben läuft es nach vorne, unten nach hinten.</p></div>
+        </div>
+        <div class="sol-lock">🔒 Musterlösung – nach Freigabe durch die Lehrkraft sichtbar.</div>
+        <div class="sol"><div class="sh">✓ Musterlösung · A4</div><div class="sb">
+          <p><strong>a)</strong> Ohne Strom zeigen alle Nadeln nach Norden. Mit Strom stellen sie sich so ein, dass sie zusammen Kreise um den Leiter bilden. Die Feldlinien sind konzentrische Kreise um den Leiter; nahe am Leiter ist das Feld stärker.</p>
+          <p><strong>b)</strong> Alle Nadeln drehen sich um 180°: Die Feldlinien haben die entgegengesetzte Richtung (Elektronen aus dem Bild heraus → im Uhrzeigersinn, in das Bild hinein → gegen den Uhrzeigersinn).</p>
+          <p><strong>c)</strong> Daumen nach Norden: Unter dem Leiter zeigen die Finger nach <strong>Osten</strong>. Der Nordpol der Nadel dreht sich nach Osten.</p>
+          <p><strong>d)</strong> Die Feldlinien umlaufen den Leiter kreisförmig. Über dem Leiter zeigen sie genau in die Gegenrichtung wie unter dem Leiter – deshalb dreht sich die Nadel andersherum.</p></div></div>
+      </div>
+    </article>
+  </section>
+
+  <div id="qrmodal"><div class="box"><h4 id="qrtitle"></h4><div id="qrcanvas"></div><div id="qrurl"></div>
+    <button id="qrcopy" class="pri" type="button">Link kopieren</button><button id="qrclose" type="button">Schließen</button></div></div>
+</div>
+
+<footer>Sek I Unterrichtsmaterialien · Friedrich-Bährens-Gymnasium Schwerte</footer>
+
+<script>
+(function(){
+  var Q = [
+    ["Zwei Nordpole werden einander genähert. Was passiert?", ["Sie ziehen sich an.", "Sie stoßen sich ab.", "Nichts."], 1, "Gleichnamige Pole stoßen sich ab, ungleichnamige ziehen sich an."],
+    ["Welche Stoffe werden von einem Magneten angezogen?", ["Eisen, Nickel, Cobalt", "Kupfer, Aluminium, Eisen", "alle Metalle"], 0, "Nur ferromagnetische Stoffe wie Eisen, Nickel und Cobalt – Kupfer und Aluminium nicht."],
+    ["Eine Kompassnadel ist …", ["ein kleiner Magnet, der drehbar gelagert ist.", "ein Stück Kupfer, das vom Erdmagnetfeld angezogen wird.", "nur eine Markierung für die Himmelsrichtung."], 0, "Die Kompassnadel ist ein drehbarer Magnet – sie richtet sich im Magnetfeld aus."],
+    ["Außerhalb eines Magneten verlaufen die Feldlinien …", ["vom Südpol zum Nordpol.", "vom Nordpol zum Südpol.", "von der Mitte nach außen."], 1, "Festlegung: außen vom Nord- zum Südpol. Der Nordpol einer Kompassnadel zeigt in Pfeilrichtung."],
+    ["Wo ist das Magnetfeld eines Stabmagneten am stärksten?", ["in der Mitte", "an den Polen", "überall gleich"], 1, "An den Polen liegen die Feldlinien am dichtesten – dort ist das Feld am stärksten."],
+    ["Was gilt für Feldlinien?", ["Sie können sich kreuzen.", "Sie schneiden sich nie.", "Sie enden irgendwo im Raum."], 1, "Feldlinien schneiden sich nie – an jedem Ort hat das Feld genau eine Richtung."]
+  ];
+  var box = document.getElementById('quiz'); if (!box) return; var done = 0, right = 0;
+  var sc = document.createElement('div'); sc.className = 'score';
+  Q.forEach(function(q, i){
+    var d = document.createElement('div'); d.className = 'q';
+    d.innerHTML = '<p>' + (i+1) + '. ' + q[0] + '</p><div class="opts"></div><div class="fb"></div>';
+    var opts = d.querySelector('.opts'), fb = d.querySelector('.fb'), answered = false;
+    q[1].forEach(function(t, j){
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = t;
+      b.addEventListener('click', function(){
+        if (answered) return;
+        if (j === q[2]){ b.classList.add('right'); answered = true; done++; if (!d.dataset.miss) right++; fb.textContent = '✓ ' + q[3]; }
+        else { b.classList.add('wrong'); d.dataset.miss = 1; fb.textContent = 'Noch nicht – versuche es noch einmal.'; }
+        if (answered) sc.textContent = done === Q.length ? ('Fertig: ' + right + ' von ' + Q.length + ' Fragen beim ersten Versuch richtig.') : '';
+      });
+      opts.appendChild(b);
+    });
+    box.appendChild(d);
+  });
+  box.appendChild(sc);
+})();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ---------- Aufgaben nach OneNote kopieren ---------- */
+  var PAGEURL = location.origin + location.pathname;
+  function texToHtml(t){
+    var r = t;
+    r = r.replace(/\\[dt]?frac\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}/g, '($1)/($2)');
+    r = r.replace(/_\\text\{([^}]*)\}/g, '<sub>$1</sub>').replace(/_\{([^}]*)\}/g, '<sub>$1</sub>').replace(/_([A-Za-z0-9])/g, '<sub>$1</sub>');
+    r = r.replace(/\\text\{([^}]*)\}/g, '$1');
+    r = r.replace(/\\Delta\s*/g, 'Δ');
+    var map = {'\\cdot':'·','\\eta':'η','\\approx':'≈','\\qquad':'&nbsp;&nbsp;&nbsp;&nbsp;','\\quad':'&nbsp;&nbsp;',
+               '\\,':'&#8239;','\\;':' ','\\!':'','\\%':'%'};
+    for (var k in map) r = r.split(k.replace(/\\\\/g,'\\')).join(map[k]);
+    r = r.replace(/\{,\}/g, ',').replace(/\(([A-Za-z0-9,.\s]+)\)\/\(([A-Za-z0-9,.\s]+)\)/g, '$1/$2');
+    r = r.replace(/[{}]/g, '').replace(/\\/g, '');
+    return r;
+  }
+  function mathify(html){
+    return html.replace(/\$\$([\s\S]*?)\$\$/g, function(m, t){ return '<br><i>' + texToHtml(t) + '</i><br>'; })
+               .replace(/\$([^$]+)\$/g, function(m, t){ return '<i>' + texToHtml(t) + '</i>'; });
+  }
+  function cleanTask(html){
+    return mathify(html).replace(/<span class="kbd">([^<]*)<\/span>/g, '„$1“');
+  }
+  var rawTasks = {};
+  document.querySelectorAll('.card').forEach(function(c){ var t = c.querySelector('.task'); if (t) rawTasks[c.id] = t.innerHTML; });
+  function block(title, bodyHtml, tpl){
+    return '<p style="margin:10pt 0 2pt"><b><span style="font-size:13pt;color:#004a8a">' + title + '</span></b></p>' +
+      '<table style="border-collapse:collapse;width:100%"><tr><td style="background:#eeeeee;border:1px solid #bbbbbb;padding:6pt">' +
+      bodyHtml + '<p style="font-size:8pt;color:#777777">Übernommen aus: ' + document.title.split(' · ')[0] + ' · ' + PAGEURL + '</p></td></tr></table>' +
+      '<table style="border-collapse:collapse;width:100%;margin-top:4pt"><tr><td style="background:#fff2b3;border:1px solid #e0c34d;padding:6pt">' +
+      '<b>Meine Lösung</b><br>' + (tpl || '<br><br>') + '</td></tr></table><p>&nbsp;</p>';
+  }
+  function plain(title, html){ var d = document.createElement('div'); d.innerHTML = html.replace(/<li>/g, '<li>\n• '); return title + '\n' + d.innerText + '\n\nMeine Lösung:\n\n'; }
+  function copyTask(pageName, parts){
+    var html = '<p style="color:#7719aa;font-size:9pt">OneNote-Seite: <b>' + pageName + '</b></p>', txt = 'OneNote-Seite: ' + pageName + '\n\n';
+    parts.forEach(function(p){ var b = cleanTask(rawTasks[p.id] || ''); var tp = document.querySelector('#' + p.id + ' template.ontpl'); html += block(p.title, b, tp ? tp.innerHTML : ''); txt += plain(p.title, b); });
+    var done = function(){ showToast('Kopiert! Neue OneNote-Seite „' + pageName + '“ anlegen und einfügen'); };
+    if (navigator.clipboard && window.ClipboardItem){
+      navigator.clipboard.write([new ClipboardItem({'text/html': new Blob([html], {type:'text/html'}), 'text/plain': new Blob([txt], {type:'text/plain'})})])
+        .then(done, function(){ fallback(txt, done); });
+    } else fallback(txt, done);
+  }
+  function fallback(txt, done){
+    var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch(e){ showToast('Kopieren nicht möglich'); } ta.remove();
+  }
+  function showToast(m){
+    var t = document.querySelector('.toast'); if (!t){ t = document.createElement('div'); t.className = 'toast'; document.body.appendChild(t); }
+    t.textContent = m; t.classList.add('on'); clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove('on'); }, 3000);
+  }
+  document.querySelectorAll('section[data-ab]').forEach(function(sec){
+    var page = sec.querySelector('.ab-badge').textContent.trim();
+    var cards = Array.prototype.slice.call(sec.querySelectorAll('.card'));
+    var info = function(c){ return {id: c.id, title: page.split('-')[0] + '-' + c.querySelector('h3').textContent.trim()}; };
+    cards.forEach(function(c){
+      var bar = document.createElement('div'); bar.className = 'taskcopy';
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'btn-on';
+      b.textContent = '📋 Aufgabe nach OneNote (Seite ' + page + ')';
+      b.addEventListener('click', function(){ copyTask(page, [info(c)]); });
+      bar.appendChild(b); c.querySelector('.task').insertAdjacentElement('afterend', bar);
+    });
+    if (cards.length > 1){
+      var hb = document.createElement('button'); hb.type = 'button'; hb.className = 'btn-on';
+      hb.textContent = '📋 Alle Teile nach OneNote (Seite ' + page + ')';
+      hb.addEventListener('click', function(){ copyTask(page, cards.map(info)); });
+      sec.querySelector('.ab-head .t').insertAdjacentElement('afterend', hb);
+    }
+  });
+  function render(){ if (window.renderMathInElement) renderMathInElement(document.body, {
+    delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false}); }
+  if (window.renderMathInElement) render(); else window.addEventListener('load', render);
+  document.querySelectorAll('.card-head').forEach(function(h){ h.addEventListener('click', function(e){
+    if (e.target.closest('.qrbtn')) return; h.parentElement.classList.toggle('open'); }); });
+  document.querySelectorAll('.hints').forEach(function(box){
+    var tabs = box.querySelectorAll('.htabs button'), panels = box.querySelectorAll('.hpanel');
+    tabs.forEach(function(tab, i){ tab.addEventListener('click', function(){
+      var wasOn = tab.classList.contains('on');
+      tabs.forEach(function(t){ t.classList.remove('on'); }); panels.forEach(function(p){ p.classList.remove('on'); });
+      if (!wasOn){ tab.classList.add('on'); if (panels[i]) panels[i].classList.add('on'); } }); }); });
+  document.querySelectorAll('.assess').forEach(function(box){
+    var btns = box.querySelectorAll('button');
+    btns.forEach(function(b){ b.addEventListener('click', function(){
+      var wasOn = b.classList.contains('on'); btns.forEach(function(x){ x.classList.remove('on'); }); if (!wasOn) b.classList.add('on'); }); }); });
+  var CODE = 'OERSTED', input = document.getElementById('code'), msg = document.getElementById('msg');
+  function tryUnlock(){
+    if ((input.value||'').trim().toUpperCase() === CODE){ document.body.classList.add('unlocked'); msg.textContent='✓ freigeschaltet'; msg.className='msg ok'; render(); }
+    else { msg.textContent='✗ Code stimmt nicht'; msg.className='msg bad'; } }
+  document.getElementById('btn-unlock').addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e){ if (e.key==='Enter') tryUnlock(); });
+  function openFromHash(){
+    var id = decodeURIComponent((location.hash||'').slice(1)); if (!id) return false;
+    var card = document.getElementById(id);
+    if (!card) return false;
+    if (!card.classList.contains('card')) card = card.querySelector('.card');
+    if (!card) return false;
+    card.classList.add('open','flash'); setTimeout(function(){ card.classList.remove('flash'); }, 2200);
+    card.scrollIntoView(); return true; }
+  if (!openFromHash()){ var f = document.querySelector('#a1a'); if (f) f.classList.add('open'); }
+  window.addEventListener('hashchange', openFromHash);
+  var modal = document.getElementById('qrmodal'), qrUrl = '';
+  document.querySelectorAll('.qrbtn').forEach(function(b){ b.addEventListener('click', function(e){
+    e.stopPropagation(); var card = b.closest('.card');
+    qrUrl = location.origin + location.pathname + '#' + card.id;
+    document.getElementById('qrtitle').textContent = card.querySelector('h3').textContent;
+    document.getElementById('qrurl').textContent = qrUrl;
+    var box = document.getElementById('qrcanvas'); box.innerHTML = '';
+    if (window.QRCode) new QRCode(box, {text:qrUrl, width:220, height:220, correctLevel:QRCode.CorrectLevel.M});
+    else box.textContent = 'QR-Bibliothek konnte nicht geladen werden.';
+    modal.classList.add('on'); }); });
+  document.getElementById('qrclose').addEventListener('click', function(){ modal.classList.remove('on'); });
+  modal.addEventListener('click', function(e){ if (e.target===modal) modal.classList.remove('on'); });
+  document.getElementById('qrcopy').addEventListener('click', function(){ var btn=this;
+    if (navigator.clipboard) navigator.clipboard.writeText(qrUrl).then(function(){ btn.textContent='✓ kopiert'; setTimeout(function(){ btn.textContent='Link kopieren'; },1500); }); });
+});
+</script>
+</body>
+</html>
